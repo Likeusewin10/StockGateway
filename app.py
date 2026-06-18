@@ -13,7 +13,8 @@ import os
 import threading
 from pathlib import Path
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Security, Depends
+from fastapi.security import APIKeyHeader
 
 # ---- 加载 .env ----
 for _line in Path(__file__).with_name(".env").read_text(encoding="utf-8").splitlines():
@@ -69,6 +70,18 @@ def _em_result(result):
 
 app = FastAPI(title="股票数据服务", description="EM + iFinD 统一取数接口")
 
+# ---- API Key 鉴权 ----
+# .env 里设了 API_KEY 则所有取数接口要求请求头 X-API-Key 匹配；留空则不鉴权。
+_API_KEY = os.environ.get("API_KEY", "").strip()
+_api_key_header = APIKeyHeader(name="X-API-Key", auto_error=False)
+
+
+def require_key(key: str = Security(_api_key_header)):
+    if not _API_KEY:          # 未配置 key：不鉴权（仅本机/内网场景）
+        return
+    if key != _API_KEY:
+        raise HTTPException(401, "缺少或错误的 X-API-Key")
+
 
 @app.get("/health")
 def health():
@@ -76,7 +89,7 @@ def health():
 
 
 @app.get("/em/csd")
-def em_csd(codes: str, indicators: str, startdate: str, enddate: str, options: str = ""):
+def em_csd(codes: str, indicators: str, startdate: str, enddate: str, options: str = "", _=Depends(require_key)):
     """东财序列数据。例：/em/csd?codes=300059.SZ&indicators=CLOSE&startdate=2024-01-01&enddate=2024-01-05"""
     opts = (options + ",Ispandas=1").lstrip(",") if "Ispandas" not in options else options
     with _lock:
@@ -85,7 +98,7 @@ def em_csd(codes: str, indicators: str, startdate: str, enddate: str, options: s
 
 
 @app.get("/em/css")
-def em_css(codes: str, indicators: str, options: str = ""):
+def em_css(codes: str, indicators: str, options: str = "", _=Depends(require_key)):
     """东财截面数据。例：/em/css?codes=300059.SZ,000002.SZ&indicators=OPEN,CLOSE&options=TradeDate=20240105"""
     opts = (options + ",Ispandas=1").lstrip(",") if "Ispandas" not in options else options
     with _lock:
@@ -94,7 +107,7 @@ def em_css(codes: str, indicators: str, options: str = ""):
 
 
 @app.get("/ths/history")
-def ths_history(codes: str, indicators: str, begin: str, end: str, params: str = ""):
+def ths_history(codes: str, indicators: str, begin: str, end: str, params: str = "", _=Depends(require_key)):
     """同花顺历史行情。例：/ths/history?codes=300033.SZ&indicators=open;close&begin=2024-01-01&end=2024-01-05"""
     with _lock:
         _ensure_ths()
@@ -105,7 +118,7 @@ def ths_history(codes: str, indicators: str, begin: str, end: str, params: str =
 
 
 @app.get("/ths/basic")
-def ths_basic(codes: str, indicators: str, params: str = ""):
+def ths_basic(codes: str, indicators: str, params: str = "", _=Depends(require_key)):
     """同花顺基础/截面数据。"""
     with _lock:
         _ensure_ths()
@@ -116,7 +129,7 @@ def ths_basic(codes: str, indicators: str, params: str = ""):
 
 
 @app.get("/ths/realtime")
-def ths_realtime(codes: str, indicators: str, params: str = ""):
+def ths_realtime(codes: str, indicators: str, params: str = "", _=Depends(require_key)):
     """同花顺实时行情。"""
     with _lock:
         _ensure_ths()

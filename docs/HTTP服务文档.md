@@ -29,6 +29,39 @@
 - 仅本机：`http://127.0.0.1:8000`（服务绑定 127.0.0.1，同网段其他设备访问不到）
 - **交互式文档（可直接点着试）**：`http://127.0.0.1:8000/docs`
 
+## 鉴权（API Key）
+
+`.env` 里设了 `API_KEY` 后，**所有取数接口都要求请求头 `X-API-Key` 匹配**，否则返回 401。
+`/health` 不需要 key（方便探活）。`.env` 里 `API_KEY` 留空则不鉴权（纯本机时）。
+
+```bash
+# 无 key → 401；带正确 key → 200
+curl -H "X-API-Key: 你的KEY" "http://127.0.0.1:8000/em/csd?codes=300059.SZ&indicators=CLOSE&startdate=2024-01-02&enddate=2024-01-03"
+```
+```python
+import requests
+requests.get("http://127.0.0.1:8000/em/csd",
+             headers={"X-API-Key": "你的KEY"},
+             params={"codes":"300059.SZ","indicators":"CLOSE",
+                     "startdate":"2024-01-02","enddate":"2024-01-03"})
+```
+
+## 远程调用（本机无公网 IP，用 Tailscale）
+
+本机在路由器 NAT 后面、没有公网 IP，**不能直接被外网访问**。
+对"固定一个人、跨网络"的场景，用 **Tailscale**（VPN）最合适：不暴露公网、不依赖公网 IP、CGNAT 也能用、一个人免费。
+
+步骤：
+1. 这台机器和远程设备都安装 Tailscale（https://tailscale.com/download），用同一账号登录，加入同一 tailnet。
+2. 在这台机器上执行 `tailscale ip -4` 查到它的虚拟内网地址（形如 `100.x.x.x`，固定不变）。
+3. 让服务监听 Tailscale 网卡。两种做法：
+   - 简单：把 `start_server.bat` 里的 `--host 127.0.0.1` 改成 `--host 0.0.0.0`（监听所有网卡，含 Tailscale）。此时**务必已设 `API_KEY`**，因为同局域网也能访问到。
+   - 收紧：`--host 100.x.x.x`（只监听 Tailscale 地址），但该地址变动时要改。推荐前者 + API Key。
+4. 远程设备访问 `http://100.x.x.x:8000/...`，请求头带 `X-API-Key`。
+
+> 安全要点：远程开放后**必须有 API Key**（已内置）。Tailscale 只让你 tailnet 内的设备可达，双重保险。
+> 备选方案（不展开）：内网穿透 frp/ngrok（数据过第三方中转，慎用）、云服务器反向代理（要花钱、最稳定）。
+
 ## 接口一览
 
 所有接口都是 GET，参数走查询字符串，返回 JSON。
