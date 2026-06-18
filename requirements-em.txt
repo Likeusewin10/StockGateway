@@ -1,0 +1,7 @@
+# EMQuantAPI 不通过 pip 安装。
+# SDK 文件位于：D:\dev\Project\EMQuantAPI_Python\python3
+# 注册方式（在 .venv-em 激活态下运行）：
+#   cd D:\dev\Project\EMQuantAPI_Python\python3
+#   python installEmQuantAPI.py
+# 该脚本会在当前解释器的 site-packages 写入 EmQuantAPI.pth 指向上述目录。
+# 运行依赖：Microsoft Visual C++ 2010 可再发行组件包（x64）。

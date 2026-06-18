@@ -1,0 +1,20 @@
+# Python 虚拟环境
+.venv-em/
+.venv-ths/
+.venv*/
+__pycache__/
+*.py[cod]
+
+# 凭据与登录令牌 —— 绝不入库
+.env
+userInfo
+docs/quantapi/相关信息.txt
+
+# 日志
+*.log
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
