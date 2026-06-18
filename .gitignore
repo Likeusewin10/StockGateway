@@ -13,6 +13,11 @@ docs/quantapi/相关信息.txt
 # 日志
 *.log
 
+# 计划任务定义 —— 由 register_task.ps1 自动生成的派生产物
+task_def.xml
+# 同上，由 register_ngrok_task.ps1 自动生成
+ngrok_task_def.xml
+
 # IDE / OS
 .idea/
 .vscode/

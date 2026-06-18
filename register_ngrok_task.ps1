@@ -1,29 +1,21 @@
-# Register the StockDataService scheduled task:
+# Register the NgrokTunnel scheduled task:
 # at-logon autostart + self-heal every 1 min (independent TimeTrigger) + single instance.
-# Runs as current interactive user (EM token usable; no admin/password needed).
-$ErrorActionPreference = 'Stop'
-$taskName = 'StockDataService'
-$dir = $PSScriptRoot
-$bat = Join-Path $dir 'start_server.bat'
-$user = "$env:USERDOMAIN\$env:USERNAME"
-$xmlPath = Join-Path $dir 'task_def.xml'
-
-# 注：本机 PowerShell 的 Register-ScheduledTask 在给 Trigger 加 Repetition 时会报
-# "Trigger 为 Null" 且登录触发器上的 Repetition 不会调度，故改用任务计划程序原生 XML +
-# schtasks /Create，实测可靠。
+# Runs as current interactive user. Mirrors register_task.ps1 (StockDataService) deliberately.
 #
-# 触发器设计（关键，别改回单登录触发器）：
-#   1) LogonTrigger    —— 登录即启动；
-#   2) TimeTrigger + Repetition(PT1M) —— 独立的每分钟兜底，不依赖登录事件。
-# 配合 MultipleInstancesPolicy=IgnoreNew：服务在跑就跳过，没跑（如看门狗控制台被关闭、
-# 任务退到 Ready）则在 1 分钟内自动拉起，无需再次登录。这是 self-heal 的核心。
+# 与 StockDataService 完全平行的一套：start_ngrok.bat 看门狗常驻，schtasks 负责开机自启与
+# 退出自愈。免费版 ngrok 同一 authtoken 仅允许 1 个会话，IgnoreNew 策略确保全机唯一实例。
+$ErrorActionPreference = 'Stop'
+$taskName = 'NgrokTunnel'
+$dir = $PSScriptRoot
+$user = "$env:USERDOMAIN\$env:USERNAME"
+$xmlPath = Join-Path $dir 'ngrok_task_def.xml'
+$bat = Join-Path $dir 'start_ngrok.bat'
 
-$bat = Join-Path $dir 'start_server.bat'
 $xml = @"
 <?xml version="1.0" encoding="UTF-16"?>
 <Task version="1.3" xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task">
   <RegistrationInfo>
-    <Description>EM + iFinD stock data HTTP service</Description>
+    <Description>ngrok tunnel exposing stock data service (port 8000) to fixed public domain</Description>
   </RegistrationInfo>
   <Triggers>
     <LogonTrigger>
@@ -83,7 +75,8 @@ if ($LASTEXITCODE -eq 0) {
     Write-Output "[OK] Task '$taskName' registered: autostart at logon + self-heal every 1 min (TimeTrigger)."
     Write-Output "    Start now:   schtasks /Run /TN $taskName"
     Write-Output "    Status:      Get-ScheduledTask -TaskName $taskName | Get-ScheduledTaskInfo"
-    Write-Output "    Uninstall:   run uninstall_service.bat"
+    Write-Output "    Public URL:  https://quaking-trial-tycoon.ngrok-free.dev"
+    Write-Output "    Uninstall:   schtasks /Delete /TN $taskName /F"
 } else {
     Write-Output ("[FAIL] " + ($create -join ' '))
 }
