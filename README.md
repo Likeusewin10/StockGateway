@@ -50,3 +50,16 @@ D:\dev\Project\EMQuantAPI_Python\python3\libs\windows\LoginActivator.exe
 
 - `.env`、`userInfo`、`docs/quantapi/相关信息.txt` 已被 `.gitignore` 排除，不入版本库。
 - 代码一律从环境变量 / `.env` 读取凭据，无硬编码。
+- HTTP 服务（经 ngrok 公网暴露）已加：`X-API-Key` 常量时间鉴权、按 IP 限流、默认拒绝跨域（`CORS_ORIGINS` 白名单显式放开）。
+
+## HTTP 服务结构与测试
+
+服务实现拆分在 `stocksdk/` 包：`config`（配置/`.env` 加载）、`sessions`（SDK 单会话+全局锁）、
+`serialize`（返回值归一化）、`security`（鉴权/限流）、`routes_em` / `routes_ths` / `routes_ws`（路由）。
+`app.py` 仅负责装配。
+
+```bat
+.venv-api\Scripts\python -m pytest --cov=stocksdk
+```
+
+测试用桩替换两个 SDK，不触发真实登录/网络（当前覆盖率 88%）。

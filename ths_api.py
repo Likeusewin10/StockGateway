@@ -8,9 +8,7 @@
     df = ths.history("300033.SZ", "open;high;low;close", "2024-01-01", "2024-01-05")
     df = ths.basic("300033.SZ", "ths_stock_short_name_stock", "")
 """
-import os
 import atexit
-from pathlib import Path
 
 from iFinDPy import (
     THS_iFinDLogin,
@@ -21,19 +19,9 @@ from iFinDPy import (
     THS_Trans2DataFrame,
 )
 
+from stocksdk.config import load_dotenv, require_ths_credentials
+
 _logged_in = False
-
-
-def _load_dotenv():
-    env_path = Path(__file__).with_name(".env")
-    if not env_path.exists():
-        return
-    for line in env_path.read_text(encoding="utf-8").splitlines():
-        line = line.strip()
-        if not line or line.startswith("#") or "=" not in line:
-            continue
-        k, _, v = line.partition("=")
-        os.environ.setdefault(k.strip(), v.strip())
 
 
 def _ensure_login():
@@ -41,11 +29,8 @@ def _ensure_login():
     global _logged_in
     if _logged_in:
         return
-    _load_dotenv()
-    user = os.environ.get("THS_USER")
-    pwd = os.environ.get("THS_PWD")
-    if not user or not pwd:
-        raise RuntimeError("缺少环境变量 THS_USER / THS_PWD（检查 .env）")
+    load_dotenv()
+    user, pwd = require_ths_credentials()
     code = THS_iFinDLogin(user, pwd)
     if code != 0:
         raise RuntimeError("iFinD 登录失败，返回码 {}（单点登录冲突/权限/网络）".format(code))
