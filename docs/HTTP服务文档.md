@@ -1,22 +1,33 @@
-# 股票数据 HTTP 服务
+﻿# 股票数据 HTTP 服务
 
 把 EM（东方财富）和 iFinD（同花顺）两个 SDK 包成一个 HTTP 服务。
 **其他项目无需写任何 SDK 代码，只要往 `http://本机IP:端口/...` 发请求 + 带参数，即可取数。**
 
 ## 启动
 
-在本机（`D:\dev\Project\StockSDK`）双击 `start_server.bat`，或命令行：
+### 常驻服务（推荐，开机/登录后自动运行）
+
+双击运行 `install_service.bat`，注册为计划任务 `StockDataService`：
+- **登录后自动启动**（你登录 Windows 桌面后服务自动起来）。
+- **崩溃自动重启**：`start_server.bat` 是看门狗循环，服务进程退出后 5 秒内自动重启。
+- 停用/卸载：运行 `uninstall_service.bat`。
+- 手动立即启动：`schtasks /Run /TN StockDataService`；查看状态：`Get-ScheduledTask -TaskName StockDataService`。
+
+> 注意：用的是"登录后启动"。开机停在锁屏、尚未登录时服务不跑；登录进桌面即自动启动。
+> 这样服务以你自己的账户运行，EM 的 userInfo 令牌可正常使用。
+
+### 临时手动启动（调试用）
+
 ```bat
-.venv-api\Scripts\python -m uvicorn app:app --host 0.0.0.0 --port 8000
+.venv-api\Scripts\python -m uvicorn app:app --host 127.0.0.1 --port 8000
 ```
 - 两个 SDK 装在同一个 venv（`.venv-api`），一个服务、一个端口同时提供两家数据。
 - **必须单 worker**（SDK 单会话，服务内部用全局锁串行化请求）。不要加 `--workers`。
 
 ## 访问
 
-- 本机：`http://127.0.0.1:8000`
-- 局域网同事：`http://192.168.0.88:8000`（本机当前内网 IP，换网络会变）
-- **交互式文档（可直接点着试）**：`http://192.168.0.88:8000/docs`
+- 仅本机：`http://127.0.0.1:8000`（服务绑定 127.0.0.1，同网段其他设备访问不到）
+- **交互式文档（可直接点着试）**：`http://127.0.0.1:8000/docs`
 
 ## 接口一览
 
@@ -39,15 +50,15 @@
 
 浏览器/curl：
 ```
-http://192.168.0.88:8000/em/csd?codes=300059.SZ&indicators=CLOSE&startdate=2024-01-01&enddate=2024-01-05
-http://192.168.0.88:8000/em/css?codes=300059.SZ,000002.SZ&indicators=OPEN,CLOSE&options=TradeDate=20240105
-http://192.168.0.88:8000/ths/history?codes=300033.SZ&indicators=open;close&begin=2024-01-01&end=2024-01-05
+http://127.0.0.1:8000/em/csd?codes=300059.SZ&indicators=CLOSE&startdate=2024-01-01&enddate=2024-01-05
+http://127.0.0.1:8000/em/css?codes=300059.SZ,000002.SZ&indicators=OPEN,CLOSE&options=TradeDate=20240105
+http://127.0.0.1:8000/ths/history?codes=300033.SZ&indicators=open;close&begin=2024-01-01&end=2024-01-05
 ```
 
 其他项目里（任意语言，这里以 Python 为例，**消费端不依赖任何股票 SDK**）：
 ```python
 import requests
-r = requests.get("http://192.168.0.88:8000/em/csd", params={
+r = requests.get("http://127.0.0.1:8000/em/csd", params={
     "codes": "300059.SZ", "indicators": "CLOSE",
     "startdate": "2024-01-01", "enddate": "2024-01-05",
 })
@@ -66,3 +77,4 @@ print(r.json())
 
 - 启动后 `/health` 不通：看是否端口被占（`netstat -ano | findstr :8000`），或被其他 Python 占用——确认启动用的是 `.venv-api`。
 - 接口报 502：多为 SDK 登录失败或取数无权限/流量用尽，错误信息里带原始错误码。
+
