@@ -15,7 +15,9 @@ from EmQuantAPI import c
 from stocksdk.config import WS_QUEUE_MAXSIZE
 from stocksdk.security import ws_authed
 from stocksdk.serialize import em_quote_to_dict
-from stocksdk.sessions import ensure_em, ensure_ths, lock
+from stocksdk.sessions import (
+    ensure_em, ensure_ths, lock, _em_session_dead, _ths_session_dead,
+)
 
 router = APIRouter(tags=["WebSocket 推送"])
 
@@ -73,7 +75,11 @@ async def em_ws(ws: WebSocket):
                 def _do_sub():
                     with lock:
                         ensure_em()
-                        return c.csq(codes, indicators, options, _callback)
+                        r = c.csq(codes, indicators, options, _callback)
+                        if _em_session_dead(r):   # 会话被挤掉 → 重登重订阅
+                            ensure_em(force=True)
+                            r = c.csq(codes, indicators, options, _callback)
+                        return r
 
                 r = await loop.run_in_executor(None, _do_sub)
                 sid = getattr(r, "SerialID", None)
@@ -155,7 +161,11 @@ async def ths_ws(ws: WebSocket):
                 def _do_sub():
                     with lock:
                         ensure_ths()
-                        return THS_QuotesPushing(codes, indicators, _callback)
+                        r = THS_QuotesPushing(codes, indicators, _callback)
+                        if _ths_session_dead(r):   # 会话已登出 → 重登重订阅
+                            ensure_ths(force=True)
+                            r = THS_QuotesPushing(codes, indicators, _callback)
+                        return r
 
                 r = await loop.run_in_executor(None, _do_sub)
                 ec = r.get("errorcode") if isinstance(r, dict) else None

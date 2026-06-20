@@ -13,7 +13,7 @@ from iFinDPy import THS_HistoryQuotes, THS_BasicData, THS_RealtimeQuotes
 
 from stocksdk.security import rate_limit, require_key
 from stocksdk.serialize import ths_result
-from stocksdk.sessions import ensure_ths, lock
+from stocksdk.sessions import ths_exec, lock
 
 router = APIRouter(prefix="/ths", tags=["同花顺 iFinD"])
 
@@ -41,8 +41,7 @@ def ths_history(codes: str, indicators: str, begin: str, end: str, params: str =
                 _=Depends(require_key), __=Depends(rate_limit)):
     """同花顺历史行情。例：/ths/history?codes=300033.SZ&indicators=open;close&begin=2024-01-01&end=2024-01-05"""
     with lock:
-        ensure_ths()
-        r = THS_HistoryQuotes(codes, indicators, params, begin, end)
+        r = ths_exec(lambda: THS_HistoryQuotes(codes, indicators, params, begin, end))
     return _raise_if_error(r)
 
 
@@ -51,8 +50,7 @@ def ths_basic(codes: str, indicators: str, params: str = "",
               _=Depends(require_key), __=Depends(rate_limit)):
     """同花顺基础/截面数据。"""
     with lock:
-        ensure_ths()
-        r = THS_BasicData(codes, indicators, params)
+        r = ths_exec(lambda: THS_BasicData(codes, indicators, params))
     return _raise_if_error(r)
 
 
@@ -61,8 +59,7 @@ def ths_realtime(codes: str, indicators: str, params: str = "",
                  _=Depends(require_key), __=Depends(rate_limit)):
     """同花顺实时行情。"""
     with lock:
-        ensure_ths()
-        r = THS_RealtimeQuotes(codes, indicators, params)
+        r = ths_exec(lambda: THS_RealtimeQuotes(codes, indicators, params))
     return _raise_if_error(r)
 
 
@@ -91,11 +88,12 @@ def ths_call(func_name: str = Path(..., alias="func"), body: ThsCall = ThsCall()
     if fn is None or not callable(fn):
         raise HTTPException(404, "未知函数：{}".format(name))
     with lock:
-        ensure_ths()
         try:
-            r = fn(*body.args, **body.kwargs)
+            r = ths_exec(lambda: fn(*body.args, **body.kwargs))
         except TypeError as e:
             raise HTTPException(400, "参数不匹配 {}：{}".format(name, e))
+        except HTTPException:
+            raise   # ensure_ths 重登失败抛的 502 直接透传
         except Exception as e:   # SDK 底层(C++)异常 → 502，避免裸 500
             raise HTTPException(502, "iFinD 调用异常 {}：{}".format(name, e))
     return ths_result(r)

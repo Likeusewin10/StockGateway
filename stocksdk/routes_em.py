@@ -12,7 +12,7 @@ from EmQuantAPI import c
 
 from stocksdk.security import rate_limit, require_key
 from stocksdk.serialize import em_result, merge_pandas_option
-from stocksdk.sessions import ensure_em, lock
+from stocksdk.sessions import em_exec, lock
 
 router = APIRouter(prefix="/em", tags=["东财 EM"])
 
@@ -39,8 +39,7 @@ def em_csd(codes: str, indicators: str, startdate: str, enddate: str, options: s
     """东财序列数据。例：/em/csd?codes=300059.SZ&indicators=CLOSE&startdate=2024-01-01&enddate=2024-01-05"""
     opts = (options + ",Ispandas=1").lstrip(",") if "Ispandas" not in options else options
     with lock:
-        ensure_em()
-        return em_result(c.csd(codes, indicators, startdate, enddate, opts))
+        return em_result(em_exec(lambda: c.csd(codes, indicators, startdate, enddate, opts)))
 
 
 @router.get("/css")
@@ -49,8 +48,7 @@ def em_css(codes: str, indicators: str, options: str = "",
     """东财截面数据。例：/em/css?codes=300059.SZ,000002.SZ&indicators=OPEN,CLOSE&options=TradeDate=20240105"""
     opts = (options + ",Ispandas=1").lstrip(",") if "Ispandas" not in options else options
     with lock:
-        ensure_em()
-        return em_result(c.css(codes, indicators, opts))
+        return em_result(em_exec(lambda: c.css(codes, indicators, opts)))
 
 
 @router.get("/methods")
@@ -83,11 +81,12 @@ def em_call(method: str, body: EmCall = EmCall(),
         raise HTTPException(404, "未知方法：{}".format(method))
     args = merge_pandas_option(body.args, body.options_pandas)
     with lock:
-        ensure_em()
         try:
-            result = fn(*args)
+            result = em_exec(lambda: fn(*args))
         except TypeError as e:
             raise HTTPException(400, "参数不匹配 {}：{}".format(method, e))
+        except HTTPException:
+            raise   # ensure_em 重登失败抛的 502 直接透传
         except Exception as e:   # SDK 底层异常 → 502，避免裸 500
             raise HTTPException(502, "EM 调用异常 {}：{}".format(method, e))
     return em_result(result)

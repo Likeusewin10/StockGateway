@@ -58,6 +58,15 @@ D:\dev\Project\EMQuantAPI_Python\python3\libs\windows\LoginActivator.exe
 `serialize`（返回值归一化）、`security`（鉴权/限流）、`routes_em` / `routes_ths` / `routes_ws`（路由）。
 `app.py` 仅负责装配。
 
+### 会话自愈与单点登录
+
+SDK 单会话会被悄悄踢掉（同账号在别处登录挤掉、iFinD 单点登录冲突、令牌超时）。
+服务通过 `sessions.em_exec`/`ths_exec` 在取数返回会话/登录失效码时**自动强制重登并重试一次**，
+远程调用不再因此报"未登录/已登出"，无需手动重启。
+
+为减少被挤：服务用的账号**不要**同时在桌面客户端或其他脚本登录同一账号；
+iFinD 重登前会先 `Logout` 再 `Login` 抢回会话，EM 用 `ForceLogin=1` 抢登。
+
 ```bat
 .venv-api\Scripts\python -m pytest --cov=stocksdk
 ```

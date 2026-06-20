@@ -13,10 +13,6 @@ docs/quantapi/相关信息.txt
 # 日志
 *.log
 
-# 测试覆盖率缓存
-.coverage
-.pytest_cache/
-
 # 计划任务定义 —— 由 register_task.ps1 自动生成的派生产物
 task_def.xml
 # 同上，由 register_ngrok_task.ps1 自动生成
@@ -27,3 +23,9 @@ ngrok_task_def.xml
 .vscode/
 .DS_Store
 Thumbs.db
+
+# 桌面客户端安装包（大文件，不入库）
+downloads/
+
+# 测试覆盖率产物
+.coverage
