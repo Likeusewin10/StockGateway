@@ -1,0 +1,7 @@
+﻿维度,指标代码,来源/说明
+行情,open;high;low;close;volume;amount,THS_HistoryQuotes 历史行情
+实时,open;high;now;changeRatio;amount,THS_RealtimeQuotes 实时行情
+基础,ths_stock_short_name_stock,THS_BasicData 证券简称
+基础,ths_listed_date_stock,THS_BasicData 上市日期
+财务,ths_total_assets_stock,THS_BasicData 资产总计(示例)
+宏观,M001620326,THS_EDB EDB 指标ID(示例，需官网命令生成)

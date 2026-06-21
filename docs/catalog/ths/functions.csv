@@ -1,0 +1,19 @@
+﻿函数名,用途,签名
+THS_HistoryQuotes,历史行情序列,"(codes, indicators, params, begin, end)"
+THS_RealtimeQuotes,实时行情,"(codes, indicators, params)"
+THS_BasicData,基础/截面数据,"(codes, indicators, params)"
+THS_DateSequence,日期序列指标,"(codes, indicators, params, begin, end)"
+THS_DateSerial,日期截面序列,"(codes, indicators, globalparam, begin, end)"
+THS_DataPool,数据池(板块成分/指数成分等),"(poolname, paramname, indicators)"
+THS_EDB,宏观经济数据(EDB),"(indicators, param, begin, end)"
+THS_EDBQuery,EDB 指标明细查询,"(indicators, begin, end)"
+THS_DateQuery,交易日/节假日查询,"(exchange, params, begin, end)"
+THS_DateOffset,交易日偏移,"(exchange, params, end)"
+THS_DateCount,区间交易日计数,"(exchange, params, begin, end)"
+THS_HighFrequenceSequence,高频(分钟级)序列,"(codes, indicators, params, begin, end)"
+THS_Snapshot,快照数据,"(codes, indicators, params, begin, end)"
+THS_iwencai,i问财自然语言选股,"(query, domain)"
+THS_WCQuery,i问财查询(结构化),"(query, domain)"
+THS_ReportQuery,公告/报告查询,"(codes, reqtype, params)"
+THS_DataStatistics,流量/额度查询,()
+THS_Trans2DataFrame,结果转 DataFrame,(result)

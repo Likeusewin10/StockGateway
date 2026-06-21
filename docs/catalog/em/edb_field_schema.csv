@@ -1,0 +1,10 @@
+﻿字段简称,中文简称,备注
+ID,指标ID,
+Name,指标名称,
+Unit,单位,
+Source,来源,
+Region,国家/地区,
+Frequency,日期频率,1日 2周 3旬 4半月 5月 6季 7半年 8年 9不定期
+Startdate,起始日期,
+Enddate,截止日期,
+Updatetime,更新时间,
