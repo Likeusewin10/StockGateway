@@ -86,9 +86,171 @@
 - `scripts/catalog/extract_em.py` / `extract_ths.py` —— SDK 程序化榨取示例（参考用）。
 - `docs/catalog/东方财富EM指标字段手册.md` —— 成品样例，iFinD 版照此结构产出。
 
-> 若本地机器不是同一个 git 仓库，把 `scripts/catalog/recv.py` 和 `gen_md.py` 两个文件拷过去即可。
+> 若本地机器不是同一个 git 仓库（拿不到 git pull），**不用 git**：见下面第 4.5 节，
+> 所有必需脚本的完整源码都内联在本手册里，本地 Claude 直接照着创建文件即可。
 
 ---
+
+## 4.5、不依赖 git 的完整脚本源码（本地 Claude 直接创建这两个文件）
+
+本地机器没接入仓库时，把本手册整份内容贴给本地 Claude，让它创建下面两个文件即可，
+不需要任何 git 操作。
+
+### 文件 1：`recv.py`（本地 HTTP 接收器，浏览器 POST JSON → 写 CSV）
+
+放在本地一个工作目录下，CSV 会写到该目录的 `catalog_out/` 子目录。
+
+```python
+"""本地接收器：接收浏览器 POST 的指标 JSON，写成 CSV。
+用法：python recv.py     （监听 127.0.0.1:8799）
+浏览器侧：fetch('http://127.0.0.1:8799/save', {method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({name, rows})})
+"""
+import csv
+import json
+import os
+from http.server import BaseHTTPRequestHandler, HTTPServer
+
+OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "catalog_out")
+os.makedirs(OUT, exist_ok=True)
+
+# 表头按抓到的字段调整；name 决定文件名和表头
+HEADERS = {
+    "ths_css": ["品种", "分类", "指标代码", "指标中文名", "单位", "参数", "适用范围"],
+    "ths_report": ["品种", "报表名", "报表代码", "字段代码", "字段中文名"],
+    "ths_edb": ["分类", "指标代码", "指标中文名", "单位", "来源", "频率"],
+}
+
+
+class Handler(BaseHTTPRequestHandler):
+    def _cors(self):
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type")
+        self.send_header("Access-Control-Allow-Methods", "POST, OPTIONS")
+
+    def do_OPTIONS(self):
+        self.send_response(204)
+        self._cors()
+        self.end_headers()
+
+    def do_POST(self):
+        n = int(self.headers.get("Content-Length", 0))
+        payload = json.loads(self.rfile.read(n).decode("utf-8"))
+        name = payload["name"]
+        rows = payload["rows"]
+        path = os.path.join(OUT, f"{name}.csv")
+        with open(path, "w", encoding="utf-8-sig", newline="") as f:
+            w = csv.writer(f)
+            w.writerow(HEADERS.get(name, []))
+            w.writerows(rows)
+        print(f"saved {name}: {len(rows)} rows -> {path}")
+        self.send_response(200)
+        self._cors()
+        self.end_headers()
+        self.wfile.write(json.dumps({"ok": True, "rows": len(rows)}).encode())
+
+    def log_message(self, *a):
+        pass
+
+
+if __name__ == "__main__":
+    print("listening on http://127.0.0.1:8799 ... Ctrl+C to stop")
+    HTTPServer(("127.0.0.1", 8799), Handler).serve_forever()
+```
+
+### 文件 2：`gen_md.py`（CSV → 给客户的 Markdown 手册）
+
+抓完后用它把 `catalog_out/` 下的 CSV 合并成手册。字段列名按实际抓到的调整。
+
+```python
+"""把抓到的 iFinD 指标 CSV 生成给客户用的 Markdown 字段手册。
+用法：python gen_md.py
+读取 catalog_out/ths_css.csv 等，输出 同花顺iFinD指标字段手册.md
+"""
+import csv
+import os
+from collections import OrderedDict
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+OUT_DIR = os.path.join(HERE, "catalog_out")
+MD = os.path.join(HERE, "同花顺iFinD指标字段手册.md")
+
+
+def read(name):
+    p = os.path.join(OUT_DIR, name)
+    if not os.path.exists(p):
+        return []
+    with open(p, encoding="utf-8-sig") as f:
+        return list(csv.DictReader(f))
+
+
+def esc(v):
+    return (v or "").replace("|", "\\|").replace("\n", " ").strip()
+
+
+def section_indicators(md, rows, title, cols):
+    """按 品种 → 分类 分组输出指标表。cols=(品种列, 分类列, [展示列...])。"""
+    var_col, cat_col, show = cols
+    by_var = OrderedDict()
+    for r in rows:
+        by_var.setdefault(r.get(var_col, "?"), OrderedDict())
+        by_var[r[var_col]].setdefault(r.get(cat_col, "?"), []).append(r)
+    md.append(f"\n# {title}\n")
+    for var, cats in by_var.items():
+        total = sum(len(v) for v in cats.values())
+        md.append(f"\n## {var}（{len(cats)} 分类 / {total} 指标）\n")
+        for cat, items in cats.items():
+            md.append(f"\n### {cat}\n")
+            md.append("| " + " | ".join(show) + " |")
+            md.append("|" + "---|" * len(show))
+            for r in items:
+                md.append("| " + " | ".join(esc(r.get(c, "")) for c in show) + " |")
+
+
+def main():
+    css = read("ths_css.csv")
+    md = ["# 同花顺 iFinD 指标字段手册\n",
+          "> 供产品设计与接口调用查阅。指标代码可直接用于 THS_BasicData / THS_HistoryQuotes 等。\n",
+          "> 数据来源：同花顺数据接口命令生成器（quantapi.51ifind.com）。\n",
+          f"\n**截面/基础指标共 {len(css)} 个。**\n"]
+    if css:
+        # 列名按实际 CSV 调整
+        section_indicators(md, css, "基础/截面指标",
+                           ("品种", "分类", ["指标代码", "指标中文名", "单位", "参数", "适用范围"]))
+    with open(MD, "w", encoding="utf-8") as f:
+        f.write("\n".join(md) + "\n")
+    print("生成", MD)
+
+
+if __name__ == "__main__":
+    main()
+```
+
+### EM 成品手册的结构样例（iFinD 版照此排版）
+
+```
+# 东方财富 EM / Choice 指标字段手册
+
+## 总览
+| 类别 | 取数函数 | 数量 | 说明 |
+|---|---|---|---|
+| 截面数据 | c.css(codes, indicators, options) | 11823 | ... |
+
+---
+# 一、截面数据（CSS）
+
+### 股票（238 个分类 / 5445 个指标）
+
+#### 证券资料
+| 指标代码 | 中文名 | 单位 | 参数 | 适用范围 |
+|---|---|---|---|---|
+| `NAME` | 股票简称 |  | 无参数 | 沪深股票 |
+| `HISNAME` | 股票简称(可查历史) |  |  | 沪深股票 |
+```
+
+---
+
 
 ## 五、recv.py 适配 iFinD（本地 Claude 可能要做的小改）
 
