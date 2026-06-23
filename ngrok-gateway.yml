@@ -1,0 +1,24 @@
+# ngrok 多隧道配置:一个 agent 会话同时暴露 REST(8000)、MCP 网关(8765)、SSH(22)。
+# 付费版同一 authtoken 可多隧道/TCP;把三条 tunnel 合到这一个配置里。
+#
+# authtoken 不写在此(避免入库泄露),沿用全局 %LOCALAPPDATA%\ngrok\ngrok.yml 里的 token。
+# 用法(两个配置文件合并加载,token 来自全局,tunnel 来自本文件):
+#   ngrok start --all --config %LOCALAPPDATA%\ngrok\ngrok.yml --config ngrok-gateway.yml
+# (start_ngrok_gateway.bat 已按此拼好命令)
+# 固定 HTTP 域名 / 固定 TCP 地址需在 ngrok 后台为账号分配。
+version: "3"
+
+tunnels:
+  api:
+    proto: http
+    addr: 8000
+    url: jtx.ngrok.app          # 现有 REST 服务固定域名
+  mcp:
+    proto: http
+    addr: 8765                   # MCP 聚合网关
+    url: jtx-mcp.ngrok.app       # 固定域名(后台 Domains 申请;rd_3FWfN9H4Z4IeamPHxmjl26Am7Un)
+  ssh:
+    proto: tcp
+    addr: 22                     # 暴露 Windows OpenSSH Server,远程 ssh 登录读/改文件
+    # remote_addr: <固定TCP地址>  # 付费版后台分配固定 tcp 地址后填(如 7.tcp.ngrok.io:14823);
+    #                              # 不填则每次重启分到随机 host:port,看 ngrok.log 或 :4040

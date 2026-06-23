@@ -24,8 +24,16 @@ ngrok_task_def.xml
 .DS_Store
 Thumbs.db
 
+# Claude Code 本机配置 / 记忆 / 计划（个人本机态，不入库）
+.claude/
+
 # 桌面客户端安装包（大文件，不入库）
 downloads/
+THSDataInterface_Windows_*.zip
+THSDataInterface/
 
 # 测试覆盖率产物
 .coverage
+
+# Obsidian 本机 UI 配置（只同步 ops/board/ 的 .md，不同步工作区状态）
+.obsidian/

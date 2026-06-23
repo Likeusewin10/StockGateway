@@ -2,7 +2,7 @@
 import pytest
 from fastapi import HTTPException
 
-from stocksdk import security
+from stocksdk import ratelimit, security
 from stocksdk.security import RateLimiter
 
 
@@ -59,7 +59,7 @@ def test_rate_limiter_isolates_by_ip():
 def test_rate_limiter_window_expiry(monkeypatch):
     rl = RateLimiter(max_requests=1, window_seconds=10)
     times = iter([100.0, 100.0, 115.0])  # 第三次已过窗口
-    monkeypatch.setattr(security.time, "monotonic", lambda: next(times))
+    monkeypatch.setattr(ratelimit.time, "monotonic", lambda: next(times))
     assert rl.check("ip1") is True
     assert rl.check("ip1") is False
     assert rl.check("ip1") is True

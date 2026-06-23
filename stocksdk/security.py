@@ -4,8 +4,6 @@
 限流为进程内令牌桶，按客户端 IP；单 worker 部署下足够，重启即重置。
 """
 import secrets
-import threading
-import time
 
 from fastapi import HTTPException, Request, Security, WebSocket
 from fastapi.security import APIKeyHeader
@@ -15,15 +13,12 @@ from stocksdk.config import (
     RATE_LIMIT_WINDOW_SECONDS,
     get_api_key,
 )
+from stocksdk.ratelimit import RateLimiter, keys_match
 
 _api_key_header = APIKeyHeader(name="X-API-Key", auto_error=False)
 
-
-def _keys_match(provided: str, expected: str) -> bool:
-    """常量时间比较，避免按字符提前返回导致的时序侧信道。"""
-    if not provided:
-        return False
-    return secrets.compare_digest(provided, expected)
+# 框架无关原语在 ratelimit.py，security.py 仅做 FastAPI 适配。
+_keys_match = keys_match  # 兼容旧调用名
 
 
 def require_key(key: str = Security(_api_key_header)):
@@ -41,29 +36,6 @@ def ws_authed(ws: WebSocket) -> bool:
     if not expected:
         return True
     return _keys_match(ws.query_params.get("key") or "", expected)
-
-
-class RateLimiter:
-    """按 IP 的滑动窗口计数限流。线程安全（取数端点持锁串行，仍加锁防 WS 并发）。"""
-
-    def __init__(self, max_requests: int, window_seconds: int):
-        self._max = max_requests
-        self._window = window_seconds
-        self._hits: dict[str, list[float]] = {}
-        self._lock = threading.Lock()
-
-    def check(self, client_id: str) -> bool:
-        """记录一次访问并返回是否允许。超限返回 False。"""
-        now = time.monotonic()
-        cutoff = now - self._window
-        with self._lock:
-            hits = [t for t in self._hits.get(client_id, []) if t > cutoff]
-            if len(hits) >= self._max:
-                self._hits[client_id] = hits
-                return False
-            hits.append(now)
-            self._hits[client_id] = hits
-            return True
 
 
 _limiter = RateLimiter(RATE_LIMIT_REQUESTS, RATE_LIMIT_WINDOW_SECONDS)

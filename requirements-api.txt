@@ -12,3 +12,6 @@ websockets==16.0
 pytest==8.4.2
 pytest-cov==7.0.0
 httpx2==2.0.0
+# 压测（dev）：loadtest/crash_recovery.py 按端口定位 PID、ws_soak.py 采样 RSS。
+# 缺失时 crash_recovery 回退 netstat/taskkill；ws_soak 的 RSS 采样则跳过。
+psutil==6.1.1

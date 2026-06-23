@@ -29,7 +29,7 @@ logging.basicConfig(
 logger = logging.getLogger("stocksdk")
 
 # 路由依赖 SDK，须在 .env 加载后导入
-from stocksdk import routes_em, routes_ths, routes_ws  # noqa: E402
+from stocksdk import routes_em, routes_health, routes_ths, routes_ws  # noqa: E402
 
 
 @asynccontextmanager
@@ -57,6 +57,7 @@ if _cors_origins:
 app.include_router(routes_em.router)
 app.include_router(routes_ths.router)
 app.include_router(routes_ws.router)
+app.include_router(routes_health.router)
 
 
 @app.get("/health")

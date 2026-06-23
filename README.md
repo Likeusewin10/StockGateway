@@ -72,3 +72,20 @@ iFinD 重登前会先 `Logout` 再 `Login` 抢回会话，EM 用 `ForceLogin=1` 
 ```
 
 测试用桩替换两个 SDK，不触发真实登录/网络（当前覆盖率 88%）。
+
+## MCP 聚合网关（远程调用 iFinD MCP）
+
+把多厂商上游 MCP 聚合为**本机一个** streamable-http 网关，让其他机器的标准 MCP 客户端
+（Claude Code / Cursor）经 ngrok + `X-API-Key` 远程调用。上游厂商凭据（如 iFinD JWT）**只存本机，绝不下发**。
+
+- 实现：`mcp_gateway/` 包 —— `providers`（多厂商注册表，加新厂商只改这里 + `.env`）、
+  `upstream`（凭据收口）、`server`（mount 代理 + `http_app`）、`auth`（复用 `stocksdk/ratelimit` 的 Key 鉴权/限流）。
+- 端口 8765，与 8000 的 REST 服务并存。`.venv-mcp` 独立依赖（`requirements-mcp.txt`）。
+- 启动：`start_mcp_gateway.bat`；公网：`start_ngrok_gateway.bat`（一个 ngrok agent 同时暴露 8000+8765）。
+- 远端只需在 `mcpServers` 加**一条**指向网关的配置，原 7 条 iFinD 直连收敛为 1 条。
+
+详见 [`docs/MCP中转网关.md`](docs/MCP中转网关.md)（含远端配置样例、加新厂商三步、运维）。
+
+```bat
+.venv-mcp\Scripts\python -m pytest tests\test_mcp_gateway_auth.py tests\test_mcp_gateway_providers.py
+```

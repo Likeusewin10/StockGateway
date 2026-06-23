@@ -1,0 +1,6 @@
+# MCP 聚合网关依赖（独立于 REST 取数服务的 .venv-api）
+# 安装：python -m venv .venv-mcp && .venv-mcp\Scripts\pip install -r requirements-mcp.txt
+fastmcp>=2.0
+uvicorn[standard]
+httpx
+pytest

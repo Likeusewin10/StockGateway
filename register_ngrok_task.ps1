@@ -15,7 +15,7 @@ $xml = @"
 <?xml version="1.0" encoding="UTF-16"?>
 <Task version="1.3" xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task">
   <RegistrationInfo>
-    <Description>ngrok tunnel exposing stock data service (port 8000) to fixed public domain</Description>
+    <Description>ngrok tunnel exposing REST (8000) and MCP gateway (8765) to fixed public domains</Description>
   </RegistrationInfo>
   <Triggers>
     <LogonTrigger>
