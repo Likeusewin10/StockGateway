@@ -3,7 +3,7 @@ import logging
 
 import pytest
 
-from mcp_gateway.providers import IFIND, PROVIDERS, Provider, ProviderServer
+from mcp_gateway.providers import IFIND, MX, PROVIDERS, Provider, ProviderServer
 
 
 class TestRegistry:
@@ -34,6 +34,32 @@ class TestRegistry:
     def test_provider_names_unique(self):
         names = [p.name for p in PROVIDERS]
         assert len(names) == len(set(names))
+
+
+class TestMxProvider:
+    """妙想（东方财富 MX）：URL 结构与鉴权头都与 iFinD 不同，单独固化。"""
+
+    def test_mx_is_registered(self):
+        assert MX in PROVIDERS
+
+    def test_mx_has_single_server(self):
+        assert len(MX.servers) == 1
+
+    def test_server_url_is_single_endpoint(self):
+        # 妙想上游是单一完整地址，base_url 本身即终点，不追加 /{server}
+        url = MX.server_url(MX.servers[0])
+        assert url == "https://mxapi.eastmoney.com/mxds/mcp"
+
+    def test_prefix_namespacing(self):
+        assert MX.prefix(MX.servers[0]) == "mx_ds"
+
+    def test_auth_uses_em_api_key_header(self, monkeypatch):
+        from mcp_gateway.upstream import _auth_headers
+
+        monkeypatch.setenv("EM_API_KEY", "mx-key-123")
+        headers = _auth_headers(MX)
+        # 裸 key 注入到 em_api_key 头，而非 Authorization
+        assert headers == {"em_api_key": "mx-key-123"}
 
 
 class TestCredentialInjection:

@@ -59,5 +59,18 @@ IFIND = Provider(
     auth_scheme="",          # iFinD 当前是裸 JWE，不加 "Bearer " 前缀
 )
 
-# 以后追加厂商：PROVIDERS = (IFIND, WIND, CHOICE, ...)
-PROVIDERS: tuple[Provider, ...] = (IFIND,)
+# 妙想（东方财富 MX）：单个 server，鉴权头是 em_api_key（裸 key，无 scheme 前缀）。
+# 上游 URL 是单一完整地址（base_url 本身即终点，无 /{server} 子路径），故 url_template
+# 只用 {base_url}；short_name 决定工具前缀 mx_ds_。
+MX = Provider(
+    name="mx",
+    base_url="https://mxapi.eastmoney.com/mxds/mcp",
+    servers=(ProviderServer(name="mx-ds-mcp", short_name="ds"),),
+    auth_env="EM_API_KEY",
+    auth_header="em_api_key",
+    auth_scheme="",          # 裸 key，不加前缀
+    url_template="{base_url}",
+)
+
+# 以后追加厂商：PROVIDERS = (IFIND, MX, WIND, CHOICE, ...)
+PROVIDERS: tuple[Provider, ...] = (IFIND, MX)
