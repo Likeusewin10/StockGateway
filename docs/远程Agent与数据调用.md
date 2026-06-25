@@ -1,11 +1,12 @@
 # 远程调用服务器端 Agent + 股票数据 MCP
 
-本机(如 Mac)通过 MCP 协议,经公网调用这台 Windows 服务器上的 **36 个工具**:
-4 个 Agent 工具(在服务器上起 claude/codex 干活)+ 32 个 iFinD 股票数据工具。
+本机(如 Mac)通过 MCP 协议,经公网调用这台 Windows 服务器上的 **47 个工具**:
+4 个 Agent 工具(在服务器上起 claude/codex 干活)+ 32 个 iFinD 股票数据工具 + 11 个妙想(东方财富)数据工具。
 
 ```
-本机 MCP 客户端 ──X-API-Key──> ngrok ──> 服务器:8765 网关 ┬─ agent_* :起 claude/codex 子进程
-  (Claude Code/Cursor)      jtx-mcp.ngrok.app           └─ ifind_* :转发同花顺上游取数
+本机 MCP 客户端 ──X-API-Key──> ngrok ──> 服务器:8765 网关 ┬─ agent_*  :起 claude/codex 子进程
+  (Claude Code/Cursor)      jtx-mcp.ngrok.app           ├─ ifind_*  :转发同花顺上游取数
+                                                        └─ mx_ds_*  :转发妙想(东方财富)上游取数
 ```
 
 > **主用 Agent = 服务器端的 Claude Code 子进程(`engine=claude`)。** 这是你日常指挥、主要沟通的对象;`codex` 仅作备选引擎。
@@ -19,13 +20,14 @@
 
 | 组件 | 启动方式 | 端口/地址 | 作用 |
 |---|---|---|---|
-| MCP 网关 | `start_mcp_gateway.bat`(看门狗) | `:8765` | 36 个工具的本机网关 |
+| MCP 网关 | `start_mcp_gateway.bat`(看门狗) | `:8765` | 47 个工具的本机网关 |
 | ngrok 隧道 | 计划任务 `NgrokTunnel` → `start_ngrok.bat` | `jtx-mcp.ngrok.app` → 8765 | 公网暴露(同会话还带 `jtx.ngrok.app`→8000 REST) |
 | (引擎) | `claude` 已登录 / `codex login` | — | agent 子进程靠它跑 |
 
 ### 凭据(都在 `.env`,gitignored)
 - `API_KEY`:对外鉴权 key(32 位随机串)。**= 调用方的唯一钥匙,也 = 在服务器执行任意命令的钥匙,只发可信机器。**
 - `IFIND_MCP_JWT`:iFinD 上游令牌(从 `~/.claude.json` 的 iFinD server `Authorization` 复制整串)。过期表现为 `ifind_*` 取数报鉴权错 → 重取新串改 `.env` → 重启网关。
+- `MIAO_XIANG_MCP_KEY`:妙想(东方财富)上游 API KEY(注入 `em_api_key` 请求头)。缺失或失效表现为 `mx_ds_*` 工具列空或取数报错 → 改 `.env` → 重启网关。上游 connect/read 超时固定 10/120s。
 
 ### 起停 / 自检
 ```bash
@@ -84,7 +86,7 @@ claude mcp add --transport http stocksdk-gateway https://jtx-mcp.ngrok.app/mcp \
 ```
 
 ### 验证 / 维护
-- 连上后 `/mcp`(或客户端 MCP 面板)应显示 `stocksdk-gateway` 已连接、**36 个工具**。
+- 连上后 `/mcp`(或客户端 MCP 面板)应显示 `stocksdk-gateway` 已连接、**47 个工具**。
 - 改地址或密钥:多数客户端**无编辑功能**,需先删除该 server 再重新添加。
 - 🔴 `API_KEY` 别贴进聊天截图/公开渠道——它=调用网关、并在服务器执行任意命令的钥匙。
 
@@ -137,6 +139,16 @@ claude mcp add --transport http stocksdk-gateway https://jtx-mcp.ngrok.app/mcp \
 常用:`ifind_stock_get_stock_summary`(个股摘要)、`ifind_stock_stock_highfreq_quotes`(实时/高频)、
 `ifind_stock_get_stock_financials`(财务)、`ifind_index_index_data`(指数)、`ifind_edb_get_edb_data`(宏观)。
 
+### C. 取股票数据(妙想/东方财富,11 工具)
+
+工具前缀 `mx_ds_mx_<工具>`(网关命名空间 `mx_ds` + 妙想原生工具名本身以 `mx_` 开头,故双 `mx`)。全为自然语言 `query` 入参,返回结构化财务/行情数据。
+> 例:「用 stocksdk-gateway 查贵州茅台最新 ROE」→ 客户端会调 `mx_ds_mx_ashare_finance_data`。
+
+11 个工具:`mx_ds_mx_ashare_finance_data`(A股财务)、`mx_ds_mx_hk_finance_data`(港股)、`mx_ds_mx_us_finance_data`(美股)、
+`mx_ds_mx_fund_finance_data`(基金)、`mx_ds_mx_bond_finance_data`(债券)、`mx_ds_mx_index_block_finance_data`(指数/板块)、
+`mx_ds_mx_comprehensive_finance_data`(综合)、`mx_ds_mx_stocks_screener`(选股)、`mx_ds_mx_macro_data`(宏观)、
+`mx_ds_mx_finance_search_news`(资讯)、`mx_ds_mx_finance_search_notice`(公告)。
+
 ---
 
 ## 四、用户安装后的基本测试
@@ -145,7 +157,7 @@ claude mcp add --transport http stocksdk-gateway https://jtx-mcp.ngrok.app/mcp \
 
 **0. 连通 + 工具数**
 > 「列出 stocksdk-gateway 的所有工具」
-- 预期:连接成功,共 **36 个**工具(`agent_*` 4 个 + `ifind_*` 32 个)。看不到 → §五排错「连不上 / 401」。
+- 预期:连接成功,共 **47 个**工具(`agent_*` 4 个 + `ifind_*` 32 个 + `mx_ds_*` 11 个)。看不到 → §五排错「连不上 / 401」。
 
 **1. 取一条数据(验上游链路)**
 > 「用 stocksdk-gateway 查贵州茅台最新行情」
@@ -177,6 +189,7 @@ claude mcp add --transport http stocksdk-gateway https://jtx-mcp.ngrok.app/mcp \
 | `agent_run` 返回 failed | 看 error:引擎未登录(服务器 `claude`/`codex login`)、prompt 空、engine 不在白名单、`session_id` 非法(须为 UUID) |
 | 续接没接上历史(答不出第3步的 42) | 多半传错了字段:接力靠 `session_id`,**不是** `task_id`;或服务器侧该会话历史已被 CLI 清理(走 failed),重开首轮即可 |
 | `ifind_*` 取数鉴权错 | `IFIND_MCP_JWT` 过期,重取新串改 `.env` 重启网关 |
+| `mx_ds_*` 工具列空或取数报错 | `MIAO_XIANG_MCP_KEY` 缺失/失效,改 `.env` 重启网关;或上游 API 授权未开通 |
 | 公网 mcp 偶发 000/404 | 隧道刚重建的瞬态,等几秒重试;持续则查 `ngrok.log` 有无 `already online`(多会话冲突) |
 
 ### 本机冒烟脚本
@@ -195,7 +208,7 @@ claude mcp add --transport http stocksdk-gateway https://jtx-mcp.ngrok.app/mcp \
 | `mcp_gateway/agent_runner.py` | Agent 异步任务核心(起子进程/状态机/超时/session_id 接力) |
 | `mcp_gateway/agent_sessions.py` | 扫盘列会话(仿 /resume,派生标题) |
 | `mcp_gateway/agent_tools.py` | 四个 agent MCP 工具(run/status/result/sessions) |
-| `mcp_gateway/providers.py` | iFinD 厂商注册表(加新厂商处) |
+| `mcp_gateway/providers.py` | 厂商注册表(iFinD + 妙想 MX;加新厂商处) |
 | `ngrok-gateway.yml` | 两条隧道定义(api + mcp) |
 | `start_ngrok.bat` | ngrok 看门狗(计划任务 NgrokTunnel 拉起,带两隧道) |
 | `start_mcp_gateway.bat` | 网关看门狗 |

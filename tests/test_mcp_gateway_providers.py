@@ -53,12 +53,16 @@ class TestMxProvider:
     def test_prefix_namespacing(self):
         assert MX.prefix(MX.servers[0]) == "mx_ds"
 
+    def test_mx_has_timeouts(self):
+        assert MX.connect_timeout == 10
+        assert MX.read_timeout == 120
+
     def test_auth_uses_em_api_key_header(self, monkeypatch):
         from mcp_gateway.upstream import _auth_headers
 
-        monkeypatch.setenv("EM_API_KEY", "mx-key-123")
+        monkeypatch.setenv("MIAO_XIANG_MCP_KEY", "mx-key-123")
         headers = _auth_headers(MX)
-        # 裸 key 注入到 em_api_key 头，而非 Authorization
+        # 裸 key 注入到 em_api_key 头，而非 Authorization；读的是 MIAO_XIANG_MCP_KEY
         assert headers == {"em_api_key": "mx-key-123"}
 
 
@@ -97,3 +101,65 @@ class TestCredentialInjection:
         # 注册表里只有环境变量名，不含凭据本身
         assert "IFIND_MCP_JWT" in repr(IFIND)
         assert "secret" not in repr(IFIND).lower()
+
+
+class TestTimeoutInjection:
+    """超时只对配了 connect/read_timeout 的 provider 注入 httpx_client_factory。"""
+
+    def test_ifind_has_no_timeout(self):
+        # iFinD 未配超时，回归保护：字段为 None
+        assert IFIND.connect_timeout is None
+        assert IFIND.read_timeout is None
+
+    def test_factory_none_when_no_timeout(self):
+        from mcp_gateway.upstream import _timeout_factory
+
+        assert _timeout_factory(IFIND) is None
+
+    def test_factory_builds_httpx_timeout_for_mx(self):
+        import httpx
+
+        from mcp_gateway.upstream import _timeout_factory
+
+        factory = _timeout_factory(MX)
+        assert factory is not None
+        client = factory(headers={"em_api_key": "k"})
+        assert isinstance(client, httpx.AsyncClient)
+        assert client.timeout.connect == 10
+        assert client.timeout.read == 120
+
+    def test_factory_accepts_fastmcp_extra_kwargs(self):
+        # 回归：fastmcp 的 http.py 调工厂时会多传 follow_redirects（及未来可能的其它 kwargs）。
+        # 工厂必须用 **kwargs 吞掉，否则上游 client 连接即抛 TypeError、列空工具。
+        import httpx
+
+        from mcp_gateway.upstream import _timeout_factory
+
+        factory = _timeout_factory(MX)
+        client = factory(
+            headers={"em_api_key": "k"},
+            timeout=httpx.Timeout(5),  # 传入的 timeout 应被忽略，强制用 provider 配置
+            auth=None,
+            follow_redirects=True,
+        )
+        assert isinstance(client, httpx.AsyncClient)
+        assert client.timeout.connect == 10  # provider 配置生效，非传入的 5
+        assert client.follow_redirects is True
+
+    def test_mx_client_injects_factory(self, monkeypatch):
+        from mcp_gateway.upstream import make_server_client
+
+        client = make_server_client(MX, MX.servers[0], {"em_api_key": "k"})
+        # transport 应带上非默认 httpx_client_factory
+        factory = getattr(client.transport, "httpx_client_factory", None)
+        assert factory is not None
+
+    def test_ifind_client_no_factory_override(self):
+        from mcp_gateway.upstream import make_server_client
+
+        stock = next(s for s in IFIND.servers if s.short_name == "stock")
+        client = make_server_client(IFIND, stock, {"Authorization": "t"})
+        # 未配超时则不显式注入；transport 走默认工厂
+        factory = getattr(client.transport, "httpx_client_factory", None)
+        # 默认值为 mcp 的 create_mcp_http_client，不是我们的闭包(名为 'factory')
+        assert factory is None or getattr(factory, "__name__", "") != "factory"

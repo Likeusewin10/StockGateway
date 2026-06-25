@@ -33,6 +33,8 @@ class Provider:
     transport: str = "http"              # 当前仅 streamable-http
     adapter: str = "fastmcp_proxy"       # 预留：不兼容时切 "raw_reverse_proxy"
     url_template: str = "{base_url}/{server}"
+    connect_timeout: float | None = None  # 上游 TCP 连接超时(秒)；None=沿用上游默认
+    read_timeout: float | None = None     # 上游读/请求超时(秒)；None=沿用上游默认
 
     def server_url(self, server: ProviderServer) -> str:
         """拼接某 server 的完整上游 URL。"""
@@ -62,14 +64,17 @@ IFIND = Provider(
 # 妙想（东方财富 MX）：单个 server，鉴权头是 em_api_key（裸 key，无 scheme 前缀）。
 # 上游 URL 是单一完整地址（base_url 本身即终点，无 /{server} 子路径），故 url_template
 # 只用 {base_url}；short_name 决定工具前缀 mx_ds_。
+# 凭据环境变量名按官方参考用 MIAO_XIANG_MCP_KEY；超时按官方 connectTimeout:10 / timeout:120。
 MX = Provider(
     name="mx",
     base_url="https://mxapi.eastmoney.com/mxds/mcp",
     servers=(ProviderServer(name="mx-ds-mcp", short_name="ds"),),
-    auth_env="EM_API_KEY",
+    auth_env="MIAO_XIANG_MCP_KEY",
     auth_header="em_api_key",
     auth_scheme="",          # 裸 key，不加前缀
     url_template="{base_url}",
+    connect_timeout=10,      # 官方 connectTimeout
+    read_timeout=120,        # 官方 timeout
 )
 
 # 以后追加厂商：PROVIDERS = (IFIND, MX, WIND, CHOICE, ...)

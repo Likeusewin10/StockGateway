@@ -6,12 +6,39 @@
 import logging
 import os
 
+import httpx
 from fastmcp import Client
 from fastmcp.client.transports import StreamableHttpTransport
+from mcp.shared._httpx_utils import create_mcp_http_client
 
 from mcp_gateway.providers import Provider, ProviderServer
 
 logger = logging.getLogger("mcp_gateway.upstream")
+
+
+def _timeout_factory(provider: Provider):
+    """按 provider 超时配置生成 httpx_client_factory；未配超时返回 None(走上游默认)。
+
+    FastMCP 3.x 的 StreamableHttpTransport 不直接接受请求级 timeout，只能经
+    httpx_client_factory 注入 httpx.Timeout。工厂内不记录 headers(含凭据)。
+    """
+    if provider.connect_timeout is None and provider.read_timeout is None:
+        return None
+
+    timeout_cfg = httpx.Timeout(
+        connect=provider.connect_timeout,
+        read=provider.read_timeout,
+        write=provider.read_timeout,
+        pool=provider.connect_timeout,
+    )
+
+    def factory(headers=None, timeout=None, auth=None, **kwargs):  # noqa: ARG001
+        # fastmcp 调用时会多传 follow_redirects 等 kwargs(见其 http.py)，用 **kwargs 吞掉；
+        # 传入的 timeout 被忽略，强制用本 provider 配置的 timeout。
+        # create_mcp_http_client 自身已 follow_redirects=True，无需再传。
+        return create_mcp_http_client(headers=headers, timeout=timeout_cfg, auth=auth)
+
+    return factory
 
 
 def _auth_headers(provider: Provider) -> dict[str, str] | None:
@@ -29,10 +56,11 @@ def _auth_headers(provider: Provider) -> dict[str, str] | None:
 
 def make_server_client(provider: Provider, server: ProviderServer, headers: dict[str, str]) -> Client:
     """为单个上游 server 构造 streamable-http client。"""
-    transport = StreamableHttpTransport(
-        url=provider.server_url(server),
-        headers=headers,
-    )
+    factory = _timeout_factory(provider)
+    kwargs: dict = {"url": provider.server_url(server), "headers": headers}
+    if factory is not None:
+        kwargs["httpx_client_factory"] = factory
+    transport = StreamableHttpTransport(**kwargs)
     return Client(transport, name=provider.prefix(server))
 
 
