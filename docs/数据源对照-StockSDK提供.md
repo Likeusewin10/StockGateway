@@ -37,7 +37,7 @@
 |---|---|---|---|---|
 | `daily_bar`(日K/OHLCV) | `/ths/history` indicators=`open;high;low;close;volume;amount` | `/em/csd` indicators=`OPEN,HIGH,LOW,CLOSE,VOLUME,AMOUNT` | ✅ 提供 | 走 history,**勿用 basic**;Wind 备路 `/wind/wsd` fields=`open,high,low,close,volume,amt` |
 | `latest_quote`(最新价) | `/ths/realtime` indicators=`latest`（+`preClose,open,high,low,volume`） | `/em/css` 截面快照 | ✅ 提供 | 强实时只认实时端点,勿用日频伪装 |
-| `turnover_rate`(换手率) | `/ths/realtime` 或 `/ths/history`,指标名按字段字典 | `/em/css` 换手率指标 | ⚠ 部分 | 按 `docs/catalog/ths/*_fields.csv` 确认规范名 + param |
+| `turnover_rate`(换手率) | `/ths/realtime` 或 `/ths/history`,指标名按字段字典 | `/em/css` 换手率指标 | ⚠ 部分 | 按 `docs/catalog/ths/stk_indicators.csv` 确认规范名 + param |
 | `market_cap`(市值/流通市值) | `/ths/basic` 基础数据服务指标 | `/em/css` 市值指标 | ⚠ 部分 | 单位统一为人民币元;按字段字典确认 |
 | `stock_moneyflow`(个股资金流) | `/ths/call/{func}` moneyflow 族 | `/em/call/edb` 或对应方法 | ⚠ 部分 | 需确认账号权限;取不到标 partial/stale |
 | `concept_membership`(概念/行业成员) | `/ths/call/{func}` data_pool 族 | — | ⚠ 部分 | 透传 THS data_pool 函数 |
@@ -50,7 +50,7 @@
 
 ## 字段名/参数怎么查
 
-- iFinD 指标规范名 + 各指标的 param 含义 → `docs/catalog/ths/*_fields.csv`
+- iFinD 指标规范名 + 各指标的 param 含义 → `docs/catalog/ths/{品种}_indicators.csv`(stk/bond/fund 等 13 品种全量)
   （如「开盘价」的 param 是「复权方式」而非日期,搞错会取错值）。
 - EM ↔ iFinD 指标对照 → `docs/catalog/EM-iFinD对照表.md`。
 - 全量字段手册 → `docs/catalog/同花顺iFinD指标字段手册.md`。

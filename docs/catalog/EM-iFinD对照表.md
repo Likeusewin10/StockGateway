@@ -3,8 +3,10 @@
 > 本表对照两套数据源的**维度组织方式**与**覆盖能力**,便于在两个 SDK 间迁移取数逻辑。
 >
 > - **EM 手册**:`docs/catalog/东方财富EM指标字段手册.md`(按 CSS 截面 / CSD 序列 / CTR 报表三大接口组织,5400+ 指标)
-> - **iFinD 手册**:`docs/catalog/同花顺iFinD指标字段手册.md`(按业务维度组织,502 字段)
-> - 字段表:`docs/catalog/em/*.csv` 与 `docs/catalog/ths/*_fields.csv`
+> - **iFinD 手册**:`docs/catalog/同花顺iFinD指标字段手册.md`(按品种组织,22940 指标全量;旧 502 字段 MCP 版已废弃)
+> - 字段表:`docs/catalog/em/*.csv` 与 `docs/catalog/ths/{品种}_indicators.csv`
+>
+> ⚠ 注:本对照表正文部分基于早期「iFinD=MCP 问答版、无指标代码」的认知,现 iFinD 已有全量指标代码(数字+ths_英文码),正文待重写。
 
 ## 一、接口模型差异(根本区别)
 
@@ -73,7 +75,7 @@
 
 ## 三、迁移建议
 
-1. **字段映射**:按中文规范名做 EM↔iFinD 映射;EM 侧用 `em/css_indicators.csv`(含指标代码),iFinD 侧用 `ths/*_fields.csv`(中文名),按语义对齐。
+1. **字段映射**:按中文规范名做 EM↔iFinD 映射;EM 侧用 `em/css_indicators.csv`(含指标代码),iFinD 侧用 `ths/{品种}_indicators.csv`(含指标代码+中文名+ths_英文码),按语义对齐。
 2. **宏观数据**:两侧 `index_id` 一致,EDB 维度可无损互换,无需重新映射。
 3. **批量 vs 单查**:EM 支持多证券批量;iFinD MCP 单次一只证券,批量场景需循环调用。
 4. **长尾字段**:EM 在专利/违规/质押/调研/盈利预测明细等长尾维度更全;iFinD 覆盖主流交易/财务/估值字段,长尾需逐次问答补充。
