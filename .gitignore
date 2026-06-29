@@ -37,3 +37,9 @@ THSDataInterface/
 
 # Obsidian 本机 UI 配置（只同步 ops/board/ 的 .md，不同步工作区状态）
 .obsidian/
+
+# QMT 交易审计日志（本机留痕，不入库）
+audit/
+
+# 小盘股抓取的原始中间产物（派生数据，不入库）
+smallcap_scrape/_raw/

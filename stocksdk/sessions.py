@@ -1,12 +1,14 @@
 """SDK 会话管理：单会话/单点登录，全局锁串行化所有取数。
 
-两个 SDK 均单会话，本服务用一把全局锁串行化所有请求，
+三个 SDK（EM / iFinD / Wind）均单会话，本服务用一把全局锁串行化所有请求，
 必须单 worker 运行（不要加 --workers）。会话首次使用时惰性登录。
 
-会话自愈：底层会话会被悄悄踢掉（被别处同账号登录挤掉、iFinD 单点
-登录冲突、令牌超时）。`em_exec`/`ths_exec` 在取数失败疑似会话失效时，
+会话自愈：底层会话会被悄悄踢掉（被别处同账号登录挤掉、iFinD/Wind 单点
+登录冲突、令牌超时）。`em_exec`/`ths_exec`/`wind_exec` 在取数失败疑似会话失效时，
 强制重登一次并重试，避免远程调用报"未登录/已登出"。
 """
+import os
+import sys
 import threading
 from typing import Any, Callable
 
@@ -14,20 +16,56 @@ from fastapi import HTTPException
 
 from EmQuantAPI import c
 from iFinDPy import THS_iFinDLogin, THS_iFinDLogout
+from WindPy import w
 
-from stocksdk.config import require_ths_credentials
+from stocksdk.config import (
+    get_qmt_account,
+    get_qmt_package_dir,
+    get_qmt_session_id,
+    get_qmt_userdata_path,
+    require_ths_credentials,
+)
+
+
+def _bootstrap_xtquant_path() -> None:
+    """把 xtquant 包目录与其原生 DLL 目录注入搜索路径。
+
+    中文安装路径在 .pth 里按本地编码读不可靠，故在导入前显式注入：
+    sys.path 加包目录，os.add_dll_directory 加 bin.x64（cp311 pyd 依赖那里的 DLL）。
+    测试下 conftest 已把 xtquant 桩塞进 sys.modules，真实导入被跳过，此注入无副作用。
+    """
+    pkg = get_qmt_package_dir()
+    if not pkg or not os.path.isdir(pkg):
+        return
+    if pkg not in sys.path:
+        sys.path.append(pkg)
+    bin_dir = os.path.dirname(os.path.dirname(pkg))   # ...\bin.x64
+    if os.path.isdir(bin_dir):
+        try:
+            os.add_dll_directory(bin_dir)
+        except (AttributeError, OSError):
+            pass
+
+
+_bootstrap_xtquant_path()
+
+from xtquant.xttrader import XtQuantTrader, XtQuantTraderCallback   # noqa: E402
+from xtquant.xttype import StockAccount   # noqa: E402
 
 # 全局锁：SDK 单会话，所有取数串行化。整个服务唯一一把锁。
 lock = threading.Lock()
 
 _em_ready = False
 _ths_ready = False
+_wind_ready = False
 
 # 会话/登录失效类错误码（命中即强制重登重试）。
 # EM：10001009 登录数超限/被挤、10001005/10001006 未登录类、10001020 令牌失效。
 _EM_SESSION_CODES = {10001005, 10001006, 10001009, 10001019, 10001020}
 # iFinD：负的会话码，-1010 已登出最常见。
 _THS_SESSION_CODES = {-1001, -1010, -1011}
+# Wind：已实测 -2(start 失败)、-103(未连接)、-40520004(Login Failed,多实例/脏状态锁冲突)。
+_WIND_SESSION_CODES = {-2, -103, -40520004}
 # 错误信息兜底关键词（码集漏判时按文本判定）。
 _SESSION_KEYWORDS = ("login", "logged out", "not login", "登录", "登出", "未登录")
 
@@ -62,6 +100,28 @@ def ensure_ths(force: bool = False) -> None:
     _ths_ready = True
 
 
+def ensure_wind(force: bool = False) -> None:
+    """Wind WindPy 惰性登录（依赖本机 Wind 终端后台登录鉴权，无需账号密码）。
+
+    force=True 先 w.stop() 再 start，强制重连。校验 ErrorCode==0 且 isconnected()，
+    否则抛 502。失败码集见 _WIND_SESSION_CODES（如 -2/-103/-40520004）。
+    """
+    global _wind_ready
+    if _wind_ready and not force:
+        return
+    if force:
+        try:
+            w.stop()            # 先停，避免脏状态/多实例锁冲突
+        except Exception:
+            pass
+    r = w.start(waitTime=60)
+    code = getattr(r, "ErrorCode", -1)
+    if code != 0 or not w.isconnected():
+        _wind_ready = False
+        raise HTTPException(502, "Wind 登录失败：{} {}".format(code, getattr(r, "Data", "")))
+    _wind_ready = True
+
+
 def _text_has_session_keyword(text: Any) -> bool:
     if not text:
         return False
@@ -91,6 +151,23 @@ def _ths_session_dead(result: Any) -> bool:
     return False
 
 
+def _wind_session_dead(result: Any) -> bool:
+    """Wind WindData / (ErrorCode, DataFrame) 返回是否表示会话/登录失效。
+
+    usedf=True 时返回 (ErrorCode, DataFrame) 元组（wsd/wss 固定端点走此路），
+    须按元组首位判码；否则是 WindData 对象，按 .ErrorCode 判。
+    坏证券码会返回 ErrorCode=0 + Data=[[None,...]]，故只看 ErrorCode，不因 None 数据判失败。
+    """
+    if isinstance(result, tuple) and len(result) == 2:
+        return result[0] in _WIND_SESSION_CODES
+    code = getattr(result, "ErrorCode", None)
+    if code in _WIND_SESSION_CODES:
+        return True
+    if code not in (0, None):
+        return _text_has_session_keyword(getattr(result, "Data", ""))
+    return False
+
+
 def em_exec(fn: Callable[[], Any]) -> Any:
     """在已登录会话里执行 EM 取数 thunk；若会话失效则强制重登并重试一次。
 
@@ -115,3 +192,103 @@ def ths_exec(fn: Callable[[], Any]) -> Any:
         ensure_ths(force=True)
         r = fn()
     return r
+
+
+def wind_exec(fn: Callable[[], Any]) -> Any:
+    """在已登录会话里执行 Wind 取数 thunk；若会话失效则强制重登并重试一次。
+
+    调用方须已持有全局 lock（本函数不自己加锁，沿用现有串行化）。
+    """
+    ensure_wind()
+    r = fn()
+    if _wind_session_dead(r):
+        ensure_wind(force=True)
+        r = fn()
+    return r
+
+
+# ============================================================================
+# QMT（君弘君智 / 迅投 XtQuant）交易会话
+#
+# 与 EM/iFinD/Wind 的「无状态取数」不同，QMT 是长连接 trader + 异步回调推送：
+# 服务首次使用时 ensure_qmt() 建立单例 XtQuantTrader 并 start/connect/subscribe，
+# 之后下单/撤单/查询经全局 lock 串行。委托/成交/错误回调写入 _qmt_events（线程安全），
+# 仅供审计/观测——查询端点直接走 query_stock_*（权威值），回调内绝不调 query_*（防卡死）。
+#
+# 前提：本机 XtMiniQmt.exe 已登录（极简/独立模式）。connect()!=0 视为未就绪 → 502。
+# ============================================================================
+
+from collections import deque   # noqa: E402
+
+_qmt_trader: Any = None
+_qmt_account: Any = None
+_qmt_ready = False
+_qmt_events: deque = deque(maxlen=500)   # 最近的委托/成交/错误回调（审计用）
+
+
+class _QmtCallback(XtQuantTraderCallback):
+    """交易回调：仅把事件入队，不在回调线程里调用任何 query_* 接口（否则后续回调卡死）。"""
+
+    def on_disconnected(self):
+        global _qmt_ready
+        _qmt_ready = False
+        _qmt_events.append({"event": "disconnected"})
+
+    def on_stock_order(self, order):
+        _qmt_events.append({"event": "order", "order_id": getattr(order, "order_id", None),
+                            "stock_code": getattr(order, "stock_code", None),
+                            "order_status": getattr(order, "order_status", None)})
+
+    def on_stock_trade(self, trade):
+        _qmt_events.append({"event": "trade", "order_id": getattr(trade, "order_id", None),
+                            "stock_code": getattr(trade, "stock_code", None),
+                            "traded_volume": getattr(trade, "traded_volume", None)})
+
+    def on_order_error(self, err):
+        _qmt_events.append({"event": "order_error", "order_id": getattr(err, "order_id", None),
+                            "error_id": getattr(err, "error_id", None),
+                            "error_msg": getattr(err, "error_msg", None)})
+
+    def on_cancel_error(self, err):
+        _qmt_events.append({"event": "cancel_error", "order_id": getattr(err, "order_id", None),
+                            "error_id": getattr(err, "error_id", None),
+                            "error_msg": getattr(err, "error_msg", None)})
+
+
+def qmt_account() -> Any:
+    """返回当前 StockAccount 对象（ensure_qmt 后可用）。"""
+    return _qmt_account
+
+
+def recent_qmt_events() -> list:
+    """最近的交易回调事件快照（审计/观测）。"""
+    return list(_qmt_events)
+
+
+def ensure_qmt(force: bool = False) -> Any:
+    """建立/复用 QMT 单例 trader 并连接终端。返回 trader；失败抛 502。
+
+    依赖本机 XtMiniQmt 已登录。connect() 非 0 视为未就绪。
+    调用方须已持有全局 lock（本函数不自己加锁）。
+    """
+    global _qmt_trader, _qmt_account, _qmt_ready
+    if _qmt_ready and not force and _qmt_trader is not None:
+        return _qmt_trader
+
+    if _qmt_trader is None:
+        path = get_qmt_userdata_path()
+        session_id = get_qmt_session_id()
+        _qmt_trader = XtQuantTrader(path, session_id)
+        _qmt_trader.register_callback(_QmtCallback())
+        _qmt_trader.start()
+
+    account_id, account_type = get_qmt_account()
+    _qmt_account = StockAccount(account_id, account_type)
+
+    code = _qmt_trader.connect()
+    if code != 0:
+        _qmt_ready = False
+        raise HTTPException(502, "QMT 连接失败：connect()={}（确认 XtMiniQmt 已登录）".format(code))
+    _qmt_trader.subscribe(_qmt_account)
+    _qmt_ready = True
+    return _qmt_trader

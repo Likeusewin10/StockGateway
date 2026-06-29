@@ -69,11 +69,54 @@ AGENT_ENGINES: dict[str, dict[str, list[str]]] = {
     },
 }
 
+# Streaming variant used when AGENT_STREAM_JSON is on (claude only).
+AGENT_ENGINES_STREAM: dict[str, dict[str, list[str]]] = {
+    "claude": {
+        "fresh": [
+            "claude", "-p", "--output-format", "stream-json", "--verbose",
+            "--session-id", "{session_id}",
+            "--dangerously-skip-permissions", "--", "{prompt}",
+        ],
+        "resume": [
+            "claude", "-p", "--output-format", "stream-json", "--verbose",
+            "--resume", "{session_id}",
+            "--dangerously-skip-permissions", "--", "{prompt}",
+        ],
+    },
+}
+
+# Live persistent-stdin session variant: prompt is sent over stdin, not argv.
+AGENT_ENGINES_LIVE: dict[str, dict[str, list[str]]] = {
+    "claude": {
+        "fresh": [
+            "claude", "-p", "--input-format", "stream-json",
+            "--output-format", "stream-json", "--verbose",
+            "--dangerously-skip-permissions",
+            "--session-id", "{session_id}",
+        ],
+        "resume": [
+            "claude", "-p", "--input-format", "stream-json",
+            "--output-format", "stream-json", "--verbose",
+            "--dangerously-skip-permissions",
+            "--resume", "{session_id}",
+        ],
+    },
+}
+
 # codex --json(JSONL) 首轮输出里 session id 的候选字段名，按序探测（容版本字段名差异）。
 CODEX_SESSION_ID_KEYS: tuple[str, ...] = ("session_id", "conversation_id", "thread_id", "id")
 
 AGENT_TASK_TIMEOUT_SECONDS = 600   # 单任务上限,超时 kill,防僵进程占满服务器
 AGENT_MAX_TASKS = 100              # 内存中保留的最近任务数,超出按完成顺序清理最旧
+
+# Stream agent subprocess output as JSON events; off by default.
+AGENT_STREAM_JSON = os.environ.get("AGENT_STREAM_JSON", "1").strip().lower() in {"1", "true", "yes", "on"}
+# Max number of streamed events buffered in memory per task.
+AGENT_EVENT_BUFFER_MAX = int(os.environ.get("AGENT_EVENT_BUFFER_MAX", "2000"))
+# Idle seconds before a live persistent session is reaped.
+AGENT_SESSION_IDLE_SECONDS = int(os.environ.get("AGENT_SESSION_IDLE_SECONDS", "300"))
+# Max number of concurrent live persistent sessions kept alive.
+AGENT_MAX_LIVE_SESSIONS = int(os.environ.get("AGENT_MAX_LIVE_SESSIONS", "8"))
 
 # ---- 会话列表（agent_sessions 工具，仿原生 /resume）----
 # CLI 本身不暴露 list 子命令；两个引擎都把会话存成可扫描的 JSONL：

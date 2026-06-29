@@ -1,0 +1,22 @@
+# WindPy（万得 Wind 金融终端 SDK）不通过 pip 安装。
+# SDK 由本机 Wind 金融终端提供，位于：C:\Wind\Wind.NET.Client\WindNET\x64
+#
+# 注册方式（在 .venv-wind 激活态下运行官方脚本，机制同 EM 的 .pth）：
+#   .venv-wind\Scripts\python.exe "C:\Wind\Wind.NET.Client\WindNET\bin\installWindPy.py" "C:\Wind\Wind.NET.Client\WindNET"
+# 该脚本会在当前解释器 site-packages 写入 WindPy.pth 指向 ...\WindNET\x64，
+# 之后 `from WindPy import w` 即可用（不复制 SDK 进库）。
+#
+# 🔴 仅注册 .pth 不足以让 w.start() 连上终端，冷启动登录踩坑链见 CLAUDE.md「Wind 环境与登录」：
+#   1) w.start() 返回 -2 'Start Error!' → 终端「发现→API插件→修复Python接口」指向上面的 python.exe
+#      （终端须管理员运行 + 修复时关掉所有 python 进程）。
+#   2) 修复后 w.start() 返回 -40520004 'Login Failed!' → 管理员任务管理器杀光全部 Wind 进程
+#      （WBox.exe/WIM.exe 等真正持锁）→ 重开终端登录 → w.start() 出 0 ['OK!']。
+#   3) 单点登录：服务用的 Wind 账号别同时在别处登录/跑 WindPy。
+#
+# WindPy 走终端鉴权，无需账号密码，故 .env 不需要 Wind 凭据变量。
+# 运行依赖：本机 Wind 金融终端已安装并后台登录。
+#
+# 服务侧运行依赖（这些走 pip，在 .venv-wind 装）：
+fastapi
+uvicorn
+pandas

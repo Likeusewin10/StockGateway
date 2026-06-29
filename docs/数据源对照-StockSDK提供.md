@@ -17,6 +17,13 @@
 | `GET /em/csd` | EM 序列数据 | `codes, indicators, startdate, enddate, options` |
 | `GET /em/css` | EM 截面数据 | `codes, indicators, options` |
 | `POST /em/call/{method}` | EM 任意 `c.*` 方法透传（如 edb） | body: `{args, options_pandas}` |
+| `GET /wind/wsd` | Wind 日序列数据 | `codes, fields, startdate, enddate, options` |
+| `GET /wind/wss` | Wind 日截面数据 | `codes, fields, options` |
+| `POST /wind/call/{method}` | Wind 任意 `w.*` 方法透传（如 edb、wset、tdays） | body: `{args, usedf}` |
+
+> 🔴 **Wind 只读取数**:`/wind/call/{method}` 对交易/写操作类（`tlogon/tlogout/torder/tcancel/tquery/wupf`）**硬拦截 403**;
+> `wsq` 实时为异步回调,HTTP 同步端点不暴露。Wind 字段名用小写（如 `close`、`sec_name`），与 iFinD/EM 的指标码不同名,
+> 三源择一即可,无需跨源拼字段。
 
 > ⚠ **最大的坑**:OHLCV（open/high/low/close/volume/amount）**必须走 `/ths/history`**,
 > 不要用 `ths_open_price_stock` 这类 `ths_*_stock` 码打 `/ths/basic`——多数账号 BasicData
@@ -28,7 +35,7 @@
 
 | 激活手册字段 | StockSDK 主路（iFinD） | 备路（EM/Choice） | 状态 | 备注 |
 |---|---|---|---|---|
-| `daily_bar`(日K/OHLCV) | `/ths/history` indicators=`open;high;low;close;volume;amount` | `/em/csd` indicators=`OPEN,HIGH,LOW,CLOSE,VOLUME,AMOUNT` | ✅ 提供 | 走 history,**勿用 basic** |
+| `daily_bar`(日K/OHLCV) | `/ths/history` indicators=`open;high;low;close;volume;amount` | `/em/csd` indicators=`OPEN,HIGH,LOW,CLOSE,VOLUME,AMOUNT` | ✅ 提供 | 走 history,**勿用 basic**;Wind 备路 `/wind/wsd` fields=`open,high,low,close,volume,amt` |
 | `latest_quote`(最新价) | `/ths/realtime` indicators=`latest`（+`preClose,open,high,low,volume`） | `/em/css` 截面快照 | ✅ 提供 | 强实时只认实时端点,勿用日频伪装 |
 | `turnover_rate`(换手率) | `/ths/realtime` 或 `/ths/history`,指标名按字段字典 | `/em/css` 换手率指标 | ⚠ 部分 | 按 `docs/catalog/ths/*_fields.csv` 确认规范名 + param |
 | `market_cap`(市值/流通市值) | `/ths/basic` 基础数据服务指标 | `/em/css` 市值指标 | ⚠ 部分 | 单位统一为人民币元;按字段字典确认 |
@@ -37,7 +44,7 @@
 | `sector_moneyflow`(板块资金流) | `/ths/call/{func}` sector_flow 族 | — | ⚠ 部分 | 同上,需权限确认 |
 | `margin_financing`(融资净流入) | `/ths/call/{func}` margin 族 | `/em/call` 对应方法 | ⚠ 部分 | 按字段字典 |
 | `etf_net_creation_inflow`(ETF申购净流入) | — | — | ❌ 不提供 | 需 PCF/申赎清单;StockSDK 当前不出,留给 STS-codex 用 Tushare 估算并标 partial |
-| EDB 宏观指标 | `/ths/call/EDB` args=`["指标码","","起","止"]` | `/em/call/edb` args=`["EMM...","Ispandas=1"]` | ✅ 提供 | 通用经济指标 |
+| EDB 宏观指标 | `/ths/call/EDB` args=`["指标码","","起","止"]` | `/em/call/edb` args=`["EMM...","Ispandas=1"]` | ✅ 提供 | 通用经济指标;Wind 备路 `/wind/call/edb` args=`["指标码","起","止"]` |
 
 图例:✅ 可直接提供 · ⚠ 能提供但需按字段字典确认指标名/权限 · ❌ 本仓库不提供
 

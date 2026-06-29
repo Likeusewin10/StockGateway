@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 把两个 Windows-only、单会话的桌面股票数据 SDK（东方财富 **EMQuantAPI** 与同花顺 **iFinD**）包成可远程取数的服务，并把多厂商上游 MCP 聚合成本机一个网关。三件独立产物：
 
-1. **REST + WebSocket 取数服务**（`app.py` + `stocksdk/`，端口 8000）—— 别的项目用 `ip:端口 + 参数` 取数，不写 SDK 代码。
+1. **REST + WebSocket 取数服务**（`app.py` + `stocksdk/`，端口 8000）—— 别的项目用 `ip:端口 + 参数` 取数，不写 SDK 代码。当前接**三源**（EM、iFinD、Wind）：EM/iFinD 真机已用；**第三源 Wind（WindPy）`/wind/*` 路由已实现并桩测全绿，真机环境已打通**（实现与登录踩坑见 [`.claude/plans/wind-windpy-integration.plan.md`](.claude/plans/wind-windpy-integration.plan.md)）。
 2. **MCP 聚合网关**（`mcp_gateway/`，端口 8765）—— 把上游厂商 MCP 中转给远程标准 MCP 客户端，上游凭据只存本机。
 3. **生产压测工具**（`loadtest/`）—— 验证崩溃自愈、并发承载、WS 长稳。
 
@@ -14,7 +14,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### 🔴 定位边界（别搞混两个仓库）
 
-**本仓库只是「数据提供方」，只读取数、不下单、不交易。** 消费方是**另一个仓库 STS-codex**（交易系统，本机不存在）。
+**本仓库以「数据提供方」为主：EM/iFinD/Wind 三源只读取数、不下单、不交易。** 消费方曾是**另一个仓库 STS-codex**（交易系统，本机不存在）。
+
+> ⚠ **定位更新（2026-06-26）**：经用户决策，**新增本机交易能力**——君弘君智（迅投 QMT/XtQuant）`/qmt/*` 路由直接做进本服务（详见架构要点「QMT 交易接口」）。交易**默认关**（`QMT_TRADING_ENABLED=false`）、下单**默认 dry-run**、过四道护栏、写审计；EM/iFinD/Wind 仍维持只读，Wind 的 `torder` 等仍 403 硬拦截。「下单只走 STS-codex / signal-submit」的旧红线在交易腿并入本仓库后已被此决策覆盖。
 
 `docs/数据激活.md`（数据源激活手册）里的 `trading-system` CLI、SQLite、source-priority resolver **全部属于 STS-codex，不在本仓库实现**。本仓库对它只负责两件事：① 把数据取出来；② 用 [`docs/数据源对照-StockSDK提供.md`](docs/数据源对照-StockSDK提供.md) 说明「哪个字段走哪个端点」。看到要在本仓库实现 resolver / Choice provider 的需求，先回到这条边界确认。
 
@@ -26,10 +28,33 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 |---|---|---|
 | `.venv-em` | EM SDK（通过 `.pth` 引用 `D:\dev\Project\EMQuantAPI_Python\python3`，不复制进库） | `requirements-em.txt` |
 | `.venv-ths` | iFinD SDK | `requirements-ths.txt` |
+| `.venv-wind` | Wind SDK（WindPy，通过 `.pth` 引用 `C:\Wind\Wind.NET.Client\WindNET\x64`，不复制进库） | `requirements-wind.txt`（注释注册步骤，WindPy 不走 pip） |
 | `.venv-api` | HTTP/WS 服务 + pytest + 压测 | `requirements-api.txt` |
 | `.venv-mcp` | MCP 网关 | `requirements-mcp.txt` |
 
 运行命令时**一律用 venv 内的 `Scripts\python.exe` / `pytest.exe` / `uvicorn.exe`**，不要用系统 Python。EM SDK 还需本机装 Microsoft Visual C++ 2010 可再发行组件包（x64）。
+
+### Wind（WindPy）环境与登录（已实测打通；`/wind/*` 路由已实现，见 [`stocksdk/routes_wind.py`](stocksdk/routes_wind.py) 与 [`.claude/plans/wind-windpy-integration.plan.md`](.claude/plans/wind-windpy-integration.plan.md)）
+
+Wind 是第三个**单会话/单点登录**桌面 SDK，接入方式与 EM/iFinD 同构（全局锁串行化 + 会话自愈三件套 `ensure_wind`/`wind_exec`/`_wind_session_dead`，会话失效码集 `{-2, -103, -40520004}`）。路由层 `/wind/*`：固定端点 `GET /wind/wsd`（日序列）、`GET /wind/wss`（日截面，均默认 `usedf=True`），透传 `POST /wind/call/{method}`、`GET /wind/methods`。**仅读取数、不做交易**——交易/写操作类（`tlogon/tlogout/torder/tcancel/tquery/wupf`）在 `routes_wind.py:_WIND_TRADING` 中**硬拦截 403**，遵循定位边界。`wsq` 实时为异步回调，HTTP 同步端点不暴露（`/wind/methods` 标注，实时推送后续仿 `routes_ws.py`）。
+
+- **注册（一次性）**：装好 Wind 金融终端后，用官方脚本写 `.pth`（机制同 EM）：
+  ```bat
+  .venv-wind\Scripts\python.exe "C:\Wind\Wind.NET.Client\WindNET\bin\installWindPy.py" "C:\Wind\Wind.NET.Client\WindNET"
+  ```
+  之后 `from WindPy import w` 即可用。仅此一步不足以让 `w.start()` 连上终端（见下）。
+- **🔴 登录踩坑链（冷启动必看，否则 `w.start()` 失败）**：
+  1. `import` 成功但 `w.start()` 返回 **`-2 'Start Error!'`** → 终端侧 API 接口没修复。
+     需在终端 **发现→API插件→修复Python接口**，【添加路径】指向 `.venv-wind\Scripts\python.exe`，
+     **终端须管理员运行**（写注册表），且**修复时关掉所有 python 进程**（否则提示"python 正在使用中"）。
+  2. 修复后 `w.start()` 返回 **`-40520004 'Login Failed!'`** → Wind 进程脏状态/多实例锁冲突。
+     **管理员任务管理器杀光全部 Wind 进程**（`WBox.exe`/`WIM.exe`/`wimbrowser.exe`/`WindUpdate.RUN` 等，
+     真正持锁的是 `WBox.exe`/`WIM.exe`，`wmain.exe` 只是前台窗口）→ **重开终端登录** → `w.start()` 出 `0 ['OK!']`。
+  3. 同 EM/iFinD：服务用的 Wind 账号**别同时在别处登录/跑 WindPy**，单点会冲突。
+- **返回结构（写 `serialize` 用）**：`wsd/wss` 返回 `WindData`（`.ErrorCode/.Codes/.Fields/.Times/.Data`，
+  **`.Data` 字段优先**：`Data[i]`=第 i 个 Field 跨所有 Times 的序列，转 records 需转置）；
+  **`usedf=True` 返回 `(ErrorCode, DataFrame)` 元组**（最省事路径）。**坏代码返回 `ErrorCode=0` + `Data=[[None,...]]`**，
+  故失败判定**只看 `ErrorCode!=0`**。会话失效码集：`{-2, -103, -40520004}`。
 
 ## 常用命令
 
@@ -96,6 +121,16 @@ FastMCP `create_proxy` + `gateway.mount`，把每个上游 server 以 `f"{provid
 
 网关自带三个本机工具（命名空间 `agent`，工具名 `agent_agent_run`/`_status`/`_result`），让远端 Agent 在服务器上**异步**起一次性 `claude -p` / `codex exec` 子进程干活、轮询取结果，实现「本地 Agent 指挥服务器 Agent」。异步模型（立即返 `task_id` + 后台线程跑 + 轮询）避开 MCP 同步超时；状态机 `running→done|failed|timeout`。🔴 子进程全自动非交互（`--dangerously-*`），靠两道防线：① 复用网关 X-API-Key（强随机、只发可信机器）；② **cwd 锁死 `AGENT_PROJECT_DIR`**（`config.get_agent_project_dir` 校验覆盖值仍在仓库根内）。引擎限 `claude`/`codex` 白名单 + `shutil.which` 探活，未装/未登录返回 `failed` 不崩。命令模板里 `--` 在 `{prompt}` 前，防 `-` 开头 prompt 被当 flag。第一步不做常驻会话/跨任务上下文（服务器 `CLAUDE.md` 随 prompt 自动加载弥补）。详见 [`docs/MCP中转网关.md`](docs/MCP中转网关.md) 第六节。
 
+### QMT 交易接口（routes_qmt.py + sessions.py 的 ensure_qmt）
+
+君弘君智（迅投 QMT/XtQuant）是本服务**唯一交易源**，`/qmt/*` 与 `/em /ths /wind` 并列。接入要点：
+
+- **运行时引入**：xtquant 原生 pyd 含 cp311，在 `.venv-api` 直接用。中文安装路径在 `.pth` 里按本地编码读不可靠，故 `sessions.py:_bootstrap_xtquant_path()` 在导入前用 `sys.path` + `os.add_dll_directory(bin.x64)` 注入（默认路径见 `config.QMT_DEFAULT_PACKAGE_DIR`，`QMT_PACKAGE_DIR` 可覆盖）。
+- **会话模型**：不同于三源的无状态取数，QMT 是长连接 trader + 异步回调。`ensure_qmt()` 建单例 `XtQuantTrader` 并 `start/connect/subscribe`，复用全局 `lock` 串行下单；回调（`_QmtCallback`）只把委托/成交/错误**入队** `_qmt_events`，**回调线程内绝不调 `query_*`**（否则后续回调卡死）。前提：本机 `XtMiniQmt.exe` 已登录（极简/独立模式），`connect()!=0` → 502。
+- **端点**：读 `GET /qmt/asset|positions|orders|trades|events|health`；写 `POST /qmt/order|/qmt/cancel`；透传 `POST /qmt/call/{method}` + `GET /qmt/methods`。透传**硬拦交易类**（`order_stock*`/`cancel_*` 必须走带护栏端点）与会话/底层类（`start/stop/connect` 等会断服务连接）。**行情**另有 `/qmt/data/*`（xtdata：`kline/tick/sector/trading_dates/instrument/download/call/methods`），与交易独立、不受交易开关限制；但行情与三源（EM/iFinD/Wind）重复，仅在需要 QMT 专有 tick/L2 时用。
+- **三层安全**（服务经 ngrok 公网，交易端点也公网）：① 交易总开关 `QMT_TRADING_ENABLED` 默认 **false**，写操作 503；② `/qmt/order` 默认 **dry-run** 只回显，`confirm=true` 才真发；③ `guards.py` 四道护栏（单笔金额上限/标的白名单/当日笔数/交易时段）+ 全量审计 `audit/*.jsonl`（gitignore）。买卖/价位走 `xtconstant`（`STOCK_BUY=23`/`STOCK_SELL=24`、`FIX_PRICE=11`、`LATEST_PRICE=5` 配 `price=-1`）。
+- **返回归一化**：`serialize.qmt_asset/qmt_position/qmt_order/qmt_trade`（字段对照 `xtquant/xttype.py`）；`order_stock` 返回 `-1`→502，`cancel_order_stock` 返回 `-3`未登录等负值→409。
+
 ### 安全（security.py / ratelimit.py）
 
 服务经 ngrok 公网暴露，鉴权/限流为必需。`X-API-Key` 常量时间比较（`secrets.compare_digest`）；按 IP 滑动窗口限流（默认 `60 次/60s`，见 `config.py` 常量）。框架无关原语在 `ratelimit.py`，供网关复用同一份逻辑避免漂移；`security.py` 只做 FastAPI 适配。未配 `API_KEY` 时不鉴权（仅本机/内网），启动时 warning。
@@ -103,7 +138,7 @@ FastMCP `create_proxy` + `gateway.mount`，把每个上游 server 以 `f"{provid
 ## 约定
 
 - **凭据一律从 `.env` / 环境变量读**，无硬编码。`config.load_dotenv` 用 `setdefault`（真实环境变量优先）。`.env` / `userInfo` / `*.log` 已 gitignore。配置模板见 `.env.example`。
-- `stocksdk/config.py` 只依赖标准库，三个 venv 都能导入；魔法数字（端口、队列上限、限流阈值、重启间隔）集中在此，**不要散落硬编码**。
+- `stocksdk/config.py` 只依赖标准库，各 venv 都能导入；魔法数字（端口、队列上限、限流阈值、重启间隔）集中在此，**不要散落硬编码**。
 - `app.py` 仅负责装配（CORS / 路由挂载 / lifespan）；逻辑在 `stocksdk/` 各子模块。
 - 测试用桩替换 SDK（见 `tests/conftest.py`），不触发真实登录/网络；当前覆盖率约 88%。
 
@@ -114,3 +149,23 @@ FastMCP `create_proxy` + `gateway.mount`，把每个上游 server 以 `f"{provid
 - **服务器侧 Agent 用 `git worktree`** 开独立工作区，避免与主工作区互相干扰。
 - **中心仓库 remote 尚未选定**；确定后 `git remote add origin <地址>` 即接入。**任何 push 前先过零密钥检查**（diff 里无 token / 账号 / 内网 URL）。
 - 运维全流程（启停 / 探活 / 自愈 / 冷启动 / 回滚 / 压测约束）见 [`docs/运维手册.md`](docs/运维手册.md)。
+
+## 精简实盘版 v3 (2026-06-26 Coco经MCP同步)
+
+- **① 项目定位收敛**：从「大而全数据平台」转向**精简实盘版**。主流程 5 支柱串行：**S1 资金异动挖掘 → S2 业务实质验证 → S3 精研关注池 → S4 盘中 14:30 信号 → S5 卖出**。旧版（大而全）以 `v1-full-system` 备份留存，不删。
+- **② 我 Cody 的职责 = 轨 B 数据地基主力**：
+  - 补**牛市段历史数据**（起点 **2024-09-14**）的日线 + 财务；
+  - 跑通 **iFinD 原始接口**（生产主路径，量级 **6 亿/月**）；
+  - **数据核验**；
+  - **接口挂了实时修**（数据地基稳定性由我兜底）。
+- **③ 多 Agent 协同分工**：
+  - **业务实质验证（S2）**：Abby（Gemini 3.1 Pro）+ Dex + Coco **并行**产出，最后由 **Coco 汇总去重**。
+  - **建模 / 回测**：Abby（Opus 4.6 Thinking）+ Dex + Coco **共同**产出，由 **Coco 整合**。
+- **④ 数据铁律（来源优先级与取数约定）**：
+  - 来源优先级：**iFinD > Choice > Tushare > AKShare > 网页端**。
+  - **北向资金日度 2024-08 已停发** → 改用**南向 / 两融 / 持股变动**替代口径。
+  - **iwencai（问财）查询必带明确日期**，否则自然语言解析失败。
+  - **主营构成**：`get_stock_financials` 仅返回 **Top5**；要**全量**走 **EM 的 `MBSALESCONS`**。主题须**挂在真实业务收入占比**上，**单股各主题占比之和 = 100%**。
+- **⑤ 红线（不可逾越）**：
+  - **`API_KEY` 走 env**，不入库、不打印；
+  - ~~不碰本地交易核心~~ / ~~以只读取数为主~~ / ~~唯一下单路径 = `signal-submit`，不自动下单~~ —— **已于 2026-06-26 经用户决策放宽**：交易腿（君弘君智 QMT `/qmt/*`）并入本仓库，见上「QMT 交易接口」。替代约束：**交易默认关（`QMT_TRADING_ENABLED=false`）、下单默认 dry-run、必过四道护栏、全量审计**，公网放开交易前需显式确认。

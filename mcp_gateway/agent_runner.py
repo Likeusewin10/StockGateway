@@ -15,9 +15,11 @@
 """
 import json
 import logging
+import queue
 import shutil
 import subprocess
 import threading
+import time
 import uuid
 from collections import deque
 from dataclasses import dataclass, field
@@ -25,6 +27,12 @@ from typing import Deque, Dict, List, Optional
 
 from mcp_gateway.config import (
     AGENT_ENGINES,
+    AGENT_ENGINES_STREAM,
+    AGENT_ENGINES_LIVE,
+    AGENT_STREAM_JSON,
+    AGENT_EVENT_BUFFER_MAX,
+    AGENT_SESSION_IDLE_SECONDS,
+    AGENT_MAX_LIVE_SESSIONS,
     AGENT_MAX_TASKS,
     AGENT_TASK_TIMEOUT_SECONDS,
     CODEX_SESSION_ID_KEYS,
@@ -75,6 +83,55 @@ class AgentTask:
     returncode: Optional[int] = None
     session_id: Optional[str] = None   # 会话 id：claude 首轮预生成/续轮回填；codex 终态解析回填
     _proc: Optional[subprocess.Popen] = field(default=None, repr=False)
+    stream: bool = False
+    events: List[Dict] = field(default_factory=list)
+    event_seq: int = 0
+    dropped: int = 0
+    live: bool = False
+    session_state: str = "idle"
+    send_seq: int = 0
+    pending: List[Dict] = field(default_factory=list)
+    close_requested: bool = False
+    _send_lock: threading.Lock = field(default_factory=threading.Lock, repr=False)
+    _events_lock: threading.Lock = field(default_factory=threading.Lock, repr=False)
+
+    def append_event(self, ev: Dict) -> None:
+        """追加一条流式事件；超出缓冲上限时丢弃最旧的并计数。"""
+        with self._events_lock:
+            self.event_seq += 1
+            ev["seq"] = self.event_seq
+            self.events.append(ev)
+            if len(self.events) > AGENT_EVENT_BUFFER_MAX:
+                overflow = len(self.events) - AGENT_EVENT_BUFFER_MAX
+                del self.events[:overflow]
+                self.dropped += overflow
+
+    def snapshot_events(self, cursor: int) -> Dict[str, object]:
+        """返回 seq 大于 cursor 的事件及下一游标。"""
+        with self._events_lock:
+            events = [ev for ev in self.events if ev.get("seq", 0) > cursor]
+            return {
+                "task_id": self.task_id,
+                "status": self.status,
+                "events": events,
+                "next_cursor": self.event_seq,
+                "dropped": self.dropped,
+            }
+
+    def enqueue_send(self, text: str, priority: int = 0) -> None:
+        """登记一条待发送的用户消息（live 模式经 stdin 发出）。"""
+        with self._send_lock:
+            self.send_seq += 1
+            self.pending.append({"priority": priority, "text": text, "seq": self.send_seq})
+
+    def pop_pending(self) -> Optional[Dict]:
+        """取下一条待发送消息：优先级最高优先，同优先级取 seq 最小。"""
+        with self._send_lock:
+            if not self.pending:
+                return None
+            item = min(self.pending, key=lambda p: (-p["priority"], p["seq"]))
+            self.pending.remove(item)
+            return item
 
     def snapshot_status(self) -> Dict[str, str]:
         """对外的轻量状态视图（不含完整 output，省带宽）。"""
@@ -98,8 +155,17 @@ class AgentTask:
         }
 
 
+def _user_msg_line(text: str) -> str:
+    """把一条用户文本编码成 live stdin 的一行 stream-json user 消息（含换行）。"""
+    return json.dumps({
+        "type": "user",
+        "message": {"role": "user", "content": [{"type": "text", "text": text}]},
+    }) + "\n"
+
+
 def _build_command(engine: str, prompt: str, executable: str,
-                   session_id: Optional[str], is_resume: bool) -> List[str]:
+                   session_id: Optional[str], is_resume: bool,
+                   stream: bool = False, live: bool = False) -> List[str]:
     """按引擎模板拼命令行（区分首轮 fresh / 续轮 resume）。
 
     argv[0] 用 shutil.which 解析出的**完整路径**(executable),而非裸引擎名:
@@ -107,7 +173,13 @@ def _build_command(engine: str, prompt: str, executable: str,
     不会自动补 .CMD 扩展名 → WinError 2。用完整路径可同时兼容 .exe/.cmd 且无需 shell=True。
     {prompt}/{session_id} 处分别替换为用户 prompt / 会话 id。
     """
-    template = AGENT_ENGINES[engine]["resume" if is_resume else "fresh"]
+    if live and engine in AGENT_ENGINES_LIVE:
+        engines = AGENT_ENGINES_LIVE
+    elif stream and engine in AGENT_ENGINES_STREAM:
+        engines = AGENT_ENGINES_STREAM
+    else:
+        engines = AGENT_ENGINES
+    template = engines[engine]["resume" if is_resume else "fresh"]
     sid = session_id or ""
     cmd = [part.replace("{prompt}", prompt).replace("{session_id}", sid) for part in template]
     cmd[0] = executable    # 替换裸引擎名为解析后的完整可执行路径
@@ -153,7 +225,8 @@ class AgentRunner:
     # ---- 对外 API ----------------------------------------------------------
 
     def submit(self, engine: str, prompt: str,
-               session_id: Optional[str] = None) -> Dict[str, str]:
+               session_id: Optional[str] = None,
+               live: bool = False) -> Dict[str, str]:
         """起一个 Agent 子进程任务。立即返回 {task_id, status[, session_id]}。
 
         engine 不在白名单 / CLI 未装 / 起进程失败 → status=failed（不抛异常，附脱敏 reason）。
@@ -187,14 +260,20 @@ class AgentRunner:
         if not is_resume and engine == "claude":
             task_session_id = str(uuid.uuid4())
 
+        use_stream = AGENT_STREAM_JSON and engine in AGENT_ENGINES_STREAM
+        use_live = live and engine in AGENT_ENGINES_LIVE
+        if use_live:
+            use_stream = True
         task = AgentTask(
             task_id=uuid.uuid4().hex, engine=engine, prompt=prompt,
-            session_id=task_session_id,
+            session_id=task_session_id, stream=use_stream,
+            live=use_live, session_state="working" if use_live else "idle",
         )
         try:
             proc = subprocess.Popen(
-                _build_command(engine, prompt, executable, task_session_id, is_resume),
+                _build_command(engine, prompt, executable, task_session_id, is_resume, use_stream, use_live),
                 cwd=get_agent_project_dir(),     # 🔴 cwd 锁死项目目录
+                stdin=subprocess.PIPE if use_live else None,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
                 text=True,
@@ -205,6 +284,20 @@ class AgentRunner:
             return self._record_failed(engine, prompt, _sanitize("{}: {}".format(type(e).__name__, e)))
 
         task._proc = proc
+        if use_live:
+            # live 模式：首轮 prompt 经 stdin 发出（不在 argv）。
+            try:
+                proc.stdin.write(_user_msg_line(prompt))
+                proc.stdin.flush()
+            except Exception as e:
+                try:
+                    proc.kill()
+                except Exception:
+                    pass
+                task.status = STATUS_FAILED
+                task.error = _sanitize("{}: {}".format(type(e).__name__, e))
+                self._store(task)
+                return task.snapshot_status()
         self._store(task)
         threading.Thread(target=self._wait, args=(task,), daemon=True).start()
         logger.info("Agent 任务已起 %s engine=%s resume=%s", task.task_id, engine, is_resume)
@@ -229,10 +322,45 @@ class AgentRunner:
             return {"task_id": task_id, "status": "unknown"}
         return task.snapshot_result()
 
+    def events(self, task_id: str, cursor: int = 0) -> Dict[str, object]:
+        """拉取 seq 大于 cursor 的流式事件。未知 task_id → status=unknown。"""
+        task = self._get(task_id)
+        if task is None:
+            return {"task_id": task_id, "status": "unknown"}
+        return task.snapshot_events(cursor)
+
+    def send(self, task_id: str, message: str, priority: int = 0) -> Dict[str, object]:
+        """向 live 会话追加一条用户消息（按优先级入队，后台 stdin 发出）。"""
+        task = self._get(task_id)
+        if task is None:
+            return {"ok": False, "task_id": task_id, "status": "unknown"}
+        if not task.live:
+            return {"ok": False, "task_id": task_id, "error": "not a live session"}
+        if not (message or "").strip():
+            return {"ok": False, "task_id": task_id, "error": "empty message"}
+        if task.session_state == "closed" or task.status != STATUS_RUNNING:
+            return {"ok": False, "task_id": task_id, "error": "session closed"}
+        task.enqueue_send(message, priority)
+        return {"ok": True, "task_id": task_id, "queued": len(task.pending)}
+
+    def close(self, task_id: str) -> Dict[str, object]:
+        """请求关闭 live 会话（后台线程下一拍关 stdin）。"""
+        task = self._get(task_id)
+        if task is None:
+            return {"ok": False, "task_id": task_id, "status": "unknown"}
+        task.close_requested = True
+        return {"ok": True, "task_id": task_id}
+
     # ---- 内部 --------------------------------------------------------------
 
     def _wait(self, task: AgentTask) -> None:
         """后台线程：等子进程结束，超时 kill，写回状态机。"""
+        if task.live:
+            self._wait_live(task)
+            return
+        if task.stream:
+            self._wait_stream(task)
+            return
         proc = task._proc
         try:
             stdout, stderr = proc.communicate(timeout=self._timeout)
@@ -271,6 +399,177 @@ class AgentRunner:
                         task.session_id = sid
                     else:
                         logger.warning("Agent 任务 %s codex 输出未解析到 session_id", task.task_id)
+            else:
+                task.status = STATUS_FAILED
+                task.error = _sanitize(stderr or "退出码 {}".format(proc.returncode))
+        logger.info("Agent 任务结束 %s status=%s rc=%s", task.task_id, task.status, proc.returncode)
+
+    def _wait_stream(self, task: AgentTask) -> None:
+        """后台线程：流式消费 claude stream-json stdout，逐行解析为事件后写回状态机。"""
+        proc = task._proc
+        stderr_lines: List[str] = []
+
+        def _drain_stderr() -> None:
+            try:
+                for line in proc.stderr:
+                    stderr_lines.append(line)
+            except Exception:
+                pass
+
+        stderr_thread = threading.Thread(target=_drain_stderr, daemon=True)
+        stderr_thread.start()
+
+        timed_out = threading.Event()
+
+        def _on_timeout() -> None:
+            timed_out.set()
+            try:
+                proc.kill()
+            except Exception:
+                pass
+
+        timer = threading.Timer(self._timeout, _on_timeout)
+        timer.start()
+
+        final_envelope = None
+        lines: List[str] = []
+        try:
+            for line in proc.stdout:
+                lines.append(line)
+                text = line.strip()
+                if not text:
+                    continue
+                try:
+                    obj = json.loads(text)
+                except Exception:
+                    task.append_event({"type": "raw", "raw_excerpt": text[:800]})
+                    continue
+                ev = {"type": obj.get("type", "raw"), "raw_excerpt": text[:800]}
+                if obj.get("subtype"):
+                    ev["subtype"] = obj.get("subtype")
+                task.append_event(ev)
+                if obj.get("type") == "result":
+                    final_envelope = text
+        except Exception as e:
+            timer.cancel()
+            with self._lock:
+                task.status = STATUS_FAILED
+                task.error = _sanitize("{}: {}".format(type(e).__name__, e))
+            return
+
+        timer.cancel()
+        try:
+            proc.wait(timeout=10)
+        except Exception:
+            pass
+        stderr_thread.join(timeout=5)
+        stderr = "".join(stderr_lines)
+
+        with self._lock:
+            task.returncode = proc.returncode
+            task.output = final_envelope if final_envelope is not None else "".join(lines)
+            if timed_out.is_set():
+                task.status = STATUS_TIMEOUT
+                task.error = _sanitize("超时 {}s 已被 kill。{}".format(self._timeout, stderr or ""))
+            elif proc.returncode == 0:
+                task.status = STATUS_DONE
+            else:
+                task.status = STATUS_FAILED
+                task.error = _sanitize(stderr or "退出码 {}".format(proc.returncode))
+        logger.info("Agent 任务结束 %s status=%s rc=%s", task.task_id, task.status, proc.returncode)
+
+    def _wait_live(self, task: AgentTask) -> None:
+        """后台线程：驱动 live 持久 stdin 会话，跨多轮发送/接收，直到关闭。"""
+        proc = task._proc
+        stderr_lines: List[str] = []
+
+        def _drain_stderr() -> None:
+            try:
+                for line in proc.stderr:
+                    stderr_lines.append(line)
+            except Exception:
+                pass
+
+        stderr_thread = threading.Thread(target=_drain_stderr, daemon=True)
+        stderr_thread.start()
+
+        def feed(text: str) -> None:
+            proc.stdin.write(_user_msg_line(text))
+            proc.stdin.flush()
+
+        q = queue.Queue()
+
+        def _reader() -> None:
+            for line in proc.stdout:
+                q.put(line)
+            q.put(None)
+
+        threading.Thread(target=_reader, daemon=True).start()
+
+        final_envelope = None
+        idle_deadline = None
+        try:
+            while True:
+                try:
+                    line = q.get(timeout=1.0)
+                except queue.Empty:
+                    if task.close_requested:
+                        try:
+                            proc.stdin.close()
+                        except Exception:
+                            pass
+                        continue
+                    if task.session_state == "idle":
+                        item = task.pop_pending()
+                        if item is not None:
+                            feed(item["text"])
+                            task.session_state = "working"
+                            idle_deadline = None
+                        elif idle_deadline is not None and time.monotonic() > idle_deadline:
+                            try:
+                                proc.stdin.close()
+                            except Exception:
+                                pass
+                    continue
+                if line is None:
+                    break
+                text = line.strip()
+                if not text:
+                    continue
+                try:
+                    obj = json.loads(text)
+                except Exception:
+                    task.append_event({"type": "raw", "raw_excerpt": text[:800]})
+                    continue
+                ev = {"type": obj.get("type", "raw"), "raw_excerpt": text[:800]}
+                if obj.get("subtype"):
+                    ev["subtype"] = obj.get("subtype")
+                task.append_event(ev)
+                if obj.get("type") == "result":
+                    final_envelope = text
+                    task.session_state = "idle"
+                    idle_deadline = time.monotonic() + AGENT_SESSION_IDLE_SECONDS
+                    item = task.pop_pending()
+                    if item is not None:
+                        feed(item["text"])
+                        task.session_state = "working"
+                        idle_deadline = None
+        except Exception:
+            pass
+
+        try:
+            proc.wait(timeout=10)
+        except Exception:
+            pass
+        stderr_thread.join(timeout=5)
+        stderr = "".join(stderr_lines)
+
+        with self._lock:
+            task.returncode = proc.returncode
+            task.output = final_envelope or ""
+            task.session_state = "closed"
+            if proc.returncode == 0:
+                task.status = STATUS_DONE
             else:
                 task.status = STATUS_FAILED
                 task.error = _sanitize(stderr or "退出码 {}".format(proc.returncode))
