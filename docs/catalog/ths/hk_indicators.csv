@@ -1,0 +1,1337 @@
+﻿指标代码,指标中文名,英文代码,单位,分类,参数,支持序列
+32255,是否披露ESG报告,ths_is_disclosure_esg_hk,,ESG / ESG报告,年度,
+17822,华证ESG评级,ths_hz_esg_hk,,ESG / 第三方评级,截至日期,
+11567,连涨天数,ths_up_days_hk,天,技术形态 / 走势特征,,是
+11568,连跌天数,ths_down_days_hk,天,技术形态 / 走势特征,,是
+11569,创历史新高,ths_his_high_hk,,技术形态 / 走势特征,近N天内、复权方式,
+11570,创历史新低,ths_his_low_hk,,技术形态 / 走势特征,近N天内、复权方式,
+11571,创阶段历史新高,ths_phase_high_his_hk,,技术形态 / 走势特征,近N天内、创N天以来新高、复权方式,
+11572,创阶段历史新低,ths_phase_low_his_hk,,技术形态 / 走势特征,近N天内、创N天以来新低、复权方式,
+03144,VSTD成交量标准差,ths_vstd_hks,,技术指标 / 成交量指标,周期、计算周期,是
+05156,VMA量简单移动平均,ths_vma_hks,,技术指标 / 成交量指标,周期、计算周期,是
+05151,CR能量指标,ths_cr_hks,,技术指标 / 能量指标,周期、复权方式、计算周期,是
+03099,BBI多空指数,ths_bbi_hks,,技术指标 / 趋向指标,周期1、周期2、周期3、周期4、复权方式、计算周期,是
+05145,MA简单移动平均,ths_ma_hks,,技术指标 / 趋向指标,周期、复权方式、计算周期,是
+11848,互联互通持股量,ths_interconnection_held_vol_hk,股,沪深港通,,是
+12159,纳入日期,ths_inclusion_date_hk,,沪深港通 / 向南交易标的资料,交易类型,
+12165,剔除日期,ths_eliminate_date_hk,,沪深港通 / 向南交易标的资料,交易类型,
+12160,买入金额,ths_buy_amt_hk,元,沪深港通 / 成交活跃股,交易类型、货币币种,是
+12161,卖出金额,ths_sell_amt_hk,元,沪深港通 / 成交活跃股,交易类型、货币币种,是
+12162,成交金额,ths_trans_amt_hk,元,沪深港通 / 成交活跃股,交易类型、货币币种,是
+12181,原始币种,ths_td_currency_hk,,沪深港通 / 成交活跃股,交易类型,
+06719,"市盈率(PE,TTM)",ths_pe_ttm_hks,,港股估值分析,TTM基准日,是
+06723,"市现率(PCF,经营现金流TTM)",ths_pcf_operating_cf_ttm_hks,,港股估值分析,TTM基准日,是
+06725,"市现率(PCF,现金净流量TTM)",ths_pcf_ncf_ttm_hks,,港股估值分析,TTM基准日,是
+06727,"市销率(PS,TTM)",ths_ps_ttm_hks,,港股估值分析,TTM基准日,是
+06728,总市值(面向证券),ths_totalcapitalforsecurities_hk,元,港股估值分析,货币币种,是
+06905,市盈率(PE),ths_pe_hks,,港股估值分析,财政年度、报告期类型,是
+06906,历史PEG值,ths_his_peg_hks,,港股估值分析,财政年度、增长率（G值）匹配方法,是
+06907,市净率(PB),ths_pb_hks,,港股估值分析,财政年度、报告期类型,是
+06908,"市现率(PCF,经营现金流)",ths_pcf_operating_cf_hks,,港股估值分析,财政年度、报告期类型,是
+06909,"市现率(PCF,现金净流量)",ths_pcf_ncf_hks,,港股估值分析,财政年度、报告期类型,是
+06910,市销率(PS),ths_ps_hks,,港股估值分析,财政年度、报告期类型,是
+08970,总市值,ths_market_value_hks,元,港股估值分析,货币币种,是
+09273,股息率,ths_dividend_rate_hks,%,港股估值分析,年度,是
+10450,预测市盈率(PE，历史预测),ths_fore_pe_his_hks,,港股估值分析,年度,是
+10451,预测市盈率(PE，最新预测),ths_fore_pe_latest_hks,,港股估值分析,年度,
+10453,预测PEG值,ths_fore_peg_hks,,港股估值分析,年度,是
+10454,预测PB,ths_fore_pb_hks,,港股估值分析,年度,是
+11805,总市值(总股本算),ths_mv_by_total_shares_hk,元,港股估值分析,货币币种,是
+12108,流通市值,ths_current_mv_hks,元,港股估值分析,货币币种,是
+12109,股权价值,ths_rights_value_hks,元,港股估值分析,货币币种,是
+12110,企业价值(含货币资金)(EV1),ths_ev1_hks,元,港股估值分析,货币币种,是
+12111,企业价值(不含货币资金)(EV2),ths_ev2_hks,元,港股估值分析,货币币种,是
+12112,企业倍数,ths_ev2_to_ebitda_hks,,港股估值分析,,是
+16510,"市净率(PB,最新)",ths_pb_latest_hks,,港股估值分析,基准日,是
+16760,"市净率(PB,MRQ)",ths_pb_mrq_hks,,港股估值分析,,是
+16820,"市盈率(PE,LYR)",ths_pe_lyr_hks,,港股估值分析,,是
+16826,"市销率(PS,LYR)",ths_ps_lyr_hks,,港股估值分析,,是
+16947,预测PS,ths_fore_ps_hks,,港股估值分析,年度,是
+17943,"市盈率(PE,TTM)分位数",ths_pe_ttm_quantile_hks,,港股估值分析,起始交易日期、截止交易日期,
+17944,"市净率(PB,MRQ)分位数",ths_pb_mrq_quantile_hks,,港股估值分析,起始交易日期、截止交易日期,
+17945,"市销率(PS,TTM)分位数",ths_ps_ttm_quantile_hks,,港股估值分析,起始交易日期、截止交易日期,
+17946,"市现率(PCF,TTM)分位数",ths_pcf_ttm_quantile_hks,,港股估值分析,起始交易日期、截止交易日期,
+19559,股息率_近12个月,ths_dividendyield_12m_hk,%,港股估值分析,,是
+06828,首次公告日,ths_offering_first_ad_hks,,港股供股及公开招股,年度,
+06829,事项类型,ths_event_type_hks,,港股供股及公开招股,年度,
+06831,方案说明,ths_offering_plan_explain_hks,,港股供股及公开招股,年度,
+06832,每股配股比例,ths_allot_ps_ratio_hks,股,港股供股及公开招股,年度,
+06833,配股价格,ths_allot_price_hks,元,港股供股及公开招股,年度,
+06834,实际配股数量,ths_actual_allot_num_hks,股,港股供股及公开招股,年度,
+06835,招股章程公告日,ths_offering_prospectus_ad_hks,,港股供股及公开招股,年度,
+06836,最新公告日期,ths_offering_latest_ad_hks,,港股供股及公开招股,年度,
+06837,除净日,ths_offering_exdate_hks,,港股供股及公开招股,年度,
+06838,截止过户日期起始日,ths_offering_transfer_deadline_sd_hks,,港股供股及公开招股,年度,
+06839,截止过户日期截止日,ths_offering_transfer_deadline_ed_hks,,港股供股及公开招股,年度,
+06840,发售结果公告日,ths_distribution_result_ad_hks,,港股供股及公开招股,年度,
+06841,发售股份派送日期,ths_dstrbt_date_of_shares_hks,,港股供股及公开招股,年度,
+06842,新增股份上市日期,ths_add_share_listing_date_hks,,港股供股及公开招股,年度,
+06843,货币种类,ths_offering_currency_ctgry_hks,,港股供股及公开招股,年度,
+12210,回购数量,ths_repur_num_new_hks,,港股公司回购,起始交易日期、截止交易日期,
+12211,回购金额,ths_repur_amt_new_hks,元,港股公司回购,起始交易日期、截止交易日期,
+12212,最高价,ths_high_price_new_hks,,港股公司回购,起始交易日期、截止交易日期,
+12213,最低价,ths_low_new_hks,,港股公司回购,起始交易日期、截止交易日期,
+06844,首次公告日,ths_dividend_first_ad_hks,,港股分红指标,财政年度、是否特别分红、报告期类型,
+06849,方案说明,ths_dividend_plan_explain_hks,,港股分红指标,财政年度、是否特别分红、报告期类型,
+06850,股利类型,ths_dividend_type_hks,,港股分红指标,财政年度、是否特别分红、报告期类型,
+06851,每股派息比例,ths_dividend_ps_ratio_hks,元,港股分红指标,财政年度、是否特别分红、报告期类型,是
+06852,每股红股比例,ths_bonus_shares_ps_ratio_hks,股,港股分红指标,财政年度、是否特别分红、报告期类型,是
+06853,每股实物证券派送比例,ths_share_of_physical_sec_ps_ratio_hks,股/份,港股分红指标,财政年度、是否特别分红、报告期类型,是
+06854,最新公告日期,ths_dividend_latest_ad_hks,,港股分红指标,财政年度、是否特别分红、报告期类型,
+06855,除净日,ths_dividend_exdate_hks,,港股分红指标,财政年度、是否特别分红、报告期类型,
+06856,截止过户日期起始日,ths_dividend_transfer_deadline_sd_hks,,港股分红指标,财政年度、是否特别分红、报告期类型,
+06857,截止过户日期截止日,ths_dividend_transfer_deadline_ed_hks,,港股分红指标,财政年度、是否特别分红、报告期类型,
+06858,派息日期,ths_dividend_date_hks,,港股分红指标,财政年度、是否特别分红、报告期类型,
+06859,红股派送日期,ths_bonus_share_delivery_date_hks,,港股分红指标,财政年度、是否特别分红、报告期类型,
+06860,红股上市日期,ths_bonus_share_listing_date_hks,,港股分红指标,财政年度、是否特别分红、报告期类型,
+06861,实物证券派送日期,ths_physical_sec_delivery_date_hks,,港股分红指标,财政年度、是否特别分红、报告期类型,
+06862,实物证券上市日期,ths_physical_sec_listing_date_hks,,港股分红指标,财政年度、是否特别分红、报告期类型,
+06863,是否可以股代息,ths_is_share_for_interest_hks,,港股分红指标,财政年度、是否特别分红、报告期类型,
+06864,代息价,ths_scrip_dividend_price_hks,元,港股分红指标,财政年度、是否特别分红、报告期类型,是
+06865,代息价说明,ths_scrip_dividend_price_explain_hks,,港股分红指标,财政年度、是否特别分红、报告期类型,
+06866,最低持股数,ths_low_held_num_hks,股,港股分红指标,财政年度、是否特别分红、报告期类型,是
+06867,选择截止日期,ths_choice_ed_hks,,港股分红指标,财政年度、是否特别分红、报告期类型,
+06868,货币种类,ths_dividend_currency_ctgry_hks,,港股分红指标,财政年度、是否特别分红、报告期类型,
+12355,每股派息,ths_dividend_ps_hk,,港股分红指标,年度、货币币种、年度分红基准日,
+16828,股利收益率,ths_devidend_yield_hks,%,港股分红指标,财政年度、是否特别分红、报告期类型,
+17695,现金分红比例,ths_cash_dividend_ratio_hk,%,港股分红指标,财政年度、是否特别分红、报告期类型,
+19554,现金股利支付率,ths_cash_dividend_payout_ratio_hks,%,港股分红指标,财政年度、是否特别分红、报表类型,
+32288,年度累计分红总额,ths_accum_total_divd_year_hk,,港股分红指标,年度、货币币种,是
+32928,年度累计分红总额,ths_new_accum_total_divd_year_hk,,港股分红指标,财政年度、是否特别分红、货币币种,
+06869,首次公告日,ths_merge_and_split_first_ad_hks,,港股合并拆细,年度,
+06871,方案说明,ths_merge_and_split_plan_explain_hks,,港股合并拆细,年度,
+06872,每股合并拆细比例,ths_merge_and_split_ps_ratio_hks,%,港股合并拆细,年度,
+06873,最新公告日期,ths_merge_and_split_latest_ad_hks,,港股合并拆细,年度,
+06874,除净日,ths_merge_and_split_exdate_hks,,港股合并拆细,年度,
+06875,换领股票起始日,ths_stock_redemp_sd_hks,,港股合并拆细,年度,
+06876,换领股票截止日,ths_stock_redemp_ed_hks,,港股合并拆细,年度,
+06877,股份变更生效日期,ths_share_chg_valid_date_hks,,港股合并拆细,年度,
+00431,公司中文名称,ths_corp_cn_name_hks,,港股基本资料 / 港股公司资料,,
+00432,公司英文名称,ths_corp_name_en_hks,,港股基本资料 / 港股公司资料,,
+00433,成立日期,ths_established_date_hks,,港股基本资料 / 港股公司资料,,
+00444,所属申万行业,ths_the_sw_industry_hks,,港股基本资料 / 港股公司资料,行业级别,
+00451,公司电话,ths_corp_tel_hks,,港股基本资料 / 港股公司资料,,
+00452,公司传真,ths_corp_fax_hks,,港股基本资料 / 港股公司资料,,
+00453,公司电子邮件地址,ths_corp_email_hks,,港股基本资料 / 港股公司资料,,
+00454,公司网站,ths_corp_website_hks,,港股基本资料 / 港股公司资料,,
+00455,董事会秘书,ths_secretary_hks,,港股基本资料 / 港股公司资料,,
+00456,公司独立董事(现任),ths_independent_director_his_hks,,港股基本资料 / 港股公司资料,,
+00457,公司独立董事(历任),ths_independent_director_current_hks,,港股基本资料 / 港股公司资料,,
+04428,总经理,ths_general_manager_hks,,港股基本资料 / 港股公司资料,,
+05074,所属申万行业代码,ths_the_sw_industry_code_hks,,港股基本资料 / 港股公司资料,行业级别,
+05439,主营产品名称,ths_mo_product_name_hks,,港股基本资料 / 港股公司资料,,
+05442,经营范围,ths_operating_scope_hks,,港股基本资料 / 港股公司资料,,
+05519,注册地址,ths_reg_address_hks,,港股基本资料 / 港股公司资料,,
+05522,办公地址,ths_office_address_hks,,港股基本资料 / 港股公司资料,,
+05559,所属恒生行业,ths_hs_industry_hks,,港股基本资料 / 港股公司资料,行业级别,
+05630,会计年结日,ths_accounting_date_hks,,港股基本资料 / 港股公司资料,,
+06146,地区,ths_district_hks,,港股基本资料 / 港股公司资料,,
+06371,公司简介,ths_corp_profile_hks,,港股基本资料 / 港股公司资料,,
+07460,核数师,ths_auditor_hks,,港股基本资料 / 港股公司资料,,
+07461,法律顾问,ths_legal_counsel_hks,,港股基本资料 / 港股公司资料,,
+11676,省份,ths_province_hk,,港股基本资料 / 港股公司资料,,
+16754,实际控制人,ths_actual_controller_hks,,港股基本资料 / 港股公司资料,,
+16755,实际控制人类型,ths_actual_controller_type_hks,,港股基本资料 / 港股公司资料,,
+17052,所属恒生行业代码,ths_hs_industry_code_hks,,港股基本资料 / 港股公司资料,行业级别,
+17838,企业地址,ths_corp_address_hk,,港股基本资料 / 港股公司资料,,
+00003,同花顺代码,ths_thscode_hks,,港股基本资料 / 港股证券资料,,
+00420,股票简称,ths_stock_short_name_hks,,港股基本资料 / 港股证券资料,,
+00421,股票代码,ths_stock_code_hks,,港股基本资料 / 港股证券资料,,
+00426,股票种类,ths_stock_varieties_hks,,港股基本资料 / 港股证券资料,,
+00427,首发上市日期,ths_ipo_date_hks,,港股基本资料 / 港股证券资料,,
+00428,上市地点,ths_listed_exchange_hks,,港股基本资料 / 港股证券资料,,
+00429,终止上市日期,ths_stop_listing_date_hks,,港股基本资料 / 港股证券资料,,
+05587,同公司A股简称,ths_corp_ashare_short_name_hks,,港股基本资料 / 港股证券资料,,
+05588,同公司A股代码,ths_corp_ashare_code_hks,,港股基本资料 / 港股证券资料,,
+09040,ISIN代码,ths_isin_code_hks,,港股基本资料 / 港股证券资料,,
+10123,是否港股通标的(沪港双向),ths_is_shhk_underlying_hks,,港股基本资料 / 港股证券资料,,
+10124,是否港股通标的(深港双向),ths_is_szhk_underlying_hks,,港股基本资料 / 港股证券资料,,
+11416,证券曾用名,ths_sec_name_used_before_hks,,港股基本资料 / 港股证券资料,,
+11417,每手股数,ths_shares_per_hand_hks,,港股基本资料 / 港股证券资料,,是
+11677,所属GICS行业,ths_the_gics_industry_hk,,港股基本资料 / 港股证券资料,行业级别,
+17054,所属GICS行业代码,ths_gics_industry_code_hks,,港股基本资料 / 港股证券资料,行业分类,
+08661,董事长薪酬,ths_chairman_salary_hks,万元,港股基本资料 / 薪酬统计,年度,
+08662,总经理薪酬,ths_general_manager_salary_hks,万元,港股基本资料 / 薪酬统计,年度,
+08663,财务总监薪酬,ths_cfo_salary_hks,万元,港股基本资料 / 薪酬统计,年度,
+08664,董事会秘书薪酬,ths_secretary_salary_hks,万元,港股基本资料 / 薪酬统计,年度,
+08665,监事会主席薪酬,ths_csrc_chairman_salary_hks,万元,港股基本资料 / 薪酬统计,年度、是否在职,
+08666,高管年度报酬总额,ths_sm_annual_total_salary_hks,万元,港股基本资料 / 薪酬统计,年度,
+17523,独立董事薪酬,ths_independent_director_salary_hks,万元,港股基本资料 / 薪酬统计,年度,
+08475,主要供应商名称,ths_main_supplier_name_hks,,港股报表附注 / 主要供应商和客户明细,排名,
+08476,主要供应商采购额,ths_main_supplier_pur_amt_hks,元,港股报表附注 / 主要供应商和客户明细,排名、货币币种,是
+08477,主要供应商占比,ths_main_supplier_ratio_hks,%,港股报表附注 / 主要供应商和客户明细,排名,是
+08478,主要供应商采购额合计,ths_main_supplier_total_pur_amt_hks,元,港股报表附注 / 主要供应商和客户明细,货币币种,是
+08479,主要供应商采购额合计占比,ths_main_supplier_pur_amt_ratio_hks,%,港股报表附注 / 主要供应商和客户明细,,是
+08480,主要客户名称,ths_main_customer_name_hks,,港股报表附注 / 主要供应商和客户明细,排名,
+08481,主要客户销售额,ths_main_customer_sales_volume_hks,元,港股报表附注 / 主要供应商和客户明细,排名、货币币种,是
+08482,主要客户占比,ths_main_customer_ratio_hks,%,港股报表附注 / 主要供应商和客户明细,排名,是
+08483,主要客户销售额合计,ths_main_customer_sales_amt_hks,元,港股报表附注 / 主要供应商和客户明细,货币币种,是
+08484,主要客户销售额合计占比,ths_main_customer_sales_amt_ratio_hks,%,港股报表附注 / 主要供应商和客户明细,,是
+08389,审计机构,ths_audit_office_hks,,港股报表附注 / 港股审计意见,,
+08390,签字会计师,ths_signature_accountant_hks,,港股报表附注 / 港股审计意见,,
+08391,总费用,ths_total_cost_hks,元,港股报表附注 / 港股审计意见,货币币种,是
+08392,审计费用,ths_audit_fee_hks,元,港股报表附注 / 港股审计意见,货币币种,是
+08393,非审计费用,ths_non_audit_cost_hks,元,港股报表附注 / 港股审计意见,货币币种,是
+09031,特殊说明,ths_special_explain_hks,,港股报表附注 / 港股审计意见,,
+09233,审计意见,ths_audit_opinion_hks,,港股报表附注 / 港股审计意见,,
+15233,营业收入构成(按业务)-项目名称,ths_project_name_oic_bussiness2_hks,,港股报表附注 / 港股营业收入构成,排名、基准报告期,
+15234,营业收入构成(按业务)-项目收入,ths_project_income_oic_bussiness2_hks,元,港股报表附注 / 港股营业收入构成,排名、货币币种、基准报告期,是
+15237,营业收入构成(按地区)-项目名称,ths_project_name_oic_district2_hks,,港股报表附注 / 港股营业收入构成,排名、基准报告期,
+15238,营业收入构成(按地区)-项目收入,ths_project_income_oic_district2_hks,元,港股报表附注 / 港股营业收入构成,排名、货币币种、基准报告期,是
+16756,营业收入构成,ths_income_oic_hks,,港股报表附注 / 港股营业收入构成,分类标准,
+11939,单季度 - 营业收入构成(按业务) - 项目名称,ths_sq_project_name_oic_bussiness_hks,,港股报表附注 / 港股营业收入构成(单季度),年度、季度、排名,
+11940,单季度 - 营业收入构成(按业务) - 项目收入,ths_sq_project_income_oic_bussiness_hks,元,港股报表附注 / 港股营业收入构成(单季度),年度、季度、排名、货币币种,是
+11944,单季度 - 营业收入构成(按地区) - 项目名称,ths_sq_project_name_oic_district_hks,,港股报表附注 / 港股营业收入构成(单季度),年度、季度、排名,
+11945,单季度 - 营业收入构成(按地区) - 项目收入,ths_sq_project_income_oic_district_hks,元,港股报表附注 / 港股营业收入构成(单季度),年度、季度、排名、货币币种,是
+11710,研发投入总额,ths_total_rad_amt_hk,元,港股报表附注 / 研发费用明细,货币币种,是
+11711,研发投入总额占营业收入比例,ths_rad_fee_to_revenue_hk,%,港股报表附注 / 研发费用明细,,是
+00690,综合评级(数值),ths_compre_rating_value_consensus_hks,,港股盈利预测 / 港股投资评级综合值(CONSENSUS),截至日期,是
+00691,综合评级(中文),ths_compre_rating_cn_consensus_hks,,港股盈利预测 / 港股投资评级综合值(CONSENSUS),截至日期,
+00692,综合评级(英文),ths_compre_rating_en_consensus_hks,,港股盈利预测 / 港股投资评级综合值(CONSENSUS),截至日期,
+00693,评级机构家数,ths_rating_org_num_consensus_hks,,港股盈利预测 / 港股投资评级综合值(CONSENSUS),截至日期,是
+00694,一月内评级调高家数,ths_rating_upper_num_1m_hks,,港股盈利预测 / 港股投资评级综合值(CONSENSUS),截至日期,是
+00695,一月内评级调低家数,ths_rating_lower_num_1m_hks,,港股盈利预测 / 港股投资评级综合值(CONSENSUS),截至日期,是
+00696,一月内评级维持家数,ths_rating_keep_num_1m_hks,,港股盈利预测 / 港股投资评级综合值(CONSENSUS),截至日期,是
+00697,评级买入家数,ths_rating_buy_num_consensus_hks,,港股盈利预测 / 港股投资评级综合值(CONSENSUS),截至日期,是
+00698,评级增持家数,ths_rating_in_held_num_consensus_hks,,港股盈利预测 / 港股投资评级综合值(CONSENSUS),截至日期,是
+00699,评级中性家数,ths_rating_neutral_num_consensus_hks,,港股盈利预测 / 港股投资评级综合值(CONSENSUS),截至日期,是
+00700,评级减持家数,ths_rating_de_held_num_consensus_hks,,港股盈利预测 / 港股投资评级综合值(CONSENSUS),截至日期,是
+00701,评级卖出家数,ths_rating_sell_num_consensus_hks,,港股盈利预测 / 港股投资评级综合值(CONSENSUS),截至日期,是
+08207,目标价(综合值),ths_target_price_consensus_hks,,港股盈利预测 / 港股投资评级综合值(CONSENSUS),截至日期,是
+08208,目标价(MAX),ths_target_price_max_consensus_hks,,港股盈利预测 / 港股投资评级综合值(CONSENSUS),截至日期,是
+08209,目标价(MIN),ths_target_price_min_consensus_hks,,港股盈利预测 / 港股投资评级综合值(CONSENSUS),截至日期,是
+08249,综合评级(数值),ths_compre_rating_value_hks,,港股盈利预测 / 港股投资评级综合值(可选周期),截至日期、综合值周期,是
+08250,综合评级(中文),ths_compre_rating_cn_hks,,港股盈利预测 / 港股投资评级综合值(可选周期),截至日期、综合值周期,
+08251,综合评级(英文),ths_compre_rating_en_hks,,港股盈利预测 / 港股投资评级综合值(可选周期),截至日期、综合值周期,
+08252,评级机构家数,ths_rating_org_num_hks,家,港股盈利预测 / 港股投资评级综合值(可选周期),截至日期、综合值周期,是
+08256,评级买入家数,ths_rating_buy_num_hks,家,港股盈利预测 / 港股投资评级综合值(可选周期),截至日期、综合值周期,是
+08257,评级增持家数,ths_rating_in_held_num_hks,家,港股盈利预测 / 港股投资评级综合值(可选周期),截至日期、综合值周期,是
+08258,评级中性家数,ths_rating_neutrality_num_hks,家,港股盈利预测 / 港股投资评级综合值(可选周期),截至日期、综合值周期,是
+08259,评级减持家数,ths_rating_de_held_num_hks,家,港股盈利预测 / 港股投资评级综合值(可选周期),截至日期、综合值周期,是
+08260,评级卖出家数,ths_rating_sell_num_hks,家,港股盈利预测 / 港股投资评级综合值(可选周期),截至日期、综合值周期,是
+08261,目标价(综合值),ths_target_price_hks,,港股盈利预测 / 港股投资评级综合值(可选周期),截至日期、综合值周期,是
+08262,目标价(MAX),ths_target_price_max_hks,,港股盈利预测 / 港股投资评级综合值(可选周期),截至日期、综合值周期,是
+08263,目标价(MIN),ths_target_price_min_hks,,港股盈利预测 / 港股投资评级综合值(可选周期),截至日期、综合值周期,是
+08156,每股收益预测机构家数,ths_eps_fore_org_num_consensus_hks,家,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期,是
+08157,预测每股收益平均值,ths_fore_eps_mean_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+08158,预测每股收益最大值,ths_fore_eps_max_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+08159,预测每股收益最小值,ths_fore_eps_min_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+08160,预测每股收益中值,ths_fore_eps_median_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+08161,预测每股收益标准差,ths_fore_eps_sd_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+08162,预测主营业务收入平均值,ths_fore_mob_income_mean_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+08163,预测主营业务收入最大值,ths_fore_mob_income_max_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+08164,预测主营业务收入最小值,ths_fore_mob_income_min_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+08165,预测主营业务收入中值,ths_fore_mobi_median_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+08166,预测主营业务收入标准差,ths_fore_mob_income_sd_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+08167,预测净利润平均值,ths_fore_np_mean_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+08168,预测净利润最大值,ths_fore_np_max_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+08169,预测净利润最小值,ths_fore_np_min_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+08170,预测净利润中值,ths_fore_np_median_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+08171,预测净利润标准差,ths_fore_np_SD_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+08172,预测息税前利润(EBIT)平均值,ths_ebit_mean_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+08173,预测息税前利润(EBIT)最大值,ths_ebit_max_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+08174,预测息税前利润(EBIT)最小值,ths_ebit_min_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+08175,预测息税前利润(EBIT)中值,ths_ebit_median_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+08176,预测息税前利润(EBIT)标准差,ths_ebit_sd_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+08177,预测息税折旧摊销前利润(EBITDA)平均值,ths_ebitda_mean_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+08178,预测息税折旧摊销前利润(EBITDA)最大值,ths_ebitda_max_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+08179,预测息税折旧摊销前利润(EBITDA)最小值,ths_ebitda_min_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+08180,预测息税折旧摊销前利润(EBITDA)中值,ths_ebitda_median_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+08181,预测息税折旧摊销前利润(EBITDA)标准差,ths_ebitda_sd_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+08182,预测利润总额平均值,ths_fore_profit_ta_mean_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+08183,预测利润总额最大值,ths_fore_profit_ta_max_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+08184,预测利润总额最小值,ths_fore_profit_ta_min_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+08185,预测利润总额中值,ths_fore_pta_median_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+08186,预测利润总额标准差,ths_fore_profit_ta_sd_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+08187,一月内主营业务收入调高家数,ths_mob_income_upper_num_in1m_hks,家,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期,是
+08188,一月内主营业务收入调低家数,ths_mob_income_lower_num_in1m_hks,家,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期,是
+08189,一月内主营业务收入维持家数,ths_mob_income_keep_num_in1m_hks,家,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期,是
+08190,一月内净利润调高家数,ths_np_upper_num_in1m_hks,家,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期,是
+08191,一月内净利润调低家数,ths_np_lower_num_in1m_hks,家,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期,是
+08192,一月内净利润维持家数,ths_np_keep_num_in1m_hks,家,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期,是
+08193,预测净利润增长率,ths_fore_np_growth_consensus_hks,%,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期,是
+08194,预测主营业务收入增长率,ths_fore_mobi_growth_consensus_hks,%,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期,是
+16907,预测每股净资产(BPS)平均值,ths_fore_bps_avg_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+16908,预测每股净资产(BPS)最大值,ths_fore_bps_max_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+16909,预测每股净资产(BPS)最小值,ths_fore_bps_min_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+16910,预测每股净资产(BPS)中值,ths_fore_bps_median_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+16911,预测每股净资产(BPS)标准差,ths_fore_bps_sd_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+16912,预测总资产收益率(ROA)平均值,ths_fore_roa_avg_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+16913,预测总资产收益率(ROA)最大值,ths_fore_roa_max_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+16914,预测总资产收益率(ROA)最小值,ths_fore_roa_min_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+16915,预测总资产收益率(ROA)中值,ths_fore_roa_median_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+16916,预测总资产收益率(ROA)标准差,ths_fore_roa_sd_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+16917,预测净资产收益率(ROE)平均值,ths_fore_roe_avg_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+16918,预测净资产收益率(ROE)最大值,ths_fore_roe_max_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+16919,预测净资产收益率(ROE)最小值,ths_fore_roe_min_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+16920,预测净资产收益率(ROE)中值,ths_fore_roe_median_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+16921,预测净资产收益率(ROE)标准差,ths_fore_roe_sd_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+16922,预测营业利润平均值,ths_fore_op_avg_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+16923,预测营业利润最大值,ths_fore_op_max_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+16924,预测营业利润最小值,ths_fore_op_min_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+16925,预测营业利润中值,ths_fore_op_median_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+16926,预测营业利润标准差,ths_fore_op_sd_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+17114,预测营业成本平均值,ths_fore_oc_mean_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+17115,预测营业成本最大值,ths_fore_oc_max_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+17116,预测营业成本最小值,ths_fore_oc_min_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+17117,预测营业成本中值,ths_fore_oc_median_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+17118,预测营业成本标准差,ths_fore_oc_sd_consensus_hks,元,港股盈利预测 / 港股盈利预测综合值(CONSENSUS),年度、截至日期、货币币种,是
+08210,每股收益预测机构家数,ths_eps_fore_org_num_hks,家,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、综合值周期,是
+08211,预测每股收益平均值,ths_fore_eps_mean_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+08212,预测每股收益最大值,ths_fore_eps_max_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+08213,预测每股收益最小值,ths_fore_eps_min_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+08214,预测每股收益中值,ths_fore_eps_median_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+08215,预测每股收益标准差,ths_fore_eps_standard_deviation_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+08216,预测主营业务收入平均值,ths_fore_mob_income_mean_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+08217,预测主营业务收入最大值,ths_fore_mob_income_max_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+08218,预测主营业务收入最小值,ths_fore_mob_income_min_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+08219,预测主营业务收入中值,ths_fore_mob_income_median_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+08220,预测主营业务收入标准差,ths_fore_mob_income_sd_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+08221,预测净利润平均值,ths_fore_np_mean_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+08222,预测净利润最大值,ths_fore_np_max_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+08223,预测净利润最小值,ths_fore_np_min_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+08224,预测净利润中值,ths_fore_np_median_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+08225,预测净利润标准差,ths_fore_npstandard_deviation_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+08226,预测息税前利润(EBIT)平均值,ths_ebit_mean_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+08227,预测息税前利润(EBIT)最大值,ths_ebit_max_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+08228,预测息税前利润(EBIT)最小值,ths_ebit_min_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+08229,预测息税前利润(EBIT)中值,ths_ebit_median_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+08230,预测息税前利润(EBIT)标准差,ths_ebit_standard_deviation_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+08231,预测息税折旧摊销前利润(EBITDA)平均值,ths_ebitda_mean_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+08232,预测息税折旧摊销前利润(EBITDA)最大值,ths_ebitda_max_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+08233,预测息税折旧摊销前利润(EBITDA)最小值,ths_ebitda_min_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+08234,预测息税折旧摊销前利润(EBITDA)中值,ths_ebitda_median_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+08235,预测息税折旧摊销前利润(EBITDA)标准差,ths_ebitda_standard_deviation_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+08236,预测利润总额平均值,ths_fore_profit_total_amt_mean_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+08237,预测利润总额最大值,ths_fore_profit_total_amt_max_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+08238,预测利润总额最小值,ths_fore_profit_total_amt_min_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+08239,预测利润总额中值,ths_fore_profit_total_amt_median_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+08240,预测利润总额标准差,ths_fore_profit_total_amt_sd_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+08247,预测净利润增长率,ths_fore_np_growth_hks,%,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、综合值周期,是
+08248,预测主营业务收入增长率,ths_fore_mob_income_growth_hks,%,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、综合值周期,是
+11355,主营业务收入调高家数,ths_prime_oi_higher_num_hks,,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、综合值周期,是
+11356,主营业务收入调低家数,ths_prime_oi_lower_num_hks,,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、综合值周期,是
+11357,主营业务收入维持家数,ths_prime_oi_unchange_num_hks,,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、综合值周期,是
+11358,净利润调高家数,ths_np_upper_num_hks,,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、综合值周期,是
+11359,净利润调低家数,ths_np_lower_num_hks,,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、综合值周期,是
+11360,净利润维持家数,ths_np_keep_num_hks,,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、综合值周期,是
+16927,预测每股净资产(BPS)平均值,ths_fore_bps_avg_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+16928,预测每股净资产(BPS)最大值,ths_fore_bps_max_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+16929,预测每股净资产(BPS)最小值,ths_fore_bps_min_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+16930,预测每股净资产(BPS)中值,ths_fore_bps_median_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+16931,预测每股净资产(BPS)标准差,ths_fore_bps_sd_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+16932,预测总资产收益率(ROA)平均值,ths_fore_roa_avg_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+16933,预测总资产收益率(ROA)最大值,ths_fore_roa_max_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+16934,预测总资产收益率(ROA)最小值,ths_fore_roa_min_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+16935,预测总资产收益率(ROA)中值,ths_fore_roa_median_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+16936,预测总资产收益率(ROA)标准差,ths_fore_roa_sd_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+16937,预测净资产收益率(ROE)平均值,ths_fore_roe_avg_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+16938,预测净资产收益率(ROE)最大值,ths_fore_roe_max_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+16939,预测净资产收益率(ROE)最小值,ths_fore_roe_min_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+16940,预测净资产收益率(ROE)中值,ths_fore_roe_median_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+16941,预测净资产收益率(ROE)标准差,ths_fore_roe_sd_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+16942,预测营业利润平均值,ths_fore_op_avg_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+16943,预测营业利润最大值,ths_fore_op_max_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+16944,预测营业利润最小值,ths_fore_op_min_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+16945,预测营业利润中值,ths_fore_op_median_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+16946,预测营业利润标准差,ths_fore_op_sd_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+17119,预测营业成本平均值,ths_fore_oc_mean_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+17120,预测营业成本最大值,ths_fore_oc_max_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+17121,预测营业成本最小值,ths_fore_oc_min_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+17122,预测营业成本中值,ths_fore_oc_median_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+17123,预测营业成本标准差,ths_fore_oc_sd_hks,元,港股盈利预测 / 港股盈利预测综合值(可选周期),年度、截至日期、货币币种、综合值周期,是
+05328,总股本,ths_corp_total_shares_hks,股,港股股本指标 / 港股公司股本指标,,是
+05331,普通股,ths_common_shares_hks,股,港股股本指标 / 港股公司股本指标,,是
+05335,优先股,ths_preferred_shares_hks,股,港股股本指标 / 港股公司股本指标,,是
+05346,其他类别股份,ths_other_type_shares_hks,股,港股股本指标 / 港股公司股本指标,,是
+05354,计算总市值的总股本,ths_total_shares_to_calc_total_mv_hks,股,港股股本指标 / 港股公司股本指标,,是
+05332,普通股占总股本比例,ths_common_shares_to_total_shares_hks,%,港股股本指标 / 港股公司股本指标 / 港股占总股本百分比,,是
+05336,优先股占总股本比例,ths_preferred_shares_ratio_hks,%,港股股本指标 / 港股公司股本指标 / 港股占总股本百分比,,是
+05347,其他类别股份占总股本比例,ths_other_type_shares_ratio_hks,%,港股股本指标 / 港股公司股本指标 / 港股占总股本百分比,,是
+05329,总股本,ths_sec_total_shares_hks,股,港股股本指标 / 港股证券股本指标,,是
+05333,预托证券对应标的股票的比例,ths_adr_respond_underlying_ratio_hks,,港股股本指标 / 港股证券股本指标,,是
+16564,A类普通股,ths_common_stock_a_stock,股,港股股本指标 / 港股证券股本指标,,是
+16565,B类普通股,ths_common_stock_b_stock,股,港股股本指标 / 港股证券股本指标,,是
+16812,自由流通股,ths_free_float_shares_hks,股,港股股本指标 / 港股证券股本指标,,是
+32254,流通股本,ths_floating_shares_hks,股,港股股本指标 / 港股证券股本指标,,是
+05406,区间日均成交量,ths_daily_avg_vol_int_hks,股,港股行情指标 / 港股区间行情,起始交易日期、截止交易日期,
+05558,区间交易日数,ths_td_datesint_hks,天,港股行情指标 / 港股区间行情,起始交易日期、截止交易日期,
+05560,区间振幅,ths_swing_int_hks,%,港股行情指标 / 港股区间行情,起始交易日期、截止交易日期,
+05561,N日振幅,ths_swing_nd_hks,%,港股行情指标 / 港股区间行情,天数(用负号表示前推),是
+05562,N日涨跌幅,ths_chg_ratio_nd_hks,%,港股行情指标 / 港股区间行情,天数(用负号表示前推),是
+05563,N日日均涨跌幅,ths_avg_chg_ratio_nd_hks,%,港股行情指标 / 港股区间行情,天数(用负号表示前推),是
+05564,区间日均涨跌幅,ths_daily_avg_chg_ratio_int_hks,%,港股行情指标 / 港股区间行情,起始交易日期、截止交易日期、复权方式,
+05565,区间涨跌幅,ths_int_chg_ratio_hks,%,港股行情指标 / 港股区间行情,起始交易日期、截止交易日期、复权方式,
+05572,区间最低收盘价,ths_low_close_int_hks,元,港股行情指标 / 港股区间行情,起始交易日期、截止交易日期、复权方式,
+05573,区间收盘价,ths_close_int_hks,元,港股行情指标 / 港股区间行情,起始交易日期、截止交易日期、复权方式,
+05574,区间最高收盘价,ths_high_close_int_hks,元,港股行情指标 / 港股区间行情,起始交易日期、截止交易日期、复权方式,
+05577,区间成交量,ths_vol_int_hks,,港股行情指标 / 港股区间行情,起始交易日期、截止交易日期,
+05578,N日成交量,ths_vol_nd_hks,,港股行情指标 / 港股区间行情,天数(用负号表示前推),是
+05579,区间换手率,ths_turnover_int_hks,%,港股行情指标 / 港股区间行情,起始交易日期、截止交易日期,
+05580,区间日均换手率,ths_daily_avg_turnover_int_hks,%,港股行情指标 / 港股区间行情,起始交易日期、截止交易日期,
+05581,N日换手率,ths_turnover_nd_hks,%,港股行情指标 / 港股区间行情,天数(用负号表示前推),是
+05582,N日日均换手率,ths_avg_turnover_nd_hks,%,港股行情指标 / 港股区间行情,天数(用负号表示前推),是
+05583,区间成交额,ths_amt_int_hks,元,港股行情指标 / 港股区间行情,起始交易日期、截止交易日期,
+05584,区间日均成交额,ths_daily_avg_amt_int_hks,元,港股行情指标 / 港股区间行情,起始交易日期、截止交易日期,
+05585,N日成交额,ths_amt_nd_hks,元,港股行情指标 / 港股区间行情,天数(用负号表示前推),是
+05602,区间最高价日,ths_high_date_int_hks,,港股行情指标 / 港股区间行情,起始交易日期、截止交易日期、复权方式,
+05603,区间最低价日,ths_low_date_int_hks,,港股行情指标 / 港股区间行情,起始交易日期、截止交易日期、复权方式,
+05604,区间最高收盘价日,ths_high_close_date_int_hks,,港股行情指标 / 港股区间行情,起始交易日期、截止交易日期、复权方式,
+05605,区间最低收盘价日,ths_low_close_date_int_hks,,港股行情指标 / 港股区间行情,起始交易日期、截止交易日期、复权方式,
+05606,相对大盘N日涨跌幅,ths_relative_chg_ratio_n_d_hks,%,港股行情指标 / 港股区间行情,大盘指数选项、天数(用负号表示前推),是
+05607,相对大盘区间涨跌幅,ths_relative_chg_ratio_int_hks,%,港股行情指标 / 港股区间行情,起始交易日期、截止交易日期、大盘指数,
+05618,交易货币,ths_td_currency_int_hks,,港股行情指标 / 港股区间行情,,
+05619,区间最高价,ths_high_int_hks,元,港股行情指标 / 港股区间行情,起始交易日期、截止交易日期、复权方式,
+05620,区间最低价,ths_low_int_hks,元,港股行情指标 / 港股区间行情,起始交易日期、截止交易日期、复权方式,
+05625,区间开盘价,ths_open_int_hks,元,港股行情指标 / 港股区间行情,起始交易日期、截止交易日期、复权方式,
+05626,区间涨跌,ths_chg_int_hks,元,港股行情指标 / 港股区间行情,起始交易日期、截止交易日期、复权方式,
+05627,区间成交均价,ths_avg_price_int_hks,元,港股行情指标 / 港股区间行情,起始交易日期、截止交易日期、复权方式,
+05628,区间前收盘价,ths_pre_close_int_hks,元,港股行情指标 / 港股区间行情,起始交易日期、截止交易日期、复权方式,
+10126,区间日均总市值,ths_avg_total_mv_interval_hks,元,港股行情指标 / 港股区间行情,起始交易日期、截止交易日期,
+10127,N日收盘价1/4分位数,ths_close_one_fourth_bit_nd_hks,,港股行情指标 / 港股区间行情,天数(用负号表示前推)、复权方式,是
+10128,N日收盘价中位数,ths_close_median_nd_hks,,港股行情指标 / 港股区间行情,天数(用负号表示前推)、复权方式,是
+10129,N日收盘价3/4分位数,ths_close_three_fourth_bit_nd_hks,,港股行情指标 / 港股区间行情,天数(用负号表示前推)、复权方式,是
+16957,可交易频率,ths_tradable_frequency_hks,%,港股行情指标 / 港股区间行情,起始交易日期、截止交易日期,
+17921,区间自最高价的最大跌幅,ths_interval_max_decrease_since_hprice_hk,%,港股行情指标 / 港股区间行情,起始交易日期、截止交易日期、复权方式,
+17922,区间自最低价的最大涨幅,ths_interval_max_increase_since_lprice_hk,%,港股行情指标 / 港股区间行情,起始交易日期、截止交易日期、复权方式,
+17923,最新价较区间最高价跌幅,ths_decrease_between_rprice_interval_hprice_hk,‰,港股行情指标 / 港股区间行情,起始交易日期、截止交易日期、复权方式,
+17924,最新价较区间最低价涨幅,ths_decrease_between_rprice_interval_lprice_hk,‰,港股行情指标 / 港股区间行情,起始交易日期、截止交易日期、复权方式,
+17992,N日日均成交量,ths_avg_vol_nd_hk,,港股行情指标 / 港股区间行情,天数(用负号表示前推),是
+05611,区间成交量,ths_ss_vol_int_hks,,港股行情指标 / 港股区间行情 / 港股区间卖空成交指标,起始交易日期、截止交易日期,
+05615,区间成交额,ths_ss_amt_int_hks,元,港股行情指标 / 港股区间行情 / 港股区间卖空成交指标,起始交易日期、截止交易日期,
+05624,交易货币,ths_ss_td_currency_int_hks,,港股行情指标 / 港股区间行情 / 港股区间卖空成交指标,,
+05338,交易货币,ths_td_currency_w_hks,,港股行情指标 / 港股周行情,,
+05343,周前收盘价,ths_pre_close_w_hks,元,港股行情指标 / 港股周行情,复权方式,是
+05351,周开盘价,ths_open_w_hks,元,港股行情指标 / 港股周行情,复权方式,是
+05360,周收盘价,ths_close_w_hks,元,港股行情指标 / 港股周行情,复权方式,是
+05369,周最高价,ths_high_w_hks,元,港股行情指标 / 港股周行情,复权方式,是
+05379,周最低价,ths_low_w_hks,元,港股行情指标 / 港股周行情,复权方式,是
+05385,周成交量,ths_vol_w_hks,,港股行情指标 / 港股周行情,,是
+05395,周成交额,ths_amt_w_hks,元,港股行情指标 / 港股周行情,,是
+05401,周涨跌,ths_chg_w_hks,元,港股行情指标 / 港股周行情,复权方式,是
+05409,周涨跌幅,ths_chg_ratio_w_hks,%,港股行情指标 / 港股周行情,复权方式,是
+05416,周振幅,ths_swing_w_hks,%,港股行情指标 / 港股周行情,,是
+05423,周均价,ths_avg_price_w_hks,元,港股行情指标 / 港股周行情,复权方式,是
+05429,周换手率,ths_turnover_ratio_w_hks,%,港股行情指标 / 港股周行情,,是
+05430,周平均换手率,ths_avg_turnover_rate_w_hks,%,港股行情指标 / 港股周行情,,是
+05566,周最高收盘价,ths_high_close_w_hks,元,港股行情指标 / 港股周行情,复权方式,是
+05567,周最低收盘价,ths_low_close_w_hks,元,港股行情指标 / 港股周行情,复权方式,是
+05590,周最高价日,ths_high_date_w_hks,,港股行情指标 / 港股周行情,复权方式,
+05591,周最低价日,ths_low_date_w_hks,,港股行情指标 / 港股周行情,复权方式,
+05592,周最高收盘价日,ths_high_close_date_w_hks,,港股行情指标 / 港股周行情,复权方式,
+05593,周最低收盘价日,ths_low_close_date_w_hks,,港股行情指标 / 港股周行情,复权方式,
+05609,周成交量,ths_ss_vol_w_hks,,港股行情指标 / 港股周行情 / 港股周卖空成交指标,,是
+05612,周成交额,ths_ss_amt_w_hks,元,港股行情指标 / 港股周行情 / 港股周卖空成交指标,,是
+05621,交易货币,ths_ss_td_currency_w_hks,,港股行情指标 / 港股周行情 / 港股周卖空成交指标,,
+05345,年前收盘价,ths_pre_close_y_hks,元,港股行情指标 / 港股年行情,复权方式,是
+05353,年开盘价,ths_open_y_hks,元,港股行情指标 / 港股年行情,复权方式,是
+05362,年收盘价,ths_close_y_hks,元,港股行情指标 / 港股年行情,复权方式,是
+05371,年最高价,ths_high_y_hks,元,港股行情指标 / 港股年行情,复权方式,是
+05381,年最低价,ths_low_y_hks,元,港股行情指标 / 港股年行情,复权方式,是
+05387,年成交量,ths_ncjl_n_hk,,港股行情指标 / 港股年行情,,是
+05397,年成交额,ths_ncje_n_hk,元,港股行情指标 / 港股年行情,,是
+05403,年涨跌,ths_chg_y_hks,元,港股行情指标 / 港股年行情,复权方式,是
+05411,年涨跌幅,ths_chg_ratio_y_hks,%,港股行情指标 / 港股年行情,复权方式,是
+05418,年振幅,ths_swing_y_hks,%,港股行情指标 / 港股年行情,,是
+05425,年均价,ths_avg_price_y_hks,元,港股行情指标 / 港股年行情,复权方式,是
+05433,年换手率,ths_turnover_ratio_y_hks,%,港股行情指标 / 港股年行情,,是
+05434,年平均换手率,ths_avg_turnover_rate_y_hks,%,港股行情指标 / 港股年行情,,是
+05570,年最高收盘价,ths_high_close_y_hks,元,港股行情指标 / 港股年行情,复权方式,是
+05571,年最低收盘价,ths_low_close_y_hks,元,港股行情指标 / 港股年行情,复权方式,是
+05598,年最高价日,ths_high_date_y_hks,,港股行情指标 / 港股年行情,复权方式,
+05599,年最低价日,ths_low_date_y_hks,,港股行情指标 / 港股年行情,复权方式,
+05600,年最低收盘价日,ths_low_close_date_y_hks,,港股行情指标 / 港股年行情,复权方式,
+05601,年最高收盘价日,ths_high_close_date_y_hks,,港股行情指标 / 港股年行情,复权方式,
+05617,交易货币,ths_td_currency_y_hks,,港股行情指标 / 港股年行情,,
+05610,年成交量,ths_ss_vol_y_hks,,港股行情指标 / 港股年行情 / 港股年卖空成交指标,,是
+05614,年成交额,ths_ss_amt_y_hks,元,港股行情指标 / 港股年行情 / 港股年卖空成交指标,,是
+05623,交易货币,ths_ss_td_currency_y_hks,,港股行情指标 / 港股年行情 / 港股年卖空成交指标,,
+05324,振幅,ths_swing_hks,%,港股行情指标 / 港股日行情,,是
+05325,相对发行价涨跌幅,ths_relative_issue_price_chg_ratio_hks,%,港股行情指标 / 港股日行情,复权方式,是
+05326,涨跌幅,ths_chg_ratio_hks,%,港股行情指标 / 港股日行情,复权方式,是
+05342,最高价,ths_high_d_hks,元,港股行情指标 / 港股日行情,复权方式,是
+05359,最低价,ths_low_d_hks,元,港股行情指标 / 港股日行情,复权方式,是
+05378,开盘价,ths_open_price_hks,元,港股行情指标 / 港股日行情,复权方式,是
+05388,停牌原因,ths_suspen_reason_hks,,港股行情指标 / 港股日行情,,
+05392,收盘价,ths_close_price_hks,元,港股行情指标 / 港股日行情,复权方式,是
+05393,相对发行价涨跌,ths_relative_issue_price_chg_hks,元,港股行情指标 / 港股日行情,复权方式,是
+05394,涨跌,ths_chg_hks,元,港股行情指标 / 港股日行情,复权方式,是
+05407,成交量,ths_vol_hks,,港股行情指标 / 港股日行情,,是
+05408,换手率,ths_turnover_ratio_hks,%,港股行情指标 / 港股日行情,,是
+05414,成交额,ths_amt_d_hks,元,港股行情指标 / 港股日行情,,是
+05415,均价,ths_avg_price_hks,元,港股行情指标 / 港股日行情,复权方式,是
+05438,前收盘价,ths_pre_close_hks,元,港股行情指标 / 港股日行情,复权方式,是
+05445,交易状态,ths_trading_status_hks,,港股行情指标 / 港股日行情,,
+05462,交易货币,ths_td_currency_d_hks,,港股行情指标 / 港股日行情,,
+10125,复权因子,ths_af_hks,,港股行情指标 / 港股日行情,,是
+10433,最近交易日期,ths_latest_trade_date_hks,,港股行情指标 / 港股日行情,,
+10434,市场最近交易日,ths_mkt_nearest_trade_date_hks,,港股行情指标 / 港股日行情,,
+10435,指定日相近交易日期,ths_specified_nearest_trade_date_hks,,港股行情指标 / 港股日行情,天数(用负号表示前推),
+05330,成交量,ths_ss_vol_hks,,港股行情指标 / 港股日行情 / 港股卖空成交指标,,是
+05334,成交额,ths_ss_amt_d_hks,元,港股行情指标 / 港股日行情 / 港股卖空成交指标,,是
+05372,交易货币,ths_ss_td_currency_d_hks,,港股行情指标 / 港股日行情 / 港股卖空成交指标,,
+05344,月前收盘价,ths_yqspj_hk,元,港股行情指标 / 港股月行情,复权方式,是
+05352,月开盘价,ths_open_m_hks,元,港股行情指标 / 港股月行情,复权方式,是
+05361,月收盘价,ths_close_m_hks,元,港股行情指标 / 港股月行情,复权方式,是
+05370,月最高价,ths_high_m_hks,元,港股行情指标 / 港股月行情,复权方式,是
+05380,月最低价,ths_low_m_hks,元,港股行情指标 / 港股月行情,复权方式,是
+05386,月成交量,ths_vol_m_hks,,港股行情指标 / 港股月行情,,是
+05396,月成交额,ths_amt_m_hks,元,港股行情指标 / 港股月行情,,是
+05402,月涨跌,ths_chgm_hks,元,港股行情指标 / 港股月行情,复权方式,是
+05410,月涨跌幅,ths_chg_ratio_m_hks,%,港股行情指标 / 港股月行情,复权方式,是
+05417,月振幅,ths_swingm_hks,%,港股行情指标 / 港股月行情,,是
+05424,月均价,ths_avg_price_m_hks,元,港股行情指标 / 港股月行情,复权方式,是
+05431,月换手率,ths_turnover_ratio_m_hks,%,港股行情指标 / 港股月行情,,是
+05432,月平均换手率,ths_avg_turnover_rate_m_hks,%,港股行情指标 / 港股月行情,,是
+05568,月最高收盘价,ths_high_close_m_hks,元,港股行情指标 / 港股月行情,复权方式,是
+05569,月最低收盘价,ths_low_close_m_hks,元,港股行情指标 / 港股月行情,复权方式,是
+05594,月最高收盘价日,ths_high_close_date_m_hks,,港股行情指标 / 港股月行情,复权方式,
+05595,月最高价日,ths_high_date_m_hks,,港股行情指标 / 港股月行情,复权方式,
+05596,月最低价日,ths_low_date_m_hks,,港股行情指标 / 港股月行情,复权方式,
+05597,月最低收盘价日,ths_low_close_date_m_hks,,港股行情指标 / 港股月行情,复权方式,
+05616,交易货币,ths_td_currency_m_hks,,港股行情指标 / 港股月行情,,
+05327,月成交量,ths_ss_vol_m_hks,,港股行情指标 / 港股月行情 / 港股月卖空成交指标,,是
+05613,月成交额,ths_ss_amt_m_hks,元,港股行情指标 / 港股月行情 / 港股月卖空成交指标,,是
+05622,交易货币,ths_ss_td_currency_m_hks,,港股行情指标 / 港股月行情 / 港股月卖空成交指标,,
+11611,淡仓申报股数,ths_short_declare_shares_hk,股,港股行情指标 / 港股淡仓,,是
+11612,淡仓申报金额,ths_short_declare_amt_hk,元,港股行情指标 / 港股淡仓,,是
+10436,本月至今相对指数涨跌幅,ths_compare_to_index_chg_m_hks,%,港股行情指标 / 相对指数市场表现,标的指数,是
+10437,季度至今相对指数涨跌幅,ths_compare_to_index_chg_q_hks,%,港股行情指标 / 相对指数市场表现,标的指数,是
+10438,年迄今相对指数涨跌幅,ths_compare_to_index_chg_boy_hks,%,港股行情指标 / 相对指数市场表现,标的指数,是
+10439,近一周相对指数涨跌幅,ths_compare_to_index_chg_5d_hks,%,港股行情指标 / 相对指数市场表现,标的指数,是
+10440,近两周相对指数涨跌幅,ths_compare_to_index_chg_10d_hks,%,港股行情指标 / 相对指数市场表现,标的指数,是
+10441,近1月相对指数涨跌幅,ths_compare_to_index_chg_1m_hks,%,港股行情指标 / 相对指数市场表现,标的指数,是
+10442,近3月相对指数涨跌幅,ths_compare_to_index_chg_3m_hks,%,港股行情指标 / 相对指数市场表现,标的指数,是
+10443,近6月相对指数涨跌幅,ths_compare_to_index_chg_6m_hks,%,港股行情指标 / 相对指数市场表现,标的指数,是
+10444,近1年相对指数涨跌幅,ths_compare_to_index_chg_1y_hks,%,港股行情指标 / 相对指数市场表现,标的指数,是
+17802,人均薪酬,ths_salary_pp_hks,元,港股财务分析 / 港股人均指标,年度,
+17803,人均创收,ths_revenue_pp_hks,元,港股财务分析 / 港股人均指标,年度,
+17804,人均创利,ths_profit_pp_hks,元,港股财务分析 / 港股人均指标,年度,
+10930,内含价值,ths_embedded_value_hks,元,港股财务分析 / 港股保险业专项指标,货币币种,是
+10931,扣除偿付能力额度成本之后的一年新业务价值,ths_new_bussiness_value_deduct_sm_hks,元,港股财务分析 / 港股保险业专项指标,货币币种,是
+10932,寿险内含价值,ths_life_insurance_inner_value_hks,元,港股财务分析 / 港股保险业专项指标,货币币种,是
+10933,评估利率假设·风险贴现率,ths_risk_discount_rate_hks,%,港股财务分析 / 港股保险业专项指标,,是
+10934,一年新业务价值-个险渠道,ths_new_bv_y_individual_agent_hks,元,港股财务分析 / 港股保险业专项指标,货币币种,是
+10935,一年新业务价值-团险渠道,ths_new_bv_y_group_insurance_hks,元,港股财务分析 / 港股保险业专项指标,货币币种,是
+10936,一年新业务价值-银行渠道,ths_new_business_value_y_bank_hks,元,港股财务分析 / 港股保险业专项指标,货币币种,是
+10937,13个月继续率,ths_persistency_13m_hks,%,港股财务分析 / 港股保险业专项指标,,是
+10938,26个月继续率,ths_persistency_rate_26m_hks,%,港股财务分析 / 港股保险业专项指标,,是
+10939,25个月继续率,ths_persistency_rate_25m_hks,%,港股财务分析 / 港股保险业专项指标,,是
+10940,14个月继续率,ths_persistency_rate_14m_hks,%,港股财务分析 / 港股保险业专项指标,,是
+10941,总投资收益率,ths_total_invest_yield_hks,%,港股财务分析 / 港股保险业专项指标,,是
+10942,净投资收益率,ths_net_invest_yield_hks,%,港股财务分析 / 港股保险业专项指标,,是
+10943,退保率,ths_surrender_rate_hks,%,港股财务分析 / 港股保险业专项指标,,是
+10944,偿付能力充足率-集团,ths_groupsmr_hks,%,港股财务分析 / 港股保险业专项指标,,是
+10945,实际资本-集团,ths_actual_capital_group_hks,元,港股财务分析 / 港股保险业专项指标,货币币种,是
+10946,最低资本-集团,ths_low_capital_group_hks,元,港股财务分析 / 港股保险业专项指标,货币币种,是
+10947,偿付能力充足率-产险,ths_product_insurance_smr_hks,%,港股财务分析 / 港股保险业专项指标,,是
+10948,核心偿付能力充足率-产险,ths_core_solvency_adequacy_product_hks,%,港股财务分析 / 港股保险业专项指标,,是
+10949,核心偿付能力溢额-产险,ths_core_solvency_overage_product_hks,元,港股财务分析 / 港股保险业专项指标,货币币种,是
+10950,综合偿付能力溢额-产险,ths_compre_solvency_overflow_prdct_hks,元,港股财务分析 / 港股保险业专项指标,货币币种,是
+10951,核心资本-产险,ths_core_capital_product_hks,元,港股财务分析 / 港股保险业专项指标,货币币种,是
+10952,核心一级资本-产险,ths_core_first_level_capital_prdct_hks,元,港股财务分析 / 港股保险业专项指标,货币币种,是
+10953,实际资本-产险,ths_actual_capital_product_hks,元,港股财务分析 / 港股保险业专项指标,货币币种,是
+10954,最低资本-产险,ths_low_capital_product_hks,元,港股财务分析 / 港股保险业专项指标,货币币种,是
+10955,综合成本率-产险,ths_compre_cost_rate_pi_hks,%,港股财务分析 / 港股保险业专项指标,,是
+10956,综合赔付率-产险,ths_compre_compensate_rate_pi_hks,%,港股财务分析 / 港股保险业专项指标,,是
+10957,偿付能力充足率-寿险,ths_life_insurance_smr_hks,%,港股财务分析 / 港股保险业专项指标,,是
+10958,核心偿付能力充足率-寿险,ths_core_solvency_adequacy_life_hks,%,港股财务分析 / 港股保险业专项指标,,是
+10959,核心偿付能力溢额-寿险,ths_core_solvency_overage_life_hks,元,港股财务分析 / 港股保险业专项指标,货币币种,是
+10960,综合偿付能力溢额-寿险,ths_compre_solvency_overflow_life_hks,元,港股财务分析 / 港股保险业专项指标,货币币种,是
+10961,核心资本-寿险,ths_core_capital_life_hks,元,港股财务分析 / 港股保险业专项指标,货币币种,是
+10962,核心一级资本-寿险,ths_core_first_level_capital_life_hks,元,港股财务分析 / 港股保险业专项指标,货币币种,是
+10963,实际资本-寿险,ths_actual_capital_life_hks,元,港股财务分析 / 港股保险业专项指标,货币币种,是
+10964,最低资本-寿险,ths_low_capital_life_hks,元,港股财务分析 / 港股保险业专项指标,货币币种,是
+10965,有效业务价值-寿险,ths_valid_bussiness_value_life_hks,元,港股财务分析 / 港股保险业专项指标,货币币种,是
+10966,新业务价值-寿险,ths_new_bussiness_value_life_hks,元,港股财务分析 / 港股保险业专项指标,货币币种,是
+10967,核心偿付能力充足率-集团,ths_core_solvency_adequacy_group_hks,%,港股财务分析 / 港股保险业专项指标,,是
+10968,核心偿付能力溢额-集团,ths_core_solvency_overage_group_hks,元,港股财务分析 / 港股保险业专项指标,货币币种,是
+10969,综合偿付能力溢额-集团,ths_compre_solvency_overflow_group_hks,元,港股财务分析 / 港股保险业专项指标,货币币种,是
+10970,核心资本-集团,ths_core_capital_group_hks,元,港股财务分析 / 港股保险业专项指标,货币币种,是
+10971,核心一级资本-集团,ths_core_first_level_capital_group_hks,元,港股财务分析 / 港股保险业专项指标,货币币种,是
+10972,集团客户数,ths_group_customer_num_hks,人,港股财务分析 / 港股保险业专项指标,,是
+10973,保险营销员每月人均首年保险业务收入,ths_insurance_sales_income_m_hks,元,港股财务分析 / 港股保险业专项指标,货币币种,是
+10974,保险营销员每月人均寿险新保单件数,ths_insurance_sales_deal_num_m_hks,件,港股财务分析 / 港股保险业专项指标,,是
+10975,保险营销员人数,ths_insurance_sales_num_hks,人,港股财务分析 / 港股保险业专项指标,,是
+10976,债券投资,ths_bond_invest_hks,元,港股财务分析 / 港股保险业专项指标 / 投资组合,货币币种,是
+10977,定期存款,ths_fixed_deposit_hks,元,港股财务分析 / 港股保险业专项指标 / 投资组合,货币币种,是
+10978,金融产品投资,ths_financial_product_invest_hks,元,港股财务分析 / 港股保险业专项指标 / 投资组合,货币币种,是
+10979,投资性房地产,ths_invest_real_estate_hks,元,港股财务分析 / 港股保险业专项指标 / 投资组合,货币币种,是
+10980,现金及现金等价物,ths_cash_and_cash_eqlt_hks,元,港股财务分析 / 港股保险业专项指标 / 投资组合,货币币种,是
+10981,股票投资,ths_stock_invest_hks,元,港股财务分析 / 港股保险业专项指标 / 投资组合,货币币种,是
+10982,基金投资,ths_fund_invest_hks,元,港股财务分析 / 港股保险业专项指标 / 投资组合,货币币种,是
+10983,股权投资,ths_equity_invest_hks,元,港股财务分析 / 港股保险业专项指标 / 投资组合,货币币种,是
+10984,其他固定收益投资,ths_other_fixed_income_invest_hks,元,港股财务分析 / 港股保险业专项指标 / 投资组合,货币币种,是
+10985,其他权益投资,ths_other_equity_invest_hks,元,港股财务分析 / 港股保险业专项指标 / 投资组合,货币币种,是
+10986,基建投资,ths_infrastructure_invest_hks,元,港股财务分析 / 港股保险业专项指标 / 投资组合,货币币种,是
+10987,合计,ths_total_hks,元,港股财务分析 / 港股保险业专项指标 / 投资组合,货币币种,是
+17012,其他,ths_portfolio_other_hks,元,港股财务分析 / 港股保险业专项指标 / 投资组合,货币币种,是
+05716,流动比率,ths_current_ratio_hks,,港股财务分析 / 港股偿债能力,,是
+05717,速动比率,ths_quick_ratio_hks,,港股财务分析 / 港股偿债能力,,是
+05718,产权比率(负债合计／归属母公司股东的权益),ths_equity_ratio_hks,,港股财务分析 / 港股偿债能力,,是
+05719,归属母公司股东的权益／负债合计,ths_equity_atsopc_to_total_liab_hks,,港股财务分析 / 港股偿债能力,,是
+05720,经营活动产生的现金流量净额／负债合计,ths_ncf_from_oa_to_total_liab_hks,,港股财务分析 / 港股偿债能力,,是
+05721,已获利息倍数(EBIT／利息费用),ths_ebit_to_interest_fee_hks,,港股财务分析 / 港股偿债能力,,是
+05722,长期债务与营运资金比率,ths_lt_debt_to_oc_hks,,港股财务分析 / 港股偿债能力,,是
+08268,货币资金/流动负债合计,ths_cf_to_total_current_liab_hks,,港股财务分析 / 港股偿债能力,,是
+08269,非流动负债合计/归属于母公司股东权益,ths_total_ncl_to_equity_atsopc_hks,,港股财务分析 / 港股偿债能力,,是
+08270,经营活动现金流量净额/流动负债合计,ths_oa_cnf_net_amt_ratio_hks,,港股财务分析 / 港股偿债能力,,是
+08976,归属母公司股东的权益／带息债务,ths_equity_atsopc_to_dwi_hks,,港股财务分析 / 港股偿债能力,,是
+08977,带息债务/股权价值,ths_dwi_to_right_value_hks,%,港股财务分析 / 港股偿债能力,,是
+11449,保守速冻比率,ths_protect_quick_freeze_ratio_hks,%,港股财务分析 / 港股偿债能力,,是
+11450,营业利润/流动负债,ths_ta_to_current_liab_hks,,港股财务分析 / 港股偿债能力,,是
+11451,营业利润/负债合计,ths_op_to_total_liab_hks,,港股财务分析 / 港股偿债能力,,是
+11452,经营活动产生的现金流量净额／净债务,ths_ncf_of_oa_to_net_debt_hks,,港股财务分析 / 港股偿债能力,,是
+11453,经营活动产生的现金流量净额／带息债务,ths_ncf_of_oa_to_dwi_hks,,港股财务分析 / 港股偿债能力,,是
+11454,有形资产/负债合计,ths_ta_to_total_liab_hks,,港股财务分析 / 港股偿债能力,货币币种,是
+11455,有形资产/带息债务,ths_ta_to_dwi_hks,,港股财务分析 / 港股偿债能力,货币币种,是
+11456,有形资产/净债务,ths_ta_to_net_debt_hks,,港股财务分析 / 港股偿债能力,货币币种,是
+11457,息税折旧摊销前利润／负债合计,ths_ebitda_to_total_liab_hks,,港股财务分析 / 港股偿债能力,货币币种,是
+11698,净负债率,ths_net_debt_ratio_hk,%,港股财务分析 / 港股偿债能力,,是
+11699,货币资金对短期债务覆盖率,ths_ccy_fn_to_st_debt_hk,%,港股财务分析 / 港股偿债能力,,是
+10258,单季度·基本每股收益EPS,ths_sq_basic_eps_hks,元,港股财务分析 / 港股单季度财务指标,年度、季度,是
+10259,单季度·稀释每股收益EPS,ths_sq_dlt_eps_hks,元,港股财务分析 / 港股单季度财务指标,年度、季度,是
+10260,单季度·销售净利率,ths_sq_sale_net_rate_hks,%,港股财务分析 / 港股单季度财务指标,年度、季度,是
+10261,单季度·销售毛利率,ths_sq_sale_gross_rate_hks,%,港股财务分析 / 港股单季度财务指标,年度、季度,是
+10262,单季度·净资产收益率ROE,ths_sq_roe_hks,%,港股财务分析 / 港股单季度财务指标,年度、季度,是
+10263,单季度·总资产净利率ROA,ths_sq_roa_hks,%,港股财务分析 / 港股单季度财务指标,年度、季度,是
+10253,"归属母公司股东的权益(N年,增长率)",ths_equity_atsopc_ny_hks,%,港股财务分析 / 港股成长能力 / N年增长率,年数,是
+10254,"销售利润率(N年,增长率)",ths_sale_profit_rate_ny_hks,%,港股财务分析 / 港股成长能力 / N年增长率,年数,是
+10255,"净资产收益率(N年,增长率)",ths_roe_ny_hks,%,港股财务分析 / 港股成长能力 / N年增长率,年数,是
+10256,"经营活动净收益(N年,增长率)",ths_oa_net_incomen_y_hks,%,港股财务分析 / 港股成长能力 / N年增长率,年数,是
+10257,"价值变动净收益(N年,增长率)",ths_value_chg_ni_ny_hks,%,港股财务分析 / 港股成长能力 / N年增长率,年数,是
+11503,"营业总收入(N年,增长率)",ths_operating_revenuen_growth_ny_hks,%,港股财务分析 / 港股成长能力 / N年增长率,年数,是
+11504,"营业总成本(N年,增长率)",ths_total_oc_growth_ny_hks,%,港股财务分析 / 港股成长能力 / N年增长率,年数,是
+11505,"营业收入(N年,增长率)",ths_or_growth_ny_hks,%,港股财务分析 / 港股成长能力 / N年增长率,年数,是
+11506,"营业利润(N年,增长率)",ths_op_growth_ny_hks,%,港股财务分析 / 港股成长能力 / N年增长率,年数,是
+11507,"利润总额(N年,增长率)",ths_total_profit_growth_ny_hks,%,港股财务分析 / 港股成长能力 / N年增长率,年数,是
+11508,"归属母公司股东的净利润(N年,增长率)",ths_np_atsopcn_growth_ny_hks,%,港股财务分析 / 港股成长能力 / N年增长率,年数,是
+11509,"经营活动产生的现金流量净额(N年,增长率)",ths_ncf_of_oa_ny_hks,%,港股财务分析 / 港股成长能力 / N年增长率,年数,是
+11510,"资产总计(N年,增长率)",ths_assets_growth_ny_hks,%,港股财务分析 / 港股成长能力 / N年增长率,年数,是
+11511,"股东权益(N年,增长率)",ths_holder_equity_growth_ny_hks,%,港股财务分析 / 港股成长能力 / N年增长率,年数,是
+06693,基本每股收益(同比增长率),ths_bisic_eps_yoy_hks,%,港股财务分析 / 港股成长能力 / 同比增长率,,是
+06694,稀释每股收益(同比增长率),ths_dltd_eps_yoy_hks,%,港股财务分析 / 港股成长能力 / 同比增长率,,是
+06695,每股经营活动产生的现金流量净额(同比增长率),ths_oa_cf_net_amt_yoy_hks,%,港股财务分析 / 港股成长能力 / 同比增长率,,是
+06696,营业总收入(同比增长率),ths_operating_revenue_yoy_hks,%,港股财务分析 / 港股成长能力 / 同比增长率,,是
+06697,营业收入(同比增长率),ths_or_yoy_hks,%,港股财务分析 / 港股成长能力 / 同比增长率,,是
+06698,利润总额(同比增长率),ths_total_profit_yoy_hks,%,港股财务分析 / 港股成长能力 / 同比增长率,,是
+06699,归属母公司股东的净利润(同比增长率),ths_np_atsopc_yoy_hks,%,港股财务分析 / 港股成长能力 / 同比增长率,,是
+06700,经营活动产生的现金流量净额(同比增长率),ths_ncf_of_oa_yoy_hks,%,港股财务分析 / 港股成长能力 / 同比增长率,,是
+06701,净资产收益率(摊薄)(同比增长率),ths_roe_dltd_yoy_hks,%,港股财务分析 / 港股成长能力 / 同比增长率,,是
+07469,营业利润(同比增长率),ths_op_yoy_hks,%,港股财务分析 / 港股成长能力 / 同比增长率,,是
+07470,毛利(同比增长率),ths_gross_yoy_hks,%,港股财务分析 / 港股成长能力 / 同比增长率,,是
+07471,税前利润(同比增长率),ths_profit_before_tax_yoy_hks,%,港股财务分析 / 港股成长能力 / 同比增长率,,是
+07472,净利润(同比增长率),ths_jlrtbzzl_hk,%,港股财务分析 / 港股成长能力 / 同比增长率,,是
+07473,总资产(同比增长率),ths_total_assets_growth_yoy_hks,%,港股财务分析 / 港股成长能力 / 同比增长率,,是
+07474,股东权益合计(同比增长率),ths_total_holder_equity_yoy_hks,%,港股财务分析 / 港股成长能力 / 同比增长率,,是
+07475,总负债(同比增长率),ths_liab_yoy_hks,%,港股财务分析 / 港股成长能力 / 同比增长率,,是
+07476,每股净资产(同比增长率),ths_net_asset_yoy_hks,%,港股财务分析 / 港股成长能力 / 同比增长率,,是
+11499,归属母公司股东的权益（同比增长率）,ths_equity_atmcs_yoy_hks,%,港股财务分析 / 港股成长能力 / 同比增长率,,是
+11500,现金净流量（同比增长率）,ths_cash_net_flow_yoy_hks,%,港股财务分析 / 港股成长能力 / 同比增长率,,是
+07113,营业收入复合增长率,ths_or_compound_growth_hk,%,港股财务分析 / 港股成长能力 / 复合增长率,"截止年度、前推N年,N=",
+07114,净利润复合增长率,ths_np_compound_growth_hks,%,港股财务分析 / 港股成长能力 / 复合增长率,"截止年度、前推N年,N=",
+07115,归属于母公司股东的净利润复合增长率,ths_np_atsopc_compound_growth_hks,%,港股财务分析 / 港股成长能力 / 复合增长率,"截止年度、前推N年,N=",
+05731,总营业收入(近1年增长率),ths_total_oi_growth_1y_hks,%,港股财务分析 / 港股成长能力 / 最新增长率,,是
+05732,总营业收入(近3年增长率),ths_total_oi_growth_3y_hks,%,港股财务分析 / 港股成长能力 / 最新增长率,,是
+05733,毛利(近1年增长率),ths_gross_growth_1y_hks,%,港股财务分析 / 港股成长能力 / 最新增长率,,是
+05734,毛利(近3年增长率),ths_gross_growth_3y_hks,%,港股财务分析 / 港股成长能力 / 最新增长率,,是
+05735,税前利润(近1年增长率),ths_profit_before_tax_growth_1y_hks,%,港股财务分析 / 港股成长能力 / 最新增长率,,是
+05736,税前利润(近3年增长率),ths_profit_before_tax_growth_3y_hks,%,港股财务分析 / 港股成长能力 / 最新增长率,,是
+05737,净利润(近1年增长率),ths_np_growth_1y_hks,%,港股财务分析 / 港股成长能力 / 最新增长率,,是
+05738,净利润(近3年增长率),ths_np_growth_3y_hks,%,港股财务分析 / 港股成长能力 / 最新增长率,,是
+05739,总资产(近1年增长率),ths_total_assets_growth_1y_hks,%,港股财务分析 / 港股成长能力 / 最新增长率,,是
+05740,总资产(近3年增长率),ths_total_assets_growth_3y_hks,%,港股财务分析 / 港股成长能力 / 最新增长率,,是
+05741,归属母公司股东的权益(近1年增长率),ths_equity_atsopc_growth_nearly1y_hks,%,港股财务分析 / 港股成长能力 / 最新增长率,,是
+05742,归属母公司股东的权益(近3年增长率),ths_equity_atsopc_growth_nearly3y_hks,%,港股财务分析 / 港股成长能力 / 最新增长率,,是
+05743,股东权益合计(近1年增长率),ths_total_holder_equity_growth_1y_hks,%,港股财务分析 / 港股成长能力 / 最新增长率,,是
+05744,股东权益合计(近3年增长率),ths_total_holder_equity_growth_3y_hks,%,港股财务分析 / 港股成长能力 / 最新增长率,,是
+05745,总负债(近1年增长率),ths_total_liab_growth_1y_hks,%,港股财务分析 / 港股成长能力 / 最新增长率,,是
+05746,总负债(近3年增长率),ths_total_liab_growth_3y_hks,%,港股财务分析 / 港股成长能力 / 最新增长率,,是
+05747,基本每股收益(近1年增长率),ths_bisic_eps_growth_nearly1y_hks,%,港股财务分析 / 港股成长能力 / 最新增长率,,是
+05748,基本每股收益(近3年增长率),ths_bisic_eps_growth_nearly3y_hks,%,港股财务分析 / 港股成长能力 / 最新增长率,,是
+05749,每股净资产(近1年增长率),ths_nag_1y_hks,%,港股财务分析 / 港股成长能力 / 最新增长率,,是
+05750,每股净资产(近3年增长率),ths_nag_3y_hks,%,港股财务分析 / 港股成长能力 / 最新增长率,,是
+11501,营业利润(近1年增长率),ths_op_growth_1y_hks,%,港股财务分析 / 港股成长能力 / 最新增长率,,是
+11502,营业利润(近3年增长率),ths_op_growth_3y_hks,%,港股财务分析 / 港股成长能力 / 最新增长率,,是
+06702,每股净资产(相对年初增长率),ths_nag_respond_boy_hks,%,港股财务分析 / 港股成长能力 / 相对年初增长率,,是
+06703,资产总计(相对年初增长率),ths_assets_relative_boy_growth_hks,%,港股财务分析 / 港股成长能力 / 相对年初增长率,,是
+06704,归属母公司的股东权益(相对年初增长率),ths_equity_atsopc_growth_boy_hks,%,港股财务分析 / 港股成长能力 / 相对年初增长率,,是
+05751,净资产收益率ROE,ths_roe_hks,%,港股财务分析 / 港股杜邦分析,,是
+05752,权益乘数(杜邦分析),ths_equity_multiplier_dupont_hks,,港股财务分析 / 港股杜邦分析,,是
+05754,归属母公司股东的净利润／净利润,ths_np_atsopc_to_np_hks,%,港股财务分析 / 港股杜邦分析,,是
+05756,净利润／利润总额,ths_np_to_total_profit_hks,%,港股财务分析 / 港股杜邦分析,,是
+05757,利润总额／息税前利润,ths_total_profit_to_ebit_hks,%,港股财务分析 / 港股杜邦分析,,是
+05667,每股收益EPS-基本,ths_basic_eps_hks,元,港股财务分析 / 港股每股指标,货币币种,是
+05668,每股收益EPS-稀释,ths_eps_dlt_hks,元,港股财务分析 / 港股每股指标,货币币种,是
+05669,每股收益EPS(TTM),ths_eps_ttm_hks,元,港股财务分析 / 港股每股指标,货币币种、TTM基准日,是
+05670,每股净资产BPS,ths_nav_ps_hks,元,港股财务分析 / 港股每股指标,货币币种,是
+05671,每股经营活动产生的现金流量净额,ths_ncf_from_oa_ps_hks,元,港股财务分析 / 港股每股指标,货币币种,是
+05672,每股经营活动产生的现金流量净额(TTM),ths_oa_cf_net_amt_ttm_hks,元,港股财务分析 / 港股每股指标,货币币种、TTM基准日,是
+05673,每股营业总收入,ths_revenue_ps_hks,元,港股财务分析 / 港股每股指标,货币币种,是
+05674,每股营业收入,ths_oips_hks,元,港股财务分析 / 港股每股指标,货币币种,是
+05675,每股营业收入(TTM),ths_oips_ttm_hks,元,港股财务分析 / 港股每股指标,货币币种、TTM基准日,是
+05676,每股资本公积,ths_capital_reserve_hks,元,港股财务分析 / 港股每股指标,货币币种,是
+05677,每股现金流量净额,ths_net_cf_ps_hks,元,港股财务分析 / 港股每股指标,货币币种,是
+05678,每股现金流量净额(TTM),ths_net_cf_ps_ttm_hks,元,港股财务分析 / 港股每股指标,货币币种、TTM基准日,是
+05679,每股息税前利润,ths_ebit_share_hks,元,港股财务分析 / 港股每股指标,货币币种,是
+11458,每股息税折旧摊销前利润,ths_ps_ebitda_hks,元,港股财务分析 / 港股每股指标,货币币种,是
+11464,每股收益-期末股本摊薄,ths_eps_final_dlt_hks,元,港股财务分析 / 港股每股指标,货币币种,是
+11465,每股收益-最新股本摊薄,ths_eps_latest_dlt_hks,元,港股财务分析 / 港股每股指标,货币币种,是
+11466,每股净资产(最新公告),ths_na_ps_latest_announcement_hks,元,港股财务分析 / 港股每股指标,货币币种,是
+11467,每股企业自由现金流量,ths_corp_free_cf_ps_hks,元,港股财务分析 / 港股每股指标,货币币种,是
+05708,经营活动产生的现金流量净额／营业收入,ths_ncf_from_oa_to_revenue_hks,%,港股财务分析 / 港股现金流量,,是
+05709,经营活动产生的现金流量净额／营业收入(TTM),ths_ncf_of_oa_to_revenue_hks,%,港股财务分析 / 港股现金流量,货币币种、TTM基准日,是
+11468,经营活动产生的现金流量净额／经营活动净收益,ths_ncf_from_oa_to_oa_net_income_hks,,港股财务分析 / 港股现金流量,货币币种,是
+11469,经营活动产生的现金流量净额／经营活动净收益(TTM),ths_oa_cf_na_to_oa_ni_ttm_hks,,港股财务分析 / 港股现金流量,货币币种、TTM基准日,是
+11470,资本支出/折旧和摊销,ths_capital_cost_to_daa_hks,,港股财务分析 / 港股现金流量,,是
+11471,经营活动产生的现金流量净额／营业利润(TTM),ths_oa_cf_na_to_op_ttm_hks,%,港股财务分析 / 港股现金流量,TTM基准日,是
+05680,"净资产收益率ROE(平均,同花顺计算)",ths_roe_avg_by_ths_hks,%,港股财务分析 / 港股盈利能力,,是
+05681,净资产收益率ROE(摊薄),ths_roe_dlt_hks,%,港股财务分析 / 港股盈利能力,,是
+05682,总资产报酬率ROA,ths_roa_hks,%,港股财务分析 / 港股盈利能力,,是
+05683,总资产净利率ROA,ths_net_interest_of_ta_hks,%,港股财务分析 / 港股盈利能力,,是
+05684,年化净资产收益率,ths_annaul_net_asset_yeild_hks,%,港股财务分析 / 港股盈利能力,,是
+05685,年化总资产报酬率,ths_annual_total_asset_reward_rate_hks,%,港股财务分析 / 港股盈利能力,,是
+05686,年化总资产净利率,ths_annual_ta_net_interest_hks,%,港股财务分析 / 港股盈利能力,,是
+05687,销售净利率,ths_net_sales_rate_hks,%,港股财务分析 / 港股盈利能力,,是
+05688,销售毛利率,ths_gross_selling_rate_hks,%,港股财务分析 / 港股盈利能力,,是
+05689,销售成本率,ths_sales_cost_rate_hks,%,港股财务分析 / 港股盈利能力,,是
+05690,销售期间费用率,ths_sales_dur_fee_rate_hks,%,港股财务分析 / 港股盈利能力,,是
+05691,净利润／营业总收入,ths_np_to_revenue_hks,%,港股财务分析 / 港股盈利能力,,是
+05692,息税前利润／营业总收入,ths_ebit_to_operating_revenue_hks,%,港股财务分析 / 港股盈利能力,,是
+05693,销售费用／营业总收入,ths_sales_fee_to_total_revenue_hks,%,港股财务分析 / 港股盈利能力,,是
+05694,管理费用／营业总收入,ths_manage_fee_to_revenue_hks,%,港股财务分析 / 港股盈利能力,,是
+05695,财务费用／营业总收入,ths_finance_cost_to_total_revenue_hks,%,港股财务分析 / 港股盈利能力,,是
+05696,资产减值损失／营业总收入,ths_ail_to_revenue_hks,%,港股财务分析 / 港股盈利能力,,是
+05697,净资产收益率ROE(TTM),ths_roe_ttm_hks,%,港股财务分析 / 港股盈利能力,TTM基准日、货币币种,是
+05698,总资产报酬率ROA(TTM),ths_roa_ttm_hks,%,港股财务分析 / 港股盈利能力,TTM基准日、货币币种,是
+05699,总资产净利率ROA(TTM),ths_net_interest_of_ta_ttm_hks,%,港股财务分析 / 港股盈利能力,TTM基准日、货币币种,是
+05700,销售净利率(TTM),ths_sales_nir_ttm_hks,%,港股财务分析 / 港股盈利能力,TTM基准日、货币币种,是
+05701,销售毛利率(TTM),ths_sales_gir_ttm_hks,%,港股财务分析 / 港股盈利能力,TTM基准日、货币币种,是
+05702,销售期间费用率(TTM),ths_sales_dur_fee_rate_ttm_hks,%,港股财务分析 / 港股盈利能力,TTM基准日、货币币种,是
+05703,净利润／营业总收入(TTM),ths_np_to_revenue_ttm_hks,%,港股财务分析 / 港股盈利能力,TTM基准日、货币币种,是
+05704,销售费用／营业总收入(TTM),ths_sales_fee_to_or_ttm_hks,%,港股财务分析 / 港股盈利能力,TTM基准日、货币币种,是
+05705,管理费用／营业总收入(TTM),ths_manage_fee_to_revenue_ttm_hks,%,港股财务分析 / 港股盈利能力,TTM基准日、货币币种,是
+05706,财务费用／营业总收入(TTM),ths_finance_cost_to_revenue_ttm_hks,%,港股财务分析 / 港股盈利能力,TTM基准日、货币币种,是
+05707,资产减值损失／营业总收入(TTM),ths_ail_to_revenue_ttm_hks,%,港股财务分析 / 港股盈利能力,货币币种、TTM基准日,是
+08978,投入资本回报率,ths_roic_hks,%,港股财务分析 / 港股盈利能力,,是
+09068,归属母公司股东净利润/营业总收入,ths_total_equity_atsopc_to_revenue_hks,%,港股财务分析 / 港股盈利能力,,是
+11481,投入资本回报率(年化),ths_roic_annual_hks,%,港股财务分析 / 港股盈利能力,,是
+11482,营业利润/营业总收入,ths_op_to_revenue_hks,%,港股财务分析 / 港股盈利能力,,是
+11483,营业总成本/营业总收入,ths_operating_cost_to_or_hks,%,港股财务分析 / 港股盈利能力,,是
+11484,EBITDA/营业总收入,ths_ebitda_to_revenue_hks,%,港股财务分析 / 港股盈利能力,,是
+11485,利润总额/营业收入,ths_tp_to_oi_hks,%,港股财务分析 / 港股盈利能力,,是
+11486,所得税/利润总额,ths_income_tax_to_total_profit_hks,%,港股财务分析 / 港股盈利能力,,是
+11487,经营活动净收益/利润总额,ths_oa_net_income_to_total_profit_hks,%,港股财务分析 / 港股盈利能力,,是
+11488,价值变动净收益/利润总额,ths_value_chg_ni_to_total_profit_hks,%,港股财务分析 / 港股盈利能力,,是
+11489,营业利润/营业总收入(TTM),ths_op_to_revenue_ttm_hks,%,港股财务分析 / 港股盈利能力,货币币种、TTM基准日,是
+11490,营业总成本/营业总收入(TTM),ths_total_cost_to_revenue_ttm_hks,%,港股财务分析 / 港股盈利能力,货币币种、TTM基准日,是
+11491,利润总额/营业收入(TTM),ths_tp_to_oi_ttm_hks,%,港股财务分析 / 港股盈利能力,货币币种、TTM基准日,是
+11492,归属母公司股东净利润/营业总收入(TTM),ths_np_atpcs_to_revenue_ttm_hks,%,港股财务分析 / 港股盈利能力,货币币种、TTM基准日,是
+11493,所得税/利润总额（TTM）,ths_income_tax_to_tp_ttm_hks,%,港股财务分析 / 港股盈利能力,货币币种、TTM基准日,是
+11494,非营业利润/利润总额（TTM）,ths_nonoperate_total_ttm_hks,%,港股财务分析 / 港股盈利能力,货币币种、TTM基准日,是
+11495,经营活动净收益/利润总额（TTM）,ths_oa_ni_to_tp_ttm_hks,%,港股财务分析 / 港股盈利能力,货币币种、TTM基准日,是
+11496,价值变动净收益/利润总额（TTM）,ths_value_chg_ni_to_tp_ttm_hks,%,港股财务分析 / 港股盈利能力,货币币种、TTM基准日,是
+05723,营业周期,ths_operating_cycle_hks,天,港股财务分析 / 港股营运能力,,是
+05724,存货周转天数,ths_inventory_turnover_days_hks,天,港股财务分析 / 港股营运能力,,是
+05725,应收账款及票据周转天数,ths_receivable_turnover_days_hks,天,港股财务分析 / 港股营运能力,,是
+05726,存货周转率,ths_inventory_turnover_hks,次,港股财务分析 / 港股营运能力,,是
+05727,应收账款及票据周转率,ths_account_receivable_turnover_hks,次,港股财务分析 / 港股营运能力,,是
+05728,流动资产周转率,ths_current_asset_turnover_hks,次,港股财务分析 / 港股营运能力,,是
+05729,固定资产周转率,ths_fixed_asset_turnover_ratio_hks,次,港股财务分析 / 港股营运能力,,是
+05730,总资产周转率,ths_total_capital_turnover_hks,次,港股财务分析 / 港股营运能力,,是
+07508,营运资金周转天数,ths_operate_capital_turnover_days_hks,天,港股财务分析 / 港股营运能力,,是
+07509,营运资金周转率,ths_operating_capital_turnover_hks,次,港股财务分析 / 港股营运能力,,是
+10179,毛利,ths_gross_margin_hks,元,港股财务分析 / 港股衍生报表数据 / 基于利润表,货币币种,是
+10180,经营活动净收益,ths_operating_activity_net_income_hks,元,港股财务分析 / 港股衍生报表数据 / 基于利润表,货币币种,是
+10181,价值变动净收益,ths_value_chg_net_income_hks,元,港股财务分析 / 港股衍生报表数据 / 基于利润表,货币币种,是
+10182,息税前利润EBIT,ths_ebit_hks,元,港股财务分析 / 港股衍生报表数据 / 基于利润表,货币币种,是
+10183,息税折旧摊销前利润EBITDA,ths_ebitda_hks,元,港股财务分析 / 港股衍生报表数据 / 基于利润表,货币币种,是
+17508,非经常性损益,ths_non_recurring_gains_and_losses_hks,元,港股财务分析 / 港股衍生报表数据 / 基于利润表,,是
+17509,扣除非经常性损益后的归属母公司股东净利润,ths_net_profit_after_nrgal_atsolc_hks,元,港股财务分析 / 港股衍生报表数据 / 基于利润表,,是
+06770,营业收入(TTM),ths_or_ttm_hks,元,港股财务分析 / 港股衍生报表数据 / 基于利润表TTM,货币币种、TTM基准日,是
+06771,毛利(TTM),ths_gross_ttm_hks,元,港股财务分析 / 港股衍生报表数据 / 基于利润表TTM,货币币种、TTM基准日,是
+06772,销售费用(TTM),ths_sales_fee_ttm_hks,元,港股财务分析 / 港股衍生报表数据 / 基于利润表TTM,货币币种、TTM基准日,是
+06773,管理费用(TTM),ths_managementfee_ttm_hk,元,港股财务分析 / 港股衍生报表数据 / 基于利润表TTM,货币币种、TTM基准日,是
+06774,财务费用(TTM),ths_financialfee_ttm_hk,元,港股财务分析 / 港股衍生报表数据 / 基于利润表TTM,货币币种、TTM基准日,是
+06775,资产减值损失(TTM),ths_asset_impairment_loss_ttm_hks,元,港股财务分析 / 港股衍生报表数据 / 基于利润表TTM,货币币种、TTM基准日,是
+06776,经营溢利(TTM),ths_operatingprofit_hk,元,港股财务分析 / 港股衍生报表数据 / 基于利润表TTM,货币币种、TTM基准日,是
+06777,息税前利润(TTM),ths_ebit_ttm_hks,元,港股财务分析 / 港股衍生报表数据 / 基于利润表TTM,货币币种、TTM基准日,是
+06778,税前利润(TTM),ths_profit_before_tax_ttm_hks,元,港股财务分析 / 港股衍生报表数据 / 基于利润表TTM,货币币种、TTM基准日,是
+06779,税后利润(TTM),ths_profit_after_tax_ttm_hks,元,港股财务分析 / 港股衍生报表数据 / 基于利润表TTM,货币币种、TTM基准日,是
+06780,归属于母公司股东的净利润(TTM),ths_parentcompanyshareholdersnetprofit_ttm_hk,元,港股财务分析 / 港股衍生报表数据 / 基于利润表TTM,货币币种、TTM基准日,是
+10195,经营活动净收益（TTM）,ths_oa_net_income_hks,元,港股财务分析 / 港股衍生报表数据 / 基于利润表TTM,货币币种、TTM基准日,是
+10196,价值变动净收益（TTM）,ths_value_change_net_income_ttm_hks,元,港股财务分析 / 港股衍生报表数据 / 基于利润表TTM,货币币种、TTM基准日,是
+10197,营业成本-非金融类（TTM）,ths_operating_cost_nonfinance_ttm_hks,元,港股财务分析 / 港股衍生报表数据 / 基于利润表TTM,货币币种、TTM基准日,是
+10198,期间费用（TTM）,ths_period_charge_ttm_hks,元,港股财务分析 / 港股衍生报表数据 / 基于利润表TTM,货币币种、TTM基准日,是
+10199,营业成本-金融类（TTM）,ths_operating_cost_financial_ttm_hks,元,港股财务分析 / 港股衍生报表数据 / 基于利润表TTM,货币币种、TTM基准日,是
+11459,利息支出（TTM）,ths_interest_pay_annual_hks,元,港股财务分析 / 港股衍生报表数据 / 基于利润表TTM,货币币种、TTM基准日,是
+11460,少数股东损益（TTM）,ths_minitory_holder_gal_ttm_hks,元,港股财务分析 / 港股衍生报表数据 / 基于利润表TTM,货币币种、TTM基准日,是
+11461,非营业利润（TTM）,ths_nonoperate_ttm_hks,元,港股财务分析 / 港股衍生报表数据 / 基于利润表TTM,货币币种、TTM基准日,是
+11462,所得税（TTM）,ths_income_tax_ttm_hks,元,港股财务分析 / 港股衍生报表数据 / 基于利润表TTM,货币币种、TTM基准日,是
+16619,息税折旧摊销前利润(TTM),ths_ebitda_ttm_hks,元,港股财务分析 / 港股衍生报表数据 / 基于利润表TTM,货币币种、TTM基准日,是
+10193,企业自由现金流量,ths_corp_free_cash_flow_hks,元,港股财务分析 / 港股衍生报表数据 / 基于现金流量表,货币币种,是
+10194,当期计提折旧与摊销,ths_daa_ott_hks,元,港股财务分析 / 港股衍生报表数据 / 基于现金流量表,货币币种,是
+06781,经营活动产生的现金流量净额(TTM),ths_netcashflowfromoperatingactivities_ttm_hk,元,港股财务分析 / 港股衍生报表数据 / 基于现金流量表TTM,货币币种、TTM基准日,是
+06782,投资活动产生的现金流量净额(TTM),ths_ncf_from_ia_ttm_hks,元,港股财务分析 / 港股衍生报表数据 / 基于现金流量表TTM,货币币种、TTM基准日,是
+06783,融资活动产生的现金流量净额(TTM),ths_margin_trading_net_cf_ttm_hks,元,港股财务分析 / 港股衍生报表数据 / 基于现金流量表TTM,货币币种、TTM基准日,是
+06784,现金及现金等价物净增加额(TTM),ths_net_increase_in_cce_ttm_hks,元,港股财务分析 / 港股衍生报表数据 / 基于现金流量表TTM,货币币种、TTM基准日,是
+10184,全部投入资本,ths_total_invested_capital_hks,元,港股财务分析 / 港股衍生报表数据 / 基于资产负债表,货币币种,是
+10185,营运资金,ths_operating_capital_hks,元,港股财务分析 / 港股衍生报表数据 / 基于资产负债表,货币币种,是
+10186,净营运资本,ths_net_operation_capital_hks,元,港股财务分析 / 港股衍生报表数据 / 基于资产负债表,货币币种,是
+10187,有形资产,ths_tangible_asset_hks,元,港股财务分析 / 港股衍生报表数据 / 基于资产负债表,货币币种,是
+10188,留存收益,ths_retained_income_hks,元,港股财务分析 / 港股衍生报表数据 / 基于资产负债表,货币币种,是
+10189,净债务,ths_net_debt_hks,元,港股财务分析 / 港股衍生报表数据 / 基于资产负债表,货币币种,是
+10190,带息负债,ths_debt_with_interest_hks,元,港股财务分析 / 港股衍生报表数据 / 基于资产负债表,货币币种,是
+10191,无息流动负债,ths_noninterest_current_liab_hks,元,港股财务分析 / 港股衍生报表数据 / 基于资产负债表,货币币种,是
+10192,无息非流动负债,ths_noninterest_noncurrent_liab_hks,元,港股财务分析 / 港股衍生报表数据 / 基于资产负债表,货币币种,是
+17015,有形资产净值,ths_tanv_hks,元,港股财务分析 / 港股衍生报表数据 / 基于资产负债表,货币币种,是
+06785,资产总计(MRQ),ths_assets_mrq_hks,元,港股财务分析 / 港股衍生报表数据 / 基于资产负债表MRQ,货币币种,是
+06786,负债合计(MRQ),ths_totaldebt_mrq_hk,元,港股财务分析 / 港股衍生报表数据 / 基于资产负债表MRQ,货币币种,是
+06787,权益合计(MRQ),ths_totalequity_hk,元,港股财务分析 / 港股衍生报表数据 / 基于资产负债表MRQ,货币币种,是
+06788,归属于母公司的股东权益(MRQ),ths_parentcompanyshareholdersequity_mrq_hk,元,港股财务分析 / 港股衍生报表数据 / 基于资产负债表MRQ,货币币种,是
+05710,资产负债率,ths_asset_liab_ratio_hks,%,港股财务分析 / 港股资本结构,,是
+05711,权益乘数,ths_equity_multiplier_hks,,港股财务分析 / 港股资本结构,,是
+05712,流动资产／总资产,ths_flow_assets_to_total_assets_hks,%,港股财务分析 / 港股资本结构,,是
+05713,非流动资产／总资产,ths_noncurrent_assets_to_ta_hks,%,港股财务分析 / 港股资本结构,,是
+05714,流动负债／负债合计,ths_flow_debt_to_total_debt_hks,%,港股财务分析 / 港股资本结构,,是
+05715,非流动负债／负债合计,ths_noncurrent_liab_to_total_liab_hks,%,港股财务分析 / 港股资本结构,,是
+08974,归属母公司股东的权益／全部投入资本,ths_equity_atsopc_to_total_invest_hks,%,港股财务分析 / 港股资本结构,,是
+08975,带息债务／全部投入资本,ths_dwi_toall_invest_capital_hks,%,港股财务分析 / 港股资本结构,,是
+11497,有形资产/总资产,ths_ta_to_total_asset_hks,%,港股财务分析 / 港股资本结构,货币币种,是
+11498,长期资本负债率,ths_lt_liability_ratio_hks,%,港股财务分析 / 港股资本结构,货币币种,是
+10701,存款总额,ths_total_deposit_amt_hks,元,港股财务分析 / 港股银行业专项指标,货币币种,是
+10702,贷款总额,ths_total_loan_amt_hks,元,港股财务分析 / 港股银行业专项指标,货币币种,是
+10703,贷款损失准备,ths_loan_loss_reserve_hks,元,港股财务分析 / 港股银行业专项指标,货币币种,是
+10704,不良贷款(NPLs),ths_bad_loan_hks,元,港股财务分析 / 港股银行业专项指标,货币币种,是
+10705,非计息负债,ths_non_interest_liab_hks,元,港股财务分析 / 港股银行业专项指标,货币币种,是
+10706,非生息资产,ths_non_living_asset_hks,元,港股财务分析 / 港股银行业专项指标,货币币种,是
+10707,核心资本净额,ths_net_core_capital_hks,元,港股财务分析 / 港股银行业专项指标,货币币种,是
+10708,计息负债,ths_interest_bearing_liab_hks,元,港股财务分析 / 港股银行业专项指标,货币币种,是
+10709,风险加权资产净额,ths_wgt_risk_net_amt_hks,元,港股财务分析 / 港股银行业专项指标,货币币种,是
+10710,净利差,ths_np_margin_hks,%,港股财务分析 / 港股银行业专项指标,,是
+10711,生息资产,ths_interest_earning_assets_hks,元,港股财务分析 / 港股银行业专项指标,货币币种,是
+10712,市场风险资本,ths_mkt_rist_capital_hks,元,港股财务分析 / 港股银行业专项指标,货币币种,是
+10713,资本净额,ths_net_capital_hks,元,港股财务分析 / 港股银行业专项指标,货币币种,是
+10714,非利息收入,ths_non_interest_income_hks,元,港股财务分析 / 港股银行业专项指标,货币币种,是
+10715,一级资本净额,ths_net_primary_capital_net_amt_hks,元,港股财务分析 / 港股银行业专项指标,货币币种,是
+10716,核心一级资本净额,ths_net_core_first_capital_hks,元,港股财务分析 / 港股银行业专项指标,货币币种,是
+10717,重组贷款,ths_recombine_loan_hks,元,港股财务分析 / 港股银行业专项指标,货币币种,是
+10718,银行理财产品余额,ths_bank_wm_balance_hks,元,港股财务分析 / 港股银行业专项指标,货币币种,是
+10719,最大十家客户贷款比例,ths_top10_customer_loan_ratio_hks,%,港股财务分析 / 港股银行业专项指标,,是
+10720,不良贷款比例－3级分类,ths_bad_loan_ratio_third_classi_hks,%,港股财务分析 / 港股银行业专项指标,,是
+10721,贷款损失准备充足率,ths_loan_loss_reserve_adequacy_hks,%,港股财务分析 / 港股银行业专项指标,,是
+10722,不良贷款率,ths_bad_loan_rate_hks,%,港股财务分析 / 港股银行业专项指标,,是
+10723,资本充足率,ths_capital_adequacy_ratio_hks,%,港股财务分析 / 港股银行业专项指标,,是
+10724,核心资本充足率,ths_core_capital_adequacy_ratio_hks,%,港股财务分析 / 港股银行业专项指标,,是
+10725,拨备覆盖率,ths_provision_coverage_hks,%,港股财务分析 / 港股银行业专项指标,,是
+10726,存贷款比例,ths_deposit_loan_ratio_hks,%,港股财务分析 / 港股银行业专项指标,,是
+10727,存贷款比例(人民币),ths_deposit_and_loan_ratio_rmb_hks,%,港股财务分析 / 港股银行业专项指标,,是
+10728,存贷款比例(外币),ths_deposit_and_loan_ratio_fc_hks,%,港股财务分析 / 港股银行业专项指标,,是
+10729,短期资产流动性比例(人民币),ths_st_asset_liquid_ratio_hks,%,港股财务分析 / 港股银行业专项指标,,是
+10730,短期资产流动性比例(外币),ths_st_asset_liquid_ratio_fc_hks,%,港股财务分析 / 港股银行业专项指标,,是
+10731,拆入资金比例,ths_lending_funds_ratio_hks,%,港股财务分析 / 港股银行业专项指标,,是
+10732,拆出资金比例,ths_borrowing_funds_ratio_hks,%,港股财务分析 / 港股银行业专项指标,,是
+10733,备付金比例(人民币),ths_provision_ratio_rmb_hks,%,港股财务分析 / 港股银行业专项指标,,是
+10734,备付金比例(外币),ths_provision_ratio_fc_hks,%,港股财务分析 / 港股银行业专项指标,,是
+10735,利息回收率,ths_interest_recovery_hks,%,港股财务分析 / 港股银行业专项指标,,是
+10736,净息差,ths_net_interest_margin_hks,%,港股财务分析 / 港股银行业专项指标,,是
+10737,非利息收入占比(％),ths_non_interest_income_ratio_hks,%,港股财务分析 / 港股银行业专项指标,,是
+10738,生息资产平均利率(%),ths_living_asset_avg_interest_hks,%,港股财务分析 / 港股银行业专项指标,,是
+10739,付息负债平均利率(%),ths_interest_liab_avg_interest_hks,%,港股财务分析 / 港股银行业专项指标,,是
+10740,单一最大客户贷款比例,ths_loan_ratio_slc_hks,%,港股财务分析 / 港股银行业专项指标,,是
+10741,成本收入比(％),ths_cost_income_ratio_hks,%,港股财务分析 / 港股银行业专项指标,,是
+10742,一级资本充足率,ths_first_capital_adequacy_ratio_hks,%,港股财务分析 / 港股银行业专项指标,,是
+10743,核心一级资本充足率,ths_core_fc_adequacy_ratio_hks,%,港股财务分析 / 港股银行业专项指标,,是
+10744,流动性覆盖率,ths_lcr_hks,%,港股财务分析 / 港股银行业专项指标,,是
+10745,杠杆率,ths_leverage_ratio_hks,%,港股财务分析 / 港股银行业专项指标,,是
+10746,中长期贷款比率(外币),ths_lt_loan_ratio_foreign_currency_hks,%,港股财务分析 / 港股银行业专项指标,,是
+10747,中长期贷款比率(人民币),ths_lt_loan_ratio_rmb_hks,%,港股财务分析 / 港股银行业专项指标,,是
+10748,短期资产流动性比例,ths_st_asset_flow_ratio_hks,%,港股财务分析 / 港股银行业专项指标,,是
+10814,个人存款-存款余额,ths_pd_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 存款结构指标,货币币种,是
+10815,个人定期存款-存款余额,ths_prd_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 存款结构指标,货币币种,是
+10816,个人活期存款-存款余额,ths_pcd_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 存款结构指标,货币币种,是
+10817,公司存款-存款余额,ths_cd_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 存款结构指标,货币币种,是
+10818,公司定期存款-存款余额,ths_crd_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 存款结构指标,货币币种,是
+10819,公司活期存款-存款余额,ths_ccd_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 存款结构指标,货币币种,是
+10820,定期存款-存款余额,ths_regular_deposit_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 存款结构指标,货币币种,是
+10821,活期存款-存款余额,ths_current_deposit_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 存款结构指标,货币币种,是
+10822,保证贷款-贷款余额,ths_gl_loan_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,货币币种,是
+10823,保证贷款-不良贷款金额,ths_gl_bad_loan_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,货币币种,是
+10824,抵押贷款-贷款余额,ths_ml_loan_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,货币币种,是
+10825,抵押贷款-不良贷款金额,ths_ml_bad_loan_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,货币币种,是
+10826,信用贷款-贷款余额,ths_cl_loan_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,货币币种,是
+10827,信用贷款-不良贷款金额,ths_cl_bad_loan_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,货币币种,是
+10828,质押贷款-贷款余额,ths_pl_loan_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,货币币种,是
+10829,质押贷款-不良贷款金额,ths_pl_bad_loan_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,货币币种,是
+10830,企业贷款和垫款-贷款余额,ths_cla_loan_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,货币币种,是
+10831,企业贷款和垫款-不良贷款金额,ths_cla_bad_loan_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,货币币种,是
+10832,个人贷款和垫款-贷款余额,ths_pla_loan_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,货币币种,是
+10833,个人贷款和垫款-不良贷款金额,ths_pla_bad_loan_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,货币币种,是
+10834,票据贴现-贷款余额,ths_bd_loan_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,货币币种,是
+10835,票据贴现-不良贷款金额,ths_bd_bad_loan_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,货币币种,是
+10836,短期贷款-贷款余额,ths_st_loan_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,货币币种,是
+10837,短期贷款-不良贷款金额,ths_st_bad_loan_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,货币币种,是
+10838,中长期贷款-贷款余额,ths_mlt_loan_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,货币币种,是
+10839,中长期贷款-不良贷款金额,ths_mlt_bad_loan_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,货币币种,是
+10840,个人住房贷款-贷款余额,ths_phl_loan_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,货币币种,是
+10841,个人住房贷款-不良贷款金额,ths_phl_bad_loan_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,货币币种,是
+10842,个人消费贷款-贷款余额,ths_pcl_loan_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,货币币种,是
+10843,个人消费贷款-不良贷款金额,ths_pcl_bad_loan_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,货币币种,是
+10844,个人经营性贷款-贷款余额,ths_pol_loan_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,货币币种,是
+10845,个人经营性贷款-不良贷款金额,ths_pol_bad_loan_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,货币币种,是
+10846,个人汽车贷款-贷款余额,ths_pal_loan_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,货币币种,是
+10847,个人汽车贷款-不良贷款金额,ths_pal_bad_loan_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,货币币种,是
+10848,其他个人贷款-贷款余额,ths_opl_loan_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,货币币种,是
+10849,其他个人贷款-不良贷款金额,ths_opl_bad_loan_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,货币币种,是
+10850,信用卡贷款-贷款余额,ths_credit_card_loan_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,货币币种,是
+10851,信用卡贷款-不良贷款金额,ths_credit_card_bad_loan_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,货币币种,是
+10852,信用卡贷款-不良贷款率,ths_credit_card_bad_loan_ratio_hks,%,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,,是
+10853,其他个人贷款-不良贷款率,ths_opl_bad_loan_ratio_hks,%,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,,是
+10854,个人汽车贷款-不良贷款率,ths_pal_bad_loan_ratio_hks,%,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,,是
+10855,个人经营性贷款-不良贷款率,ths_pol_bad_loan_ratio_hks,%,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,,是
+10856,个人消费贷款-不良贷款率,ths_pcl_bad_loan_ratio_hks,%,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,,是
+10857,个人住房贷款-不良贷款率,ths_phl_bad_loan_ratio_hks,%,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,,是
+10858,中长期贷款-不良贷款率,ths_mlt_bad_loan_ratio_hks,%,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,,是
+10859,短期贷款-不良贷款率,ths_st_bad_loan_ratio_hks,%,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,,是
+10860,票据贴现-不良贷款率,ths_bd_bad_loan_ratio_hks,%,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,,是
+10861,个人贷款和垫款-不良贷款率,ths_pla_bad_loan_ratio_hks,%,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,,是
+10862,企业贷款和垫款-不良贷款率,ths_cla_bad_loan_ratio_hks,%,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,,是
+10863,质押贷款-不良贷款率,ths_pl_bad_loan_ratio_hks,%,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,,是
+10864,信用贷款-不良贷款率,ths_cl_bad_loan_ratio_hks,%,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,,是
+10865,抵押贷款-不良贷款率,ths_ml_bad_loan_ratio_hks,%,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,,是
+10866,保证贷款-不良贷款率,ths_gl_bad_loan_ratio_hks,%,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,,是
+10867,按行业-贷款余额,ths_industry_loan_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,货币币种、行业名称,是
+10868,按行业-不良贷款金额,ths_industry_bad_loan_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,货币币种、行业名称,是
+10869,按行业-不良贷款率,ths_industry_bad_loan_ratio_hks,%,港股财务分析 / 港股银行业专项指标 / 存贷款结构指标 / 贷款结构指标,行业名称,是
+10763,短期贷款－平均余额,ths_sl_avg_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,货币币种,是
+10764,短期贷款-利息收入,ths_sl_interest_income_hks,元,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,货币币种,是
+10765,中长期贷款－平均余额,ths_mll_avg_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,货币币种,是
+10766,中长期贷款-利息收入,ths_mll_interest_income_hks,元,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,货币币种,是
+10767,企业存款－平均余额,ths_cd_avg_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,货币币种,是
+10768,企业存款-利息支出,ths_cd_interest_cost_hks,元,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,货币币种,是
+10769,企业定期存款-平均余额,ths_corp_fd_avg_balance_y_hks,元,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,货币币种,是
+10770,企业定期存款-利息支出,ths_crd_interest_cost_hks,元,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,货币币种,是
+10771,企业活期存款-平均余额,ths_corp_cd_avg_balance_y_hks,元,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,货币币种,是
+10772,企业活期存款-利息支出,ths_ccd_interest_cost_hks,元,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,货币币种,是
+10773,储蓄存款－平均余额,ths_sd_avg_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,货币币种,是
+10774,储蓄存款-利息支出,ths_sd_interest_cost_hks,元,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,货币币种,是
+10775,储蓄定期存款-平均余额,ths_avg_balance_fixed_deposit_hks,元,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,货币币种,是
+10776,储蓄定期存款-利息支出,ths_srd_interest_cost_hks,元,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,货币币种,是
+10777,储蓄活期存款-平均余额,ths_avg_balance_current_deposit_hks,元,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,货币币种,是
+10778,储蓄活期存款-利息支出,ths_scd_interest_cost_hks,元,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,货币币种,是
+10779,其他存款-平均余额,ths_od_avg_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,货币币种,是
+10780,其他存款-利息支出,ths_od_interest_cost_hks,元,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,货币币种,是
+10781,个人贷款-平均余额,ths_pl_avg_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,货币币种,是
+10782,个人贷款-利息收入,ths_pl_interest_cost_hks,元,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,货币币种,是
+10783,企业贷款-平均余额,ths_cl_avg_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,货币币种,是
+10784,企业贷款-利息收入,ths_cl_interest_cost_hks,元,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,货币币种,是
+10785,保证贷款-平均余额,ths_gl_avg_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,货币币种,是
+10786,保证贷款-利息收入,ths_gl_interest_cost_hks,元,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,货币币种,是
+10787,抵押贷款-平均余额,ths_ml_avg_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,货币币种,是
+10788,抵押贷款-利息收入,ths_ml_interest_cost_hks,元,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,货币币种,是
+10789,票据贴现-平均余额,ths_bd_avg_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,货币币种,是
+10790,票据贴现-利息收入,ths_bd_interest_cost_hks,元,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,货币币种,是
+10791,信用贷款-平均余额,ths_credit_loan_avg_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,货币币种,是
+10792,信用贷款-利息收入,ths_credit_loan_interest_cost_hks,元,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,货币币种,是
+10793,质押贷款-平均余额,ths_pledge_loan_avg_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,货币币种,是
+10794,质押贷款-利息收入,ths_pledge_loan_interest_cost_hks,元,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,货币币种,是
+10795,其他贷款-平均余额,ths_ol_avg_balance_hks,元,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,货币币种,是
+10796,其他贷款-利息收入,ths_ol_interest_cost_hks,元,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,货币币种,是
+10797,短期贷款－年平均利率,ths_sl_avg_rate_y_hks,%,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,,是
+10798,中长期贷款－年平均利率,ths_mll_avg_rate_y_hks,%,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,,是
+10799,企业存款－年平均利率,ths_cd_avg_rate_y_hks,%,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,,是
+10800,储蓄存款－年平均利率,ths_sd_avg_rate_y_hks,%,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,,是
+10801,企业定期存款-年平均利率,ths_corp_fd_avg_interest_y_hks,%,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,,是
+10802,企业活期存款-年平均利率,ths_corp_cd_avg_interest_y_hks,%,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,,是
+10803,储蓄定期存款-年平均利率,ths_avg_interest_fixed_deposit_hks,%,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,,是
+10804,储蓄活期存款-年平均利率,ths_avg_interest_current_deposit_hks,%,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,,是
+10805,其他存款-年平均利率,ths_od_avg_rate_y_hks,%,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,,是
+10806,个人贷款-年平均利率,ths_pl_avg_rate_y_hks,%,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,,是
+10807,企业贷款-年平均利率,ths_cl_avg_rate_y_hks,%,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,,是
+10808,保证贷款-年平均利率,ths_gl_avg_rate_y_hks,%,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,,是
+10809,抵押贷款-年平均利率,ths_ml_avg_rate_y_hks,%,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,,是
+10810,票据贴现-年平均利率,ths_bd_avg_rate_y_hks,%,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,,是
+10811,信用贷款-年平均利率,ths_credit_loan_avg_rate_y_hks,%,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,,是
+10812,质押贷款-年平均利率,ths_pledge_loan_avg_rate_y_hks,%,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,,是
+10813,其他贷款-年平均利率,ths_ol_avg_rate_y_hks,%,港股财务分析 / 港股银行业专项指标 / 平均存贷款利率,,是
+10870,票据贴现－逾期金额,ths_bd_overdue_amt_hks,元,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,货币币种,是
+10871,票据贴现－逾期90天以内金额,ths_bd_overdue_amt_90d_hks,元,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,货币币种,是
+10872,票据贴现－逾期90天至1年金额,ths_bd_overdue_amt_90d_to_1y_hks,元,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,货币币种,是
+10873,票据贴现－逾期1年至3年金额,ths_bd_overdue_amt_1y_to_3y_hks,元,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,货币币种,是
+10874,票据贴现－逾期3年以上金额,ths_bd_overdue_amt_over3y_hks,元,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,货币币种,是
+10875,保证借款－逾期金额,ths_gb_overdue_amt_hks,元,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,货币币种,是
+10876,保证借款－逾期90天以内金额,ths_gb_overdue_ratio_hks,元,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,货币币种,是
+10877,保证借款－逾期90天至1年金额,ths_gb_overdue_amt_90d_hks,元,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,货币币种,是
+10878,保证借款－逾期1年至3年金额,ths_gb_overdue_ratio_90d_hks,元,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,货币币种,是
+10879,保证借款－逾期3年以上金额,ths_gb_overdue_amt_90d_to_1y_hks,元,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,货币币种,是
+10880,抵押借款－逾期金额,ths_mb_overdue_amt_hks,元,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,货币币种,是
+10881,抵押借款－逾期90天以内金额,ths_mb_overdue_amt_90d_hks,元,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,货币币种,是
+10882,抵押借款－逾期90天至1年金额,ths_mb_overdue_amt_90d_to_1y_hks,元,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,货币币种,是
+10883,抵押借款－逾期1年至3年金额,ths_mb_overdue_amt_1y_to_3y_hks,元,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,货币币种,是
+10884,抵押借款－逾期3年以上金额,ths_mb_overdue_amt_over3y_hks,元,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,货币币种,是
+10885,质押借款－逾期金额,ths_pb_overdue_amt_hks,元,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,货币币种,是
+10886,质押借款－逾期90天以内金额,ths_pb_overdue_amt_90d_hks,元,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,货币币种,是
+10887,质押借款－逾期90天至1年金额,ths_pb_overdue_amt_90d_to_1y_hks,元,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,货币币种,是
+10888,质押借款－逾期1年至3年金额,ths_pb_overdue_amt_1y_to_3y_hks,元,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,货币币种,是
+10889,质押借款－逾期3年以上金额,ths_pb_overdue_amt_over3y_hks,元,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,货币币种,是
+10890,信用借款－逾期金额,ths_cb_overdue_amt_hks,元,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,货币币种,是
+10891,信用借款－逾期90天以内金额,ths_cb_overdue_amt_90d_hks,元,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,货币币种,是
+10892,信用借款－逾期90天至1年金额,ths_cb_overdue_amt_90d_to_1y_hks,元,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,货币币种,是
+10893,信用借款－逾期1年至3年金额,ths_cb_overdue_amt_1y_to_3y_hks,元,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,货币币种,是
+10894,信用借款－逾期3年以上金额,ths_cb_overdue_amt_over3y_hks,元,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,货币币种,是
+10895,合计－逾期金额,ths_total_overdue_amt_hks,元,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,货币币种,是
+10896,合计－逾期90天以内金额,ths_total_overdue_amt_90d_hks,元,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,货币币种,是
+10897,合计－逾期90天至1年金额,ths_total_overdue_amt_90d_to_1y_hks,元,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,货币币种,是
+10898,合计－逾期1年至3年金额,ths_total_overdue_amt_1y_to_3y_hks,元,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,货币币种,是
+10899,合计－逾期3年以上金额,ths_total_overdue_amt_over3y_hks,元,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,货币币种,是
+10900,票据贴现－逾期占比,ths_bd_overdue_ratio_hks,%,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,,是
+10901,票据贴现－逾期90天以内占比,ths_bd_overdue_ratio_90d_hks,%,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,,是
+10902,票据贴现－逾期90天至1年占比,ths_bd_overdue_ratio_90d_to_1y_hks,%,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,,是
+10903,票据贴现－逾期1年至3年占比,ths_bd_overdue_ratio_1y_to_3y_hks,%,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,,是
+10904,票据贴现－逾期3年以上占比,ths_bd_overdue_ratio_over3y_hks,%,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,,是
+10905,保证借款－逾期占比,ths_gb_overdue_ratio_90d_to_1y_hks,%,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,,是
+10906,保证借款－逾期90天以内占比,ths_gb_overdue_amt_1y_to_3y_hks,%,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,,是
+10907,保证借款－逾期90天至1年占比,ths_gb_overdue_ratio_1y_to_3y_hks,%,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,,是
+10908,保证借款－逾期1年至3年占比,ths_gb_overdue_amt_over3y_hks,%,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,,是
+10909,保证借款－逾期3年以上占比,ths_gb_overdue_ratio_over3y_hks,%,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,,是
+10910,抵押借款－逾期占比,ths_mb_overdue_ratio_hks,%,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,,是
+10911,抵押借款－逾期90天以内占比,ths_mb_overdue_ratio_90d_hks,%,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,,是
+10912,抵押借款－逾期90天至1年占比,ths_mb_overdue_ratio_90d_to_1y_hks,%,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,,是
+10913,抵押借款－逾期1年至3年占比,ths_mb_overdue_ratio_1y_to_3y_hks,%,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,,是
+10914,抵押借款－逾期3年以上占比,ths_mb_overdue_ratio_over3y_hks,%,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,,是
+10915,质押借款－逾期占比,ths_pb_overdue_ratio_hks,%,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,,是
+10916,质押借款－逾期90天以内占比,ths_pb_overdue_ratio_90d_hks,%,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,,是
+10917,质押借款－逾期90天至1年占比,ths_pb_overdue_ratio_90d_to_1y_hks,%,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,,是
+10918,质押借款－逾期1年至3年占比,ths_pb_overdue_ratio_1y_to_3y_hks,%,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,,是
+10919,质押借款－逾期3年以上占比,ths_pb_overdue_ratio_over3y_hks,%,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,,是
+10920,信用借款－逾期占比,ths_cb_overdue_ratio_hks,%,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,,是
+10921,信用借款－逾期90天以内占比,ths_cb_overdue_ratio_90d_hks,%,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,,是
+10922,信用借款－逾期90天至1年占比,ths_cb_overdue_ratio_90d_to_1y_hks,%,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,,是
+10923,信用借款－逾期1年至3年占比,ths_cb_overdue_ratio_1y_to_3y_hks,%,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,,是
+10924,信用借款－逾期3年以上占比,ths_cb_overdue_ratio_over3y_hks,%,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,,是
+10925,合计－逾期占比,ths_total_overdue_ratio_hks,%,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,,是
+10926,合计－逾期90天以内占比,ths_total_overdue_ratio_90d_hks,%,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,,是
+10927,合计－逾期90天至1年占比,ths_total_overdue_ratio_90d_to_1y_hks,%,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,,是
+10928,合计－逾期1年至3年占比,ths_total_overdue_ratio_1y_to_3y_hks,%,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,,是
+10929,合计－逾期3年以上占比,ths_total_overdue_ratio_over3y_hks,%,港股财务分析 / 港股银行业专项指标 / 逾期贷款明细,,是
+10749,正常类占比,ths_normal_asset_ratio_hks,%,港股财务分析 / 港股银行业专项指标 / 银行贷款的五级分类指标,,是
+10750,正常类贷款迁徙率,ths_normal_loan_migration_rate_hks,%,港股财务分析 / 港股银行业专项指标 / 银行贷款的五级分类指标,,是
+10751,关注类占比,ths_concern_asset_ratio_hks,%,港股财务分析 / 港股银行业专项指标 / 银行贷款的五级分类指标,,是
+10752,关注类贷款迁徙率,ths_focused_loan_migration_rate_hks,%,港股财务分析 / 港股银行业专项指标 / 银行贷款的五级分类指标,,是
+10753,次级类占比,ths_seondary_asset_ratio_hks,%,港股财务分析 / 港股银行业专项指标 / 银行贷款的五级分类指标,,是
+10754,次级类贷款迁徙率,ths_subprime_loan_migration_rate_hks,%,港股财务分析 / 港股银行业专项指标 / 银行贷款的五级分类指标,,是
+10755,可疑类占比,ths_doubtful_asset_ratio_hks,%,港股财务分析 / 港股银行业专项指标 / 银行贷款的五级分类指标,,是
+10756,可疑类贷款迁徙率,ths_suspicious_loan_migration_rate_hks,%,港股财务分析 / 港股银行业专项指标 / 银行贷款的五级分类指标,,是
+10757,损失类占比,ths_loss_asset_ratio_hks,%,港股财务分析 / 港股银行业专项指标 / 银行贷款的五级分类指标,,是
+10758,正常类资产,ths_normal_asset_hks,元,港股财务分析 / 港股银行业专项指标 / 银行贷款的五级分类指标,货币币种,是
+10759,关注类资产,ths_concern_asset_hks,元,港股财务分析 / 港股银行业专项指标 / 银行贷款的五级分类指标,货币币种,是
+10760,次级类资产,ths_seondary_asset_hks,元,港股财务分析 / 港股银行业专项指标 / 银行贷款的五级分类指标,货币币种,是
+10761,可疑类资产,ths_doubtful_asset_hks,元,港股财务分析 / 港股银行业专项指标 / 银行贷款的五级分类指标,货币币种,是
+10762,损失类资产,ths_loss_asset_hks,元,港股财务分析 / 港股银行业专项指标 / 银行贷款的五级分类指标,货币币种,是
+06733,原始币种,ths_original_currency_hks,,港股财务报表,,
+11644,报表格式,ths_statement_format_hk,,港股财务报表,,
+16167,最新报告期,ths_latest_rp_hks,,港股财务报表,,
+05340,营业额,ths_operating_amt_hks,元,港股财务报表 / 港股一般企业 / 港股利润表,报表类型、货币币种,是
+05421,营业收入特殊科目,ths_oi_si_hks,元,港股财务报表 / 港股一般企业 / 港股利润表,报表类型、货币币种,是
+05428,营业收入,ths_revenue_hks,元,港股财务报表 / 港股一般企业 / 港股利润表,报表类型、货币币种,是
+05455,销售成本,ths_sales_cost_hks,元,港股财务报表 / 港股一般企业 / 港股利润表,报表类型、货币币种,是
+05457,毛利,ths_gross_profit_hks,元,港股财务报表 / 港股一般企业 / 港股利润表,报表类型、货币币种,是
+05460,其他收入,ths_other_revenues_hks,元,港股财务报表 / 港股一般企业 / 港股利润表,报表类型、货币币种,是
+05464,销售费用,ths_sales_fee_hks,元,港股财务报表 / 港股一般企业 / 港股利润表,报表类型、货币币种,是
+05467,管理费用,ths_manage_fee_hks,元,港股财务报表 / 港股一般企业 / 港股利润表,报表类型、货币币种,是
+05469,财务费用,ths_financing_expenses_hks,元,港股财务报表 / 港股一般企业 / 港股利润表,报表类型、货币币种,是
+05471,其他费用,ths_othr_fees_hks,元,港股财务报表 / 港股一般企业 / 港股利润表,报表类型、货币币种,是
+05473,投资物业公允价值变动,ths_invest_property_fv_chg_hks,元,港股财务报表 / 港股一般企业 / 港股利润表,报表类型、货币币种,是
+05475,经营溢利特殊科目,ths_operating_premium_profit_si_hks,元,港股财务报表 / 港股一般企业 / 港股利润表,报表类型、货币币种,是
+05492,经营溢利,ths_operating_premium_profit_hks,元,港股财务报表 / 港股一般企业 / 港股利润表,报表类型、货币币种,是
+05504,应占联营公司业绩,ths_toallied_corp_perf_hks,元,港股财务报表 / 港股一般企业 / 港股利润表,报表类型、货币币种,是
+05506,应占共同控制实体业绩,ths_to_joint_control_entity_perf_hks,元,港股财务报表 / 港股一般企业 / 港股利润表,报表类型、货币币种,是
+05512,税前利润特殊科目,ths_pre_tax_profit_si_hks,元,港股财务报表 / 港股一般企业 / 港股利润表,报表类型、货币币种,是
+05514,税前利润,ths_pre_tax_profit_hks,元,港股财务报表 / 港股一般企业 / 港股利润表,报表类型、货币币种,是
+05516,所得税费用,ths_income_tax_cost_hks,元,港股财务报表 / 港股一般企业 / 港股利润表,报表类型、货币币种,是
+05518,税后利润特殊科目,ths_after_tax_profit_si_hks,元,港股财务报表 / 港股一般企业 / 港股利润表,报表类型、货币币种,是
+05521,税后利润,ths_after_tax_profit_hks,元,港股财务报表 / 港股一般企业 / 港股利润表,报表类型、货币币种,是
+05524,归属于母公司股东利润,ths_profit_atsopc_hks,元,港股财务报表 / 港股一般企业 / 港股利润表,报表类型、货币币种,是
+05526,归属于非控制股股东利润,ths_profit_atncs_hks,元,港股财务报表 / 港股一般企业 / 港股利润表,报表类型、货币币种,是
+05528,基本每股收益,ths_ps_basic_eps_hks,元,港股财务报表 / 港股一般企业 / 港股利润表,报表类型、货币币种,是
+05530,稀释每股收益,ths_dlt_earnings_per_share_hks,元,港股财务报表 / 港股一般企业 / 港股利润表,报表类型、货币币种,是
+05532,其他综合收益,ths_other_compre_income_hks,元,港股财务报表 / 港股一般企业 / 港股利润表,报表类型、货币币种,是
+05534,综合收益总额,ths_total_compre_income_hks,元,港股财务报表 / 港股一般企业 / 港股利润表,报表类型、货币币种,是
+05536,归属于母公司股东综合收益总额,ths_total_income_atsopc_hks,元,港股财务报表 / 港股一般企业 / 港股利润表,报表类型、货币币种,是
+05538,归属于非控制股股东综合收益总额,ths_total_income_non_control_hks,元,港股财务报表 / 港股一般企业 / 港股利润表,报表类型、货币币种,是
+17017,归属于非股东利润,ths_profit_attrbt_to_nonholders_hks,元,港股财务报表 / 港股一般企业 / 港股利润表,报表类型、货币币种,是
+17018,归属于非股东综合收益总额,ths_total_income_atncs_hks,元,港股财务报表 / 港股一般企业 / 港股利润表,报表类型、货币币种,是
+08495,单季度-营业额,ths_sq_business_vol_hks,元,港股财务报表 / 港股一般企业 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08496,单季度-营业收入,ths_sq_revenue_hks,元,港股财务报表 / 港股一般企业 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08497,单季度-营业收入特殊科目,ths_sq_oi_si_hks,元,港股财务报表 / 港股一般企业 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08498,单季度-销售成本,ths_sq_sales_cost_hks,元,港股财务报表 / 港股一般企业 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08499,单季度-毛利,ths_sq_gross_profit_hks,元,港股财务报表 / 港股一般企业 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08500,单季度-其他收入,ths_sq_other_revenues_hks,元,港股财务报表 / 港股一般企业 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08501,单季度-销售费用,ths_sq_sales_fee_hks,元,港股财务报表 / 港股一般企业 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08502,单季度-管理费用,ths_sq_manage_fee_hks,元,港股财务报表 / 港股一般企业 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08503,单季度-财务费用,ths_sq_finance_cost_hks,元,港股财务报表 / 港股一般企业 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08504,单季度-其他费用,ths_sq_other_fees_hks,元,港股财务报表 / 港股一般企业 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08505,单季度-投资物业公允价值变动,ths_sq_invest_property_fv_change_hks,元,港股财务报表 / 港股一般企业 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08506,单季度-经营溢利特殊科目,ths_sq_operating_premium_profit_si_hks,元,港股财务报表 / 港股一般企业 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08507,单季度-经营溢利,ths_sq_operating_premium_profit_hks,元,港股财务报表 / 港股一般企业 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08508,单季度-应占联营公司业绩,ths_sq_toallied_corp_perf_hks,元,港股财务报表 / 港股一般企业 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08509,单季度-应占共同控制实体业绩,ths_sq_to_jce_perf_hks,元,港股财务报表 / 港股一般企业 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08510,单季度-税前利润特殊科目,ths_sq_pre_tax_profit_si_hks,元,港股财务报表 / 港股一般企业 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08511,单季度-税前利润,ths_sq_pre_tax_profit_hks,元,港股财务报表 / 港股一般企业 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08512,单季度-所得税费用,ths_sq_income_tax_cost_hks,元,港股财务报表 / 港股一般企业 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08513,单季度-税后利润特殊科目,ths_sq_after_tax_profit_si_hks,元,港股财务报表 / 港股一般企业 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08514,单季度-税后利润,ths_sq_after_tax_profit_hks,元,港股财务报表 / 港股一般企业 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08515,单季度-归属于母公司股东利润,ths_sq_profit_atsopc_hks,元,港股财务报表 / 港股一般企业 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08516,单季度-归属于非控制股股东利润,ths_sq_profit_atncs_hks,元,港股财务报表 / 港股一般企业 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08517,单季度-基本每股收益,ths_sq_basic_hks,元,港股财务报表 / 港股一般企业 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08518,单季度-稀释每股收益,ths_sq_dltd_earnings_per_share_hks,元,港股财务报表 / 港股一般企业 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08519,单季度-其他综合收益,ths_sq_other_compre_income_hks,元,港股财务报表 / 港股一般企业 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08520,单季度-综合收益总额,ths_sq_total_compre_income_hks,元,港股财务报表 / 港股一般企业 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08521,单季度-归属于母公司股东综合收益总额,ths_sq_total_income_atsopc_hks,元,港股财务报表 / 港股一般企业 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08522,单季度-归属于非控制股股东综合收益总额,ths_sq_total_income_atncs_hks,元,港股财务报表 / 港股一般企业 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+16823,单季度-研发费用,ths_sq_rad_cost_hks,元,港股财务报表 / 港股一般企业 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+05341,经营活动现金流量净额,ths_ncf_of_oa_hks,元,港股财务报表 / 港股一般企业 / 港股现金流量表,报表类型、货币币种,是
+05350,投资活动现金流量净额,ths_ncf_of_ia_hks,元,港股财务报表 / 港股一般企业 / 港股现金流量表,报表类型、货币币种,是
+05358,融资活动现金流量净额,ths_ncf_of_fa_hks,元,港股财务报表 / 港股一般企业 / 港股现金流量表,报表类型、货币币种,是
+05368,现金及现金等价物净增加额,ths_net_increase_in_cce_hks,元,港股财务报表 / 港股一般企业 / 港股现金流量表,报表类型、货币币种,是
+05377,现金及现金等价物期初余额,ths_initial_balance_of_cce_hks,元,港股财务报表 / 港股一般企业 / 港股现金流量表,报表类型、货币币种,是
+05384,汇率变动对现金及现金等价物的影响,ths_effect_of_exchange_chg_on_cce_hks,元,港股财务报表 / 港股一般企业 / 港股现金流量表,报表类型、货币币种,是
+05391,现金及现金等价物期末余额,ths_final_balance_of_cce_hks,元,港股财务报表 / 港股一般企业 / 港股现金流量表,报表类型、货币币种,是
+06248,取得固定资产、无形资产和其他长期资产所支付的现金,ths_cash_from_assets_sum_hks,元,港股财务报表 / 港股一般企业 / 港股现金流量表,报表类型、货币币种,是
+09345,折旧与摊销,ths_depreciation_and_amortization_hks,元,港股财务报表 / 港股一般企业 / 港股现金流量表,报表类型、货币币种,是
+09346,营运资金变动,ths_operating_capital_change_hks,元,港股财务报表 / 港股一般企业 / 港股现金流量表,报表类型、货币币种,是
+09347,投资购买,ths_invest_buy_hks,元,港股财务报表 / 港股一般企业 / 港股现金流量表,报表类型、货币币种,是
+09348,股份回购,ths_shares_repur_hks,元,港股财务报表 / 港股一般企业 / 港股现金流量表,报表类型、货币币种,是
+09349,支付股息,ths_dividend_paid_hks,元,港股财务报表 / 港股一般企业 / 港股现金流量表,报表类型、货币币种,是
+09350,股票发行,ths_stock_issue_hks,元,港股财务报表 / 港股一般企业 / 港股现金流量表,报表类型、货币币种,是
+08621,单季度-经营活动现金流量净额,ths_sq_ncf_of_oa_hks,元,港股财务报表 / 港股一般企业 / 港股现金流量表(单季度),年度、季度、报表类型、货币币种,是
+08622,单季度-投资活动现金流量净额,ths_sq_ncf_of_ia_hks,元,港股财务报表 / 港股一般企业 / 港股现金流量表(单季度),年度、季度、报表类型、货币币种,是
+08623,单季度-融资活动现金流量净额,ths_sq_ncf_offa_hks,元,港股财务报表 / 港股一般企业 / 港股现金流量表(单季度),年度、季度、报表类型、货币币种,是
+08624,单季度-现金及现金等价物净增加额,ths_sq_net_increase_in_cce_hks,元,港股财务报表 / 港股一般企业 / 港股现金流量表(单季度),年度、季度、报表类型、货币币种,是
+08625,单季度-现金及现金等价物期初余额,ths_sq_initial_balance_of_cace_hks,元,港股财务报表 / 港股一般企业 / 港股现金流量表(单季度),年度、季度、报表类型、货币币种,是
+08626,单季度-汇率变动对现金及现金等价物的影响,ths_sq_effect_of_erc_on_cce_hks,元,港股财务报表 / 港股一般企业 / 港股现金流量表(单季度),年度、季度、报表类型、货币币种,是
+08627,单季度-现金及现金等价物期末余额,ths_sq_final_balance_of_cce_hks,元,港股财务报表 / 港股一般企业 / 港股现金流量表(单季度),年度、季度、报表类型、货币币种,是
+09351,单季度-折旧与摊销,ths_sq_daa_hks,元,港股财务报表 / 港股一般企业 / 港股现金流量表(单季度),年度、季度、报表类型、货币币种,是
+09352,单季度-营运资金变动,ths_sq_operating_capital_change_hks,元,港股财务报表 / 港股一般企业 / 港股现金流量表(单季度),年度、季度、报表类型、货币币种,是
+09353,单季度-投资购买,ths_sq_invest_buy_hks,元,港股财务报表 / 港股一般企业 / 港股现金流量表(单季度),年度、季度、报表类型、货币币种,是
+09354,单季度-股份回购,ths_sq_shares_repur_hks,元,港股财务报表 / 港股一般企业 / 港股现金流量表(单季度),年度、季度、报表类型、货币币种,是
+09355,单季度-支付股息,ths_sq_dividend_paid_hks,元,港股财务报表 / 港股一般企业 / 港股现金流量表(单季度),年度、季度、报表类型、货币币种,是
+09356,单季度-股票发行,ths_sq_stock_issue_hks,元,港股财务报表 / 港股一般企业 / 港股现金流量表(单季度),年度、季度、报表类型、货币币种,是
+05550,股本,ths_shares_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股所有者权益,报表类型、货币币种,是
+05551,储备,ths_reserve_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股所有者权益,报表类型、货币币种,是
+05552,权益特殊科目,ths_equity_si_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股所有者权益,报表类型、货币币种,是
+05553,归属于母公司股东权益,ths_equity_atsopc_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股所有者权益,报表类型、货币币种,是
+05554,归属于非控制股股东权益,ths_equity_atncs_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股所有者权益,报表类型、货币币种,是
+05555,权益合计,ths_total_equity_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股所有者权益,报表类型、货币币种,是
+11811,优先股,ths_preferred_share_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股所有者权益,报表类型、货币币种,是
+05497,应付账款及票据,ths_accounts_payable_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股流动负债,报表类型、货币币种,是
+05499,应计费用及其他应付款,ths_accrued_expenses_etc_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股流动负债,报表类型、货币币种,是
+05501,短期借款,ths_st_loan_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股流动负债,报表类型、货币币种,是
+05503,应交税费,ths_tax_payable_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股流动负债,报表类型、货币币种,是
+05505,应付附属公司款项,ths_money_payable_toac_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股流动负债,报表类型、货币币种,是
+05507,应付共同控制体款项,ths_joint_control_entity_payable_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股流动负债,报表类型、货币币种,是
+05509,应付联营公司款项,ths_payable_to_associated_corp_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股流动负债,报表类型、货币币种,是
+05511,流动负债特殊科目,ths_current_liab_si_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股流动负债,报表类型、货币币种,是
+05513,流动负债合计,ths_total_current_liab_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股流动负债,报表类型、货币币种,是
+08972,衍生金融负债,ths_derivative_fnncl_current_liab_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股流动负债,报表类型、货币币种,是
+05339,应收账款及票据,ths_account_receivable_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股流动资产,报表类型、货币币种,是
+05366,存货,ths_inventory_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股流动资产,报表类型、货币币种,是
+05374,受限制存款及现金,ths_restricted_deposits_and_cash_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股流动资产,报表类型、货币币种,是
+05382,现金及现金等价物,ths_cce_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股流动资产,报表类型、货币币种,是
+05399,应收联营公司款项,ths_receivables_from_allied_corp_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股流动资产,报表类型、货币币种,是
+05420,流动资产特殊科目,ths_current_assets_si_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股流动资产,报表类型、货币币种,是
+05427,流动资产合计,ths_total_current_assets_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股流动资产,报表类型、货币币种,是
+05436,预付款项、按金及其他应收款项,ths_prepay_deposits_etc_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股流动资产,报表类型、货币币种,是
+05446,应收共同控制体款项,ths_receivables_from_jce_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股流动资产,报表类型、货币币种,是
+05450,应收附属公司款项,ths_receivables_from_ac_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股流动资产,报表类型、货币币种,是
+05454,可收回税项,ths_recoverable_tax_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股流动资产,报表类型、货币币种,是
+05487,交易性金融资产,ths_tradable_fnncl_assets_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股流动资产,报表类型、货币币种,是
+05515,长期借款,ths_lt_loan_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股非流动负债,报表类型、货币币种,是
+05517,递延所得税负债,ths_dt_liab_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股非流动负债,报表类型、货币币种,是
+05520,非流动负债特殊科目,ths_noncurrent_liab_si_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股非流动负债,报表类型、货币币种,是
+05523,非流动负债合计,ths_total_noncurrent_liab_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股非流动负债,报表类型、货币币种,是
+05549,负债合计,ths_total_liab_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股非流动负债,报表类型、货币币种,是
+05348,可供出售金融资产,ths_saleable_finacial_assets_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股非流动资产,报表类型、货币币种,是
+05356,无形资产,ths_intangible_assets_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股非流动资产,报表类型、货币币种,是
+05375,商誉,ths_goodwill_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股非流动资产,报表类型、货币币种,是
+05389,附属公司权益,ths_ac_equity_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股非流动资产,报表类型、货币币种,是
+05404,共同控制体权益,ths_common_control_equity_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股非流动资产,报表类型、货币币种,是
+05440,预付租赁款,ths_lease_prepay_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股非流动资产,报表类型、货币币种,是
+05443,不动产、厂房和设备,ths_real_estate_plant_and_equip_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股非流动资产,报表类型、货币币种,是
+05448,联营公司权益,ths_allied_corp_equity_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股非流动资产,报表类型、货币币种,是
+05452,投资物业,ths_invest_property_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股非流动资产,报表类型、货币币种,是
+05459,非流动资产特殊科目,ths_noncurrent_assets_si_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股非流动资产,报表类型、货币币种,是
+05463,非流动资产合计,ths_total_noncurrent_assets_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股非流动资产,报表类型、货币币种,是
+05481,递延所得税资产,ths_dt_assets_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股非流动资产,报表类型、货币币种,是
+05495,资产合计,ths_total_asset_hks,元,港股财务报表 / 港股一般企业 / 港股资产负债表 / 港股非流动资产,报表类型、货币币种,是
+06388,预警类型,ths_early_warning_type_hks,,港股财务报表 / 港股业绩预告 / 港股业绩预警,,
+06389,预警摘要,ths_warn_abstract_hk,,港股财务报表 / 港股业绩预告 / 港股业绩预警,,
+06390,业绩预告内容,ths_perfe_fore_content_hks,,港股财务报表 / 港股业绩预告 / 港股业绩预警,,
+06391,业绩变化原因,ths_perf_chg_reason_hks,,港股财务报表 / 港股业绩预告 / 港股业绩预警,,
+06392,预告日期,ths_fore_date_hks,,港股财务报表 / 港股业绩预告 / 港股业绩预警,,
+05355,业绩简报实际披露日期,ths_perf_brief_actual_dd_hks,,港股财务报表 / 港股业绩预告 / 港股财报披露时间,,
+05365,业绩报告实际披露日期,ths_perf_report_actual_dd_hks,,港股财务报表 / 港股业绩预告 / 港股财报披露时间,,
+05631,业绩报告截止日期,ths_perf_report_ed_hks,,港股财务报表 / 港股业绩预告 / 港股财报披露时间,,
+06393,业绩简报预计披露日期,ths_perf_briefing_fore_dsclsr_date_hks,,港股财务报表 / 港股业绩预告 / 港股财报披露时间,,
+06394,业绩报告预计披露日期,ths_perf_report_foredsclsr_date_hks,,港股财务报表 / 港股业绩预告 / 港股财报披露时间,,
+05444,保费及收费收入,ths_premium_and_charge_income_hks,元,港股财务报表 / 港股保险公司 / 港股利润表,报表类型、货币币种,是
+05447,减：分保至再保险支出,ths_rein_to_rein_expense_hks,元,港股财务报表 / 港股保险公司 / 港股利润表,报表类型、货币币种,是
+05449,减：未到期责任准备金,ths_unearned_premium_reserve_hks,元,港股财务报表 / 港股保险公司 / 港股利润表,报表类型、货币币种,是
+05451,净保费及收费收入,ths_net_premium_and_charge_income_hks,元,港股财务报表 / 港股保险公司 / 港股利润表,报表类型、货币币种,是
+05494,保险及合约付款,ths_insurance_and_contract_payment_hks,元,港股财务报表 / 港股保险公司 / 港股利润表,报表类型、货币币种,是
+05496,减：分保保险及投资合约付款,ths_riand_invest_contract_pay_hks,元,港股财务报表 / 港股保险公司 / 港股利润表,报表类型、货币币种,是
+05498,净保险及合约付款,ths_net_insurance_and_contract_pay_hks,元,港股财务报表 / 港股保险公司 / 港股利润表,报表类型、货币币种,是
+05500,业务及管理费,ths_business_and_manage_fee_hks,元,港股财务报表 / 港股保险公司 / 港股利润表,报表类型、货币币种,是
+05502,其他业务成本,ths_other_business_costs_hks,元,港股财务报表 / 港股保险公司 / 港股利润表,报表类型、货币币种,是
+08587,单季度-保费及收费收入,ths_sq_premium_and_charge_income_hks,元,港股财务报表 / 港股保险公司 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08588,单季度-分保至再保险支出,ths_sq_to_reinsurance_cost_hks,元,港股财务报表 / 港股保险公司 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08589,单季度-未到期责任准备金,ths_sq_unearned_premium_reserve_hks,元,港股财务报表 / 港股保险公司 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08590,单季度-净保费及收费收入,ths_sq_net_premium_and_charge_hks,元,港股财务报表 / 港股保险公司 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08595,单季度-保险及合约付款,ths_sq_iac_payment_hks,元,港股财务报表 / 港股保险公司 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08596,单季度-分保保险及投资合约付款,ths_sq_rein_insurance_and_ic_pay_hks,元,港股财务报表 / 港股保险公司 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08597,单季度-净保险及合约付款,ths_sq_net_iac_pay_hks,元,港股财务报表 / 港股保险公司 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08599,单季度-业务及管理费,ths_sq_business_and_manage_fee_hks,元,港股财务报表 / 港股保险公司 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08601,单季度-其他业务成本,ths_sq_other_business_costs_hks,元,港股财务报表 / 港股保险公司 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08602,单季度-营业支出特殊科目,ths_sq_operating_payment_si_hks,元,港股财务报表 / 港股保险公司 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08603,单季度-营业支出,ths_sq_operating_payout_hks,元,港股财务报表 / 港股保险公司 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+05544,应付保单合约款,ths_insurance_contract_payable_hks,元,港股财务报表 / 港股保险公司 / 港股资产负债表 / 港股负债,报表类型、货币币种,是
+05545,应付投资合约款,ths_invest_contract_payable_hks,元,港股财务报表 / 港股保险公司 / 港股资产负债表 / 港股负债,报表类型、货币币种,是
+05546,应付保费,ths_premium_payable_hks,元,港股财务报表 / 港股保险公司 / 港股资产负债表 / 港股负债,报表类型、货币币种,是
+05547,预收保费,ths_advance_premium_hks,元,港股财务报表 / 港股保险公司 / 港股资产负债表 / 港股负债,报表类型、货币币种,是
+05548,卖出回购金融资产,ths_sell_repur_fnncl_assets_hks,元,港股财务报表 / 港股保险公司 / 港股资产负债表 / 港股负债,报表类型、货币币种,是
+05482,金融租赁款,ths_fnncl_lease_hks,元,港股财务报表 / 港股保险公司 / 港股资产负债表 / 港股资产,报表类型、货币币种,是
+05484,应收保费,ths_premium_receivable_hks,元,港股财务报表 / 港股保险公司 / 港股资产负债表 / 港股资产,报表类型、货币币种,是
+05485,再保险资产,ths_rein_assets_hks,元,港股财务报表 / 港股保险公司 / 港股资产负债表 / 港股资产,报表类型、货币币种,是
+05491,贷款、垫款及应收款项,ths_loans_and_receivables_advance_hks,元,港股财务报表 / 港股保险公司 / 港股资产负债表 / 港股资产,报表类型、货币币种,是
+05349,利息收入,ths_interest_income_hks,元,港股财务报表 / 港股商业银行 / 港股利润表,报表类型、货币币种,是
+05357,利息支出,ths_interest_payout_hks,元,港股财务报表 / 港股商业银行 / 港股利润表,报表类型、货币币种,是
+05367,利息净收入,ths_interest_net_income_hks,元,港股财务报表 / 港股商业银行 / 港股利润表,报表类型、货币币种,是
+05376,手续费及佣金收入,ths_fee_and_commi_income_hks,元,港股财务报表 / 港股商业银行 / 港股利润表,报表类型、货币币种,是
+05383,手续费及佣金支出,ths_charge_and_commi_expenses_hks,元,港股财务报表 / 港股商业银行 / 港股利润表,报表类型、货币币种,是
+05390,手续费及佣金净收入,ths_commi_net_income_hks,元,港股财务报表 / 港股商业银行 / 港股利润表,报表类型、货币币种,是
+05400,交易收入,ths_td_income_hks,元,港股财务报表 / 港股商业银行 / 港股利润表,报表类型、货币币种,是
+05405,指定以公允价值列账之金融工具收益,ths_income_of_fi_appointed_for_fv_hks,元,港股财务报表 / 港股商业银行 / 港股利润表,报表类型、货币币种,是
+05413,保费收益,ths_premium_income_hks,元,港股财务报表 / 港股商业银行 / 港股利润表,报表类型、货币币种,是
+05437,保险赔偿及投保人负债变动净额,ths_net_chg_in_ic_etc_hks,元,港股财务报表 / 港股商业银行 / 港股利润表,报表类型、货币币种,是
+05441,未扣除减值的营业收入,ths_oi_undeduct_impairment_hks,元,港股财务报表 / 港股商业银行 / 港股利润表,报表类型、货币币种,是
+05477,贷款减值准备,ths_loan_ir_hks,元,港股财务报表 / 港股商业银行 / 港股利润表,报表类型、货币币种,是
+05479,其他减值准备,ths_othr_irs_hks,元,港股财务报表 / 港股商业银行 / 港股利润表,报表类型、货币币种,是
+05488,营业支出特殊科目,ths_operating_payment_si_hks,元,港股财务报表 / 港股商业银行 / 港股利润表,报表类型、货币币种,是
+05490,营业支出,ths_operating_payout_hks,元,港股财务报表 / 港股商业银行 / 港股利润表,报表类型、货币币种,是
+05508,重估物业及出售固定资产净收益,ths_net_income_from_property_sales_hks,元,港股财务报表 / 港股商业银行 / 港股利润表,报表类型、货币币种,是
+05510,金融投资净收益,ths_fnncl_invest_net_income_hks,元,港股财务报表 / 港股商业银行 / 港股利润表,报表类型、货币币种,是
+08523,单季度-利息收入,ths_sq_interest_income_hks,元,港股财务报表 / 港股商业银行 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08524,单季度-利息支出,ths_sq_interest_payout_hks,元,港股财务报表 / 港股商业银行 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08525,单季度-利息净收入,ths_sq_interest_net_income_hks,元,港股财务报表 / 港股商业银行 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08526,单季度-手续费及佣金收入,ths_sq_fee_and_commi_income_hks,元,港股财务报表 / 港股商业银行 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08527,单季度-手续费及佣金支出,ths_sq_charge_and_commi_expenses_hks,元,港股财务报表 / 港股商业银行 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08528,单季度-手续费及佣金净收入,ths_sq_commi_net_income_hks,元,港股财务报表 / 港股商业银行 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08529,单季度-交易收入,ths_sq_td_income_hks,元,港股财务报表 / 港股商业银行 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08530,单季度-指定以公允价值列账之金融工具收益,ths_sq_income_of_fi_design_for_fv_hks,元,港股财务报表 / 港股商业银行 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08531,单季度-保费收益,ths_sq_premium_income_hks,元,港股财务报表 / 港股商业银行 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08535,单季度-营业支出特殊科目,ths_sq_operating_payment_si_hks,元,港股财务报表 / 港股商业银行 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08536,单季度-营业支出,ths_sq_operating_payout_hks,元,港股财务报表 / 港股商业银行 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08537,单季度-保险赔偿及投保人负债变动净额,ths_sq_insurance_compen_etc_net_hks,元,港股财务报表 / 港股商业银行 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08538,单季度-未扣除减值的营业收入,ths_sq_oi_nondeduct_impairment_hks,元,港股财务报表 / 港股商业银行 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08539,单季度-贷款减值准备,ths_sq_loan_impairment_reserve_hks,元,港股财务报表 / 港股商业银行 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08540,单季度-其他减值准备,ths_sq_other_impairment_reserves_hks,元,港股财务报表 / 港股商业银行 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08545,单季度-重估物业及出售固定资产净收益,ths_sq_property_revaluation_ni_hks,元,港股财务报表 / 港股商业银行 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08546,单季度-金融投资净收益,ths_sq_financial_investment_ni_hks,元,港股财务报表 / 港股商业银行 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+05525,银行及其他金融机构的存款及结余,ths_deposit_and_bank_balance_etc_hks,元,港股财务报表 / 港股商业银行 / 港股资产负债表 / 港股负债,报表类型、货币币种,是
+05527,客户存款,ths_customer_deposit_hks,元,港股财务报表 / 港股商业银行 / 港股资产负债表 / 港股负债,报表类型、货币币种,是
+05529,交易性金融负债,ths_tradable_fnncl_liab_hks,元,港股财务报表 / 港股商业银行 / 港股资产负债表 / 港股负债,报表类型、货币币种,是
+05531,指定以公允价值列账金融负债,ths_specified_fnncl_liab_at_fv_hks,元,港股财务报表 / 港股商业银行 / 港股资产负债表 / 港股负债,报表类型、货币币种,是
+05533,衍生金融负债,ths_derivative_fnncl_liab_hks,元,港股财务报表 / 港股商业银行 / 港股资产负债表 / 港股负债,报表类型、货币币种,是
+05535,已发行存款证,ths_issued_deposit_certificate_hks,元,港股财务报表 / 港股商业银行 / 港股资产负债表 / 港股负债,报表类型、货币币种,是
+05537,已发行债务证券,ths_issued_debt_sec_hks,元,港股财务报表 / 港股商业银行 / 港股资产负债表 / 港股负债,报表类型、货币币种,是
+05539,后偿负债,ths_subordinated_liab_hks,元,港股财务报表 / 港股商业银行 / 港股资产负债表 / 港股负债,报表类型、货币币种,是
+05540,保单及未决赔付,ths_policy_and_outstanding_claim_hks,元,港股财务报表 / 港股商业银行 / 港股资产负债表 / 港股负债,报表类型、货币币种,是
+05541,其他账项、预提费用及递延收益,ths_other_accounts_etc_hks,元,港股财务报表 / 港股商业银行 / 港股资产负债表 / 港股负债,报表类型、货币币种,是
+05542,其他负债,ths_othr_liab_hks,元,港股财务报表 / 港股商业银行 / 港股资产负债表 / 港股负债,报表类型、货币币种,是
+05543,负债特殊科目,ths_liab_si_hks,元,港股财务报表 / 港股商业银行 / 港股资产负债表 / 港股负债,报表类型、货币币种,是
+05466,现金及在银行和其他金融机构的结存,ths_cash_and_balance_in_banks_etc_hks,元,港股财务报表 / 港股商业银行 / 港股资产负债表 / 港股资产,报表类型、货币币种,是
+05468,在银行及其他金融机构的存款,ths_deposit_in_bank_etc_hks,元,港股财务报表 / 港股商业银行 / 港股资产负债表 / 港股资产,报表类型、货币币种,是
+05470,指定以公允价值列账金融资产,ths_specified_fnncl_assets_at_fv_hks,元,港股财务报表 / 港股商业银行 / 港股资产负债表 / 港股资产,报表类型、货币币种,是
+05472,衍生金融资产,ths_derivative_fnncl_assets_hks,元,港股财务报表 / 港股商业银行 / 港股资产负债表 / 港股资产,报表类型、货币币种,是
+05474,客户贷款及其他账款,ths_customer_loans_etc_hks,元,港股财务报表 / 港股商业银行 / 港股资产负债表 / 港股资产,报表类型、货币币种,是
+05476,其他资产,ths_other_assets_hks,元,港股财务报表 / 港股商业银行 / 港股资产负债表 / 港股资产,报表类型、货币币种,是
+05478,即期税项资产,ths_tax_assets_of_the_term_hks,元,港股财务报表 / 港股商业银行 / 港股资产负债表 / 港股资产,报表类型、货币币种,是
+05489,持有至到期投资,ths_held_to_maturity_invest_hks,元,港股财务报表 / 港股商业银行 / 港股资产负债表 / 港股资产,报表类型、货币币种,是
+05493,资产特殊科目,ths_asset_si_hks,元,港股财务报表 / 港股商业银行 / 港股资产负债表 / 港股资产,报表类型、货币币种,是
+05453,投资收入,ths_invest_income_hks,元,港股财务报表 / 港股证券公司 / 港股利润表,报表类型、货币币种,是
+05483,佣金支出,ths_commi_payment_hks,元,港股财务报表 / 港股证券公司 / 港股利润表,报表类型、货币币种,是
+05486,其他营业支出,ths_other_operation_payout_hks,元,港股财务报表 / 港股证券公司 / 港股利润表,报表类型、货币币种,是
+08564,单季度-投资收入,ths_sq_invest_income_hks,元,港股财务报表 / 港股证券公司 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08567,单季度-佣金支出,ths_sq_commi_payment_hks,元,港股财务报表 / 港股证券公司 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+08568,单季度-其他营业支出,ths_sq_other_operation_payout_hks,元,港股财务报表 / 港股证券公司 / 港股利润表(单季度),年度、季度、报表类型、货币币种,是
+06654,年化收益率(最近100周),ths_annual_yeild_nearly100w_hks,%,港股风险分析 / 标准参数指标,,是
+06655,年化收益率(最近24个月),ths_annual_yeild_nearly24m_hks,%,港股风险分析 / 标准参数指标,,是
+06656,年化收益率(最近60个月),ths_annual_yeild_nearly60m_hks,%,港股风险分析 / 标准参数指标,,是
+06657,年化波动率(最近100周),ths_annual_volatility_nearly100w_hks,%,港股风险分析 / 标准参数指标,,是
+06658,年化波动率(最近24个月),ths_annual_volatility_nearly24m_hks,%,港股风险分析 / 标准参数指标,,是
+06659,年化波动率(最近60个月),ths_annual_volatility_nearly60m_hks,%,港股风险分析 / 标准参数指标,,是
+06660,BETA值(最近100周),ths_beta_100w_hks,%,港股风险分析 / 标准参数指标,,是
+06661,BETA值(最近24个月),ths_beta_24m_hks,%,港股风险分析 / 标准参数指标,,是
+06662,BETA值(最近60个月),ths_beta_60m_hks,%,港股风险分析 / 标准参数指标,,是
+09616,Beta,ths_beta_hks,,港股风险分析 / 自定义参数指标,起始交易日期、截止交易日期、计算周期、收益率计算方法、标的指数,
+12082,Alpha,ths_alpha_hks,,港股风险分析 / 自定义参数指标,起始交易日期、截止交易日期、计算周期、收益率计算方法、标的指数,
+12083,Sharpe,ths_sharpe_hks,,港股风险分析 / 自定义参数指标,起始交易日期、截止交易日期、计算周期、收益率计算方法、无风险收益率,
+12084,Treynor,ths_treynor_hks,,港股风险分析 / 自定义参数指标,起始交易日期、截止交易日期、计算周期、收益率计算方法、无风险收益率、标的指数,
+12085,Jensen,ths_jensen_hks,,港股风险分析 / 自定义参数指标,起始交易日期、截止交易日期、计算周期、收益率计算方法、无风险收益率、标的指数,
+12086,Jensen(年化),ths_jensennh_hks,,港股风险分析 / 自定义参数指标,起始交易日期、截止交易日期、计算周期、收益率计算方法、无风险收益率、标的指数,
+12087,Sharpe(年化),ths_sharpenh_hks,,港股风险分析 / 自定义参数指标,起始交易日期、截止交易日期、计算周期、收益率计算方法、无风险收益率,
+12088,Treynor(年化),ths_treynornh_hks,,港股风险分析 / 自定义参数指标,起始交易日期、截止交易日期、计算周期、收益率计算方法、无风险收益率、标的指数,
+17502,波动率,ths_volatility_hks,%,港股风险分析 / 自定义参数指标,起始交易日期、截止交易日期、计算周期1、收益率计算方法,
+17503,波动率(年化),ths_volatility_annual_hks,%,港股风险分析 / 自定义参数指标,起始交易日期、截止交易日期、计算周期1、收益率计算方法,
+17791,平均收益率,ths_avg_yield_hks,%,港股风险分析 / 自定义参数指标,起始交易日期、截止交易日期、计算周期1、收益率计算方法,
+17792,参数VaR,ths_var_hks,%,港股风险分析 / 自定义参数指标,起始交易日期、截止交易日期、计算周期1、收益率计算方法、置信水平,
+06805,实际发行方式,ths_actual_issue_method_hks,,港股首发指标,,
+06806,实际发行价格,ths_actual_issue_price_hks,元,港股首发指标,,是
+06807,发行股份总数,ths_issue_total_shares_hks,股,港股首发指标,,是
+06808,香港公开发售股份总数,ths_total_hk_public_sale_shares_hks,股,港股首发指标,,是
+06809,国际发售股份总数,ths_international_issue_shares_hks,股,港股首发指标,,是
+06810,销售已有股份数,ths_sales_holded_shares_hks,股,港股首发指标,,是
+06811,超额配售数量,ths_excess_place_quantity_hks,股,港股首发指标,,是
+06812,募集资金总额,ths_rc_total_amt_hks,元,港股首发指标,,是
+06813,发行费用,ths_issue_cost_hks,元,港股首发指标,,是
+06814,募集资金净额,ths_net_rc_hks,元,港股首发指标,,是
+06815,公开发售有效认购股数,ths_po_valid_subscription_share_hks,股,港股首发指标,,是
+06816,公开发售超额认购倍数,ths_po_oversubscribed_multiple_hks,倍,港股首发指标,,是
+06817,招股章程公告日期,ths_ipo_prospectus_ad_hks,,港股首发指标,,
+06818,招股起始日,ths_offering_sd_hks,,港股首发指标,,
+06819,招股截止日,ths_offering_ed_hks,,港股首发指标,,
+06820,定价日,ths_pricing_date_hks,,港股首发指标,,
+06821,发行结果公告日,ths_issue_result_ad_hks,,港股首发指标,,
+06822,退票寄发日期,ths_refund_send_date_hks,,港股首发指标,,
+06823,上市日期,ths_listed_date_hks,,港股首发指标,,
+06824,最新公告日期,ths_ipo_latest_ad_hks,,港股首发指标,,
+06825,是否发行失败,ths_is_issuing_failure_hks,,港股首发指标,,
+06826,首发不予进行的原因,ths_ipo_prohibit_reason_hks,,港股首发指标,,
+06827,货币种类,ths_ipo_currency_ctgry_hks,,港股首发指标,,
+09363,预计发行股份总数,ths_fore_total_issue_shares_hks,股,港股首发指标,,是
+09364,预计香港公开发售股份总数,ths_fore_po_sharenum_hk_hks,股,港股首发指标,,是
+09365,预计国际发售股份总数,ths_fore_international_offer_num_hks,股,港股首发指标,,是
+09366,预计发行预留股份总数,ths_fore_issue_reserve_sharenum_hks,股,港股首发指标,,是
+09367,发行预留股份总数,ths_issue_reserved_shares_num_hks,股,港股首发指标,,是
+10455,首发基石投资者名称,ths_first_ci_name_hks,,港股首发指标,大股东排名,
+10456,首发基石投资者持股数量,ths_first_ci_holding_num_hks,股,港股首发指标,大股东排名,是
+10457,首发基石投资者持股比例,ths_first_ci_holding_ratio_hks,%,港股首发指标,大股东排名,是
+10458,首发主承销商,ths_ipo_main_underwrite_hks,,港股首发指标,,
+10459,首发上市保荐人,ths_ipo_listing_recommended_hks,,港股首发指标,,
+17686,一手中签率,ths_board_lot_ratio_hks,,港股首发指标,,是
+17687,申购人数,ths_subscriber_num_hks,,港股首发指标,,是
+17689,每手申购股数,ths_pur_vol_per_hand_hks,,港股首发指标,,是
+17690,每手申购金额,ths_amt_per_hand_hks,,港股首发指标,,是
+17691,发行价格下限,ths_issue_price_dl_hks,,港股首发指标,,是
+17693,发行价格上限,ths_issue_price_ul_hks,,港股首发指标,,是
+19341,实际发行总股本,ths_currency_unit_hks,股,港股首发指标,,是
+30032,员工总数,ths_staff_number_hks,,港股首发指标,,是
+30222,首发后总股本（上市日）,ths_total_shares_after_ipo_ld_hks,,港股首发指标,,是
+10132,上市首日开盘价,ths_open_on_debut_hks,元,港股首发指标 / 首发上市表现,,是
+10133,上市首日最高价,ths_high_on_debut_hks,元,港股首发指标 / 首发上市表现,,是
+10134,上市首日最低价,ths_low_on_debut_hks,元,港股首发指标 / 首发上市表现,,是
+10135,上市首日收盘价,ths_close_on_debut_hks,元,港股首发指标 / 首发上市表现,,是
+10136,上市首日成交均价,ths_avg_price_on_debut_hks,元,港股首发指标 / 首发上市表现,,是
+10137,上市首日成交量,ths_vol_on_debut_hks,股,港股首发指标 / 首发上市表现,,是
+10138,上市首日成交额,ths_amt_on_debut_hks,元,港股首发指标 / 首发上市表现,,是
+10139,上市首日涨跌幅,ths_chang_ratio_on_debut_hks,%,港股首发指标 / 首发上市表现,,是

@@ -1,0 +1,680 @@
+﻿指标代码,指标中文名,英文代码,单位,分类,参数,支持序列
+11020,历史PEG,ths_his_peg_index,,估值指标,增长率(G值)匹配方法,是
+12991,区间最高市盈率（PE，TTM）,ths_interval_high_pe_ttm_index,,估值指标,起始交易日期、截止交易日期、剔除规则、TTM基准日,
+12992,区间最低市盈率（PE，TTM）,ths_interval_low_pe_ttm_index,,估值指标,起始交易日期、截止交易日期、剔除规则、TTM基准日,
+16457,市盈率（PE，TTM）中位数,ths_pe_ttm_median_index,,估值指标,起始交易日期、截止交易日期、剔除规则、TTM基准日,
+16831,总市值,ths_market_value_hb_index,元,估值指标,,是
+16832,A股市值,ths_ashare_mv_hb_index,元,估值指标,,是
+16833,总市值-证监会算法,ths_mv_csrc_alg_hb_index,元,估值指标,,是
+16834,流通A股市值,ths_float_ashare_mv_hb_index,元,估值指标,,是
+16835,流通B股市值,ths_float_bshare_mv_hb_index,元,估值指标,,是
+16836,流通市值,ths_current_mv_hb_index,元,估值指标,,是
+16837,流通市值占比,ths_flaot_mv_ratio_hb_index,%,估值指标,,是
+16970,市现率（PCF）分位数,ths_pcf_quantile_index,%,估值指标,起始交易日期、截止交易日期、财务数据匹配规则、剔除规则,
+16971,市销率（PS）分位数,ths_ps_quantile_index,%,估值指标,起始交易日期、截止交易日期、财务数据匹配规则、剔除规则,
+16972,股息率分位数,ths_dividend_rate_quantile_index,%,估值指标,起始交易日期、截止交易日期,
+17092,市净率（PB）中位数,ths_pb_median_index,,估值指标,起始交易日期、截止交易日期、财务数据匹配规则、剔除规则,
+17145,区间最高市净率（PB）,ths_interval_high_pb_index,,估值指标,起始交易日期、截止交易日期、财务数据匹配规则、剔除规则,
+17146,区间最低市净率（PB）,ths_interval_low_pb_index,,估值指标,起始交易日期、截止交易日期、财务数据匹配规则、剔除规则,
+17178,市销率（PS）,ths_ps_index,,估值指标,财务数据匹配规则、剔除规则,是
+17179,市现率（PCF）,ths_pcf_index,,估值指标,财务数据匹配规则、剔除规则,是
+17412,市盈率（PE）,ths_pe_index,,估值指标,财务数据匹配规则、剔除规则,是
+17413,股息率,ths_dividend_rate_index,,估值指标,,是
+17473,市净率（PB）,ths_pb_index,,估值指标,财务数据匹配规则、剔除规则,是
+17491,自由流通市值,ths_free_flaot_mv_index,元,估值指标,,是
+17683,预测市盈率（PE，预测）,ths_fore_pe_index,,估值指标,年度、剔除规则,是
+17785,发布方市盈率（PE，TTM）,ths_publish_pe_ttm_index,,估值指标,,是
+17786,发布方市盈率（PE）,ths_publish_pe_index,,估值指标,,是
+17787,发布方市净率（PB）,ths_publish_pb_index,,估值指标,,是
+17788,发布方股息率（调整股本）,ths_pub_dividend_rate_asc_index,,估值指标,,是
+17789,发布方股息率（总股本）,ths_pub_dividend_rate_tsc_index,,估值指标,,是
+19360,市现率（PCF，TTM）,ths_pcf_ttm_cache_index,,估值指标,剔除规则、TTM基准日,是
+19361,市销率（PS，TTM）,ths_ps_ttm_cache_index,,估值指标,剔除规则、TTM基准日,是
+19362,历史PEG,ths_his_peg_cache_index,,估值指标,增长率(G值)匹配方法,是
+19383,市净率（PB，LF）,ths_pb_latest_index,,估值指标,剔除规则,是
+19384,区间平均市盈率（PE，TTM）,ths_avg_pe_ttm_int_index,,估值指标,起始交易日期、截止交易日期、剔除规则、TTM基准日,
+19385,区间平均市净率（PB）,ths_avg_pb_int_index,,估值指标,起始交易日期、截止交易日期、财务数据匹配规则、剔除规则,
+19393,区间最高市销率（PS，TTM）,ths_high_ps_ttm_int_index,,估值指标,起始交易日期、截止交易日期、剔除规则、TTM基准日,
+19394,区间最低市销率（PS，TTM）,ths_low_ps_ttm_int_index,,估值指标,起始交易日期、截止交易日期、剔除规则、TTM基准日,
+19395,区间平均市销率（PS，TTM）,ths_avg_ps_ttm_int_index,,估值指标,起始交易日期、截止交易日期、剔除规则、TTM基准日,
+19490,A股市值（不含限售股）,ths_ashare_mv_barring_ls_index,元,估值指标,,是
+19499,市盈率（PE，TTM）中位数-成份,ths_pe_ttm_median_component_index,,估值指标,,
+19500,市净率（PB，MRQ）中位数-成份,ths_pb_mrq_median_component_index,,估值指标,,是
+19632,区间最高市净率（PB）,ths_interval_high_pb_sr_index,,估值指标,起始交易日期、截止交易日期、财务数据匹配规则、剔除规则,
+19633,区间最低市净率（PB）,ths_interval_low_pb_sr_index,,估值指标,起始交易日期、截止交易日期、财务数据匹配规则、剔除规则,
+19634,区间平均市净率（PB）,ths_avg_pb_int_sr_index,,估值指标,起始交易日期、截止交易日期、财务数据匹配规则、剔除规则,
+19635,市净率（PB）分位数,ths_pb_quantile_sr_index,,估值指标,起始交易日期、截止交易日期、财务数据匹配规则、剔除规则,
+19636,市净率（PB）中位数,ths_pb_median_sr_index,,估值指标,起始交易日期、截止交易日期、财务数据匹配规则、剔除规则,
+19809,市盈率（PE，TTM）,ths_pe_ttm_sr_index,,估值指标,剔除规则、TTM基准日,是
+19929,市盈率（PE，TTM）分位数,ths_pettm_quantile_index,,估值指标,起始交易日期、截止交易日期、剔除规则、TTM基准日,
+20058,市盈率（PE）分位数,ths_pe_quantile_index,,估值指标,起始交易日期、截止交易日期、财务数据匹配规则、剔除规则,
+20059,风险溢价分位数,ths_risk_premium_quantile_index,,估值指标,起始交易日期、截止交易日期,
+20079,风险溢价,ths_risk_premium_new_index,,估值指标,,是
+654055,市盈率（PE）,ths_pe_index,,估值指标,财务数据匹配规则、剔除规则,
+654082,预测市盈率（PE，预测）,ths_fore_pe_index,,估值指标,年度、剔除规则,
+654095,市净率（PB）,ths_pb_index,,估值指标,财务数据匹配规则、剔除规则,是
+654103,市现率（PCF）,ths_pcf_index,,估值指标,财务数据匹配规则、剔除规则,
+654111,市销率（PS）,ths_ps_index,,估值指标,财务数据匹配规则、剔除规则,
+654119,总市值,ths_market_value_index,元,估值指标,,
+654123,总市值-证监会算法,ths_mv_csrc_alg_index,元,估值指标,,
+654127,流通A股市值,ths_float_ashare_mv_index,元,估值指标,,
+654131,流通B股市值,ths_float_bshare_mv_index,元,估值指标,,
+657670,滚动市盈率（中证发布）,ths_auto_pe_csi_block,%,估值指标,,
+657671,市净率（中证发布）,ths_pb_csi_release_block,%,估值指标,,
+658632,流通市值,ths_current_mv_index,元,估值指标,,
+658634,流通市值占比,ths_flaot_mv_ratio_index,%,估值指标,,
+680510,股息率,ths_dividend_rate_index,,估值指标,,
+680762,市盈率（PE，TTM）,ths_pe_ttm_index,,估值指标,剔除规则、TTM基准日,是
+680766,预测PEG,ths_fore_peg_index,,估值指标,年度,是
+680767,市盈率（PE，TTM）分位数,ths_pe_ttm_quantile_index,,估值指标,起始交易日期、截止交易日期、剔除规则、TTM基准日,是
+680768,市净率（PB）分位数,ths_pb_quantile_index,,估值指标,起始交易日期、截止交易日期、财务数据匹配规则、剔除规则,
+680769,市现率（PCF，TTM）,ths_pcf_ttm_index,,估值指标,剔除规则、TTM基准日,
+680774,A股市值,ths_ashare_mv_index,元,估值指标,,
+680794,市销率（PS，TTM）,ths_ps_ttm_index,,估值指标,剔除规则、TTM基准日,
+681152,市值集中度,ths_market_value_concentration_index,,估值指标,,
+681176,风险溢价,ths_risk_premium_index,,估值指标,,
+12166,到期收益率,ths_ytm_index,,债券指数指标,,是
+12167,久期,ths_dur_index,,债券指数指标,,是
+12168,修正久期,ths_modified_dur_index,,债券指数指标,,是
+12169,凸性,ths_convexity_index,,债券指数指标,,是
+12170,剩余期限（年）,ths_remain_duration_y_index,,债券指数指标,,是
+17839,指数值（中债）,ths_close_index_cb_index,,债券指数指标,,是
+17840,涨跌（中债）,ths_chg_index_cb_index,,债券指数指标,,是
+17841,涨跌幅（中债）,ths_chg_ratio_index_cb_index,%,债券指数指标,,是
+17842,现券结算量（中债）,ths_amount_index_cb_index,亿元,债券指数指标,,是
+17843,平均基点价值（中债）,ths_anal_bpvalue_index_cb_index,元,债券指数指标,,是
+17844,平均市值法凸性（中债）,ths_anal_capconvixity_index_cb_index,,债券指数指标,,是
+17845,平均市值法久期（中债）,ths_anal_capduration_index_cb_index,年,债券指数指标,,是
+17846,平均市值法到期收益率（中债）,ths_anal_capytm_index_cb_index,%,债券指数指标,,是
+17847,平均现金流法凸性（中债）,ths_anal_cashflowconvixity_index_cb_index,,债券指数指标,,是
+17848,平均现金流法久期（中债）,ths_anal_cashflowduration_index_cb_index,年,债券指数指标,,是
+17849,平均现金流法到期收益率（中债）,ths_anal_cashflowytm_index_cb_index,%,债券指数指标,,是
+17850,平均派息率（中债）,ths_anal_ipratio_index_cb_index,%,债券指数指标,,是
+17851,平均待偿期（中债）,ths_anal_period_index_cb_index,年,债券指数指标,,是
+17852,指数总市值（中债）,ths_anal_val_mv_index_cb_index,亿元,债券指数指标,,是
+658374,分红比例,ths_dividend_ratio_index,%,分红指标,,是
+658705,现金分红比例,ths_cash_dividend_ratio_index,%,分红指标,,是
+33624,价格中位数,ths_price_median_index,元,可转债指数指标,,是
+33625,转股溢价率中位数,ths_cpr_median_index,%,可转债指数指标,,是
+33626,纯债溢价率中位数,ths_sbpr_median_index,%,可转债指数指标,,是
+33627,加权YTM,ths_jqytm_index,%,可转债指数指标,,是
+33628,YTM中位数,ths_ytm_median_index,%,可转债指数指标,,是
+00003,同花顺代码,ths_thscode_index,,基本资料,,
+00420,指数简称,ths_index_short_name_index,,基本资料,,
+00421,指数代码,ths_index_code_index,,基本资料,,
+00431,发布机构,ths_publish_org_index,,基本资料,,
+06916,指数基期,ths_index_base_period_index,,基本资料,,
+06917,指数基点,ths_index_base_point_index,,基本资料,,是
+06995,指数类别,ths_index_category_index,,基本资料,,
+11009,指数全称,ths_index_full_name_index,,基本资料,,
+11010,指数简介,ths_index_introduction_index,,基本资料,,
+11011,加权方式,ths_wgt_method_index,,基本资料,,
+11013,交易币种,ths_trade_currency_index,,基本资料,,
+11014,所属国家,ths_the_nation_index,,基本资料,,
+11015,上市地点,ths_listed_exchange_index,,基本资料,,
+11016,启用日期,ths_enable_date_index,,基本资料,,
+11017,摘牌日期,ths_delist_date_index,,基本资料,,
+12198,指数板块类别,ths_index_sector_category_index,,基本资料,,
+12988,最早成份日期,ths_earliest_constituent_date_index,,基本资料,,
+12989,最早交易日期,ths_earliest_transaction_date_index,,基本资料,,
+12990,最新交易日期,ths_latest_transaction_date_index,,基本资料,,
+19549,跟踪标的基金代码,ths_tracking_fund_code_index,,基本资料,,
+19846,上级行业指数代码,ths_superior_industry_index_code_index,,基本资料,行业级别,
+20221,跟踪标的基金数量,ths_tracking_fund_number_index,,基本资料,,
+652793,成分股个数,ths_constituent_num_index,,基本资料,,
+20253,PB小于1成份数量占比,ths_pb_lessthan1_num_ratio_hb_index,,情绪指标,,是
+20254,小市值成份成交额占比,ths_small_mv_amt_ratio_hb_index,%,情绪指标,,是
+20255,PE小于30成份数量占比,ths_pe_lessthan30_num_ratio_hb_index,%,情绪指标,TTM基准日,是
+20256,PEG小于1成份数量占比,ths_peg_lessthan1_num_ratio_hb_index,,情绪指标,增长率(G值)匹配方法,是
+681148,小市值成份成交额占比,ths_small_mv_amt_ratio_index,%,情绪指标,,是
+681149,PE小于30成份数量占比,ths_pe_lessthan30_num_ratio_index,%,情绪指标,TTM基准日,是
+681150,PB小于1成份数量占比,ths_pb_lessthan1_num_ratio_index,,情绪指标,,是
+681151,PEG小于1成份数量占比,ths_peg_lessthan1_num_ratio_index,,情绪指标,增长率(G值)匹配方法,是
+05098,连涨天数,ths_up_days_index,天,技术形态,,是
+05099,连跌天数,ths_down_days_index,天,技术形态,,是
+07063,近期创历史新高,ths_his_high_nearly_index,,技术形态,近N天内,
+07064,近期创历史新低,ths_his_low_nearly_index,,技术形态,近N天内,
+07065,近期创阶段新高,ths_phase_high_nearly_index,,技术形态,近N天内、创N天以来新高,
+07066,近期创阶段新低,ths_phase_low_nearly_index,,技术形态,近N天内、创N天以来新低,
+12995,近期创历史新高次数,ths_num_his_high_nearly_index,,技术形态,近N天内,是
+12996,近期创历史新低次数,ths_num_his_low_nearly_index,,技术形态,近N天内,是
+12997,近期创阶段新高次数,ths_num_phase_high_his_index,,技术形态,近N天内、创N天以来新高,是
+12998,近期创阶段新低次数,ths_num_phase_low_his_index,,技术形态,近N天内、创N天以来新低,是
+13014,指数成份上涨数量,ths_constituent_raise_number_index,,技术形态,,是
+13015,指数成份下跌数量,ths_constituent_fall_number_index,,技术形态,,是
+13016,指数成份涨停数量,ths_constituent_up_number_index,,技术形态,,是
+13017,指数成份跌停数量,ths_constituent_dl_number_index,,技术形态,,是
+13018,指数成份平均涨跌幅,ths_constituent_chg_ratio_aa_index,,技术形态,,是
+13019,指数成份涨跌幅中位数,ths_constituent_chg_ratio_m_index,,技术形态,,是
+19534,近期创历史新高成交量,ths_vol_his_high_nearly_index,,技术形态,近N天内,
+19535,近期创历史新高成交额,ths_amt_his_high_nearly_index,,技术形态,近N天内,
+20328,站上250日均线的成份数量占比,ths_over250_avgclose_num_ratio_hb_index,%,技术形态,,是
+20370,向上有效突破均线,ths_up_valid_break_ma_index,,技术形态,均线、有效突破确认天数,
+20371,向下有效突破均线,ths_down_valid_break_ma_index,,技术形态,均线、有效突破确认天数,
+20372,均线多空头排列看涨看跌,ths_long_or_short_by_avg_line_index,,技术形态,均线1、均线2、均线3、均线4、看涨看跌,
+681090,指数成份新高家数,ths_new_high_num_index,,技术形态,近N天内、创N天以来新高、复权方式,是
+681144,指数成份新低家数,ths_new_low_num_index,,技术形态,近N天内、创N天以来新低、复权方式,是
+681145,上涨成份数量占比,ths_raise_num_ratio_index,%,技术形态,,是
+681146,涨停成份数量占比,ths_up_num_ratio_index,%,技术形态,,是
+681147,站上250日均线的成份数量占比,ths_over250_avgclose_num_ratio_index,%,技术形态,,是
+03141,VMACD量指数平滑异动平均,ths_vmacd_index,,技术指标,短期周期、长期周期、周期、VMACD指标选项、计算周期,是
+05156,VMA量简单移动平均,ths_vma_index,,技术指标,周期、计算周期,是
+07049,人气意愿指标(ARBR),ths_arbr_index,,技术指标,周期、ARBR指标选项、计算周期,是
+07050,OBV能量潮,ths_obv_index,,技术指标,OBV指标选项、计算周期,是
+07051,BBI多空指数,ths_bbi_index,,技术指标,周期1、周期2、周期3、周期4、计算周期,是
+07052,DMA平均线差,ths_dma_index,,技术指标,短期周期、长期周期、周期、DMA指标选项、计算周期,是
+07053,MA简单移动平均,ths_ma_index,,技术指标,周期、计算周期,是
+07054,EXPMA指数平均数,ths_expma_index,,技术指标,周期、计算周期,是
+07055,MTM动力指标,ths_mtm_index,,技术指标,间隔周期、周期、MTM指标选项、计算周期,是
+07056,MACD指数平滑异动平均,ths_macd_index,,技术指标,长期周期、短期周期、周期、MCAD指标选项、计算周期,是
+07057,BIAS乖离率,ths_bias_index,,技术指标,周期、计算周期,是
+07058,KDJ随机指标,ths_kdj_index,,技术指标,周期、周期1、周期2、KDJ指标选项、计算周期,是
+07059,RSI相对强弱指标,ths_rsi_index,,技术指标,周期、计算周期,是
+07060,BOLL布林线,ths_boll_index,,技术指标,周期、带宽、BOLL指标选项、计算周期,是
+16481,ATR真实波幅,ths_atr_index,,技术指标,周期、ATR指标选项、计算周期,是
+20244,SLOWKD慢速KD,ths_slowkd_index,,技术指标,周期、周期1、KDJ指标选项、计算周期,是
+20245,SAR抛物转向,ths_sar_index,,技术指标,周期、步长、极值、计算周期,是
+654030,预测每股收益,ths_fore_eps_index,元,盈利预测,年度、截至日期,
+654034,预测净利润,ths_fore_np_index,元,盈利预测,年度、截至日期,
+654038,预测主营业务收入,ths_fore_mob_income_index,元,盈利预测,年度、截至日期,
+17480,预测息税前利润(EBIT)平均值,ths_ebit_mean_index,元,盈利预测 / 盈利预测综合值,年度、截至日期,是
+17482,预测息税折旧摊销前利润(EBITDA)平均值,ths_ebitda_mean_index,元,盈利预测 / 盈利预测综合值,年度、截至日期,是
+17483,预测利润总额平均值,ths_fore_profit_ta_mean_index,元,盈利预测 / 盈利预测综合值,年度、截至日期,是
+17484,预测营业利润平均值,ths_fore_op_mean_index,元,盈利预测 / 盈利预测综合值,年度、截至日期,是
+17499,预测每股收益,ths_fore_eps_index,元,盈利预测 / 盈利预测综合值,年度、截至日期,是
+17500,预测归母净利润,ths_fore_np_index,元,盈利预测 / 盈利预测综合值,年度、截至日期,是
+17501,预测营业收入,ths_fore_mob_income_index,元,盈利预测 / 盈利预测综合值,年度、截至日期,是
+17553,预测每股现金流(CPS)平均值,ths_fore_cf_ps_mean_index,,盈利预测 / 盈利预测综合值,年度、截至日期,是
+17554,预测每股股利(DPS)平均值,ths_fore_dividend_ps_mean_index,,盈利预测 / 盈利预测综合值,年度、截至日期,是
+17555,预测每股净资产(BPS)平均值,ths_fore_bps_mean_index,,盈利预测 / 盈利预测综合值,年度、截至日期,是
+17556,预测净资产收益率(ROE)平均值,ths_fore_roe_mean_index,,盈利预测 / 盈利预测综合值,年度、截至日期,是
+19838,预测营业收入(FY1),ths_fore_mob_income_fy1_index,元,盈利预测 / 盈利预测综合值（滚动）,截至日期,是
+19839,预测营业收入(FY2),ths_fore_mob_income_fy2_index,元,盈利预测 / 盈利预测综合值（滚动）,截至日期,是
+19840,预测营业收入(FY3),ths_fore_mob_income_fy3_index,元,盈利预测 / 盈利预测综合值（滚动）,截至日期,是
+19841,预测营业收入(未来12个月),ths_fore_mob_income_in12m_index,元,盈利预测 / 盈利预测综合值（滚动）,截至日期,是
+19842,预测营业收入同比,ths_fore_mbi_yoy_index,%,盈利预测 / 盈利预测综合值（滚动）,截至日期,是
+19843,预测营业收入2年复合增长率,ths_fore_mbi_compound_growth_2y_index,%,盈利预测 / 盈利预测综合值（滚动）,截至日期,是
+20331,预测归母净利润2年复合增长率,ths_fore_np_compound_growth_2y_hb_index,%,盈利预测 / 盈利预测综合值（滚动）,,是
+20332,预测归母净利润（FY2）,ths_fore_np_fy2_hb_index,元,盈利预测 / 盈利预测综合值（滚动）,,是
+20333,预测归母净利润（FY3）,ths_fore_np_fy3_hb_index,元,盈利预测 / 盈利预测综合值（滚动）,,是
+20334,预测归母净利润同比（FY2比FY1）,ths_fore_np_yoy_fy2_to_fy1_hb_index,%,盈利预测 / 盈利预测综合值（滚动）,,是
+681255,预测归母净利润（FY1）,ths_fore_np_fy1_index,元,盈利预测 / 盈利预测综合值（滚动）,截至日期,
+681256,预测归母净利润（FY2）,ths_fore_np_fy2_index,元,盈利预测 / 盈利预测综合值（滚动）,截至日期,是
+681257,预测归母净利润（FY3）,ths_fore_np_fy3_index,元,盈利预测 / 盈利预测综合值（滚动）,截至日期,是
+681258,预测归母净利润同比,ths_fore_np_yoy_index,%,盈利预测 / 盈利预测综合值（滚动）,截至日期,
+681259,预测归母净利润同比（FY2比FY1）,ths_fore_np_yoy_fy2_to_fy1_index,%,盈利预测 / 盈利预测综合值（滚动）,截至日期,是
+681260,预测归母净利润2年复合增长率,ths_fore_np_compound_growth_2y_index,%,盈利预测 / 盈利预测综合值（滚动）,截至日期,是
+681284,预测营业收入(FY1),ths_fore_mob_income_fy1_1_index,元,盈利预测 / 盈利预测综合值（滚动）,截至日期,
+681285,预测营业收入(FY2),ths_fore_mob_income_fy2_1_index,元,盈利预测 / 盈利预测综合值（滚动）,截至日期,
+681286,预测营业收入(FY3),ths_fore_mob_income_fy3_1_index,元,盈利预测 / 盈利预测综合值（滚动）,截至日期,
+681287,预测营业收入(未来12个月),ths_fore_mob_income_in12m_1_index,元,盈利预测 / 盈利预测综合值（滚动）,截至日期,
+681288,预测营业收入同比,ths_fore_mbi_yoy_1_index,%,盈利预测 / 盈利预测综合值（滚动）,截至日期,
+681289,预测营业收入2年复合增长率,ths_fore_mbi_compound_growth_2y_1_index,%,盈利预测 / 盈利预测综合值（滚动）,截至日期,
+17795,流通A股,ths_float_ashare_index,股,股本指标,,是
+19349,总股本,ths_total_shares_cache_index,股,股本指标,,是
+19350,流通B股,ths_float_bshare_cache_index,股,股本指标,,是
+19351,流通H股,ths_float_hshare_cache_index,股,股本指标,,是
+19352,总流通股本,ths_total_float_shares_cache_index,股,股本指标,,是
+19353,自由流通股,ths_free_float_shares_cache_index,股,股本指标,,是
+19354,质押比例（算术平均）,ths_pledge_ratio_aa_cache_index,%,股本指标,,是
+19363,流通股合计占总股本比例,ths_total_float_shares_ratio_cache_index,%,股本指标,,是
+20325,国家股,ths_gjg_hb_index,股,股本指标,,是
+652898,总股本,ths_total_shares_index,股,股本指标,,
+652906,流通B股,ths_float_bshare_index,股,股本指标,,
+652910,流通H股,ths_float_hshare_index,股,股本指标,,
+652914,总流通股本,ths_total_float_shares_index,股,股本指标,,
+652922,非流通股,ths_unfloat_shares_index,股,股本指标,,是
+652926,限售A股,ths_limited_ashare_index,股,股本指标,,是
+652930,限售B股,ths_limited_bshare_index,股,股本指标,,是
+652934,国家股,ths_state_owned_shares_index,股,股本指标,,是
+652938,国有法人股,ths_state_owned_lp_shares_index,股,股本指标,,是
+652942,境内法人股合计,ths_total_domestic_lp_shares_index,股,股本指标,,是
+652946,流通A股占总股本比例,ths_float_ashare_to_total_shares_index,%,股本指标,,是
+652950,流通B股占总股本比例,ths_float_bshare_to_total_shares_index,%,股本指标,,是
+652954,流通H股占总股本比例,ths_float_hshare_to_total_shares_index,%,股本指标,,是
+652958,流通股合计占总股本比例,ths_total_float_shares_ratio_index,%,股本指标,,
+652962,限售A股合计占总股本比例,ths_total_limited_ashare_ratio_index,%,股本指标,,是
+681012,质押比例（算术平均）,ths_pledge_ratio_aa_index,%,股本指标,,
+681018,自由流通股,ths_free_float_shares_index,股,股本指标,,
+19400,融券余额,ths_short_selling_amtb_cache_index,元,融资融券指标,,是
+19401,融资融券余额,ths_margin_trading_amtb_cache_index,元,融资融券指标,,是
+19560,融资余额,ths_margin_trading_balance_cache_index,元,融资融券指标,,是
+658152,融资买入额,ths_margin_trading_sell_amt_index,元,融资融券指标,,
+658154,融资偿还额,ths_margin_trading_repay_amt_index,元,融资融券指标,,
+658156,融资余额,ths_margin_trading_balance_index,元,融资融券指标,,
+658158,融券卖出量,ths_short_selling_sell_vol_index,股,融资融券指标,,
+658160,融券偿还量,ths_short_selling_payment_vol_index,股,融资融券指标,,
+658162,融券余量,ths_short_selling_vol_balance_index,股,融资融券指标,,
+658164,融券余额,ths_short_selling_amtb_index,元,融资融券指标,,
+658166,融资融券余额,ths_margin_trading_amtb_index,元,融资融券指标,,
+658168,区间融资买入额,ths_financing_buy_amt_int_index,元,融资融券指标,起始交易日期、截止交易日期,
+658169,区间融资偿还额,ths_financing_payment_amt_int_index,元,融资融券指标,起始交易日期、截止交易日期,
+658170,区间融券卖出量,ths_mt_sell_vol_int_index,股,融资融券指标,起始交易日期、截止交易日期,
+658171,区间融券偿还量,ths_mt_payment_vol_int_index,股,融资融券指标,起始交易日期、截止交易日期,
+00130,区间成交量,ths_vol_int_index,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+00131,区间成交额,ths_amt_int_index,元,行情指标 / 区间行情,起始交易日期、截止交易日期,
+00565,区间日均成交量,ths_daily_avg_vol_int_index,股,行情指标 / 区间行情,起始交易日期、截止交易日期,
+00566,区间日均成交额,ths_daily_avg_amt_int_index,元,行情指标 / 区间行情,起始交易日期、截止交易日期,
+00567,区间交易天数,ths_td_daysint_index,天,行情指标 / 区间行情,起始交易日期、截止交易日期,
+00574,N日成交量,ths_vol_nd_index,,行情指标 / 区间行情,天数(用负号表示前推),是
+00575,N日成交额,ths_amt_nd_index,元,行情指标 / 区间行情,天数(用负号表示前推),是
+06957,区间前收盘价,ths_pre_close_int_index,元,行情指标 / 区间行情,起始交易日期、截止交易日期,
+06958,区间开盘价,ths_open_int_index,元,行情指标 / 区间行情,起始交易日期、截止交易日期,
+06959,区间最高价,ths_high_int_index,元,行情指标 / 区间行情,起始交易日期、截止交易日期,
+06960,区间最低价,ths_low_int_index,元,行情指标 / 区间行情,起始交易日期、截止交易日期,
+06961,区间收盘价,ths_close_int_index,元,行情指标 / 区间行情,起始交易日期、截止交易日期,
+06962,区间涨跌,ths_chg_int_index,元,行情指标 / 区间行情,起始交易日期、截止交易日期,
+06963,区间涨跌幅,ths_int_chg_ratio_index,%,行情指标 / 区间行情,起始交易日期、截止交易日期,
+06968,区间最高价日,ths_high_date_int_index,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+06969,区间最低价日,ths_low_date_int_index,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+07503,N日涨跌幅,ths_chg_ratio_nd_index,%,行情指标 / 区间行情,天数(用负号表示前推),是
+08092,区间平均收盘价,ths_intervalavgclose_index,元,行情指标 / 区间行情,起始交易日期、截止交易日期,
+16452,区间日均换手率（自由流通股本）,ths_free_avgturnover_ratio_int_index,%,行情指标 / 区间行情,起始交易日期、截止交易日期,
+16453,区间换手率（自由流通股本）,ths_free_turnover_ratio_int_index,%,行情指标 / 区间行情,起始交易日期、截止交易日期,
+16654,区间换手率,ths_turnoverratio_index,%,行情指标 / 区间行情,起始交易日期、截止交易日期,
+16655,区间日均换手率,ths_daily_avg_turnover_int_index,%,行情指标 / 区间行情,起始交易日期、截止交易日期,
+19392,区间结算价（商品指数）,ths_settle_int_index,元,行情指标 / 区间行情,起始交易日期、截止交易日期,
+19532,区间自最高价的最大跌幅,ths_max_down_chg_interval_index,%,行情指标 / 区间行情,起始交易日期、截止交易日期,
+19533,区间自最低价的最大涨幅,ths_max_up_chg_interval_index,%,行情指标 / 区间行情,起始交易日期、截止交易日期,
+20208,区间最高收盘价,ths_high_close_int_index,元,行情指标 / 区间行情,起始交易日期、截止交易日期,
+20209,区间最低收盘价,ths_low_close_int_index,元,行情指标 / 区间行情,起始交易日期、截止交易日期,
+20210,区间最高收盘价日,ths_high_close_date_int_index,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+20211,区间最低收盘价日,ths_low_close_date_int_index,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+20222,区间最高成交额,ths_high_amt_int_index,元,行情指标 / 区间行情,起始交易日期、截止交易日期,
+00065,周成交量,ths_vol_w_index,,行情指标 / 周行情,,是
+00066,周成交额,ths_amt_w_index,元,行情指标 / 周行情,,是
+06927,周前收盘价,ths_pre_close_w_index,元,行情指标 / 周行情,,是
+06928,周开盘价,ths_open_w_index,元,行情指标 / 周行情,,是
+06929,周最高价,ths_high_w_index,元,行情指标 / 周行情,,是
+06930,周最低价,ths_low_w_index,元,行情指标 / 周行情,,是
+06931,周收盘价,ths_close_w_index,元,行情指标 / 周行情,,是
+06932,周涨跌,ths_chg_w_index,元,行情指标 / 周行情,,是
+06933,周涨跌幅,ths_chg_ratio_w_index,%,行情指标 / 周行情,,是
+15392,周最高收盘价,ths_high_close_w_index,,行情指标 / 周行情,,是
+15393,周最低收盘价,ths_low_close_w_index,,行情指标 / 周行情,,是
+15395,周振幅,ths_swing_w_index,,行情指标 / 周行情,,是
+15396,周最高价日,ths_high_date_w_index,,行情指标 / 周行情,,
+15397,周最低价日,ths_low_date_w_index,,行情指标 / 周行情,,
+15398,周最高收盘价日,ths_high_close_date_w_index,,行情指标 / 周行情,,
+15399,周最低收盘价日,ths_lower_close_date_w_index,,行情指标 / 周行情,,
+16446,周换手率（自由流通股本）,ths_free_turnover_ratio_w_index,%,行情指标 / 周行情,,是
+16447,周平均换手率（自由流通股本）,ths_free_avgturnover_ratio_w_index,%,行情指标 / 周行情,,是
+16648,周换手率,ths_turnover_ratio_w_index,%,行情指标 / 周行情,,是
+16649,周平均换手率,ths_avg_turnover_rate_w_index,%,行情指标 / 周行情,,是
+00108,年成交量,ths_vol_y_index,,行情指标 / 年行情,,是
+00109,年成交额,ths_amt_y_index,元,行情指标 / 年行情,,是
+06947,年前收盘价,ths_pre_close_y_index,元,行情指标 / 年行情,,是
+06948,年开盘价,ths_open_y_index,元,行情指标 / 年行情,,是
+06949,年最高价,ths_high_y_index,元,行情指标 / 年行情,,是
+06950,年最低价,ths_low_y_index,元,行情指标 / 年行情,,是
+06951,年收盘价,ths_close_y_index,元,行情指标 / 年行情,,是
+06952,年涨跌,ths_chg_y_index,元,行情指标 / 年行情,,是
+06953,年涨跌幅,ths_chg_ratio_y_index,%,行情指标 / 年行情,,是
+15409,年最高收盘价,ths_high_close_y_index,,行情指标 / 年行情,,是
+15410,年最低收盘价,ths_low_close_y_index,,行情指标 / 年行情,,是
+15411,年均价,ths_avg_price_y_index,,行情指标 / 年行情,,是
+15413,年振幅,ths_swing_y_index,%,行情指标 / 年行情,,是
+15414,年最高价日,ths_high_date_y_index,,行情指标 / 年行情,,
+15415,年最低价日,ths_low_date_y_index,,行情指标 / 年行情,,
+15416,年最高收盘价日,ths_high_close_date_y_index,,行情指标 / 年行情,,
+15417,年最低收盘价日,ths_low_close_date_y_index,,行情指标 / 年行情,,
+16450,年换手率（自由流通股本）,ths_free_turnover_ratio_y_index,%,行情指标 / 年行情,,是
+16451,年平均换手率（自由流通股本）,ths_free_avgturnover_ratio_y_index,%,行情指标 / 年行情,,是
+16652,年换手率,ths_turnover_ratio_y_index,%,行情指标 / 年行情,,是
+16653,年平均换手率,ths_avg_turnover_rate_y_index,%,行情指标 / 年行情,,是
+00048,成交金额,ths_trans_amt_index,元,行情指标 / 日行情,,是
+00049,振幅,ths_swing_index,%,行情指标 / 日行情,,是
+06918,开盘价,ths_open_price_index,元,行情指标 / 日行情,,是
+06919,最高价,ths_high_price_index,元,行情指标 / 日行情,,是
+06920,最低价,ths_low_index,元,行情指标 / 日行情,,是
+06921,收盘价,ths_close_price_index,元,行情指标 / 日行情,,是
+06922,涨跌,ths_chg_index,元,行情指标 / 日行情,,是
+06923,涨跌幅,ths_chg_ratio_index,%,行情指标 / 日行情,,是
+06925,成交量,ths_vol_index,,行情指标 / 日行情,,是
+06971,前收盘价,ths_pre_close_index,元,行情指标 / 日行情,,是
+16445,换手率（自由流通股本）,ths_free_turnover_ratio_index,%,行情指标 / 日行情,,是
+16454,换手率,ths_turnover_ratio_index,%,行情指标 / 日行情,,是
+17752,收盘价（不前推）,ths_close_price_nvnf_index,元,行情指标 / 日行情,,是
+17782,持仓量（商品指数）,ths_open_interest_future_index,手,行情指标 / 日行情,,是
+17783,持仓变化（商品指数）,ths_opsition_chg_future_index,手,行情指标 / 日行情,,是
+19391,结算价（商品指数）,ths_settle_index,元,行情指标 / 日行情,,是
+00086,月成交量,ths_vol_m_index,,行情指标 / 月行情,,是
+00087,月成交额,ths_amt_m_index,元,行情指标 / 月行情,,是
+06937,月前收盘价,ths_pre_close_m_index,元,行情指标 / 月行情,,是
+06938,月开盘价,ths_open_m_index,元,行情指标 / 月行情,,是
+06939,月最高价,ths_high_m_index,元,行情指标 / 月行情,,是
+06940,月最低价,ths_low_m_index,元,行情指标 / 月行情,,是
+06941,月收盘价,ths_close_m_index,元,行情指标 / 月行情,,是
+06942,月涨跌,ths_chgm_index,元,行情指标 / 月行情,,是
+06943,月涨跌幅,ths_chg_ratio_m_index,%,行情指标 / 月行情,,是
+15400,月最高收盘价,ths_high_close_m_index,,行情指标 / 月行情,,是
+15401,月最低收盘价,ths_low_close_m_index,,行情指标 / 月行情,,是
+15402,月均价,ths_avg_price_m_index,,行情指标 / 月行情,,是
+15404,月振幅,ths_swing_m_index,%,行情指标 / 月行情,,是
+15405,月最高价日,ths_high_date_m_index,,行情指标 / 月行情,,
+15406,月最低价日,ths_low_date_m_index,,行情指标 / 月行情,,
+15407,月最高收盘价日,ths_high_close_date_m_index,,行情指标 / 月行情,,
+15408,月最低收盘价日,ths_low_close_date_m_index,,行情指标 / 月行情,,
+16448,月换手率（自由流通股本）,ths_free_turnover_ratio_m_index,%,行情指标 / 月行情,,是
+16449,月平均换手率（自由流通股本）,ths_free_avgturnover_ratio_m_index,%,行情指标 / 月行情,,是
+16650,月换手率,ths_turnover_ratio_m_index,%,行情指标 / 月行情,,是
+16651,月平均换手率,ths_avg_turnover_rate_m_index,%,行情指标 / 月行情,,是
+19357,净利润（TTM）,ths_np_ttm_cache_index,元,财务指标（新准则）,TTM基准日,是
+653184,流动比率,ths_current_ratio_index,,财务指标（新准则） / 偿债能力,,是
+653188,速动比率,ths_quick_ratio_index,,财务指标（新准则） / 偿债能力,,是
+653192,负债合计/归属母公司股东的权益,ths_total_liab_to_equity_atsopc_index,,财务指标（新准则） / 偿债能力,,是
+653196,带息债务/归属母公司股东的权益,ths_dwi_to_equity_atsopc_index,,财务指标（新准则） / 偿债能力,,是
+653198,净债务/归属母公司股东的权益,ths_net_debt_to_equity_atsopc_index,,财务指标（新准则） / 偿债能力,,是
+653200,经营活动产生的现金流量净额/负债合计,ths_ncf_of_oa_to_total_liab_index,,财务指标（新准则） / 偿债能力,,是
+653318,单季度-销售净利率,ths_sq_sales_net_interest_gm_index,%,财务指标（新准则） / 单季度财务指标,年度、季度,是
+653348,单季度-销售费用/营业总收入,ths_sq_sales_fee_to_or_index,%,财务指标（新准则） / 单季度财务指标,年度、季度,是
+680771,单季度-营业收入同比增长率,ths_revenue_yoy_sq_index,%,财务指标（新准则） / 单季度财务指标,年度、季度,是
+680772,单季度-营业收入环比增长率,ths_operating_revenue_lrr_sq_index,%,财务指标（新准则） / 单季度财务指标,年度、季度,是
+680775,单季度—经营性现金净流量（同比增长率）,ths_sq_operate_cnf_yoy_index,%,财务指标（新准则） / 单季度财务指标,年度、季度,是
+680791,单季度-销售毛利率,ths_sales_gross_interest_sq_index,%,财务指标（新准则） / 单季度财务指标,年度、季度,是
+680792,单季度-净利润同比增长率,ths_sq_np_yoy_index,%,财务指标（新准则） / 单季度财务指标,年度、季度,是
+680793,单季度-净利润环比增长率,ths_sq_np_lrr_index,%,财务指标（新准则） / 单季度财务指标,年度、季度,是
+680799,单季度-净资产收益率ROE,ths_sq_net_asset_yield_roe_index,%,财务指标（新准则） / 单季度财务指标,年度、季度,是
+680800,单季度-总资产净利率ROA,ths_sq_net_interest_of_tas_index,%,财务指标（新准则） / 单季度财务指标,年度、季度,是
+681010,单季度-归属母公司所有者的净利润同比增长率,ths_sq_np_atsopc_yoy_index,%,财务指标（新准则） / 单季度财务指标,年度、季度,是
+681019,单季度-归属母公司所有者的净利润环比增长率,ths_sq_np_atsopc_lrr_index,%,财务指标（新准则） / 单季度财务指标,年度、季度,是
+653237,营业总收入合计(同比增长率),ths_total_revenue_yoy_index,,财务指标（新准则） / 成长能力 / 同比增长率,,是
+653239,营业收入合计(同比增长率),ths_revenue_yoy_index,,财务指标（新准则） / 成长能力 / 同比增长率,,是
+653241,营业利润合计(同比增长率),ths_operating_profit_yoy_index,,财务指标（新准则） / 成长能力 / 同比增长率,,是
+653243,利润总额合计(同比增长率),ths_total_profit_yoy_index,,财务指标（新准则） / 成长能力 / 同比增长率,,是
+653245,归属母公司股东的净利润合计(同比增长率),ths_total_np_atsopc_yoy_index,,财务指标（新准则） / 成长能力 / 同比增长率,,是
+653247,经营活动产生的现金流量净额合计(同比增长率),ths_total_ncf_of_oa_yoy_index,,财务指标（新准则） / 成长能力 / 同比增长率,,是
+653249,净资产收益率(同比增长率),ths_roe_growth_gm_index,,财务指标（新准则） / 成长能力 / 同比增长率,,是
+654994,净利润合计(同比增长率),ths_total_np_yoy_index,,财务指标（新准则） / 成长能力 / 同比增长率,,是
+658679,营业成本合计(同比增长率),ths_operating_cost_yoy_index,,财务指标（新准则） / 成长能力 / 同比增长率,,是
+658680,毛利合计(同比增长率),ths_total_gross_yoy_index,,财务指标（新准则） / 成长能力 / 同比增长率,,是
+658681,销售商品、提供劳务收到的现金合计(同比增长率),ths_total_cr_from_asasr_yoy_index,,财务指标（新准则） / 成长能力 / 同比增长率,,是
+658682,购买商品、接受劳务支付的现金合计(同比增长率),ths_total_buy_etc_cash_cost_yoy_index,,财务指标（新准则） / 成长能力 / 同比增长率,,是
+658683,支付给职工以及为职工支付的现金合计(同比增长率),ths_total_cash_paid_staff_yoy_index,,财务指标（新准则） / 成长能力 / 同比增长率,,是
+658684,净利润现金含量(同比增长率),ths_np_cash_yoy_index,%,财务指标（新准则） / 成长能力 / 同比增长率,,是
+658686,净资产合计(同比增长率),ths_total_net_asset_yoy_index,,财务指标（新准则） / 成长能力 / 同比增长率,,是
+658687,总负债合计(同比增长率),ths_total_liab_yoy_index,,财务指标（新准则） / 成长能力 / 同比增长率,,是
+658688,总资产合计(同比增长率),ths_total_asset_yoy_index,,财务指标（新准则） / 成长能力 / 同比增长率,,是
+658689,现金流量合计(同比增长率),ths_total_cash_flow_yoy_index,,财务指标（新准则） / 成长能力 / 同比增长率,,是
+653263,营业总收入合计(N年增长率),ths_total_revenue_growth_ny_index,,财务指标（新准则） / 成长能力 / 相对N年增长率,年数,是
+653266,营业收入合计(N年增长率),ths_revenue_growth_ny_index,,财务指标（新准则） / 成长能力 / 相对N年增长率,年数,是
+653269,营业利润合计(N年增长率),ths_operating_cost_growth_ny_index,,财务指标（新准则） / 成长能力 / 相对N年增长率,年数,是
+653272,利润总额合计(N年增长率),ths_operating_profit_growth_ny_index,,财务指标（新准则） / 成长能力 / 相对N年增长率,年数,是
+653275,归属母公司股东的净利润合计(N年增长率),ths_total_profit_growth_ny_index,,财务指标（新准则） / 成长能力 / 相对N年增长率,年数,是
+653278,经营活动产生的现金流量净额合计(N年增长率),ths_total_ncf_of_oa_growth_ny_index,,财务指标（新准则） / 成长能力 / 相对N年增长率,年数,是
+653281,资产总计合计(N年增长率),ths_total_assets_growth_ny_index,,财务指标（新准则） / 成长能力 / 相对N年增长率,年数,是
+653284,归属母公司股东的权益合计(N年增长率),ths_total_equity_atsopc_growth_ny_index,,财务指标（新准则） / 成长能力 / 相对N年增长率,年数,是
+653287,净资产收益率(N年增长率),ths_roe_growth_ny_index,,财务指标（新准则） / 成长能力 / 相对N年增长率,年数,是
+681016,固定资产总计（N年增长率）,ths_total_fixed_asset_growth_ny_index,%,财务指标（新准则） / 成长能力 / 相对N年增长率,年数,是
+653254,每股净资产(相对年初增长率),ths_nag_respond_boy_index,,财务指标（新准则） / 成长能力 / 相对年初增长率,,是
+653258,资产总计合计(相对年初增长率),ths_total_assets_sum_index,,财务指标（新准则） / 成长能力 / 相对年初增长率,,是
+653260,归属母公司股东的权益合计(相对年初增长率),ths_total_equity_atsopc_growth_boy_index,,财务指标（新准则） / 成长能力 / 相对年初增长率,,是
+653125,经营活动净收益/利润总额,ths_oa_net_income_to_total_profit_index,%,财务指标（新准则） / 收益质量,,是
+653129,价值变动净收益/利润总额,ths_value_chg_ni_to_total_profit_index,%,财务指标（新准则） / 收益质量,,是
+653133,所得税/利润总额,ths_income_tax_to_total_profit_index,%,财务指标（新准则） / 收益质量,,是
+653137,扣除非经常损益后的归属母公司股东净利润/归属于母公司所有者的净利润,ths_profit_dnrgal_to_np_index,%,财务指标（新准则） / 收益质量,,是
+658367,投资收益/利润总额,ths_invest_income_to_total_profit_index,%,财务指标（新准则） / 收益质量,,是
+658369,营业外收支净额/利润总额,ths_nbcai_net_amt_to_total_profit_index,%,财务指标（新准则） / 收益质量,,是
+653045,每股收益EPS-期末股本摊薄,ths_eps_final_share_dlt_index,元,财务指标（新准则） / 每股指标,,是
+653049,每股净资产,ths_np_per_share_index,元,财务指标（新准则） / 每股指标,,是
+653053,每股营业总收入,ths_revenue_ps_index,元,财务指标（新准则） / 每股指标,,是
+653057,每股留存收益,ths_retained_income_ps_index,元,财务指标（新准则） / 每股指标,,是
+653061,每股现金流量净额,ths_net_cf_ps_index,元,财务指标（新准则） / 每股指标,,是
+653065,每股经营活动产生的现金流量净额,ths_ncf_from_oa_ps_index,元,财务指标（新准则） / 每股指标,,是
+653142,销售商品提供劳务收到的现金/营业收入,ths_crfgsasr_to_revenue_index,%,财务指标（新准则） / 现金流量,,是
+653146,经营活动产生的现金流量净额/营业收入,ths_ncf_of_oa_to_revenue_index,%,财务指标（新准则） / 现金流量,,是
+653150,经营活动产生的现金流量净额/经营活动净收益,ths_ncf_of_oa_to_oa_ni_index,%,财务指标（新准则） / 现金流量,,是
+653154,资本支出/折旧和摊销,ths_capital_cost_to_daa_index,%,财务指标（新准则） / 现金流量,,是
+658669,净利润现金含量,ths_np_cash_index,%,财务指标（新准则） / 现金流量,,是
+19934,总资产净利率（TTM）,ths_total_asset_net_rate_ttm_cache_index,%,财务指标（新准则） / 盈利能力,TTM基准日,是
+653072,净资产收益率-平均,ths_roe_avg_index,%,财务指标（新准则） / 盈利能力,,是
+653076,净资产收益率-摊薄,ths_roe_dltd_index,,财务指标（新准则） / 盈利能力,,是
+653080,扣除非经常损益后的净资产收益率-平均,ths_roe_dnrgal_avg_index,%,财务指标（新准则） / 盈利能力,,是
+653084,扣除非经常损益后的净资产收益率-摊薄,ths_roe_dnrgal_dlt_index,%,财务指标（新准则） / 盈利能力,,是
+653088,总资产净利率,ths_net_interest_of_ta_index,%,财务指标（新准则） / 盈利能力,,是
+653092,销售毛利率,ths_gross_selling_rate_index,%,财务指标（新准则） / 盈利能力,,是
+653096,销售净利率,ths_net_sales_rate_index,%,财务指标（新准则） / 盈利能力,,是
+653100,营业总成本/营业总收入,ths_operating_cost_to_or_index,%,财务指标（新准则） / 盈利能力,,是
+653104,营业利润/营业总收入,ths_op_to_revenue_index,%,财务指标（新准则） / 盈利能力,,是
+653108,净利润/营业总收入,ths_np_to_revenue_index,%,财务指标（新准则） / 盈利能力,,是
+653112,销售费用/营业总收入,ths_sales_fee_to_or_index,%,财务指标（新准则） / 盈利能力,,是
+653116,管理费用/营业总收入,ths_manage_fee_to_revenue_index,%,财务指标（新准则） / 盈利能力,,是
+653120,财务费用/营业总收入,ths_finance_cost_to_total_revenue_index,%,财务指标（新准则） / 盈利能力,,是
+655200,投入资本回报率,ths_roic_index,%,财务指标（新准则） / 盈利能力,,是
+680770,销售期间费用率,ths_sales_dur_fee_rate_index,%,财务指标（新准则） / 盈利能力,,是
+680780,经营性现金净流量/营业总收入,ths_operate_cnf_to_revenue_index,%,财务指标（新准则） / 盈利能力,,是
+680784,总资产净利率（TTM）,ths_total_asset_net_rate_ttm_index,%,财务指标（新准则） / 盈利能力,TTM基准日,是
+680785,销售净利率（TTM）,ths_sale_net_rate_ttm_index,%,财务指标（新准则） / 盈利能力,TTM基准日,是
+680795,净资产收益率（TTM）,ths_roe_ttm_index,%,财务指标（新准则） / 盈利能力,TTM基准日,是
+681216,研发费用/营业总收入,ths_rad_expense_to_total_income_index,%,财务指标（新准则） / 盈利能力,报表类型,是
+653207,存货周转率,ths_inventory_turnover_index,次,财务指标（新准则） / 营运能力,,是
+653211,应收账款周转率,ths_account_receivable_turnover_index,次,财务指标（新准则） / 营运能力,,是
+653215,固定资产周转率,ths_fixed_asset_turnover_ratio_index,次,财务指标（新准则） / 营运能力,,是
+653219,总资产周转率,ths_total_capital_turnover_index,次,财务指标（新准则） / 营运能力,,是
+653223,营业周期,ths_operating_cycle_index,,财务指标（新准则） / 营运能力,,是
+653227,存货周转天数,ths_inventory_turnover_days_index,,财务指标（新准则） / 营运能力,,是
+653231,应收账款周转天数,ths_receivable_turnover_days_index,天,财务指标（新准则） / 营运能力,,是
+658671,应付账款周转率,ths_accounts_payable_turnover_index,次,财务指标（新准则） / 营运能力,,是
+658673,流动资产周转率,ths_current_asset_turnover_index,次,财务指标（新准则） / 营运能力,,是
+658675,现金循环周期,ths_cash_cycle_index,天,财务指标（新准则） / 营运能力,,是
+658677,应付账款周转天数,ths_accounts_payable_turnover_days_index,天,财务指标（新准则） / 营运能力,,是
+680690,净营业周期,ths_net_operate_period_index,,财务指标（新准则） / 营运能力,,是
+658372,业务及管理费/总资产,ths_admin_fee_to_total_assets_index,%,财务指标（新准则） / 行业特殊指标,,是
+658375,资本充足率_银行(算术平均),ths_capital_adequacy_ratio_aa_index,%,财务指标（新准则） / 行业特殊指标,,是
+658376,保险责任准备金/总负债_保险,ths_irr_to_total_debt_insurance_index,%,财务指标（新准则） / 行业特殊指标,,是
+658377,经营性流动资产/总资产_保险,ths_operate_fa_to_ta_insurance_index,%,财务指标（新准则） / 行业特殊指标,,是
+658378,手续费及佣金净收入/营业收入_券商,ths_cac_net_income_to_oi_broker_index,%,财务指标（新准则） / 行业特殊指标,,是
+653159,资产负债率,ths_asset_liab_ratio_index,%,财务指标（新准则） / 资本结构,,是
+653163,流动资产/总资产,ths_flow_assets_to_total_assets_index,%,财务指标（新准则） / 资本结构,,是
+653167,非流动资产/总资产,ths_noncurrent_assets_to_ta_index,%,财务指标（新准则） / 资本结构,,是
+653171,有形资产净值/总资产,ths_tanv_to_total_assets_index,%,财务指标（新准则） / 资本结构,,是
+653175,流动负债/负债合计,ths_flow_debt_to_total_debt_index,%,财务指标（新准则） / 资本结构,,是
+653179,非流动负债/负债合计,ths_noncurrent_liab_to_total_liab_index,%,财务指标（新准则） / 资本结构,,是
+655079,权益乘数,ths_equity_multiplier_index,,财务指标（新准则） / 资本结构,,是
+658373,对外投资/所有者权益,ths_abord_invest_to_owner_equity_index,%,财务指标（新准则） / 资本结构,,是
+658667,长期资本负债率,ths_lt_liability_ratio_index,%,财务指标（新准则） / 资本结构,,是
+19504,研发费用,ths_rad_cost_sum_index,元,财务数据（新准则） / 利润表,,是
+653434,营业总收入,ths_operating_total_revenue_index,元,财务数据（新准则） / 利润表,,是
+653438,营业总成本,ths_total_operating_cost_index,元,财务数据（新准则） / 利润表,,是
+653442,营业收入,ths_revenue_index,元,财务数据（新准则） / 利润表,,是
+653446,营业成本,ths_operating_cost_index,元,财务数据（新准则） / 利润表,,是
+653450,销售费用,ths_sales_fee_index,元,财务数据（新准则） / 利润表,,是
+653454,管理费用,ths_manage_fee_index,元,财务数据（新准则） / 利润表,,是
+653458,财务费用,ths_financing_expenses_index,元,财务数据（新准则） / 利润表,,是
+653462,投资收益,ths_invest_income_index,元,财务数据（新准则） / 利润表,,是
+653466,汇兑收益,ths_exchange_gain_index,元,财务数据（新准则） / 利润表,,是
+653470,公允价值变动收益,ths_fv_chg_income_index,元,财务数据（新准则） / 利润表,,是
+653474,营业利润,ths_op_index,元,财务数据（新准则） / 利润表,,是
+653478,利润总额,ths_total_profit_index,元,财务数据（新准则） / 利润表,,是
+653482,所得税费用,ths_income_tax_cost_index,元,财务数据（新准则） / 利润表,,是
+653486,净利润,ths_np_index,元,财务数据（新准则） / 利润表,,是
+653490,归属母公司所有者的净利润,ths_np_atoopc_index,元,财务数据（新准则） / 利润表,,是
+653494,归属母公司所有者的净利润-扣除非经常性损益,ths_np_atoopc_dnrgal_index,元,财务数据（新准则） / 利润表,,是
+653498,毛利,ths_gross_profit_index,元,财务数据（新准则） / 利润表,,是
+653502,经营活动净收益,ths_operating_activity_net_income_index,元,财务数据（新准则） / 利润表,,是
+653506,价值变动净收益,ths_value_chg_net_income_index,元,财务数据（新准则） / 利润表,,是
+680788,营业外支出,ths_nonoperating_cost_index,元,财务数据（新准则） / 利润表,报表类型,是
+680798,营业外收入,ths_non_operating_income_index,元,财务数据（新准则） / 利润表,报表类型,是
+680809,资产减值损失,ths_asset_impairment_loss_index,元,财务数据（新准则） / 利润表,报表类型,是
+681001,单季度-营业总收入,ths_sq_operating_total_revenue_index,元,财务数据（新准则） / 利润表（单季度）,年度、季度,是
+681002,单季度-营业收入,ths_sq_revenue_index,元,财务数据（新准则） / 利润表（单季度）,年度、季度,是
+681003,单季度-归属母公司所有者的净利润,ths_sq_np_atoopc_index,元,财务数据（新准则） / 利润表（单季度）,年度、季度,是
+653568,汇率变动对现金及现金等价物的影响,ths_effect_of_exchange_chg_on_cce_index,元,财务数据（新准则） / 现金流量表,,是
+658528,收回投资收到的现金,ths_cash_received_of_dspsl_invest_index,元,财务数据（新准则） / 现金流量表 / 投资活动产生的现金流量,,是
+658529,取得投资收益收到的现金,ths_invest_income_cash_received_index,元,财务数据（新准则） / 现金流量表 / 投资活动产生的现金流量,,是
+658530,处置固定资产、无形资产和其他长期资产收回的现金净额,ths_net_cash_of_disposal_assets_index,元,财务数据（新准则） / 现金流量表 / 投资活动产生的现金流量,,是
+658531,处置子公司及其他营业单位收到的现金净额,ths_net_cash_of_disposal_branch_index,元,财务数据（新准则） / 现金流量表 / 投资活动产生的现金流量,,是
+658532,收到其他与投资活动有关的现金,ths_cash_received_of_other_ia_index,元,财务数据（新准则） / 现金流量表 / 投资活动产生的现金流量,,是
+658533,投资活动现金流入小计,ths_sub_total_of_ci_from_ia_index,元,财务数据（新准则） / 现金流量表 / 投资活动产生的现金流量,,是
+658534,构建固定资产、无形资产和其他长期资产支付的现金,ths_structure_assets_cash_cost_index,元,财务数据（新准则） / 现金流量表 / 投资活动产生的现金流量,,是
+658535,投资支付的现金,ths_invest_paid_cash_index,元,财务数据（新准则） / 现金流量表 / 投资活动产生的现金流量,,是
+658536,质押贷款净增加额,ths_net_add_in_pledge_loans_index,元,财务数据（新准则） / 现金流量表 / 投资活动产生的现金流量,,是
+658537,取得子公司及其他营业单位支付的现金净额,ths_net_cash_amt_from_branch_index,元,财务数据（新准则） / 现金流量表 / 投资活动产生的现金流量,,是
+658538,支付其他与投资活动有关的现金,ths_other_cash_paid_related_to_ia_index,元,财务数据（新准则） / 现金流量表 / 投资活动产生的现金流量,,是
+658539,投资活动现金流出小计,ths_sub_total_of_cos_fromia_index,元,财务数据（新准则） / 现金流量表 / 投资活动产生的现金流量,,是
+658540,投资活动产生的现金流量净额,ths_ncf_from_ia_index,元,财务数据（新准则） / 现金流量表 / 投资活动产生的现金流量,,是
+658620,现金及现金等价物净增加额,ths_net_increase_in_cce_index,元,财务数据（新准则） / 现金流量表 / 现金及现金等价物净增加,,是
+658621,期初现金及现金等价物余额,ths_initial_cce_balance_index,元,财务数据（新准则） / 现金流量表 / 现金及现金等价物净增加,,是
+658622,期末现金及现金等价物余额,ths_final_balance_of_cce_index,元,财务数据（新准则） / 现金流量表 / 现金及现金等价物净增加,,是
+658580,吸收投资收到的现金,ths_cash_received_of_absorb_invest_index,元,财务数据（新准则） / 现金流量表 / 筹资活动产生的现金流量,,是
+658581,取得借款收到的现金,ths_cash_received_of_borrowing_index,元,财务数据（新准则） / 现金流量表 / 筹资活动产生的现金流量,,是
+658582,发行债券收到的现金,ths_cash_received_from_bond_issue_index,元,财务数据（新准则） / 现金流量表 / 筹资活动产生的现金流量,,是
+658583,收到其他与筹资活动有关的现金,ths_cash_received_of_othr_fa_index,元,财务数据（新准则） / 现金流量表 / 筹资活动产生的现金流量,,是
+658584,筹资活动现金流入小计,ths_sub_total_of_ci_from_fa_index,元,财务数据（新准则） / 现金流量表 / 筹资活动产生的现金流量,,是
+658585,偿还债务支付的现金,ths_cash_pay_for_debt_index,元,财务数据（新准则） / 现金流量表 / 筹资活动产生的现金流量,,是
+658586,分配股利、利润或偿还利息支付的现金,ths_dividend_etc_cash_paid_index,元,财务数据（新准则） / 现金流量表 / 筹资活动产生的现金流量,,是
+658587,支付其他与筹资活动有关的现金,ths_othrcash_paid_relating_to_fa_index,元,财务数据（新准则） / 现金流量表 / 筹资活动产生的现金流量,,是
+658588,筹资活动现金流出小计,ths_sub_total_of_cos_from_fa_index,元,财务数据（新准则） / 现金流量表 / 筹资活动产生的现金流量,,是
+658589,筹资活动产生的现金流量净额,ths_ncf_from_fa_index,元,财务数据（新准则） / 现金流量表 / 筹资活动产生的现金流量,,是
+658430,销售商品、提供劳务收到的现金,ths_cash_received_of_sales_service_index,元,财务数据（新准则） / 现金流量表 / 经营活动产生的现金流量,,是
+658431,客户存款和同业存放款项净增加额,ths_deposit_and_interbank_net_add_index,元,财务数据（新准则） / 现金流量表 / 经营活动产生的现金流量,,是
+658432,向中央银行借款净增加额,ths_borrowing_net_add_central_bank_index,元,财务数据（新准则） / 现金流量表 / 经营活动产生的现金流量,,是
+658433,向其他金融机构拆入资金净增加额,ths_lending_net_add_other_org_index,元,财务数据（新准则） / 现金流量表 / 经营活动产生的现金流量,,是
+658434,收到原保险合同保费取得的现金,ths_cash_received_from_orig_ic_index,元,财务数据（新准则） / 现金流量表 / 经营活动产生的现金流量,,是
+658435,收到再保业务现金净额,ths_net_cash_received_from_rein_index,元,财务数据（新准则） / 现金流量表 / 经营活动产生的现金流量,,是
+658436,保户储金及投资款净增加额,ths_naaassured_saving_and_invest_index,元,财务数据（新准则） / 现金流量表 / 经营活动产生的现金流量,,是
+658437,处置交易性金融资产净增加额,ths_naa_of_disposal_fnncl_assets_index,元,财务数据（新准则） / 现金流量表 / 经营活动产生的现金流量,,是
+658438,收取利息、手续费及佣金的现金,ths_cash_received_of_interest_etc_index,元,财务数据（新准则） / 现金流量表 / 经营活动产生的现金流量,,是
+658439,拆入资金净增加额,ths_borrowing_net_increase_amt_index,元,财务数据（新准则） / 现金流量表 / 经营活动产生的现金流量,,是
+658440,回购业务资金净增加额,ths_net_add_in_repur_capital_index,元,财务数据（新准则） / 现金流量表 / 经营活动产生的现金流量,,是
+658441,收到的税费返还,ths_refund_of_tax_and_levies_index,元,财务数据（新准则） / 现金流量表 / 经营活动产生的现金流量,,是
+658442,收到其他与经营活动有关的现金,ths_cash_received_of_other_fa_index,元,财务数据（新准则） / 现金流量表 / 经营活动产生的现金流量,,是
+658443,经营活动现金流入小计,ths_sub_total_of_ci_from_oa_index,元,财务数据（新准则） / 现金流量表 / 经营活动产生的现金流量,,是
+658444,购买商品、接受劳务支付的现金,ths_goods_buy_and_service_cash_pay_index,元,财务数据（新准则） / 现金流量表 / 经营活动产生的现金流量,,是
+658445,客户贷款及垫款净增加额,ths_loan_and_advancenet_add_index,元,财务数据（新准则） / 现金流量表 / 经营活动产生的现金流量,,是
+658446,存放中央银行和同业款项净增加额,ths_naa_of_cb_and_interbank_index,元,财务数据（新准则） / 现金流量表 / 经营活动产生的现金流量,,是
+658447,支付原保险合同同赔付款项的现金,ths_orig_ic_compen_cash_paid_index,元,财务数据（新准则） / 现金流量表 / 经营活动产生的现金流量,,是
+658448,支付利息、手续费及佣金的现金,ths_cash_paid_for_interests_etc_index,元,财务数据（新准则） / 现金流量表 / 经营活动产生的现金流量,,是
+658449,支付给职工以及为职工支付的现金,ths_cash_paid_to_staff_etc_index,元,财务数据（新准则） / 现金流量表 / 经营活动产生的现金流量,,是
+658450,支付的各项税费,ths_payments_of_all_taxes_index,元,财务数据（新准则） / 现金流量表 / 经营活动产生的现金流量,,是
+658451,支付其他与经营活动有关的现金,ths_other_cash_paid_related_to_oa_index,元,财务数据（新准则） / 现金流量表 / 经营活动产生的现金流量,,是
+658452,经营活动现金流出小计,ths_sub_total_of_cos_from_oa_index,元,财务数据（新准则） / 现金流量表 / 经营活动产生的现金流量,,是
+658453,经营活动产生的现金流量净额,ths_ncf_from_oa_index,元,财务数据（新准则） / 现金流量表 / 经营活动产生的现金流量,,是
+658662,支付保单红利的现金,ths_cash_paid_for_pd_index,元,财务数据（新准则） / 现金流量表 / 经营活动产生的现金流量,,是
+19356,营业收入（TTM）,ths_or_ttm_cache_index,元,财务数据（新准则） / 衍生报表数据,TTM基准日,是
+19358,归属母公司所有者的净利润（TTM）,ths_np_atsopc_ttm_cache_index,元,财务数据（新准则） / 衍生报表数据,TTM基准日,是
+19359,经营活动现金净流量（TTM）,ths_oa_cash_flow_ttm_cache_index,元,财务数据（新准则） / 衍生报表数据,TTM基准日,是
+19364,现金净流量（TTM）,ths_cash_net_flow_ttm_cache_index,元,财务数据（新准则） / 衍生报表数据,TTM基准日,是
+680699,非经常性损益,ths_nrpal_index,元,财务数据（新准则） / 衍生报表数据,,是
+680786,营业收入（TTM）,ths_or_ttm_index,元,财务数据（新准则） / 衍生报表数据,TTM基准日,
+680787,现金净流量（TTM）,ths_cash_net_flow_ttm_index,元,财务数据（新准则） / 衍生报表数据,TTM基准日,
+680796,净利润（TTM）,ths_np_ttm_index,元,财务数据（新准则） / 衍生报表数据,TTM基准日,
+680797,经营活动现金净流量（TTM）,ths_oa_cash_flow_ttm_index,元,财务数据（新准则） / 衍生报表数据,TTM基准日,
+681020,归属母公司所有者的净利润（TTM）,ths_np_atsopc_ttm_index,元,财务数据（新准则） / 衍生报表数据,TTM基准日,
+653511,资产总计,ths_total_assets_index,元,财务数据（新准则） / 资产负债表,,是
+653515,流动资产,ths_current_assets_index,元,财务数据（新准则） / 资产负债表,,是
+653519,长期股权投资,ths_lt_equity_invest_index,元,财务数据（新准则） / 资产负债表,,是
+653523,投资性房地产,ths_invest_property_index,元,财务数据（新准则） / 资产负债表,,是
+653527,固定资产,ths_fixed_asset_index,元,财务数据（新准则） / 资产负债表,,是
+653531,非流动资产,ths_noncurrent_assets_index,元,财务数据（新准则） / 资产负债表,,是
+653535,流动负债,ths_current_liab_index,元,财务数据（新准则） / 资产负债表,,是
+653539,非流动负债,ths_noncurrent_liab_index,元,财务数据（新准则） / 资产负债表,,是
+653543,所有者权益合计,ths_total_owner_equity_index,元,财务数据（新准则） / 资产负债表,,是
+653547,少数股东权益,ths_minority_equity_index,元,财务数据（新准则） / 资产负债表,,是
+653551,归属于母公司所有者权益合计,ths_total_equity_atoopc_index,元,财务数据（新准则） / 资产负债表,,是
+658121,应收账款,ths_account_receivable_index,元,财务数据（新准则） / 资产负债表,,是
+658123,存货,ths_inventory_index,元,财务数据（新准则） / 资产负债表,,是
+658125,持有至到期投资,ths_held_to_maturity_invest_index,元,财务数据（新准则） / 资产负债表,,是
+658127,无形资产,ths_intangible_assets_index,元,财务数据（新准则） / 资产负债表,,是
+658129,短期借款,ths_st_loan_index,元,财务数据（新准则） / 资产负债表,,是
+658131,应付账款,ths_accounts_payable_index,元,财务数据（新准则） / 资产负债表,,是
+658133,长期借款,ths_lt_loan_index,元,财务数据（新准则） / 资产负债表,,是
+680704,在建工程,ths_construction_in_process_index,元,财务数据（新准则） / 资产负债表,报表类型,是
+680776,应收票据,ths_bills_receivable_index,元,财务数据（新准则） / 资产负债表,报表类型,是
+680777,一年内到期的非流动负债,ths_noncurrent_liab_due_in1y_index,元,财务数据（新准则） / 资产负债表,报表类型,是
+680778,应付债券,ths_bond_payable_index,元,财务数据（新准则） / 资产负债表,报表类型,是
+680801,货币资金,ths_currency_fund_index,元,财务数据（新准则） / 资产负债表,报表类型,是
+680802,预付款项,ths_prepays_index,元,财务数据（新准则） / 资产负债表,报表类型,是
+680803,应付票据,ths_bill_payable_index,元,财务数据（新准则） / 资产负债表,报表类型,是
+680804,预收款项,ths_advance_payment_index,元,财务数据（新准则） / 资产负债表,报表类型,是
+680805,应付职工薪酬,ths_payroll_payable_index,元,财务数据（新准则） / 资产负债表,报表类型,是
+680806,实收资本（或股本）,ths_actual_received_capital_index,元,财务数据（新准则） / 资产负债表,报表类型,是
+680807,资本公积,ths_capital_reserve_index,元,财务数据（新准则） / 资产负债表,报表类型,是
+680808,未分配利润,ths_undstrbtd_profit_index,元,财务数据（新准则） / 资产负债表,报表类型,是
+19402,陆股通持股市值,ths_hsgt_held_stock_mv_cache_index,元,资金指标,,是
+19403,陆股通持股市值占流通市值比,ths_hsgt_hs_mv_to_current_mv_ratio_cache_index,%,资金指标,,是
+20329,融资余额配置比例,ths_mtb_configure_ratio_hb_index,%,资金指标,,是
+681153,公募基金重仓持股市值,ths_fund_top_held_stock_mv_index,元,资金指标,,
+681154,公募基金重仓持股市值占流通市值比,ths_top_hs_mv_to_current_mv_ratio_index,%,资金指标,,
+681171,陆股通持股市值,ths_hsgt_held_stock_mv_index,元,资金指标,,
+681172,陆股通持股市值占流通市值比,ths_hsgt_hs_mv_to_current_mv_ratio_index,%,资金指标,,
+681173,公募基金配置比例,ths_fund_configure_ratio_index,%,资金指标,,
+681174,陆股通配置比例,ths_hsgt_configure_ratio_index,%,资金指标,,
+681175,融资余额配置比例,ths_mtb_configure_ratio_index,%,资金指标,,是
+16838,主动买入特大单金额,ths_active_buy_large_amt_hb_index,元,资金流向指标,,是
+16839,被动买入特大单金额,ths_possitive_buy_large_amt_hb_index,元,资金流向指标,,是
+16840,主动卖出特大单金额,ths_active_sell_large_amt_hb_index,元,资金流向指标,,是
+16841,被动卖出特大单金额,ths_possitive_sell_large_amt_hb_index,元,资金流向指标,,是
+16842,主动买入大单金额,ths_active_buy_main_amt_hb_index,元,资金流向指标,,是
+16843,被动买入大单金额,ths_possitive_buy_main_amt_hb_index,元,资金流向指标,,是
+16844,主动卖出大单金额,ths_active_sell_main_amt_hb_index,元,资金流向指标,,是
+16845,被动卖出大单金额,ths_possitive_sell_main_amt_hb_index,元,资金流向指标,,是
+16846,主动买入中单金额,ths_active_buy_middle_amt_hb_index,元,资金流向指标,,是
+16847,被动买入中单金额,ths_possitive_buy_middle_amt_hb_index,元,资金流向指标,,是
+16848,主动卖出中单金额,ths_active_sell_middle_amt_hb_index,元,资金流向指标,,是
+16849,被动卖出中单金额,ths_possitive_sell_middle_amt_hb_index,元,资金流向指标,,是
+16850,小单买入金额,ths_small_buy_amt_hb_index,元,资金流向指标,,是
+16851,小单卖出金额,ths_small_sell_amt_hb_index,元,资金流向指标,,是
+16852,DDE大单净额,ths_dde_hb_index,元,资金流向指标,,是
+16853,5日DDE,ths_dde_5d_hb_index,元,资金流向指标,,是
+16854,10日DDE,ths_dde_10d_hb_index,元,资金流向指标,,是
+16855,20日DDE,ths_dde_20d_hb_index,元,资金流向指标,,是
+16856,金额流入率,ths_inflow_rate_hb_index,%,资金流向指标,,是
+17493,主动买入小单金额,ths_active_buy_small_amt_index,元,资金流向指标,,是
+17494,主动卖出小单金额,ths_active_sell_small_amt_index,元,资金流向指标,,是
+19480,主力净流入额,ths_main_net_inflow_amt_index,元,资金流向指标,,是
+19481,主力净流入量,ths_main_net_inflow_index,股,资金流向指标,,是
+19482,流入额,ths_inflow_amt_index,元,资金流向指标,类别,是
+19483,流出额,ths_outflow_amt_index,元,资金流向指标,类别,是
+19484,流入量,ths_inflow_vol_index,股,资金流向指标,类别,是
+19485,流出量,ths_outflow_vol_index,股,资金流向指标,类别,是
+19486,净买入额,ths_net_buy_amt_index,元,资金流向指标,类别,是
+19487,净买入量,ths_net_buy_vol_index,股,资金流向指标,类别,是
+19488,净主动买入额,ths_net_active_buy_amt_index,元,资金流向指标,类别,是
+19489,净主动买入量,ths_net_active_buy_vol_index,股,资金流向指标,类别,是
+657379,主动买入特大单金额,ths_active_buy_large_amt_index,元,资金流向指标,,
+657381,被动买入特大单金额,ths_possitive_buy_large_amt_index,元,资金流向指标,,
+657383,主动卖出特大单金额,ths_active_sell_large_amt_index,元,资金流向指标,,
+657385,被动卖出特大单金额,ths_possitive_sell_large_amt_index,元,资金流向指标,,
+657387,主动买入大单金额,ths_active_buy_main_amt_index,元,资金流向指标,,
+657389,被动买入大单金额,ths_possitive_buy_main_amt_index,元,资金流向指标,,
+657391,主动卖出大单金额,ths_active_sell_main_amt_index,元,资金流向指标,,
+657393,被动卖出大单金额,ths_possitive_sell_main_amt_index,元,资金流向指标,,
+657395,主动买入中单金额,ths_active_buy_middle_amt_index,元,资金流向指标,,
+657397,被动买入中单金额,ths_possitive_buy_middle_amt_index,元,资金流向指标,,
+657399,主动卖出中单金额,ths_active_sell_middle_amt_index,元,资金流向指标,,
+657401,被动卖出中单金额,ths_possitive_sell_middle_amt_index,元,资金流向指标,,
+657403,小单买入金额,ths_small_buy_amt_index,元,资金流向指标,,
+657405,小单卖出金额,ths_small_sell_amt_index,元,资金流向指标,,
+657407,DDE大单净额,ths_dde_index,元,资金流向指标,,
+658640,5日DDE,ths_dde_5d_index,元,资金流向指标,,
+658642,10日DDE,ths_dde_10d_index,元,资金流向指标,,
+658644,20日DDE,ths_dde_20d_index,元,资金流向指标,,
+658646,金额流入率,ths_inflow_rate_index,%,资金流向指标,,
+00611,平均收益率,ths_avg_yield_index,%,风险指标,起始交易日期、截止交易日期、计算周期1、收益率计算方法,
+00613,波动率,ths_volatility_index,%,风险指标,起始交易日期、截止交易日期、计算周期1、收益率计算方法,
+00614,年化波动率,ths_annual_volatility_index,%,风险指标,起始交易日期、截止交易日期、计算周期1、收益率计算方法,
+00615,Beta值,ths_beta_index,,风险指标,起始交易日期、截止交易日期、计算周期2、收益率计算方法、标的指数,
+00617,Sharpe,ths_sharp_index,,风险指标,起始交易日期、截止交易日期、计算周期2、收益率计算方法、无风险收益率,
+00618,Treynor,ths_treynor_index,,风险指标,起始交易日期、截止交易日期、计算周期2、收益率计算方法、无风险收益率、标的指数,
+00619,Jensen,ths_jensen_index,,风险指标,起始交易日期、截止交易日期、计算周期2、收益率计算方法、无风险收益率、标的指数,
+07061,Alpha,ths_alpha_index,,风险指标,起始交易日期、截止交易日期、计算周期、收益率计算方法、标的指数,
+07062,年化收益率,ths_annual_yield_index,,风险指标,起始交易日期、截止交易日期、计算周期、收益率计算方法,
+09644,Sharpe(年化),ths_sharp_annual_index,,风险指标,起始交易日期、截止交易日期、计算周期2、收益率计算方法、无风险收益率,
+11024,最大回撤,ths_max_retrace_index,%,风险指标,起始交易日期、截止交易日期,
+12993,年化收益率,ths_annual_yield_new_index,%,风险指标,起始交易日期、截止交易日期、收益率计算方法,
+12994,Calmar,ths_calmar_index,,风险指标,起始交易日期、截止交易日期,
+16465,最大回撤区间日期,ths_interval_date_maximum_drawdown_index,,风险指标,起始交易日期、截止交易日期,
+16466,最大上涨,ths_max_raise_index,%,风险指标,起始交易日期、截止交易日期,
+16467,下行标准差,ths_downside_standard_deviation_index,,风险指标,起始交易日期、截止交易日期、计算周期、收益率计算方法、无风险收益率,
+16468,下行标准差（年化）,ths_downside_standard_deviation_annual_index,,风险指标,起始交易日期、截止交易日期、计算周期、收益率计算方法、无风险收益率,
+16469,上行标准差,ths_uplink_standard_deviation_index,,风险指标,起始交易日期、截止交易日期、计算周期、收益率计算方法、无风险收益率,
+16470,上行标准差（年化）,ths_uplink_standard_deviation_annual_index,,风险指标,起始交易日期、截止交易日期、计算周期、收益率计算方法、无风险收益率,
+17746,历史VaR,ths_his_var_index,%,风险指标,起始交易日期、截止交易日期、计算周期、置信度α,
+17747,参数VaR,ths_param_var_index,%,风险指标,起始交易日期、截止交易日期、计算周期、收益率计算方法、置信度α,
+17748,历史平均损失值ES,ths_his_avg_loss_index,%,风险指标,起始交易日期、截止交易日期、计算周期,
+17749,参数平均损失值ES,ths_param_avg_loss_index,%,风险指标,起始交易日期、截止交易日期、计算周期、收益率计算方法、置信度α,
+17819,平均收益率（年化）,ths_avg_annual_yield_index,%,风险指标,起始交易日期、截止交易日期、计算周期、收益率计算方法,
+19536,最大回撤恢复天数,ths_res_days_max_retrace_index,天,风险指标,起始交易日期、截止交易日期,
+20220,年化收益率（自然日）,ths_cd_annualized_return_rate_index,%,风险指标,起始交易日期、截止交易日期、收益率计算方法,
+32278,相关系数,ths_correlation_index,,风险指标,起始交易日期、截止交易日期、计算周期、收益率计算方法、相关证券的同花顺代码,

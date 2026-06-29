@@ -1,0 +1,408 @@
+﻿指标代码,指标中文名,英文代码,单位,分类,参数,支持序列
+05965,注册仓单数量,ths_reg_warehouse_receipts_num_future,,仓单指标,,是
+20009,交割量,ths_delivery_vol_future,手,仓单指标,,是
+20010,交割金额,ths_delivery_amt_future,元,仓单指标,,是
+07434,成交量,ths_member_vol_future,手,会员持仓,会员名称,是
+07435,成交量增减,ths_member_vol_chg_future,手,会员持仓,会员名称,是
+07436,成交量排名,ths_vol_rank_future,手,会员持仓,会员名称,是
+07437,多单量,ths_long_vol_future,手,会员持仓,会员名称,是
+07438,多单量增减,ths_long_vol_change_future,手,会员持仓,会员名称,是
+07439,多单量排名,ths_long_vol_rank_future,手,会员持仓,会员名称,是
+07440,空单量,ths_short_vol_future,手,会员持仓,会员名称,是
+07441,空单量增减,ths_short_vol_change_future,手,会员持仓,会员名称,是
+07442,空单量排名,ths_short_vol_rank_future,手,会员持仓,会员名称,是
+07443,净多单,ths_net_long_bill_future,手,会员持仓,会员名称,是
+07444,净多单增减,ths_net_long_bill_change_future,手,会员持仓,会员名称,是
+07445,净多单排名,ths_net_long_bill_rank_future,手,会员持仓,会员名称,是
+07446,净空单,ths_net_shortg_bill_future,手,会员持仓,会员名称,是
+07447,净空单增减,ths_net_short_bill_change_future,手,会员持仓,会员名称,是
+07448,净空单排名,ths_net_short_bill_rank_future,手,会员持仓,会员名称,是
+00003,同花顺代码,ths_thscode_future,,合约基础,,
+00420,期货简称,ths_future_short_name_future,,合约基础,,
+00426,证券类型,ths_sec_type_future,,合约基础,,
+00427,开始交易日,ths_start_trade_date_future,,合约基础,,
+05774,交易品种,ths_td_variety_future,,合约基础,,
+05775,交易单位,ths_td_unit_future,,合约基础,,是
+05776,报价单位,ths_pricing_unit_future,,合约基础,,
+05777,最小变动价位,ths_mini_chg_price_future,,合约基础,,是
+05778,合约月份说明,ths_contract_month_explain_future,,合约基础,,
+05779,交易时间说明,ths_td_time_explain_future,,合约基础,,
+05780,最后交易日说明,ths_last_td_date_explian_future,,合约基础,,
+05781,交割日期说明,ths_delivery_date_explain_future,,合约基础,,
+05782,最初交易保证金,ths_initial_td_deposit_future,,合约基础,,是
+05784,期货代码,ths_future_code_future,,合约基础,,
+05786,交易所简称,ths_exchange_short_name_future,,合约基础,,
+05787,涨跌幅限制（%）,ths_chg_ratio_lmit_future,,合约基础,,是
+05790,最后交易日,ths_last_td_date_future,,合约基础,,
+05791,最后交割日,ths_last_delivery_date_future,,合约基础,,
+05792,交割月份,ths_delivery_month_future,,合约基础,,
+05793,挂牌基准价,ths_listing_benchmark_price_future,,合约基础,,是
+05794,合约英文简称,ths_contract_en_short_name_future,,合约基础,,
+05795,合约英文名称,ths_contract_en_name_future,,合约基础,,
+09376,合约乘数,ths_contract_multiplier_future,,合约基础,,是
+09377,投机多头保证金率,ths_contract_long_deposit_future,,合约基础,,是
+09378,投机空头保证金率,ths_contract_short_deposit_future,,合约基础,,是
+09379,合约上市日,ths_contract_listed_date_future,,合约基础,,
+11118,月合约代码,ths_month_contract_code_future,,合约基础,,
+11512,交易保证金,ths_trade_deposit_future,,合约基础,持仓头寸,是
+12262,套保多头保证金率,ths_hedging_contract_long_deposit_future,,合约基础,,是
+12263,套保空头保证金率,ths_hedging_contract_short_deposit_future,,合约基础,,是
+12264,交易手续费率（‰）,ths_transaction_procedure_rate_future,,合约基础,,是
+12265,交易手续费额（元/手）,ths_transaction_procedure_fee_future,,合约基础,,是
+12266,平今仓交易手续费率（‰）,ths_to_transaction_procedure_rate_future,,合约基础,,是
+12267,平今仓交易手续费额（元/手）,ths_to_transaction_procedure_fee_future,,合约基础,,是
+15216,夜盘开盘时间,ths_open_time_night_future,,合约基础,,
+15217,夜盘收盘时间,ths_close_time_night_future,,合约基础,,
+15218,日盘开盘时间,ths_open_time_day_future,,合约基础,,
+15219,日盘收盘时间,ths_close_time_day_future,,合约基础,,
+15220,日盘休息开始时间,ths_rest_start_time_future,,合约基础,,
+15221,日盘休息结束时间,ths_rest_end_time_future,,合约基础,,
+15222,日盘上午收盘时间,ths_close_time_am_future,,合约基础,,
+15223,日盘下午开盘时间,ths_open_time_pm_future,,合约基础,,
+17010,品种类型,ths_variety_type_future,,合约基础,类型,
+17182,标的代码（股指期货）,ths_underlying_code_sif_future,,合约基础,,
+17519,交易所英文名称,ths_exchange_name_eng_future,,合约基础,,
+17520,货币类型,ths_currency_type_future,,合约基础,,
+17521,上市状态,ths_listed_status_future,,合约基础,,
+17774,最新交易日,ths_latest_td_date_future,,合约基础,,
+17820,合约乘数,ths_contract_multiplier_product_future,,合约基础,,是
+20434,每次最小下单量（郑商所）,ths_min_order_qty_czc_future,手,合约基础,,是
+20435,每次最大下单量（限价指令，郑商所）,ths_max_limit_order_qty_czc_future,手,合约基础,,是
+20436,每次最大下单量（市价指令，郑商所）,ths_max_mkt_order_qty_czc_future,手,合约基础,,是
+20437,每次最小开仓下单量（大商所）,ths_min_open_order_qty_dce_future,手,合约基础,,是
+20438,每次最小平仓下单量（大商所）,ths_min_close_order_qty_dce_future,手,合约基础,,是
+20439,每次最大开仓下单量（大商所）,ths_max_open_order_qty_dce_future,手,合约基础,,是
+20440,每次最大平仓下单量（大商所）,ths_max_close_order_qty_dce_future,手,合约基础,,是
+20441,每次最小开仓下单量（广期所）,ths_min_open_order_qty_gfe_future,手,合约基础,,是
+20442,每次最小平仓下单量（广期所）,ths_min_close_order_qty_gfe_future,手,合约基础,,是
+20443,每次最大开仓下单量（广期所）,ths_max_open_order_qty_gfe_future,手,合约基础,,是
+20444,每次最大平仓下单量（广期所）,ths_max_close_order_qty_gfe_future,手,合约基础,,是
+20445,每次最小下单量（上期所）,ths_min_order_qty_shf_future,手,合约基础,,是
+20446,每次最大下单量（限价指令，上期所）,ths_max_limit_order_qty_shf_future,手,合约基础,,是
+20447,每次最小下单量（中金所）,ths_min_order_qty_cfe_future,手,合约基础,,是
+20448,每次最大下单量（限价指令，中金所）,ths_max_limit_order_qty_cfe_future,手,合约基础,,是
+20449,每次最大下单量（市价指令，中金所）,ths_max_mkt_order_qty_cfe_future,手,合约基础,,是
+20450,持仓限额,ths_pos_limit_future,手,合约基础,是否区分会员,是
+20451,交易限额,ths_trading_limit_future,手,合约基础,,是
+20452,个人最后交易日,ths_indiv_ltd_future,,合约基础,,
+32010,剩余交易日,ths_remain_trade_days,,合约基础,边界选项,是
+32011,合约乘数,ths_contract_multiplier,,合约基础,,是
+11624,CTD,ths_ctd_future,,国债期货专用,交易市场、债券价格类型,
+17059,基差,ths_bondfuture_basis_future,,国债期货专用,交易市场、债券价格类型,是
+17060,IRR,ths_irr_future,,国债期货专用,交易市场、债券价格类型,是
+17061,期现价差,ths_spread_future,,国债期货专用,交易市场、债券价格类型,是
+17522,净基差,ths_net_basis_future,,国债期货专用,交易市场、债券价格类型、资金成本,是
+17524,发票价格,ths_invoiceprice_future,,国债期货专用,交易市场、债券价格类型,是
+20183,CTD,ths_ctd_new_future,,国债期货专用,交易市场、债券价格类型、期货价格类型,
+20184,基差,ths_bondfuture_basis_new_future,,国债期货专用,交易市场、债券价格类型、期货价格类型,是
+20185,IRR,ths_irr_new_future,,国债期货专用,交易市场、债券价格类型、期货价格类型,是
+20186,期现价差,ths_spread_new_future,,国债期货专用,交易市场、债券价格类型、期货价格类型,是
+20187,净基差,ths_net_basis_new_future,,国债期货专用,交易市场、债券价格类型、期货价格类型、资金成本,是
+20188,发票价格,ths_invoiceprice_new_future,,国债期货专用,交易市场、债券价格类型、期货价格类型,是
+33749,创历史新高,ths_his_high_future,,技术形态 / 走势特征,近N天内,
+33750,创历史新低,ths_his_low_future,,技术形态 / 走势特征,近N天内,
+33751,创阶段新高,ths_phase_high_future,,技术形态 / 走势特征,近N天内、创N天以来新高,
+33752,创阶段新低,ths_phase_low_future,,技术形态 / 走势特征,近N天内、创N天以来新高,
+33753,近期创历史新高成交额,ths_his_high_amt_future,,技术形态 / 走势特征,近N天内,
+33754,近期创历史新高成交量,ths_his_high_vol_future,,技术形态 / 走势特征,近N天内,
+07095,CDP逆势操作,ths_cdp_future,,技术指标 / 压力支撑指标,CDP指标选项,是
+07096,ENV指标,ths_env_future,,技术指标 / 压力支撑指标,天数、ENV指标选项,是
+07097,MIKE麦克指标,ths_mike_future,,技术指标 / 压力支撑指标,天数、MIKE指标选项,是
+08376,BBIBOLL多空布林线,ths_bbiboll_future,,技术指标 / 压力支撑指标,周期、带宽、BBIBOLL指标选项、复权方式,是
+08377,BOLL布林线,ths_boll_future,,技术指标 / 压力支撑指标,周期、带宽、BOLL指标选项、复权方式,是
+08378,SAR抛物转向指标,ths_sar_future,,技术指标 / 压力支撑指标,周期、复权方式,是
+07090,BIAS乖离率,ths_bias_future,,技术指标 / 反趋向指标,天数,是
+07091,CCI顺势指标,ths_cci_future,,技术指标 / 反趋向指标,天数,是
+07092,KDJ随机指标,ths_kdj_future,,技术指标 / 反趋向指标,天数、天数1、天数2、KDJ指标选项,是
+07093,RSI相对强弱指标,ths_rsi_future,,技术指标 / 反趋向指标,天数,是
+08367,DPO区间震荡线,ths_dpo_future,,技术指标 / 反趋向指标,周期1、周期2、DPO指标选项、复权方式,是
+08368,LWR威廉指标,ths_lwr_future,,技术指标 / 反趋向指标,周期、周期1、周期2、LWR指标选项、复权方式,是
+08369,ROC变动速率,ths_roc_future,,技术指标 / 反趋向指标,间隔周期、周期、ROC指标选项、复权方式,是
+08370,SI摆动指标,ths_si_future,,技术指标 / 反趋向指标,复权方式,是
+08371,SRDM动向速度比率,ths_srdm_future,,技术指标 / 反趋向指标,周期、SLOWKD指标选项、复权方式,是
+08372,VROC量变动速率,ths_vroc_future,,技术指标 / 反趋向指标,周期,是
+08373,VRSI量相对强弱,ths_vrsi_future,,技术指标 / 反趋向指标,周期,是
+08374,WR威廉指标,ths_wr_future,,技术指标 / 反趋向指标,周期、复权方式,是
+07069,量比,ths_vol_ratio_future,,技术指标 / 成交量指标,天数,是
+07070,VMA量简单移动平均,ths_vma_future,,技术指标 / 成交量指标,天数,是
+07071,VMACD量指数平滑异同平均,ths_vmacd_future,,技术指标 / 成交量指标,短期天数、长期天数、天数、VMACD指标选项,是
+07072,VOSC成交量震荡,ths_vosc_future,,技术指标 / 成交量指标,短期天数、长期天数,是
+07073,TAPI加权指数成交值,ths_tapi_future,,技术指标 / 成交量指标,天数、TAPI指标选项,是
+07074,VSTD成交量标准差,ths_vstd_future,,技术指标 / 成交量指标,天数,是
+07098,MI动量指标,ths_mi_future,,技术指标 / 摆动指标,天数、MI指标选项,是
+07099,MICD异同离差动力指数,ths_micd_future,,技术指标 / 摆动指标,天数、天数1、天数2、MICD指标选项,是
+07100,RC变化率指数,ths_rc_future,,技术指标 / 摆动指标,天数,是
+07101,RCCD异同离差变化率指数,ths_rccd_future,,技术指标 / 摆动指标,天数、天数1、天数2、RCCD指标选项,是
+07102,SRMI(MI修正指标),ths_srmi_future,,技术指标 / 摆动指标,天数,是
+07103,ATR真实波幅,ths_atr_future,,技术指标 / 波动指标,天数、ATR指标选项,是
+07104,MASS梅斯线,ths_massmsx_future,,技术指标 / 波动指标,天数1、天数2,是
+07105,STD标准差,ths_std_future,,技术指标 / 波动指标,天数,是
+07106,VHF纵横指标,ths_vhf_future,,技术指标 / 波动指标,天数,是
+07107,CVLT佳庆离散指标,ths_cvlt_future,,技术指标 / 波动指标,天数,是
+07075,人气意愿指标(ARBR),ths_arbrrqyyzb_future,,技术指标 / 能量指标,天数、ARBR指标选项,是
+07076,CR能量指标,ths_cr_future,,技术指标 / 能量指标,天数,是
+07077,PSY心理指标,ths_psy_future,,技术指标 / 能量指标,天数1、天数2、PSY指标选项,是
+07078,VR成交量比率,ths_vr_future,,技术指标 / 能量指标,天数,是
+07079,WAD威廉聚散指标,ths_wad_future,,技术指标 / 能量指标,天数、WAD指标选项,是
+07094,ADTM动态买卖气指标,ths_adtm_future,,技术指标 / 超买超卖指标,天数、天数1、ADTM指标选项,是
+08375,SKDJ慢速随机指标,ths_skfj_future,,技术指标 / 超买超卖指标,周期、周期1、KDJ指标选项、复权方式,是
+07084,BBI多空指数,ths_bbi_future,,技术指标 / 趋向指标,天数1、天数2、天数3、天数4,是
+07085,DDI方向标准差偏离指数,ths_ddifxbzcplzs_future,,技术指标 / 趋向指标,天数1、天数2、平滑因子、天数3、DDI指标选项,是
+07086,DMA平均线差,ths_dma_future,,技术指标 / 趋向指标,短期天数、长期天数、天数、DMA指标选项,是
+07087,MA简单移动平均,ths_ma_future,,技术指标 / 趋向指标,天数,是
+07088,EXPMA指数平均数,ths_expma_future,,技术指标 / 趋向指标,天数,是
+07089,MACD指数平滑异同平均,ths_macd_future,,技术指标 / 趋向指标,长期天数、短期天数、天数、MCAD指标选项,是
+08364,MTM动力指标,ths_mtm_future,,技术指标 / 趋向指标,间隔周期、周期、MTM指标选项、复权方式,是
+08365,PRICEOSC价格震荡指标,ths_price_osc_future,,技术指标 / 趋向指标,长期周期、短期周期、复权方式,是
+08366,TRIX三重指数平滑平均,ths_trix_future,,技术指标 / 趋向指标,周期1、周期2、TRIX指标选项、复权方式,是
+19818,EXPMA指数平均数,ths_expma_n_future,,技术指标 / 趋向指标,天数、计算周期,是
+33746,MA简单移动平均,ths_ma_new_future,,技术指标 / 趋向指标,天数、计算周期,是
+33747,MACD指数平滑异同平均,ths_macd_new_future,,技术指标 / 趋向指标,长期天数、短期天数、天数、MCAD指标选项、计算周期,是
+07080,MFI资金流向指标,ths_mfi_future,,技术指标 / 量价指标,天数,是
+07081,OBV能量潮,ths_obv_future,,技术指标 / 量价指标,OBV指标选项,是
+07082,PVT量价趋势指标,ths_pvt_future,,技术指标 / 量价指标,,是
+07083,WVAD威廉变异离散量,ths_wvad_future,,技术指标 / 量价指标,天数1、天数2、WVAD指标选项,是
+05956,多头持仓,ths_long_position_future,,持仓指标,名次,是
+05957,多头持仓增减,ths_long_position_change_future,,持仓指标,名次,是
+05958,空头持仓,ths_short_position_future,,持仓指标,名次,是
+05959,空头持仓增减,ths_short_position_change_future,,持仓指标,名次,是
+05960,成交量,ths_position_vol_future,,持仓指标,名次,是
+05961,成交量增减,ths_vol_chg_future,,持仓指标,名次,是
+05962,多头新进榜会员名称,ths_new_long_list_future,,持仓指标,名次,
+05963,空头新进榜会员名称,ths_short_net_top_list_future,,持仓指标,名次,
+05964,成交量新进榜会员名称,ths_vol_new_top_list_future,,持仓指标,名次,
+12805,净多头进榜会员名称,ths_net_long_list_future,,持仓指标,名次,
+12806,净空头进榜会员名称,ths_net_short_list_future,,持仓指标,名次,
+13163,持买单量进榜会员名称,ths_oi_lname_future,,持仓指标,名次,
+13164,持卖单量进榜会员名称,ths_oi_sname_future,,持仓指标,名次,
+13165,成交量进榜会员名称,ths_oi_vname_future,,持仓指标,名次,
+17125,净多头持仓,ths_net_long_position_future,,持仓指标,名次,是
+17126,净多头持仓增减,ths_net_long_position_change_future,,持仓指标,名次,是
+17127,净空头持仓,ths_net_short_position_future,,持仓指标,名次,是
+17128,净空头持仓增减,ths_net_short_position_change_future,,持仓指标,名次,是
+20004,多头持仓占比,ths_long_position_ratio_future,%,持仓指标,名次,是
+20005,空头持仓占比,ths_short_position_ratio_future,%,持仓指标,名次,是
+20006,净多头持仓占比,ths_net_long_position_ratio_future,%,持仓指标,名次,是
+20007,净空头持仓占比,ths_net_short_position_ratio_future,%,持仓指标,名次,是
+20008,成交量占比,ths_position_ratio_vol_future,%,持仓指标,名次,是
+05927,区间收盘价,ths_close_int_future,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+05928,区间开盘价,ths_open_int_future,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+05929,区间最高价,ths_high_int_future,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+05930,区间最低价,ths_low_int_future,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+05931,区间结算价,ths_settle_int_future,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+05932,区间最高收盘价,ths_high_close_int_future,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+05933,区间最低收盘价,ths_low_close_int_future,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+05934,区间最高结算价,ths_high_settle_int_future,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+05935,区间最低结算价,ths_low_settle_int_future,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+05936,区间前收盘价,ths_pre_close_int_future,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+05937,区间前结算价,ths_pre_settle_int_future,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+05938,区间成交均价,ths_avg_price_int_future,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+05939,区间涨跌,ths_chg_int_future,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+05940,区间涨跌(结算价),ths_chg_settle_int_future,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+05941,区间涨跌幅,ths_int_chg_ratio_future,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+05942,区间涨跌幅(结算价),ths_chg_ratio_settle_int_future,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+05943,区间持仓变化,ths_oi_chg_int_future,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+05944,区间成交量,ths_vol_int_future,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+05945,区间成交额,ths_amt_int_future,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+05946,区间持仓量,ths_position_int_future,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+05947,区间日均成交量,ths_daily_avg_vol_int_future,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+05948,区间日均成交额,ths_daily_avg_amt_int_future,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+05949,区间日均持仓量,ths_daily_avg_position_int_future,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+05950,区间最高价日,ths_high_date_int_future,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+05951,区间最低价日,ths_low_date_int_future,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+05952,区间最高收盘价日,ths_high_close_date_int_future,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+05953,区间最低收盘价日,ths_low_close_date_int_future,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+05954,区间最高结算价日,ths_high_settle_date_int_future,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+05955,区间最低结算价日,ths_low_settle_date_int_future,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+09375,区间振幅,ths_swing_int_future,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+12819,区间涨跌(收盘价),ths_close_chg_int_future,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+12820,区间涨跌幅(收盘价),ths_close_chg_ratio_int_future,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+33748,最新价较区间最高价跌幅(回撤),ths_int_chg_ratio_high_future,‰,行情指标 / 区间行情,起始交易日期、截止交易日期,
+05811,周收盘价,ths_close_w_future,,行情指标 / 周行情,,是
+05812,周开盘价,ths_open_w_future,,行情指标 / 周行情,,是
+05813,周最高价,ths_high_w_future,,行情指标 / 周行情,,是
+05814,周最低价,ths_low_w_future,,行情指标 / 周行情,,是
+05815,周结算价,ths_settle_w_future,,行情指标 / 周行情,,是
+05816,周最高收盘价,ths_high_close_w_future,,行情指标 / 周行情,,是
+05817,周最低收盘价,ths_low_close_w_future,,行情指标 / 周行情,,是
+05818,周最高结算价,ths_high_settle_w_future,,行情指标 / 周行情,,是
+05819,周最低结算价,ths_low_settle_w_future,,行情指标 / 周行情,,是
+05820,周前收盘价,ths_pre_close_w_future,,行情指标 / 周行情,,是
+05821,周前结算价,ths_pre_settle_w_future,,行情指标 / 周行情,,是
+05822,周成交均价,ths_avg_price_w_future,,行情指标 / 周行情,,是
+05823,周涨跌,ths_chg_w_future,,行情指标 / 周行情,,是
+05824,周涨跌(结算价),ths_settle_chg_w_future,,行情指标 / 周行情,,是
+05825,周涨跌幅,ths_chg_ratio_w_future,,行情指标 / 周行情,,是
+05826,周涨跌幅(结算价),ths_settle_chg_ratio_w_future,,行情指标 / 周行情,,是
+05827,周持仓变化,ths_position_chg_w_future,,行情指标 / 周行情,,是
+05828,周成交量,ths_vol_w_future,,行情指标 / 周行情,,是
+05829,周成交额,ths_amt_w_future,,行情指标 / 周行情,,是
+05830,周持仓量,ths_oi_w_future,,行情指标 / 周行情,,是
+05831,周日均成交量,ths_daily_avg_vol_w_future,,行情指标 / 周行情,,是
+05832,周日均成交额,ths_daily_avg_amt_w_future,,行情指标 / 周行情,,是
+05833,周日均持仓量,ths_daily_avg_o_i_w_future,,行情指标 / 周行情,,是
+05834,周最高价日,ths_high_date_w_future,,行情指标 / 周行情,,
+05835,周最低价日,ths_low_date_w_future,,行情指标 / 周行情,,
+05836,周最高收盘价日,ths_high_close_date_w_future,,行情指标 / 周行情,,
+05837,周最低收盘价日,ths_low_close_date_w_future,,行情指标 / 周行情,,
+05838,周最高结算价日,ths_high_settle_date_w_future,,行情指标 / 周行情,,
+05839,周最低结算价日,ths_low_settle_date_w_future,,行情指标 / 周行情,,
+09370,周振幅,ths_swing_w_future,,行情指标 / 周行情,,是
+12811,周涨跌(收盘价),ths_close_chg_w_future,,行情指标 / 周行情,,是
+12812,周涨跌幅(收盘价),ths_close_chg_ratio_w_future,,行情指标 / 周行情,,是
+05869,季收盘价,ths_close_q_future,,行情指标 / 季行情,,是
+05870,季开盘价,ths_open_q_future,,行情指标 / 季行情,,是
+05871,季最高价,ths_high_q_future,,行情指标 / 季行情,,是
+05872,季最低价,ths_low_q_future,,行情指标 / 季行情,,是
+05873,季结算价,ths_settle_q_future,,行情指标 / 季行情,,是
+05874,季最高收盘价,ths_high_close_q_future,,行情指标 / 季行情,,是
+05875,季最低收盘价,ths_low_close_q_future,,行情指标 / 季行情,,是
+05876,季最高结算价,ths_high_settle_q_future,,行情指标 / 季行情,,是
+05877,季最低结算价,ths_low_settle_q_future,,行情指标 / 季行情,,是
+05878,季前收盘价,ths_pre_close_q_future,,行情指标 / 季行情,,是
+05879,季前结算价,ths_pre_settle_q_future,,行情指标 / 季行情,,是
+05880,季成交均价,ths_avg_price_q_future,,行情指标 / 季行情,,是
+05881,季涨跌,ths_chg_q_future,,行情指标 / 季行情,,是
+05882,季涨跌(结算价),ths_settle_chg_q_future,,行情指标 / 季行情,,是
+05883,季涨跌幅,ths_chg_ratio_q_future,,行情指标 / 季行情,,是
+05884,季涨跌幅(结算价),ths_settle_chg_ratio_q_future,,行情指标 / 季行情,,是
+05885,季持仓变化,ths_position_chg_q_future,,行情指标 / 季行情,,是
+05886,季成交量,ths_vol_q_future,,行情指标 / 季行情,,是
+05887,季成交额,ths_amt_q_future,,行情指标 / 季行情,,是
+05888,季持仓量,ths_open_interest_q_future,,行情指标 / 季行情,,是
+05889,季日均成交量,ths_daily_avg_vol_q_future,,行情指标 / 季行情,,是
+05890,季日均成交额,ths_daily_avg_amt_q_future,,行情指标 / 季行情,,是
+05891,季日均持仓量,ths_daily_avg_position_q_future,,行情指标 / 季行情,,是
+05892,季最高价日,ths_high_date_q_future,,行情指标 / 季行情,,
+05893,季最低价日,ths_low_date_q_future,,行情指标 / 季行情,,
+05894,季最高收盘价日,ths_high_close_date_q_future,,行情指标 / 季行情,,
+05895,季最低收盘价日,ths_low_close_date_q_future,,行情指标 / 季行情,,
+05896,季最高结算价日,ths_high_settle_date_q_future,,行情指标 / 季行情,,
+05897,季最低结算价日,ths_low_settle_date_q_future,,行情指标 / 季行情,,
+09372,季振幅,ths_swing_q_future,,行情指标 / 季行情,,是
+12815,季涨跌(收盘价),ths_close_chg_q_future,,行情指标 / 季行情,,是
+12816,季涨跌幅(收盘价),ths_close_chg_ratio_q_future,,行情指标 / 季行情,,是
+05898,年收盘价,ths_close_y_future,,行情指标 / 年行情,,是
+05899,年开盘价,ths_open_y_future,,行情指标 / 年行情,,是
+05900,年最高价,ths_high_y_future,,行情指标 / 年行情,,是
+05901,年最低价,ths_low_y_future,,行情指标 / 年行情,,是
+05902,年结算价,ths_settle_y_future,,行情指标 / 年行情,,是
+05903,年最高收盘价,ths_high_close_y_future,,行情指标 / 年行情,,是
+05904,年最低收盘价,ths_low_close_y_future,,行情指标 / 年行情,,是
+05905,年最高结算价,ths_high_settle_y_future,,行情指标 / 年行情,,是
+05906,年最低结算价,ths_low_settle_y_future,,行情指标 / 年行情,,是
+05907,年前收盘价,ths_pre_close_y_future,,行情指标 / 年行情,,是
+05908,年前结算价,ths_pre_settle_y_future,,行情指标 / 年行情,,是
+05909,年成交均价,ths_avg_y_future,,行情指标 / 年行情,,是
+05910,年涨跌,ths_chg_y_future,,行情指标 / 年行情,,是
+05911,年涨跌(结算价),ths_settle_chg_y_future,,行情指标 / 年行情,,是
+05912,年涨跌幅,ths_chg_ratio_y_future,,行情指标 / 年行情,,是
+05913,年涨跌幅(结算价),ths_settle_chg_ratio_y_future,,行情指标 / 年行情,,是
+05914,年持仓变化,ths_position_chg_y_future,,行情指标 / 年行情,,是
+05915,年成交量,ths_vol_y_future,,行情指标 / 年行情,,是
+05916,年成交额,ths_amt_y_future,,行情指标 / 年行情,,是
+05917,年持仓量,ths_position_y_future,,行情指标 / 年行情,,是
+05918,年日均成交量,ths_daily_avg_vol_y_future,,行情指标 / 年行情,,是
+05919,年日均成交额,ths_daily_avg_amt_y_future,,行情指标 / 年行情,,是
+05920,年日均持仓量,ths_daily_avg_position_y_future,,行情指标 / 年行情,,是
+05921,年最高价日,ths_high_date_y_future,,行情指标 / 年行情,,
+05922,年最低价日,ths_low_date_y_future,,行情指标 / 年行情,,
+05923,年最高收盘价日,ths_high_close_date_y_future,,行情指标 / 年行情,,
+05924,年最低收盘价日,ths_low_close_date_y_future,,行情指标 / 年行情,,
+05925,年最高结算价日,ths_high_settle_date_y_future,,行情指标 / 年行情,,
+05926,年最低结算价日,ths_low_settle_date_y_future,,行情指标 / 年行情,,
+09374,年振幅,ths_swing_y_future,,行情指标 / 年行情,,是
+12817,年涨跌(收盘价),ths_close_chg_y_future,,行情指标 / 年行情,,是
+12818,年涨跌幅(收盘价),ths_close_chg_ratio_y_future,,行情指标 / 年行情,,是
+05796,收盘价,ths_close_price_future,,行情指标 / 日行情,,是
+05797,开盘价,ths_open_price_future,,行情指标 / 日行情,,是
+05798,最高价,ths_high_price_future,,行情指标 / 日行情,,是
+05799,最低价,ths_low_future,,行情指标 / 日行情,,是
+05800,结算价,ths_settle_future,,行情指标 / 日行情,,是
+05801,前结算价,ths_pre_settle_future,,行情指标 / 日行情,,是
+05802,成交均价,ths_trans_avg_price_future,,行情指标 / 日行情,,是
+05803,涨跌,ths_chg_future,,行情指标 / 日行情,,是
+05804,涨跌(结算价),ths_settle_chg_future,,行情指标 / 日行情,,是
+05805,涨跌幅,ths_chg_ratio_future,,行情指标 / 日行情,,是
+05806,涨跌幅(结算价),ths_settle_chg_ratio_future,,行情指标 / 日行情,,是
+05807,持仓变化,ths_position_chg_future,,行情指标 / 日行情,,是
+05808,成交量,ths_vol_future,,行情指标 / 日行情,,是
+05809,成交额,ths_amt_future,,行情指标 / 日行情,,是
+05810,持仓量,ths_open_interest_future,,行情指标 / 日行情,,是
+08678,前收盘价,ths_pre_close_future,,行情指标 / 日行情,,是
+09270,期货升贴水,ths_future_premium_and_discount_future,,行情指标 / 日行情,,是
+09369,日振幅,ths_swing_d_future,,行情指标 / 日行情,,是
+12315,涨停价,ths_limit_up_future,,行情指标 / 日行情,,是
+12316,跌停价,ths_limit_down_future,,行情指标 / 日行情,,是
+12317,沉淀资金,ths_position_amount_future,,行情指标 / 日行情,,是
+12809,涨跌(收盘价),ths_close_chg_future,,行情指标 / 日行情,,是
+12810,涨跌幅(收盘价),ths_close_chg_ratio_future,,行情指标 / 日行情,,是
+13073,资金流向,ths_capital_flow_future,,行情指标 / 日行情,,是
+16511,基差,ths_basis_future,,行情指标 / 日行情,,是
+17006,基差率（%）,ths_basis_trading_rate_future,%,行情指标 / 日行情,,是
+17007,年化基差率（%）,ths_basis_trading_rate_annual_future,%,行情指标 / 日行情,,是
+17008,现货价格,ths_spot_price_future,元,行情指标 / 日行情,,是
+17009,现货价格名称,ths_spot_price_name_future,,行情指标 / 日行情,,
+17512,期货升贴水率（%）,ths_future_prem_discount_rate_future,%,行情指标 / 日行情,,是
+17513,期货年化升贴水率（%）,ths_future_prem_discount_rate_y_future,%,行情指标 / 日行情,,是
+17514,成交量（单边）,ths_vol_unilateral_future,,行情指标 / 日行情,,是
+17515,成交额（单边）,ths_amt_unilateral_future,,行情指标 / 日行情,,是
+17516,持仓量（单边）,ths_position_unilateral_future,,行情指标 / 日行情,,是
+17517,沉淀资金（单边）,ths_deposit_capital_unilateral_future,,行情指标 / 日行情,,是
+17518,资金流向（单边）,ths_capital_flow_unilateral_future,,行情指标 / 日行情,,是
+17750,收盘价（不往前取）,ths_close_no_forward_future,,行情指标 / 日行情,,是
+17751,结算价（不往前取）,ths_settle_no_forward_future,,行情指标 / 日行情,,是
+17780,前收盘价（21：00）,ths_pre_close_night_future,,行情指标 / 日行情,,是
+17781,前结算价（21：00）,ths_pre_settle_night_future,,行情指标 / 日行情,,是
+19505,夜盘最高价,ths_high_price_night_future,,行情指标 / 日行情,,是
+19506,夜盘最低价,ths_low_price_night_future,,行情指标 / 日行情,,是
+19507,夜盘收盘价,ths_close_price_night_future,,行情指标 / 日行情,,是
+19508,夜盘涨跌,ths_chg_nigth_future,,行情指标 / 日行情,,是
+19509,夜盘成交量,ths_vol_nigth_future,,行情指标 / 日行情,,是
+19510,夜盘持仓量,ths_open_interest_night_future,,行情指标 / 日行情,,是
+19511,夜盘成交金额,ths_amt_nigth_future,,行情指标 / 日行情,,是
+19820,日间均价,ths_day_trans_avg_price_future,,行情指标 / 日行情,,是
+19849,夜间均价,ths_night_trans_avg_price_future,,行情指标 / 日行情,,是
+20043,夜盘涨跌幅,ths_chg_ratio_nigth_future,,行情指标 / 日行情,,是
+20044,夜盘涨跌幅（收盘价）,ths_close_chg_ratio_nigth_future,,行情指标 / 日行情,,是
+20192,日间均价（交易所）,ths_day_trans_avg_price_exchg_future,,行情指标 / 日行情,,是
+05840,月收盘价,ths_close_m_future,,行情指标 / 月行情,,是
+05841,月开盘价,ths_open_m_future,,行情指标 / 月行情,,是
+05842,月最高价,ths_high_m_future,,行情指标 / 月行情,,是
+05843,月最低价,ths_low_m_future,,行情指标 / 月行情,,是
+05844,月结算价,ths_settle_m_future,,行情指标 / 月行情,,是
+05845,月最高收盘价,ths_high_close_m_future,,行情指标 / 月行情,,是
+05846,月最低收盘价,ths_low_close_m_future,,行情指标 / 月行情,,是
+05847,月最高结算价,ths_high_settle_m_future,,行情指标 / 月行情,,是
+05848,月最低结算价,ths_low_settle_m_future,,行情指标 / 月行情,,是
+05849,月前收盘价,ths_pre_close_m_future,,行情指标 / 月行情,,是
+05850,月前结算价,ths_pre_settle_m_future,,行情指标 / 月行情,,是
+05851,月成交均价,ths_avg_price_m_future,,行情指标 / 月行情,,是
+05852,月涨跌,ths_chgm_future,,行情指标 / 月行情,,是
+05853,月涨跌(结算价),ths_settle_chgm_future,,行情指标 / 月行情,,是
+05854,月涨跌幅,ths_chg_ratio_m_future,,行情指标 / 月行情,,是
+05855,月涨跌幅(结算价),ths_settle_chg_ratio_m_future,,行情指标 / 月行情,,是
+05856,月持仓变化,ths_position_chgm_future,,行情指标 / 月行情,,是
+05857,月成交量,ths_vol_m_future,,行情指标 / 月行情,,是
+05858,月成交额,ths_amt_m_future,,行情指标 / 月行情,,是
+05859,月持仓量,ths_oi_m_future,,行情指标 / 月行情,,是
+05860,月日均成交量,ths_daily_avg_vol_m_future,,行情指标 / 月行情,,是
+05861,月日均成交额,ths_daily_avg_amt_m_future,,行情指标 / 月行情,,是
+05862,月日均持仓量,ths_daily_avg_position_m_future,,行情指标 / 月行情,,是
+05863,月最高价日,ths_high_date_m_future,,行情指标 / 月行情,,
+05864,月最低价日,ths_low_date_m_future,,行情指标 / 月行情,,
+05865,月最高收盘价日,ths_high_close_date_m_future,,行情指标 / 月行情,,
+05866,月最低收盘价日,ths_low_close_date_m_future,,行情指标 / 月行情,,
+05867,月最高结算价日,ths_high_settle_date_m_future,,行情指标 / 月行情,,
+05868,月最低结算价日,ths_low_settle_date_m_future,,行情指标 / 月行情,,
+09371,月振幅,ths_swingm_future,,行情指标 / 月行情,,是
+12813,月涨跌(收盘价),ths_close_chg_m_future,,行情指标 / 月行情,,是
+12814,月涨跌幅(收盘价),ths_close_chg_ratio_m_future,,行情指标 / 月行情,,是
+10477,平均收益率,ths_avg_yield_future,%,风险指标,起始交易日期、截止交易日期、计算周期1、收益率计算方法,
+10478,收益率（年化）,ths_yeild_annual_future,%,风险指标,起始交易日期、截止交易日期、收益率计算方法,
+10479,波动率,ths_volatility_future,%,风险指标,起始交易日期、截止交易日期、计算周期1、收益率计算方法,
+10480,波动率（年化）,ths_volatility_annual_future,%,风险指标,起始交易日期、截止交易日期、计算周期1、收益率计算方法,
+13342,波动率（收盘价）,ths_volatility_close_future,%,风险指标,起始交易日期、截止交易日期、计算周期1、收益率计算方法,
+13343,波动率（年化，收盘价）,ths_annual_volatility_close_future,%,风险指标,起始交易日期、截止交易日期、计算周期1、收益率计算方法,
+20046,最高收益率,ths_high_return_future,%,风险指标,起始交易日期、截止交易日期、收益率计算方法,
+20047,最低收益率,ths_low_return_future,%,风险指标,起始交易日期、截止交易日期、收益率计算方法,

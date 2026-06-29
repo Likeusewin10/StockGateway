@@ -1,0 +1,271 @@
+﻿指标代码,指标中文名,英文代码,单位,分类,参数,支持序列
+08686,Delta,ths_delta_option,,期权分析指标,,是
+08687,Theta,ths_theta_option,,期权分析指标,,是
+08688,Gamma,ths_gamma_option,,期权分析指标,,是
+08689,Vega,ths_vega_option,,期权分析指标,,是
+08690,Rho,ths_rho_option,,期权分析指标,,是
+09654,隐含波动率,ths_implied_volatility_option,,期权分析指标,,是
+11530,理论价格,ths_theroy_price_option,,期权分析指标,有效期、无风险利率、波动率,是
+13061,标的历史波动率,ths_anal_volatility_underlying_option,%,期权分析指标,计算天数、年化系数,是
+16482,Theta年化,ths_theta_year_option,,期权分析指标,,是
+16483,Vega百分化,ths_vega_percentage_option,,期权分析指标,,是
+16484,Rho百分化,ths_rho_percentage_option,,期权分析指标,,是
+16984,Delta（交易所）,ths_delta_exchg_option,,期权分析指标,,是
+16985,Theta（交易所）,ths_theta_exchg_option,,期权分析指标,,是
+16986,Gamma（交易所）,ths_gamma_exchg_option,,期权分析指标,,是
+16987,Vega（交易所）,ths_vega_exchg_option,,期权分析指标,,是
+16988,Rho（交易所）,ths_rho_exchg_option,,期权分析指标,,是
+19923,认购期权偏度值,ths_call_skew_option,,期权分析指标,合约月份、调整状态,是
+19925,认沽期权偏度值,ths_put_skew_option,,期权分析指标,合约月份、调整状态,是
+00427,上市日期,ths_listed_date_option,,期权合约基础指标,,
+07276,合约类型,ths_contract_type_option,,期权合约基础指标,,
+07278,到期月份,ths_maturity_month_option,,期权合约基础指标,,
+07279,挂牌基准价,ths_listing_benchmark_price_option,元,期权合约基础指标,,是
+07280,交易单位数量,ths_td_unit_unit_option,,期权合约基础指标,,是
+07281,行权价格,ths_strike_price_option,元,期权合约基础指标,,是
+07282,到期日,ths_maturity_date_option,,期权合约基础指标,,
+08685,保证金比例,ths_deposit_ratio_option,%,期权合约基础指标,,是
+09649,剩余交易日,ths_surplus_duration_td_option,,期权合约基础指标,边界选项,是
+09650,剩余自然日,ths_surplus_duration_calendar_option,,期权合约基础指标,边界选项,是
+09651,总存续期,ths_total_duration_option,,期权合约基础指标,,是
+09652,起始行权日期,ths_strike_sd_option,,期权合约基础指标,,
+09653,最后行权日期,ths_last_strike_date_option,,期权合约基础指标,,
+11521,交易保证金,ths_trade_deposit_option,,期权合约基础指标,,是
+13237,总交易天数,ths_total_td_duration_option,,期权合约基础指标,,是
+13238,在市天数,ths_finished_duration_option,,期权合约基础指标,边界选项,是
+13239,在市交易天数,ths_finished_td_duration_option,,期权合约基础指标,边界选项,是
+17774,最新交易日,ths_latest_td_date_option,,期权合约基础指标,,
+32010,剩余交易日,ths_remain_trade_days,,期权合约基础指标,边界选项,是
+12329,同月成交量认沽认购比率,ths_option_month_volume_pcr_option,%,期权同月统计,,是
+12330,同月持仓量认沽认购比率,ths_option_month_oi_pcr_option,%,期权同月统计,,是
+13361,同月成交量,ths_option_month_volume_option,,期权同月统计,,是
+13362,同月持仓量,ths_option_month_oi_option,,期权同月统计,,是
+13363,同月成交额,ths_option_month_amount_option,,期权同月统计,,是
+13364,同月认购成交量,ths_option_month_call_volume_option,,期权同月统计,,是
+13365,同月认沽成交量,ths_option_month_put_volume_option,,期权同月统计,,是
+13366,同月认购持仓量,ths_option_month_call_oi_option,,期权同月统计,,是
+13367,同月认沽持仓量,ths_option_month_put_oi_option,,期权同月统计,,是
+13368,同月认购成交额,ths_option_month_call_amount_option,,期权同月统计,,是
+13369,同月认沽成交额,ths_option_month_put_amount_option,,期权同月统计,,是
+13370,同月成交额认沽认购比率,ths_option_month_amount_pcr_option,%,期权同月统计,,是
+13384,同月持仓市值,ths_option_month_oi_amount_option,万元,期权同月统计,,是
+13385,同月持仓保证金,ths_option_month_deposit_option,万元,期权同月统计,,是
+12320,品种成交量,ths_option_total_volume_option,,期权品种统计,,是
+12321,品种成交额,ths_option_total_amount_option,,期权品种统计,,是
+12322,品种持仓量,ths_option_total_oi_option,,期权品种统计,,是
+12323,认沽成交量,ths_option_put_volume_option,,期权品种统计,,是
+12324,认沽持仓量,ths_option_put_oi_option,,期权品种统计,,是
+12325,认购成交量,ths_option_call_volume_option,,期权品种统计,,是
+12326,认购持仓量,ths_option_call_oi_option,,期权品种统计,,是
+12327,成交量认沽认购比率,ths_option_total_volume_pcr_option,%,期权品种统计,,是
+12328,持仓量认沽认购比率,ths_option_total_oi_pcr_option,%,期权品种统计,,是
+13358,认购成交额,ths_option_call_amount_option,,期权品种统计,,是
+13359,认沽成交额,ths_option_put_amount_option,,期权品种统计,,是
+13360,成交额认沽认购比率,ths_option_total_amount_pcr_option,%,期权品种统计,,是
+13386,品种持仓市值,ths_option_total_oi_amount_option,万元,期权品种统计,,是
+13387,品种持仓保证金,ths_option_total_deposit_option,万元,期权品种统计,,是
+07258,品种代码,ths_variety_code_option,,期权基础资料,,
+07259,合约标的,ths_contract_underlying_option,,期权基础资料,,
+07261,行权方式,ths_strike_method_option,,期权基础资料,,
+07262,交易单位,ths_td_unit_option,,期权基础资料,,
+07263,报价单位,ths_pricing_unit_option,,期权基础资料,,
+07264,最小变动单位,ths_mini_chg_unit_option,,期权基础资料,,是
+07265,涨跌停板幅度说明,ths_daily_price_fluctuation_limit_option,,期权基础资料,,
+07266,合约月份说明,ths_contract_month_option,,期权基础资料,,
+07267,行权价格间距说明,ths_strike_price_int_option,,期权基础资料,,
+07268,行权价格数量说明,ths_strike_pricenum_option,,期权基础资料,,
+07269,交易时间说明,ths_td_time_option,,期权基础资料,,
+07270,最后交易日说明,ths_last_td_date_explian_option,,期权基础资料,,
+07271,最后交易时间说明,ths_last_trade_time_option,,期权基础资料,,
+07272,交割方式,ths_delivery_type_option,,期权基础资料,,
+07273,交易代码说明,ths_trade_code_explain_option,,期权基础资料,,
+07274,交易所,ths_exchange_option,,期权基础资料,,
+07275,合约乘数,ths_contract_multiplier_option,,期权基础资料,,是
+09645,期权代码,ths_option_code_option,,期权基础资料,,
+09646,期权简称,ths_option_short_name_option,,期权基础资料,,
+09647,标的代码,ths_underlying_code_option,,期权基础资料,,
+09648,标的简称,ths_underlying_short_name_option,,期权基础资料,,
+10460,标的类型,ths_underlying_type_option,,期权基础资料,,
+16551,同花顺代码,ths_thscode_option,,期权基础资料,,
+17368,平值期权代码,ths_atmcode_option,,期权基础资料,合约月份、期权类型、调整状态,
+19954,平值IV,ths_atm_iv_option,,期权基础资料,合约月份、调整状态,是
+19956,平值期权虚一档合约,ths_otm_1level_option,,期权基础资料,合约月份、期权类型、调整状态,
+19957,平值期权实一档合约,ths_itm_1level_option,,期权基础资料,合约月份、期权类型、调整状态,
+20049,合约购沽标志,ths_call_put_option,,期权基础资料,,
+32011,合约乘数,ths_contract_multiplier,,期权基础资料,,是
+07407,区间收盘价,ths_close_int_option,元,期权行情指标 / 区间行情,起始交易日期、截止交易日期,
+07408,区间开盘价,ths_open_int_option,元,期权行情指标 / 区间行情,起始交易日期、截止交易日期,
+07409,区间最高价,ths_high_int_option,元,期权行情指标 / 区间行情,起始交易日期、截止交易日期,
+07410,区间最低价,ths_low_int_option,元,期权行情指标 / 区间行情,起始交易日期、截止交易日期,
+07411,区间结算价,ths_settle_int_option,元,期权行情指标 / 区间行情,起始交易日期、截止交易日期,
+07412,区间最高收盘价,ths_high_close_int_option,元,期权行情指标 / 区间行情,起始交易日期、截止交易日期,
+07413,区间最低收盘价,ths_low_close_int_option,元,期权行情指标 / 区间行情,起始交易日期、截止交易日期,
+07414,区间最高结算价,ths_high_settle_int_option,元,期权行情指标 / 区间行情,起始交易日期、截止交易日期,
+07415,区间最低结算价,ths_low_settle_int_option,元,期权行情指标 / 区间行情,起始交易日期、截止交易日期,
+07416,区间前收盘价,ths_pre_close_int_option,元,期权行情指标 / 区间行情,起始交易日期、截止交易日期,
+07417,区间前结算价,ths_pre_settle_int_option,元,期权行情指标 / 区间行情,起始交易日期、截止交易日期,
+07418,区间成交均价,ths_avg_price_int_option,元,期权行情指标 / 区间行情,起始交易日期、截止交易日期,
+07419,区间涨跌,ths_chg_int_option,元,期权行情指标 / 区间行情,起始交易日期、截止交易日期,
+07420,区间涨跌(结算价),ths_chg_settle_int_option,元,期权行情指标 / 区间行情,起始交易日期、截止交易日期,
+07421,区间涨跌幅,ths_int_chg_ratio_option,%,期权行情指标 / 区间行情,起始交易日期、截止交易日期,
+07422,区间涨跌幅(结算价),ths_chg_ratio_settle_int_option,%,期权行情指标 / 区间行情,起始交易日期、截止交易日期,
+07423,区间持仓变化,ths_oi_chg_int_option,手,期权行情指标 / 区间行情,起始交易日期、截止交易日期,
+07424,区间成交量,ths_vol_int_option,手,期权行情指标 / 区间行情,起始交易日期、截止交易日期,
+07425,区间成交额,ths_amt_int_option,万元,期权行情指标 / 区间行情,起始交易日期、截止交易日期,
+07426,区间持仓量,ths_position_int_option,手,期权行情指标 / 区间行情,起始交易日期、截止交易日期,
+07427,区间均成交量,ths_intervalavgvolume_option,手,期权行情指标 / 区间行情,起始交易日期、截止交易日期,
+07428,区间均成交额,ths_avg_amt_int_option,万元,期权行情指标 / 区间行情,起始交易日期、截止交易日期,
+07429,区间均持仓量,ths_intervalavgposition_option,手,期权行情指标 / 区间行情,起始交易日期、截止交易日期,
+07430,区间最高价日,ths_high_date_int_option,,期权行情指标 / 区间行情,起始交易日期、截止交易日期,
+07431,区间最低价日,ths_low_date_int_option,,期权行情指标 / 区间行情,起始交易日期、截止交易日期,
+07432,区间最高结算价日,ths_high_settle_date_int_option,,期权行情指标 / 区间行情,起始交易日期、截止交易日期,
+07433,区间最低结算价日,ths_low_settle_date_int_option,,期权行情指标 / 区间行情,起始交易日期、截止交易日期,
+09662,区间振幅,ths_swing_int_option,%,期权行情指标 / 区间行情,起始交易日期、截止交易日期,
+07299,周收盘价,ths_close_w_option,元,期权行情指标 / 周行情,,是
+07300,周开盘价,ths_open_w_option,元,期权行情指标 / 周行情,,是
+07301,周最高价,ths_high_w_option,元,期权行情指标 / 周行情,,是
+07302,周最低价,ths_low_w_option,元,期权行情指标 / 周行情,,是
+07303,周结算价,ths_settle_w_option,元,期权行情指标 / 周行情,,是
+07304,周最高收盘价,ths_high_close_w_option,元,期权行情指标 / 周行情,,是
+07305,周最低收盘价,ths_low_close_w_option,元,期权行情指标 / 周行情,,是
+07306,周最高结算价,ths_high_settle_w_option,元,期权行情指标 / 周行情,,是
+07307,周最低结算价,ths_low_settle_w_option,元,期权行情指标 / 周行情,,是
+07308,周前收盘价,ths_pre_close_w_option,元,期权行情指标 / 周行情,,是
+07309,周前结算价,ths_pre_settle_w_option,元,期权行情指标 / 周行情,,是
+07310,周成交均价,ths_avg_price_w_option,元,期权行情指标 / 周行情,,是
+07311,周涨跌,ths_chg_w_option,元,期权行情指标 / 周行情,,是
+07312,周涨跌(结算价),ths_settle_chg_w_option,元,期权行情指标 / 周行情,,是
+07313,周涨跌幅,ths_chg_ratio_w_option,%,期权行情指标 / 周行情,,是
+07314,周涨跌幅(结算价),ths_settle_chg_ratio_w_option,%,期权行情指标 / 周行情,,是
+07315,周持仓变化,ths_position_chg_w_option,手,期权行情指标 / 周行情,,是
+07316,周成交量,ths_vol_w_option,手,期权行情指标 / 周行情,,是
+07317,周成交额,ths_amt_w_option,万元,期权行情指标 / 周行情,,是
+07318,周持仓量,ths_oi_w_option,手,期权行情指标 / 周行情,,是
+07319,周均成交量,ths_avg_vol_w_option,手,期权行情指标 / 周行情,,是
+07320,周均成交额,ths_avg_amt_w_option,万元,期权行情指标 / 周行情,,是
+07321,周均持仓量,ths_avg_position_w_option,手,期权行情指标 / 周行情,,是
+07322,周最高价日,ths_high_date_w_option,,期权行情指标 / 周行情,,
+07323,周最低价日,ths_low_date_w_option,,期权行情指标 / 周行情,,
+07324,周最高结算价日,ths_high_settle_date_w_option,,期权行情指标 / 周行情,,
+07325,周最低结算价日,ths_low_settle_date_w_option,,期权行情指标 / 周行情,,
+09658,周振幅,ths_swing_w_option,%,期权行情指标 / 周行情,,是
+07353,季收盘价,ths_close_q_option,元,期权行情指标 / 季行情,,是
+07354,季开盘价,ths_open_q_option,元,期权行情指标 / 季行情,,是
+07355,季最高价,ths_high_q_option,元,期权行情指标 / 季行情,,是
+07356,季最低价,ths_low_q_option,元,期权行情指标 / 季行情,,是
+07357,季结算价,ths_settle_q_option,元,期权行情指标 / 季行情,,是
+07358,季最高收盘价,ths_high_close_q_option,元,期权行情指标 / 季行情,,是
+07359,季最低收盘价,ths_low_close_q_option,元,期权行情指标 / 季行情,,是
+07360,季最高结算价,ths_high_settle_q_option,元,期权行情指标 / 季行情,,是
+07361,季最低结算价,ths_low_settle_q_option,元,期权行情指标 / 季行情,,是
+07362,季前收盘价,ths_pre_close_q_option,元,期权行情指标 / 季行情,,是
+07363,季前结算价,ths_pre_settle_q_option,元,期权行情指标 / 季行情,,是
+07364,季成交均价,ths_avg_price_q_option,元,期权行情指标 / 季行情,,是
+07365,季涨跌,ths_chg_q_option,元,期权行情指标 / 季行情,,是
+07366,季涨跌(结算价),ths_settle_chg_q_option,元,期权行情指标 / 季行情,,是
+07367,季涨跌幅,ths_chg_ratio_q_option,%,期权行情指标 / 季行情,,是
+07368,季涨跌幅(结算价),ths_settle_chg_ratio_q_option,%,期权行情指标 / 季行情,,是
+07369,季持仓变化,ths_position_chg_q_option,手,期权行情指标 / 季行情,,是
+07370,季成交量,ths_vol_q_option,手,期权行情指标 / 季行情,,是
+07371,季成交额,ths_amt_q_option,万元,期权行情指标 / 季行情,,是
+07372,季持仓量,ths_open_interest_q_option,手,期权行情指标 / 季行情,,是
+07373,季均成交量,ths_avg_vol_q_option,手,期权行情指标 / 季行情,,是
+07374,季均成交额,ths_avg_amt_q_option,万元,期权行情指标 / 季行情,,是
+07375,季均持仓量,ths_avg_position_q_option,手,期权行情指标 / 季行情,,是
+07376,季最高价日,ths_high_date_q_option,,期权行情指标 / 季行情,,
+07377,季最低价日,ths_low_date_q_option,,期权行情指标 / 季行情,,
+07378,季最高结算价日,ths_high_settle_date_q_option,,期权行情指标 / 季行情,,
+07379,季最低结算价日,ths_low_settle_date_q_option,,期权行情指标 / 季行情,,
+09660,季振幅,ths_swing_q_option,%,期权行情指标 / 季行情,,是
+07380,年收盘价,ths_close_y_option,元,期权行情指标 / 年行情,,是
+07381,年开盘价,ths_open_y_option,元,期权行情指标 / 年行情,,是
+07382,年最高价,ths_high_y_option,元,期权行情指标 / 年行情,,是
+07383,年最低价,ths_low_y_option,元,期权行情指标 / 年行情,,是
+07384,年结算价,ths_settle_y_option,元,期权行情指标 / 年行情,,是
+07385,年最高收盘价,ths_high_close_y_option,元,期权行情指标 / 年行情,,是
+07386,年最低收盘价,ths_low_close_y_option,元,期权行情指标 / 年行情,,是
+07387,年最高结算价,ths_high_settle_y_option,元,期权行情指标 / 年行情,,是
+07388,年最低结算价,ths_low_settle_y_option,元,期权行情指标 / 年行情,,是
+07389,年前收盘价,ths_pre_close_y_option,元,期权行情指标 / 年行情,,是
+07390,年前结算价,ths_pre_settle_y_option,元,期权行情指标 / 年行情,,是
+07391,年成交均价,ths_avg_y_option,元,期权行情指标 / 年行情,,是
+07392,年涨跌,ths_chg_y_option,元,期权行情指标 / 年行情,,是
+07393,年涨跌(结算价),ths_settle_chg_y_option,元,期权行情指标 / 年行情,,是
+07394,年涨跌幅,ths_chg_ratio_y_option,%,期权行情指标 / 年行情,,是
+07395,年涨跌幅(结算价),ths_settle_chg_ratio_y_option,%,期权行情指标 / 年行情,,是
+07396,年持仓变化,ths_position_chg_y_option,手,期权行情指标 / 年行情,,是
+07397,年成交量,ths_vol_y_option,手,期权行情指标 / 年行情,,是
+07398,年成交额,ths_amt_y_option,万元,期权行情指标 / 年行情,,是
+07399,年持仓量,ths_position_y_option,手,期权行情指标 / 年行情,,是
+07400,年均成交量,ths_avg_vol_y_option,手,期权行情指标 / 年行情,,是
+07401,年均成交额,ths_avg_amt_y_option,万元,期权行情指标 / 年行情,,是
+07402,年均持仓量,ths_avg_position_y_option,手,期权行情指标 / 年行情,,是
+07403,年最高价日,ths_high_date_y_option,,期权行情指标 / 年行情,,
+07404,年最低价日,ths_low_date_y_option,,期权行情指标 / 年行情,,
+07405,年最高结算价日,ths_high_settle_date_y_option,,期权行情指标 / 年行情,,
+07406,年最低结算价日,ths_low_settle_date_y_option,,期权行情指标 / 年行情,,
+09661,年振幅,ths_swing_y_option,%,期权行情指标 / 年行情,,是
+07284,收盘价,ths_close_price_option,元,期权行情指标 / 日行情,,是
+07285,开盘价,ths_open_price_option,元,期权行情指标 / 日行情,,是
+07286,最高价,ths_high_price_option,元,期权行情指标 / 日行情,,是
+07287,最低价,ths_low_option,元,期权行情指标 / 日行情,,是
+07288,结算价,ths_settle_option,元,期权行情指标 / 日行情,,是
+07289,前结算价,ths_pre_settle_option,元,期权行情指标 / 日行情,,是
+07290,前收盘价,ths_pre_close_option,元,期权行情指标 / 日行情,,是
+07291,涨跌,ths_chg_option,元,期权行情指标 / 日行情,,是
+07292,涨跌(结算价),ths_settle_chg_option,,期权行情指标 / 日行情,,是
+07293,涨跌幅,ths_chg_ratio_option,,期权行情指标 / 日行情,,是
+07294,成交量,ths_vol_option,手,期权行情指标 / 日行情,,是
+07295,成交额,ths_amt_option,万元,期权行情指标 / 日行情,,是
+07296,持仓量,ths_open_interest_option,手,期权行情指标 / 日行情,,是
+07297,持仓变化,ths_position_chg_option,手,期权行情指标 / 日行情,,是
+07298,行权量,ths_strike_vol_option,元,期权行情指标 / 日行情,,是
+09655,涨跌幅(结算价),ths_settle_chg_ratio_option,%,期权行情指标 / 日行情,,是
+09656,均价,ths_avg_price_option,元,期权行情指标 / 日行情,,是
+09657,日振幅,ths_swing_d_option,%,期权行情指标 / 日行情,,是
+19819,成交额（元）,ths_amt_yuan_option,元,期权行情指标 / 日行情,,是
+07326,月收盘价,ths_close_m_option,元,期权行情指标 / 月行情,,是
+07327,月开盘价,ths_open_m_option,元,期权行情指标 / 月行情,,是
+07328,月最高价,ths_high_m_option,元,期权行情指标 / 月行情,,是
+07329,月最低价,ths_low_m_option,元,期权行情指标 / 月行情,,是
+07330,月结算价,ths_settle_m_option,元,期权行情指标 / 月行情,,是
+07331,月最高收盘价,ths_high_close_m_option,元,期权行情指标 / 月行情,,是
+07332,月最低收盘价,ths_low_close_m_option,元,期权行情指标 / 月行情,,是
+07333,月最高结算价,ths_high_settle_m_option,元,期权行情指标 / 月行情,,是
+07334,月最低结算价,ths_low_settle_m_option,元,期权行情指标 / 月行情,,是
+07335,月前收盘价,ths_pre_close_m_option,元,期权行情指标 / 月行情,,是
+07336,月前结算价,ths_pre_settle_m_option,元,期权行情指标 / 月行情,,是
+07337,月成交均价,ths_avg_price_m_option,元,期权行情指标 / 月行情,,是
+07338,月涨跌,ths_chgm_option,元,期权行情指标 / 月行情,,是
+07339,月涨跌(结算价),ths_settle_chgm_option,元,期权行情指标 / 月行情,,是
+07340,月涨跌幅,ths_chg_ratio_m_option,%,期权行情指标 / 月行情,,是
+07341,月涨跌幅(结算价),ths_settle_chg_ratio_m_option,%,期权行情指标 / 月行情,,是
+07342,月持仓变化,ths_position_chgm_option,手,期权行情指标 / 月行情,,是
+07343,月成交量,ths_vol_m_option,手,期权行情指标 / 月行情,,是
+07344,月成交额,ths_amt_m_option,万元,期权行情指标 / 月行情,,是
+07345,月持仓量,ths_oi_m_option,手,期权行情指标 / 月行情,,是
+07346,月均成交量,ths_avg_vol_m_option,手,期权行情指标 / 月行情,,是
+07347,月均成交额,ths_avg_amt_m_option,万元,期权行情指标 / 月行情,,是
+07348,月均持仓量,ths_avg_position_m_option,手,期权行情指标 / 月行情,,是
+07349,月最高价日,ths_high_date_m_option,,期权行情指标 / 月行情,,
+07350,月最低价日,ths_low_date_m_option,,期权行情指标 / 月行情,,
+07351,月最高结算价日,ths_high_settle_date_m_option,,期权行情指标 / 月行情,,
+07352,月最低结算价日,ths_low_settle_date_m_option,,期权行情指标 / 月行情,,
+09659,月振幅,ths_swingm_option,%,期权行情指标 / 月行情,,是
+09663,标的前收盘价,ths_underlying_pre_close_option,元,期权行情指标 / 标的行情,,是
+09664,标的开盘价,ths_underlying_open_option,元,期权行情指标 / 标的行情,,是
+09665,标的最高价,ths_underlying_high_option,元,期权行情指标 / 标的行情,,是
+09666,标的最低价,ths_underlying_low_option,元,期权行情指标 / 标的行情,,是
+09667,标的收盘价,ths_underlying_close_option,元,期权行情指标 / 标的行情,,是
+09668,标的涨跌,ths_underlying_chg_option,,期权行情指标 / 标的行情,,是
+09669,标的涨跌幅,ths_underlying_ratio_option,,期权行情指标 / 标的行情,,是
+09670,标的成交量,ths_underlying_vol_option,,期权行情指标 / 标的行情,,是
+09671,标的成交额,ths_underlying_amt_option,,期权行情指标 / 标的行情,,是
+09672,标的振幅,ths_underlying_swing_option,%,期权行情指标 / 标的行情,,是
+09673,标的均价,ths_underlying_avg_price_option,元,期权行情指标 / 标的行情,,是
+09674,标的换手率,ths_underlying_turnover_option,%,期权行情指标 / 标的行情,,是
+11522,内在价值,ths_inner_value_option,,期权风险指标,,是
+11526,时间价值,ths_time_value_option,,期权风险指标,,是
+11527,标的30日波动率,ths_underlying_volatility_30d_option,%,期权风险指标,,是
+11528,标的60日波动率,ths_underlying_volatility_60d_option,%,期权风险指标,,是
+11529,标的90日波动率,ths_underlying_volatility_90d_option,%,期权风险指标,,是

@@ -1,0 +1,894 @@
+﻿指标代码,指标中文名,英文代码,单位,分类,参数,支持序列
+08474,总市值,ths_market_value_uss,元,美股估值指标,货币,是
+08691,市盈率(PE),ths_pe_uss,,美股估值指标,报告期类型,是
+08692,市盈率(PE、TTM),ths_pe_ttm_uss,,美股估值指标,TTM基准日,是
+09623,历史PEG,ths_his_peg_uss,,美股估值指标,增长率(G值)匹配方法,是
+09624,市净率(PB),ths_pb_uss,,美股估值指标,财政年度、报告期类型,是
+09626,市现率(PCF、经营现金流),ths_pcf_operate_cash_flow_uss,,美股估值指标,财政年度、报告期类型,是
+09627,市现率(PCF、经营现金流TTM),ths_pcf_operate_cash_flow_ttm_uss,,美股估值指标,TTM基准日,是
+09628,市现率(PCF、现金净流量),ths_pcf_cash_net_flow_uss,,美股估值指标,财政年度、报告期类型,是
+09629,市现率(PCF、现金净流量TTM),ths_pcf_cash_net_flow_ttm_uss,,美股估值指标,TTM基准日,是
+09630,市销率(PS),ths_ps_uss,,美股估值指标,财政年度、报告期类型,是
+09631,市销率(PS，TTM),ths_ps_ttm_uss,,美股估值指标,TTM基准日,是
+12142,流通市值,ths_current_mv_usk,元,美股估值指标,货币,是
+12143,股权价值,ths_right_value_usk,元,美股估值指标,货币,是
+12144,企业价值(含货币资金)(EV1),ths_ev1_usk,元,美股估值指标,货币,是
+12145,企业价值(不含货币资金)(EV2),ths_ev2_usk,元,美股估值指标,货币,是
+12146,企业倍数,ths_ev2_to_ebitda_usk,,美股估值指标,,是
+16761,"市净率(PB,MRQ)",ths_pb_mrq_usk,,美股估值指标,,是
+16762,"市净率(PB,最新)",ths_pb_latest_usk,,美股估值指标,基准日,是
+16809,加权市盈率（PE）,ths_pg_wgt_uss,,美股估值指标,年度,是
+16810,加权市盈率（PE、TTM）,ths_pe_wgt_ttm_uss,,美股估值指标,TTM基准日,是
+16824,市盈率(PE、LYR),ths_pe_lyr_uss,,美股估值指标,,是
+16827,"市销率(PS,LYR)",ths_ps_lyr_uss,,美股估值指标,,是
+17753,股息率_近12个月,ths_dividend_rate_12m_usk,%,美股估值指标,,是
+07516,CIK编码,ths_cik_uss,,美股基本资料 / 美股公司资料,,
+07611,公司中文名称,ths_corp_cn_name_uss,,美股基本资料 / 美股公司资料,,
+07612,公司英文名称,ths_corp_name_en_uss,,美股基本资料 / 美股公司资料,,
+07613,成立日期,ths_established_date_uss,,美股基本资料 / 美股公司资料,,
+07614,会计年结日,ths_accounting_date_uss,,美股基本资料 / 美股公司资料,,
+07615,总经理,ths_general_manager_uss,,美股基本资料 / 美股公司资料,,
+07616,董事会秘书,ths_secretary_uss,,美股基本资料 / 美股公司资料,,
+07617,经营范围,ths_operating_scope_uss,,美股基本资料 / 美股公司资料,,
+07619,所属SIC行业,ths_the_sic_industry_uss,,美股基本资料 / 美股公司资料,行业级别,
+07621,员工总数,ths_staff_num_uss,,美股基本资料 / 美股公司资料,,是
+07622,注册地址,ths_reg_address_uss,,美股基本资料 / 美股公司资料,,
+07623,办公地址,ths_office_address_uss,,美股基本资料 / 美股公司资料,,
+07624,邮政编码,ths_postcode_uss,,美股基本资料 / 美股公司资料,,
+07625,公司电话,ths_corp_tel_uss,,美股基本资料 / 美股公司资料,,
+07626,公司传真,ths_corp_fax_uss,,美股基本资料 / 美股公司资料,,
+07627,公司电子邮件地址,ths_corp_email_uss,,美股基本资料 / 美股公司资料,,
+07628,公司网站,ths_corp_website_uss,,美股基本资料 / 美股公司资料,,
+07629,高管成员(现任),ths_sm_current_uss,,美股基本资料 / 美股公司资料,,
+07630,董事会成员(现任),ths_mem_of_bod_resolution_plan_ad_uss,,美股基本资料 / 美股公司资料,,
+09934,注册资本,ths_reg_capital_uss,元,美股基本资料 / 美股公司资料,,是
+09935,法人代表,ths_legal_representative_uss,,美股基本资料 / 美股公司资料,,
+09936,注册地所在国家或地区,ths_registrate_nation_or_district_uss,,美股基本资料 / 美股公司资料,,
+12672,审计机构,ths_audit_office_usk,,美股基本资料 / 美股公司资料,年度,
+17773,企业地址,ths_corp_address_usk,,美股基本资料 / 美股公司资料,,
+30022,公司英文名称,corp_name_en,,美股基本资料 / 美股公司资料,,
+07513,股票简称,ths_stock_short_name_uss,,美股基本资料 / 美股证券资料,,
+07514,股票代码,ths_stock_code_uss,,美股基本资料 / 美股证券资料,,
+07515,同花顺代码,ths_thscode_uss,,美股基本资料 / 美股证券资料,,
+07517,股票种类,ths_stock_varieties_uss,,美股基本资料 / 美股证券资料,,
+07518,上市日期,ths_listed_date_uss,,美股基本资料 / 美股证券资料,,
+07519,交易市场,ths_td_mkt_uss,,美股基本资料 / 美股证券资料,,
+07520,上市板块,ths_listing_plate_uss,,美股基本资料 / 美股证券资料,,
+07521,上市地点,ths_listed_exchange_uss,,美股基本资料 / 美股证券资料,,
+07522,终止上市日期,ths_stop_listing_date_uss,,美股基本资料 / 美股证券资料,,
+07523,所属概念,ths_the_concept_uss,,美股基本资料 / 美股证券资料,,
+07524,是否属于重要指数成分,ths_is_important_index_constituent_uss,,美股基本资料 / 美股证券资料,所属指数,
+07620,所属GICS行业,ths_the_gics_industry_uss,,美股基本资料 / 美股证券资料,行业分类,
+17055,所属GICS行业代码,ths_gics_industry_code_uss,,美股基本资料 / 美股证券资料,行业分类,
+03105,MACD指数平滑异同移动平均线,ths_macd_uss,,美股技术指标,长期周期、短期周期、周期、MCAD指标选项、复权方式、计算周期,是
+03115,KDJ随机指标,ths_kdj_uss,,美股技术指标,周期、周期1、周期2、KDJ指标选项、复权方式、计算周期,是
+03135,BOLL布林线,ths_boll_uss,,美股技术指标,周期、带宽、BOLL指标选项、复权方式、计算周期,是
+05145,MA简单移动平均,ths_ma_uss,,美股技术指标,周期、复权方式、计算周期,是
+05148,RSI相对强弱指标,ths_rsi_uss,,美股技术指标,周期、复权方式、计算周期,是
+12676,审计意见类型,ths_audit_opinion_type_usk,,美股报表附注 / 美股审计意见,年度,
+12677,审计费,ths_audit_fee_usk,元,美股报表附注 / 美股审计意见,年度、货币币种,
+12679,审计相关费用,ths_audit_related_fee_usk,元,美股报表附注 / 美股审计意见,年度、货币币种,
+12680,税费,ths_tax_usk,元,美股报表附注 / 美股审计意见,年度、货币币种,
+12682,其他费用,ths_other_fees_usk,元,美股报表附注 / 美股审计意见,年度、货币币种,
+12683,总费用,ths_total_cost_usk,元,美股报表附注 / 美股审计意见,年度、货币币种,
+08452,营业收入构成(按业务)-项目名称,ths_project_name_oic_bussiness_uss,,美股报表附注 / 美股营业收入构成,排名,
+08453,营业收入构成(按业务)-项目收入,ths_project_income_oic_bussiness_uss,元,美股报表附注 / 美股营业收入构成,排名、货币币种,是
+08454,营业收入构成(按地区)-项目名称,ths_project_name_oic_district_uss,,美股报表附注 / 美股营业收入构成,排名,
+08455,营业收入构成(按地区)-项目收入,ths_project_income_oic_district_uss,元,美股报表附注 / 美股营业收入构成,排名、货币币种,是
+11949,营业收入构成(按业务) - 项目成本,ths_project_cost_oic_bussiness_uss,元,美股报表附注 / 美股营业收入构成,排名、货币币种,是
+11950,营业收入构成(按业务) - 项目毛利,ths_project_grpf_oic_bussiness_uss,元,美股报表附注 / 美股营业收入构成,排名、货币币种,是
+11951,营业收入构成(按业务) - 项目毛利率,ths_project_sales_gir_oic_bussiness_uss,,美股报表附注 / 美股营业收入构成,排名,是
+11952,营业收入构成(按地区) - 项目成本,ths_project_cost_oic_district_uss,元,美股报表附注 / 美股营业收入构成,排名、货币币种,是
+11953,营业收入构成(按地区) - 项目毛利,ths_project_grpf_oic_district_uss,元,美股报表附注 / 美股营业收入构成,排名、货币币种,是
+11954,营业收入构成(按地区) - 项目毛利率,ths_project_salesgir_oic_district_uss,,美股报表附注 / 美股营业收入构成,排名,是
+11955,单季度 - 营业收入构成(按业务) - 项目名称,ths_sq_project_name_oic_bussiness_uss,,美股报表附注 / 美股营业收入构成(单季度),年度、季度、排名,
+11956,单季度 - 营业收入构成(按业务) - 项目收入,ths_sq_project_income_oic_bussiness_uss,元,美股报表附注 / 美股营业收入构成(单季度),年度、季度、排名、货币币种,是
+11957,单季度 - 营业收入构成(按业务) - 项目成本,ths_sq_project_cost_oic_bussiness_uss,元,美股报表附注 / 美股营业收入构成(单季度),年度、季度、排名、货币币种,是
+11958,单季度 - 营业收入构成(按业务) - 项目毛利,ths_sq_project_grpf_oic_bussiness_uss,元,美股报表附注 / 美股营业收入构成(单季度),年度、季度、排名、货币币种,是
+11959,单季度 - 营业收入构成(按业务) - 项目毛利率,ths_sq_project_slgir_oic_bussiness_uss,,美股报表附注 / 美股营业收入构成(单季度),年度、季度、排名,是
+11960,单季度 - 营业收入构成(按地区) - 项目名称,ths_sq_project_name_oic_district_uss,,美股报表附注 / 美股营业收入构成(单季度),年度、季度、排名,
+11961,单季度 - 营业收入构成(按地区) - 项目收入,ths_sq_project_income_oic_district_uss,元,美股报表附注 / 美股营业收入构成(单季度),年度、季度、排名、货币币种,是
+11962,单季度 - 营业收入构成(按地区) - 项目成本,ths_sq_project_cost_oic_district_uss,元,美股报表附注 / 美股营业收入构成(单季度),年度、季度、排名、货币币种,是
+11963,单季度 - 营业收入构成(按地区) - 项目毛利,ths_sq_project_grpf_oic_district_uss,元,美股报表附注 / 美股营业收入构成(单季度),年度、季度、排名、货币币种,是
+11964,单季度 - 营业收入构成(按地区) - 项目毛利率,ths_sq_project_slgir_oic_district_uss,,美股报表附注 / 美股营业收入构成(单季度),年度、季度、排名,是
+17725,每股收益预测机构家数,ths_fore_eps_org_num_uss,家,美股盈利预测 / 美股盈利预测综合值（可选周期）,年度、截至日期、综合值周期,是
+17726,预测每股收益平均值,ths_fore_eps_mean_uss,元,美股盈利预测 / 美股盈利预测综合值（可选周期）,年度、截至日期、综合值周期、货币币种,是
+17727,预测每股收益最大值,ths_fore_eps_max_uss,元,美股盈利预测 / 美股盈利预测综合值（可选周期）,年度、截至日期、综合值周期、货币币种,是
+17728,预测每股收益最小值,ths_fore_eps_min_uss,元,美股盈利预测 / 美股盈利预测综合值（可选周期）,年度、截至日期、综合值周期、货币币种,是
+17729,预测每股收益中值,ths_fore_eps_median_uss,元,美股盈利预测 / 美股盈利预测综合值（可选周期）,年度、截至日期、综合值周期、货币币种,是
+17730,预测每股收益标准差,ths_fore_eps_standard_deviation_uss,元,美股盈利预测 / 美股盈利预测综合值（可选周期）,年度、截至日期、综合值周期、货币币种,是
+17731,预测营业收入平均值,ths_fore_income_mean_uss,元,美股盈利预测 / 美股盈利预测综合值（可选周期）,年度、截至日期、综合值周期、货币币种,是
+17732,预测营业收入最大值,ths_fore_income_max_uss,元,美股盈利预测 / 美股盈利预测综合值（可选周期）,年度、截至日期、综合值周期、货币币种,是
+17733,预测营业收入最小值,ths_fore_income_min_uss,元,美股盈利预测 / 美股盈利预测综合值（可选周期）,年度、截至日期、综合值周期、货币币种,是
+17734,预测营业收入中值,ths_fore_income_median_uss,元,美股盈利预测 / 美股盈利预测综合值（可选周期）,年度、截至日期、综合值周期、货币币种,是
+17735,预测营业收入标准差,ths_fore_income_standard_deviation_uss,元,美股盈利预测 / 美股盈利预测综合值（可选周期）,年度、截至日期、综合值周期、货币币种,是
+07634,普通股,ths_equity_common_shares_uss,股,美股股本指标,,是
+07635,证券总股本,ths_total_shares_to_calc_total_mv_uss,股,美股股本指标,,是
+07636,预托证券(普通股标的),ths_adrcommon_stock_underlying_uss,股,美股股本指标,,是
+07637,预托证券对应标的股票类型,ths_adr_respond_underlying_type_uss,,美股股本指标,,
+07638,预托证券对应标的股票的比例,ths_adr_respond_underlying_ratio_uss,,美股股本指标,,是
+12539,流通股本,ths_float_shares_usk,股,美股股本指标,,是
+05462,交易货币,ths_td_currency_uss,,美股行情指标,,
+07695,区间前收盘价,ths_pre_close_int_uss,元,美股行情指标 / 区间行情,起始交易日期、截止交易日期、复权方式,
+07696,区间开盘价,ths_open_int_uss,元,美股行情指标 / 区间行情,起始交易日期、截止交易日期、复权方式,
+07697,区间最高价,ths_high_int_uss,元,美股行情指标 / 区间行情,起始交易日期、截止交易日期、复权方式,
+07698,区间最低价,ths_low_int_uss,元,美股行情指标 / 区间行情,起始交易日期、截止交易日期、复权方式,
+07699,区间收盘价,ths_close_int_uss,元,美股行情指标 / 区间行情,起始交易日期、截止交易日期、复权方式,
+07700,区间最高收盘价,ths_high_close_int_uss,元,美股行情指标 / 区间行情,起始交易日期、截止交易日期、复权方式,
+07701,区间最低收盘价,ths_low_close_int_uss,元,美股行情指标 / 区间行情,起始交易日期、截止交易日期、复权方式,
+07702,区间涨跌,ths_chg_int_uss,元,美股行情指标 / 区间行情,起始交易日期、截止交易日期、复权方式,
+07703,区间涨跌幅,ths_int_chg_ratio_uss,%,美股行情指标 / 区间行情,起始交易日期、截止交易日期、复权方式,
+07704,区间日均涨跌幅,ths_daily_avg_chg_ratio_int_uss,%,美股行情指标 / 区间行情,起始交易日期、截止交易日期、复权方式,
+07705,区间成交量,ths_vol_int_uss,股,美股行情指标 / 区间行情,起始交易日期、截止交易日期,
+07706,区间日均成交量,ths_daily_avg_vol_int_uss,股,美股行情指标 / 区间行情,起始交易日期、截止交易日期,
+07707,区间振幅,ths_swing_int_uss,%,美股行情指标 / 区间行情,起始交易日期、截止交易日期、复权方式,
+07708,区间日均振幅,ths_daily_avg_swing_int_uss,%,美股行情指标 / 区间行情,起始交易日期、截止交易日期,
+07709,区间交易日数,ths_td_datesint_uss,天,美股行情指标 / 区间行情,起始交易日期、截止交易日期,
+07710,区间最高价日,ths_high_date_int_uss,,美股行情指标 / 区间行情,起始交易日期、截止交易日期、复权方式,
+07711,区间最低价日,ths_low_date_int_uss,,美股行情指标 / 区间行情,起始交易日期、截止交易日期、复权方式,
+07712,区间最高收盘价日,ths_high_close_date_int_uss,,美股行情指标 / 区间行情,起始交易日期、截止交易日期、复权方式,
+07713,区间最低收盘价日,ths_low_close_date_int_uss,,美股行情指标 / 区间行情,起始交易日期、截止交易日期、复权方式,
+07714,N日涨跌幅,ths_chg_ratio_nd_uss,%,美股行情指标 / 区间行情,天数(用负号表示前推)、复权方式,是
+07715,N日日均涨跌幅,ths_avg_chg_ratio_nd_uss,%,美股行情指标 / 区间行情,天数(用负号表示前推),是
+07716,N日成交量,ths_vol_nd_uss,股,美股行情指标 / 区间行情,天数(用负号表示前推),是
+07717,N日日均成交量,ths_avg_vol_nd_uss,股,美股行情指标 / 区间行情,天数(用负号表示前推),是
+07718,N日振幅,ths_swing_nd_uss,%,美股行情指标 / 区间行情,天数(用负号表示前推)、复权方式,是
+07719,N日日均振幅,ths_avg_swing_nd_uss,%,美股行情指标 / 区间行情,天数(用负号表示前推),是
+09971,区间日均总市值,ths_avg_total_mv_interval_uss,元,美股行情指标 / 区间行情,起始交易日期、截止交易日期,
+09973,N日收盘价1/4分位数,ths_close_one_fourth_bit_nd_uss,,美股行情指标 / 区间行情,天数(用负号表示前推)、复权方式,是
+09974,N日收盘价中位数,ths_close_median_nd_uss,,美股行情指标 / 区间行情,天数(用负号表示前推)、复权方式,是
+09975,N日收盘价3/4分位数,ths_close_three_fourth_bit_nd_uss,,美股行情指标 / 区间行情,天数(用负号表示前推)、复权方式,是
+09977,区间相对指数涨跌幅,ths_compare_to_index_chg_interval_uss,,美股行情指标 / 区间行情,起始交易日期、截止交易日期、标的指数,
+17769,区间成交均价,ths_avg_price_int_uss,元,美股行情指标 / 区间行情,起始交易日期、截止交易日期、复权方式,
+07650,周前收盘价,ths_pre_close_w_uss,元,美股行情指标 / 周行情,复权方式,是
+07651,周开盘价,ths_open_w_uss,元,美股行情指标 / 周行情,复权方式,是
+07652,周最高价,ths_high_w_uss,元,美股行情指标 / 周行情,复权方式,是
+07653,周最低价,ths_low_w_uss,元,美股行情指标 / 周行情,复权方式,是
+07654,周收盘价,ths_close_w_uss,元,美股行情指标 / 周行情,复权方式,是
+07655,周最高收盘价,ths_high_close_w_uss,元,美股行情指标 / 周行情,复权方式,是
+07656,周最低收盘价,ths_low_close_w_uss,元,美股行情指标 / 周行情,复权方式,是
+07657,周涨跌,ths_chg_w_uss,元,美股行情指标 / 周行情,复权方式,是
+07658,周涨跌幅,ths_chg_ratio_w_uss,%,美股行情指标 / 周行情,复权方式,是
+07659,周成交量,ths_vol_w_uss,股,美股行情指标 / 周行情,,是
+07660,周振幅,ths_swing_w_uss,%,美股行情指标 / 周行情,复权方式,是
+07661,周最高价日,ths_high_date_w_uss,,美股行情指标 / 周行情,复权方式,
+07662,周最低价日,ths_low_date_w_uss,,美股行情指标 / 周行情,复权方式,
+07663,周最高收盘价日,ths_high_close_date_w_uss,,美股行情指标 / 周行情,复权方式,
+07664,周最低收盘价日,ths_low_close_date_w_uss,,美股行情指标 / 周行情,复权方式,
+07680,年前收盘价,ths_pre_close_y_uss,元,美股行情指标 / 年行情,复权方式,是
+07681,年开盘价,ths_open_y_uss,元,美股行情指标 / 年行情,复权方式,是
+07682,年最高价,ths_high_y_uss,元,美股行情指标 / 年行情,复权方式,是
+07683,年最低价,ths_low_y_uss,元,美股行情指标 / 年行情,复权方式,是
+07684,年收盘价,ths_close_y_uss,元,美股行情指标 / 年行情,复权方式,是
+07685,年最高收盘价,ths_high_close_y_uss,元,美股行情指标 / 年行情,复权方式,是
+07686,年最低收盘价,ths_low_close_y_uss,元,美股行情指标 / 年行情,复权方式,是
+07687,年涨跌,ths_chg_y_uss,元,美股行情指标 / 年行情,复权方式,是
+07688,年涨跌幅,ths_chg_ratio_y_uss,%,美股行情指标 / 年行情,复权方式,是
+07689,年成交量,ths_vol_y_uss,股,美股行情指标 / 年行情,,是
+07690,年振幅,ths_swing_y_uss,%,美股行情指标 / 年行情,复权方式,是
+07691,年最高价日,ths_high_date_y_uss,,美股行情指标 / 年行情,复权方式,
+07692,年最低价日,ths_low_date_y_uss,,美股行情指标 / 年行情,复权方式,
+07693,年最高收盘价日,ths_high_close_date_y_uss,,美股行情指标 / 年行情,复权方式,
+07694,年最低收盘价日,ths_low_close_date_y_uss,,美股行情指标 / 年行情,复权方式,
+07640,前收盘价,ths_pre_close_uss,元,美股行情指标 / 日行情,复权方式,是
+07641,开盘价,ths_open_price_uss,元,美股行情指标 / 日行情,复权方式,是
+07642,最高价,ths_high_price_uss,元,美股行情指标 / 日行情,复权方式,是
+07643,最低价,ths_low_uss,元,美股行情指标 / 日行情,复权方式,是
+07644,收盘价,ths_close_price_uss,元,美股行情指标 / 日行情,复权方式,是
+07645,涨跌,ths_chg_uss,元,美股行情指标 / 日行情,复权方式,是
+07646,涨跌幅,ths_chg_ratio_uss,%,美股行情指标 / 日行情,,是
+07647,成交量,ths_vol_uss,股,美股行情指标 / 日行情,,是
+07648,振幅,ths_swing_uss,%,美股行情指标 / 日行情,,是
+07649,交易状态,ths_trading_status_uss,,美股行情指标 / 日行情,,
+10125,复权因子,ths_af_uss,,美股行情指标 / 日行情,,是
+07665,月前收盘价,ths_pre_close_m_uss,元,美股行情指标 / 月行情,复权方式,是
+07666,月开盘价,ths_open_m_uss,元,美股行情指标 / 月行情,复权方式,是
+07667,月最高价,ths_high_m_uss,元,美股行情指标 / 月行情,复权方式,是
+07668,月最低价,ths_low_m_uss,元,美股行情指标 / 月行情,复权方式,是
+07669,月收盘价,ths_close_m_uss,元,美股行情指标 / 月行情,复权方式,是
+07670,月最高收盘价,ths_high_close_m_uss,元,美股行情指标 / 月行情,复权方式,是
+07671,月最低收盘价,ths_low_close_m_uss,元,美股行情指标 / 月行情,复权方式,是
+07672,月涨跌,ths_chgm_uss,元,美股行情指标 / 月行情,复权方式,是
+07673,月涨跌幅,ths_chg_ratio_m_uss,%,美股行情指标 / 月行情,复权方式,是
+07674,月成交量,ths_vol_m_uss,股,美股行情指标 / 月行情,,是
+07675,月振幅,ths_swingm_uss,%,美股行情指标 / 月行情,复权方式,是
+07676,月最高价日,ths_high_date_m_uss,,美股行情指标 / 月行情,复权方式,
+07677,月最低价日,ths_low_date_m_uss,,美股行情指标 / 月行情,复权方式,
+07678,月最高收盘价日,ths_high_close_date_m_uss,,美股行情指标 / 月行情,复权方式,
+07679,月最低收盘价日,ths_low_close_date_m_uss,,美股行情指标 / 月行情,复权方式,
+10355,单季度·净利润(Non-GAAP),ths_sq_net_profit_uss,元,美股财务分析 / 单季度财务指标,年度、季度、货币币种,是
+10356,单季度·基本每股收益EPS,ths_sq_basiceps_uss,元,美股财务分析 / 单季度财务指标,年度、季度,是
+10357,单季度·稀释每股收益EPS,ths_sq_dlt_eps_uss,元,美股财务分析 / 单季度财务指标,年度、季度,是
+10358,单季度·销售净利率,ths_sq_sale_net_rate_uss,%,美股财务分析 / 单季度财务指标,年度、季度,是
+10359,单季度·销售毛利率,ths_sq_sale_gross_rate_uss,%,美股财务分析 / 单季度财务指标,年度、季度,是
+10360,单季度·净资产收益率ROE,ths_sq_roe_uss,%,美股财务分析 / 单季度财务指标,年度、季度,是
+10361,单季度·总资产净利率ROA,ths_sq_roa_uss,%,美股财务分析 / 单季度财务指标,年度、季度,是
+08045,流动比率,ths_current_ratio_uss,,美股财务分析 / 美股偿债能力,,是
+08046,速动比率,ths_quick_ratio_uss,,美股财务分析 / 美股偿债能力,,是
+08047,产权比率(负债合计/归属母公司股东的权益),ths_equityratio_usk,,美股财务分析 / 美股偿债能力,,是
+08048,归属母公司股东的权益/负债合计,ths_parentcompanyshareholdersequitytototaldebt_usk,,美股财务分析 / 美股偿债能力,,是
+08049,经营活动产生的现金流量净额/负债合计,ths_operatingnetcashflowtototaldebt_usk,,美股财务分析 / 美股偿债能力,,是
+08050,已获利息倍数(EBIT/利息费用),ths_ebit_to_interest_fee_uss,,美股财务分析 / 美股偿债能力,,是
+08051,长期债务与营运资金比率,ths_lt_debt_to_oc_uss,,美股财务分析 / 美股偿债能力,,是
+10300,保守速冻比率,ths_conservative_freeze_ratio_uss,,美股财务分析 / 美股偿债能力,,是
+10301,货币资金/流动负债,ths_currency_capital_to_cd_uss,,美股财务分析 / 美股偿债能力,,是
+10302,营业利润/流动负债,ths_op_to_current_debt_uss,,美股财务分析 / 美股偿债能力,,是
+10303,营业利润/负债合计,ths_op_to_total_debt_uss,,美股财务分析 / 美股偿债能力,,是
+10304,经营活动产生的现金流量净额／净债务,ths_ncf_of_oa_to_net_debt_uss,,美股财务分析 / 美股偿债能力,,是
+10305,经营活动产生的现金流量净额／流动负债,ths_oa_ncg_to_current_debt_uss,,美股财务分析 / 美股偿债能力,,是
+10306,经营活动产生的现金流量净额／带息债务,ths_ncf_of_oa_to_dwi_uss,,美股财务分析 / 美股偿债能力,,是
+10307,归属母公司股东的权益／带息债务,ths_equity_atsopc_to_dwi_uss,,美股财务分析 / 美股偿债能力,,是
+10308,有形资产/负债合计,ths_ta_to_total_debt_uss,,美股财务分析 / 美股偿债能力,,是
+10309,有形资产/带息债务,ths_ta_to_bwi_uss,,美股财务分析 / 美股偿债能力,,是
+10310,有形资产/净债务,ths_ta_to_net_debt_uss,,美股财务分析 / 美股偿债能力,,是
+10311,息税折旧摊销前利润／负债合计,ths_ebitda_to_total_liab_uss,,美股财务分析 / 美股偿债能力,,是
+31623,货币资金/流动负债（同比增长率）,ths_cf_to_current_liab_yoy_uss,,美股财务分析 / 美股偿债能力,,是
+31624,营业利润/流动负债（同比增长率）,ths_ta_to_current_liab_yoy_uss,,美股财务分析 / 美股偿债能力,,是
+31625,营业利润/负债合计（同比增长率）,ths_op_to_total_liab_yoy_uss,,美股财务分析 / 美股偿债能力,,是
+31626,归属母公司股东权益/负债合计（同比增长率）,ths_equity_atsopc_to_total_liab_yoy_uss,,美股财务分析 / 美股偿债能力,,是
+31627,息税折旧摊销前利润/负债合计（同比增长率）,ths_ebitda_to_total_liab_yoy_uss,,美股财务分析 / 美股偿债能力,,是
+31628,已获利息倍数EBIT/利息费用（同比增长率）,ths_ebit_to_interest_fee_yoy_uss,,美股财务分析 / 美股偿债能力,,是
+31629,长期债务与营运资金比率（同比增长率）,ths_lt_debt_to_oc_yoy_uss,,美股财务分析 / 美股偿债能力,,是
+10341,"营业总收入(N年,增长率)",ths_operating_revenuen_y_uss,%,美股财务分析 / 美股成长能力 / N年增长率,年数,是
+10342,"营业总成本(N年,增长率)",ths_operating_cost_ny_uss,%,美股财务分析 / 美股成长能力 / N年增长率,年数,是
+10343,"营业收入(N年,增长率)",ths_or_ny_uss,%,美股财务分析 / 美股成长能力 / N年增长率,年数,是
+10344,"营业利润(N年,增长率)",ths_op_ny_uss,%,美股财务分析 / 美股成长能力 / N年增长率,年数,是
+10345,"利润总额(N年,增长率)",ths_total_profit_ny_uss,%,美股财务分析 / 美股成长能力 / N年增长率,年数,是
+10346,"归属母公司股东的净利润(N年,增长率)",ths_np_atsopcn_y_uss,%,美股财务分析 / 美股成长能力 / N年增长率,年数,是
+10347,"经营活动产生的现金流量净额(N年,增长率)",ths_ncf_of_oa_ny_uss,%,美股财务分析 / 美股成长能力 / N年增长率,年数,是
+10348,"资产总计(N年,增长率)",ths_assets_ny_uss,%,美股财务分析 / 美股成长能力 / N年增长率,年数,是
+10349,"股东权益(N年,增长率)",ths_holder_equity_uss,%,美股财务分析 / 美股成长能力 / N年增长率,年数,是
+10350,"归属母公司股东的权益(N年,增长率)",ths_equity_atsopc_ny_uss,%,美股财务分析 / 美股成长能力 / N年增长率,年数,是
+10351,"销售利润率(N年,增长率)",ths_sale_profit_rate_ny_uss,%,美股财务分析 / 美股成长能力 / N年增长率,年数,是
+10352,"净资产收益率(N年,增长率)",ths_roe_ny_uss,%,美股财务分析 / 美股成长能力 / N年增长率,年数,是
+10353,"经营活动净收益(N年,增长率)",ths_oa_net_incomen_y_uss,%,美股财务分析 / 美股成长能力 / N年增长率,年数,是
+10354,"价值变动净收益(N年,增长率)",ths_value_chg_ni_ny_uss,%,美股财务分析 / 美股成长能力 / N年增长率,年数,是
+08060,每股收益-基本(同比增长率),ths_eps_bisic_yoy_uss,%,美股财务分析 / 美股成长能力 / 同比增长率,,是
+08061,每股收益-稀释(同比增长率),ths_epsdlt_yoy_uss,%,美股财务分析 / 美股成长能力 / 同比增长率,,是
+08062,每股经营活动产生的现金流量净额(同比增长率),ths_oa_cf_net_amt_yoy_uss,%,美股财务分析 / 美股成长能力 / 同比增长率,,是
+08063,营业总收入(同比增长率),ths_operating_revenue_yoy_uss,%,美股财务分析 / 美股成长能力 / 同比增长率,,是
+08064,营业收入(同比增长率),ths_or_yoy_uss,%,美股财务分析 / 美股成长能力 / 同比增长率,,是
+08065,利润总额(同比增长率),ths_total_profit_yoy_uss,%,美股财务分析 / 美股成长能力 / 同比增长率,,是
+08066,归属母公司股东的净利润(同比增长率),ths_np_atsopc_yoy_uss,%,美股财务分析 / 美股成长能力 / 同比增长率,,是
+08067,经营活动产生的现金流量净额(同比增长率),ths_ncf_of_oa_yoy_uss,%,美股财务分析 / 美股成长能力 / 同比增长率,,是
+08068,净资产收益率(摊薄)(同比增长率),ths_yoy_dilutednetassetyield_usk,%,美股财务分析 / 美股成长能力 / 同比增长率,,是
+10315,营业利润（同比增长率）,ths_op_yoy_uss,%,美股财务分析 / 美股成长能力 / 同比增长率,,是
+10316,营业收入复合增长率,ths_or_compound_growth_uss,%,美股财务分析 / 美股成长能力 / 复合增长率,"截止年度、前推N年,N=",
+10317,净利润复合增长率,ths_np_compound_growth_uss,%,美股财务分析 / 美股成长能力 / 复合增长率,"截止年度、前推N年,N=",
+10318,归属于母公司股东的净利润复合增长率,ths_np_atsopc_compound_growth_uss,%,美股财务分析 / 美股成长能力 / 复合增长率,"截止年度、前推N年,N=",
+10319,总营业收入(近1年增长率),ths_total_oi_growth_1y_uss,%,美股财务分析 / 美股成长能力 / 最新增长率,,是
+10320,总营业收入(近3年增长率),ths_total_oi_growth_3y_uss,%,美股财务分析 / 美股成长能力 / 最新增长率,,是
+10321,毛利(近1年增长率),ths_gross_growth_1y_uss,%,美股财务分析 / 美股成长能力 / 最新增长率,,是
+10322,毛利(近3年增长率),ths_gross_growth_3y_uss,%,美股财务分析 / 美股成长能力 / 最新增长率,,是
+10323,税前利润(近1年增长率),ths_profit_before_tax_growth_1y_uss,%,美股财务分析 / 美股成长能力 / 最新增长率,,是
+10324,营业利润(近1年增长率),ths_operating_profit_growth_1y_uss,%,美股财务分析 / 美股成长能力 / 最新增长率,,是
+10325,营业利润(近3年增长率),ths_operating_profit_growth_3y_uss,%,美股财务分析 / 美股成长能力 / 最新增长率,,是
+10326,税前利润(近3年增长率),ths_profit_before_tax_growth_3y_uss,%,美股财务分析 / 美股成长能力 / 最新增长率,,是
+10327,净利润(近1年增长率),ths_np_growth_1y_uss,%,美股财务分析 / 美股成长能力 / 最新增长率,,是
+10328,净利润(近3年增长率),ths_np_growth_3y_uss,%,美股财务分析 / 美股成长能力 / 最新增长率,,是
+10329,总资产(近1年增长率),ths_total_assets_growth_1y_uss,%,美股财务分析 / 美股成长能力 / 最新增长率,,是
+10330,总资产(近3年增长率),ths_total_assets_growth_3y_uss,%,美股财务分析 / 美股成长能力 / 最新增长率,,是
+10331,归属母公司股东的权益(近1年增长率),ths_equity_atsopc_growth_nearly1y_uss,%,美股财务分析 / 美股成长能力 / 最新增长率,,是
+10332,归属母公司股东的权益(近3年增长率),ths_equity_atsopc_growth_nearly3y_uss,%,美股财务分析 / 美股成长能力 / 最新增长率,,是
+10333,股东权益合计(近1年增长率),ths_total_holder_equity_growth_1y_uss,%,美股财务分析 / 美股成长能力 / 最新增长率,,是
+10334,股东权益合计(近3年增长率),ths_total_holder_equity_growth_3y_uss,%,美股财务分析 / 美股成长能力 / 最新增长率,,是
+10335,总负债(近1年增长率),ths_total_liab_growth_1y_uss,%,美股财务分析 / 美股成长能力 / 最新增长率,,是
+10336,总负债(近3年增长率),ths_total_liab_growth_3y_uss,%,美股财务分析 / 美股成长能力 / 最新增长率,,是
+10337,基本每股收益(近1年增长率),ths_bisic_eps_growth_nearly1y_uss,%,美股财务分析 / 美股成长能力 / 最新增长率,,是
+10338,基本每股收益(近3年增长率),ths_bisic_eps_growth_nearly3y_uss,%,美股财务分析 / 美股成长能力 / 最新增长率,,是
+10339,每股净资产(近1年增长率),ths_nag_1y_uss,%,美股财务分析 / 美股成长能力 / 最新增长率,,是
+10340,每股净资产(近3年增长率),ths_nag_3y_uss,%,美股财务分析 / 美股成长能力 / 最新增长率,,是
+08069,每股净资产(相对年初增长率),ths_nag_respond_boy_uss,%,美股财务分析 / 美股成长能力 / 相对年初增长率,,是
+08070,资产总计(相对年初增长率),ths_assets_relative_boy_growth_uss,%,美股财务分析 / 美股成长能力 / 相对年初增长率,,是
+08071,归属母公司的股东权益(相对年初增长率),ths_equity_atsopc_growth_boy_uss,%,美股财务分析 / 美股成长能力 / 相对年初增长率,,是
+08073,权益乘数,ths_dupont_equity_multiplier_uss,,美股财务分析 / 美股杜邦分析,,是
+08075,归属母公司股东的净利润／净利润,ths_np_atsopc_to_np_uss,%,美股财务分析 / 美股杜邦分析,,是
+08077,净利润／利润总额,ths_np_to_total_profit_uss,%,美股财务分析 / 美股杜邦分析,,是
+08078,利润总额／息税前利润,ths_total_profit_to_ebit_uss,%,美股财务分析 / 美股杜邦分析,,是
+08079,息税前利润／营业总收入,ths_ebit_to_operating_revenue_uss,%,美股财务分析 / 美股杜邦分析,,是
+31622,净资产收益率同比增长（ROE）,ths_roe_growth_gm_usk,,美股财务分析 / 美股杜邦分析,,是
+08016,每股收益EPS-基本,ths_earnings_per_share_basic_uss,元,美股财务分析 / 美股每股指标,货币币种,是
+08017,每股收益EPS-稀释,ths_eps_dlt_uss,元,美股财务分析 / 美股每股指标,货币币种,是
+08018,每股净资产BPS,ths_nav_ps_uss,元,美股财务分析 / 美股每股指标,货币币种,是
+08019,每股经营活动产生的现金流量净额,ths_netcashflowfromoperating_usk,元,美股财务分析 / 美股每股指标,货币币种,是
+08020,每股营业总收入,ths_totalrevenuepershare_usk,元,美股财务分析 / 美股每股指标,货币币种,是
+08021,每股营业收入,ths_revenuepershare_usk,元,美股财务分析 / 美股每股指标,货币币种,是
+08022,每股资本公积,ths_capital_reserve_ps_uss,元,美股财务分析 / 美股每股指标,货币币种,是
+08023,每股现金流量净额,ths_netcashflowpershare_usk,元,美股财务分析 / 美股每股指标,货币币种,是
+08024,每股息税前利润,ths_per_share_ebit_uss,元,美股财务分析 / 美股每股指标,货币币种,是
+10264,每股收益-期末股本摊薄,ths_eps_final_share_dlt_uss,元,美股财务分析 / 美股每股指标,货币币种,是
+10265,每股收益-最新股本摊薄,ths_eps_latest_share_dlt_uss,元,美股财务分析 / 美股每股指标,货币币种,是
+10266,每股留存收益,ths_retained_income_ps_uss,元,美股财务分析 / 美股每股指标,货币币种,是
+10267,每股企业自由现金流量,ths_corp_free_cf_ps_uss,元,美股财务分析 / 美股每股指标,货币币种,是
+10268,每股净资产(最新公告),ths_net_asset_ps_latest_announce_uss,元,美股财务分析 / 美股每股指标,货币币种,是
+08038,经营活动产生的现金流量净额／营业收入,ths_ncf_from_oa_to_revenue_uss,%,美股财务分析 / 美股现金流量,,是
+10296,经营活动产生的现金流量净额／营业收入(TTM),ths_ncf_of_oa_to_revenue_uss,%,美股财务分析 / 美股现金流量,货币币种、TTM基准日,是
+10297,经营活动产生的现金流量净额／经营活动净收益(TTM),ths_oa_ncf_to_oa_net_income_ttm_uss,,美股财务分析 / 美股现金流量,货币币种、TTM基准日,是
+10298,经营活动产生的现金流量净额／经营活动净收益,ths_ncf_from_oa_to_oa_net_income_uss,%,美股财务分析 / 美股现金流量,,是
+10299,资本支出/折旧和摊销,ths_capital_cost_to_daa_uss,,美股财务分析 / 美股现金流量,,是
+08025,净资产收益率ROE(平均),ths_roe_avg_uss,%,美股财务分析 / 美股盈利能力与收益质量,,是
+08026,净资产收益率ROE(摊薄),ths_roe_dlt_uss,%,美股财务分析 / 美股盈利能力与收益质量,,是
+08027,总资产报酬率ROA,ths_roa_uss,%,美股财务分析 / 美股盈利能力与收益质量,,是
+08028,总资产净利率ROA,ths_net_interest_of_ta_uss,%,美股财务分析 / 美股盈利能力与收益质量,,是
+08029,年化净资产收益率,ths_annaul_net_asset_yield_uss,%,美股财务分析 / 美股盈利能力与收益质量,,是
+08030,年化总资产报酬率,ths_annual_total_asset_reward_rate_uss,%,美股财务分析 / 美股盈利能力与收益质量,,是
+08031,年化总资产净利率,ths_annual_ta_net_interest_uss,%,美股财务分析 / 美股盈利能力与收益质量,,是
+08032,销售净利率,ths_xsjll_usk,%,美股财务分析 / 美股盈利能力与收益质量,,是
+08033,销售毛利率,ths_gross_selling_rate_uss,%,美股财务分析 / 美股盈利能力与收益质量,,是
+08034,销售成本率,ths_sales_cost_rate_uss,%,美股财务分析 / 美股盈利能力与收益质量,,是
+08035,净利润／营业总收入,ths_netprofittorevenue_usk,%,美股财务分析 / 美股盈利能力与收益质量,,是
+08036,息税前利润／营业总收入,ths_xsqlryyzsr_usk,%,美股财务分析 / 美股盈利能力与收益质量,,是
+08037,所得税／利润总额,ths_income_tax_to_total_profit_uss,%,美股财务分析 / 美股盈利能力与收益质量,,是
+10269,归属母公司股东净利润/营业总收入,ths_total_equity_atsopc_to_revenue_uss,%,美股财务分析 / 美股盈利能力与收益质量,,是
+10270,投入资本回报率ROIC,ths_roic_uss,%,美股财务分析 / 美股盈利能力与收益质量,,是
+10271,投入资本回报率ROIC(年化),ths_roic_annual_uss,%,美股财务分析 / 美股盈利能力与收益质量,,是
+10272,营业利润/营业总收入,ths_op_to_revenue_uss,%,美股财务分析 / 美股盈利能力与收益质量,,是
+10273,营业总成本/营业总收入,ths_operating_cost_to_or_uss,%,美股财务分析 / 美股盈利能力与收益质量,,是
+10274,EBITDA/营业总收入,ths_ebitda_to_revenue_uss,%,美股财务分析 / 美股盈利能力与收益质量,,是
+10275,利润总额/营业收入,ths_tp_to_or_uss,%,美股财务分析 / 美股盈利能力与收益质量,,是
+10276,经营活动净收益/利润总额,ths_oa_net_income_to_total_profit_uss,%,美股财务分析 / 美股盈利能力与收益质量,,是
+10277,价值变动净收益/利润总额,ths_value_chg_ni_to_total_profit_uss,%,美股财务分析 / 美股盈利能力与收益质量,,是
+10278,营业利润/利润总额,ths_op_to_total_profit_uss,%,美股财务分析 / 美股盈利能力与收益质量,,是
+10279,归属母公司股东净利润/营业总收入(TTM),ths_np_atoopc_to_revenue_ttm_uss,%,美股财务分析 / 美股盈利能力与收益质量,货币币种、TTM基准日,是
+10280,净资产收益率ROE(TTM),ths_roe_ttm_uss,%,美股财务分析 / 美股盈利能力与收益质量,货币币种、TTM基准日,是
+10281,总资产报酬率ROA(TTM),ths_roa_ttm_uss,%,美股财务分析 / 美股盈利能力与收益质量,货币币种、TTM基准日,是
+10282,总资产净利率ROA(TTM),ths_net_interest_of_ta_ttm_uss,%,美股财务分析 / 美股盈利能力与收益质量,货币币种、TTM基准日,是
+10283,销售净利率(TTM),ths_sales_nir_ttm_uss,%,美股财务分析 / 美股盈利能力与收益质量,货币币种、TTM基准日,是
+10284,销售毛利率(TTM),ths_sales_gir_ttm_uss,%,美股财务分析 / 美股盈利能力与收益质量,货币币种、TTM基准日,是
+10285,净利润／营业总收入(TTM),ths_np_to_revenue_ttm_uss,%,美股财务分析 / 美股盈利能力与收益质量,货币币种、TTM基准日,是
+10286,投入资本回报率ROIC（TTM）,ths_roic_ttm_uss,%,美股财务分析 / 美股盈利能力与收益质量,货币币种、TTM基准日,是
+10287,营业利润/营业总收入(TTM),ths_op_to_revenue_ttm_uss,%,美股财务分析 / 美股盈利能力与收益质量,货币币种、TTM基准日,是
+10288,营业总成本/营业总收入(TTM),ths_total_oc_to_revenue_ttm_uss,%,美股财务分析 / 美股盈利能力与收益质量,货币币种、TTM基准日,是
+10289,利润总额/营业收入(TTM),ths_tp_to_or_ttm_uss,%,美股财务分析 / 美股盈利能力与收益质量,货币币种、TTM基准日,是
+10290,营业利润/利润总额(TTM),ths_op_to_total_profit_ttm_uss,%,美股财务分析 / 美股盈利能力与收益质量,货币币种、TTM基准日,是
+10291,所得税/利润总额（TTM）,ths_income_tax_to_tp_ttm_uss,%,美股财务分析 / 美股盈利能力与收益质量,货币币种、TTM基准日,是
+10292,持续经营净利润/税后利润（TTM）,ths_conp_to_pat_ttm_uss,%,美股财务分析 / 美股盈利能力与收益质量,货币币种、TTM基准日,是
+10293,非营业利润/利润总额（TTM）,ths_non_op_to_tp_ttm_uss,%,美股财务分析 / 美股盈利能力与收益质量,货币币种、TTM基准日,是
+10294,经营活动净收益/利润总额（TTM）,ths_oa_ni_to_tp_ttm_uss,%,美股财务分析 / 美股盈利能力与收益质量,货币币种、TTM基准日,是
+10295,价值变动净收益/利润总额（TTM）,ths_value_change_ni_to_tp_ttm_uss,%,美股财务分析 / 美股盈利能力与收益质量,货币币种、TTM基准日,是
+08052,营业周期,ths_operating_cycle_uss,天,美股财务分析 / 美股营运能力,,是
+08053,存货周转天数,ths_inventory_turnover_days_uss,天,美股财务分析 / 美股营运能力,,是
+08054,应收账款周转天数,ths_receivable_turnover_days_uss,天,美股财务分析 / 美股营运能力,,是
+08055,存货周转率,ths_inventory_turnover_uss,次,美股财务分析 / 美股营运能力,,是
+08056,应收账款周转率,ths_account_receivable_turnover_uss,次,美股财务分析 / 美股营运能力,,是
+08057,流动资产周转率,ths_current_asset_turnover_uss,次,美股财务分析 / 美股营运能力,,是
+08058,固定资产周转率,ths_fixed_asset_turnover_ratio_uss,次,美股财务分析 / 美股营运能力,,是
+08059,总资产周转率,ths_total_capital_turnover_uss,次,美股财务分析 / 美股营运能力,,是
+10362,归属于母公司股东的净利润（Non-GAAP）,ths_npatsopc_uss,元,美股财务分析 / 美股衍生报表数据 / 基于利润表,货币币种,是
+10363,毛利,ths_grossprofit_uss,元,美股财务分析 / 美股衍生报表数据 / 基于利润表,货币币种,是
+10364,经营活动净收益,ths_operating_activity_net_income_uss,元,美股财务分析 / 美股衍生报表数据 / 基于利润表,货币币种,是
+10365,价值变动净收益,ths_value_chg_net_income_uss,元,美股财务分析 / 美股衍生报表数据 / 基于利润表,货币币种,是
+10366,息税前利润EBIT,ths_ebit_uss,元,美股财务分析 / 美股衍生报表数据 / 基于利润表,货币币种,是
+10367,息税折旧摊销前利润EBITDA,ths_ebitda_uss,元,美股财务分析 / 美股衍生报表数据 / 基于利润表,货币币种,是
+09601,总收入(TTM),ths_total_income_ttm_uss,元,美股财务分析 / 美股衍生报表数据 / 基于利润表TTM,货币币种、TTM基准日,是
+09602,毛利(TTM),ths_gross_ttm_uss,元,美股财务分析 / 美股衍生报表数据 / 基于利润表TTM,货币币种、TTM基准日,是
+09603,营业利润(TTM),ths_operating_profit_ttm_uss,元,美股财务分析 / 美股衍生报表数据 / 基于利润表TTM,货币币种、TTM基准日,是
+09604,息税前利润(TTM),ths_ebit_ttm_uss,元,美股财务分析 / 美股衍生报表数据 / 基于利润表TTM,货币币种、TTM基准日,是
+09605,税前利润(TTM),ths_profit_before_tax_ttm_uss,元,美股财务分析 / 美股衍生报表数据 / 基于利润表TTM,货币币种、TTM基准日,是
+09606,净利润(TTM),ths_net_profit_ttm_uss,元,美股财务分析 / 美股衍生报表数据 / 基于利润表TTM,货币币种、TTM基准日,是
+09607,归属母公司股东的净利润(TTM),ths_np_atsopc_ttm_uss,元,美股财务分析 / 美股衍生报表数据 / 基于利润表TTM,货币币种、TTM基准日,是
+09622,所得税(TTM),ths_income_tax_ttm_uss,元,美股财务分析 / 美股衍生报表数据 / 基于利润表TTM,货币币种、TTM基准日,是
+10379,营业收入（TTM）,ths_or_ttm_uss,元,美股财务分析 / 美股衍生报表数据 / 基于利润表TTM,货币币种、TTM基准日,是
+10380,营业总成本（TTM）,ths_operating_total_cost_ttm_uss,元,美股财务分析 / 美股衍生报表数据 / 基于利润表TTM,货币币种、TTM基准日,是
+10381,营业成本-非金融类（TTM）,ths_operating_cost_nonfinance_ttm_uss,元,美股财务分析 / 美股衍生报表数据 / 基于利润表TTM,货币币种、TTM基准日,是
+10382,营业支出-金融类（TTM）,ths_operating_expense_finance_ttm_uss,元,美股财务分析 / 美股衍生报表数据 / 基于利润表TTM,货币币种、TTM基准日,是
+10383,经营活动净收益（TTM）,ths_oa_net_income_uss,元,美股财务分析 / 美股衍生报表数据 / 基于利润表TTM,货币币种、TTM基准日,是
+10384,价值变动净收益（TTM）,ths_value_change_net_income_ttm_uss,元,美股财务分析 / 美股衍生报表数据 / 基于利润表TTM,货币币种、TTM基准日,是
+10385,非营业利润（TTM）,ths_non_operating_profit_ttm_uss,元,美股财务分析 / 美股衍生报表数据 / 基于利润表TTM,货币币种、TTM基准日,是
+10386,息税折旧摊销前利润（TTM）,ths_ebitda_ttm_uss,元,美股财务分析 / 美股衍生报表数据 / 基于利润表TTM,货币币种、TTM基准日,是
+10387,持续经营净利润（TTM）,ths_continuous_operating_np_ttm_uss,元,美股财务分析 / 美股衍生报表数据 / 基于利润表TTM,货币币种、TTM基准日,是
+10388,非持续经营净利润（TTM）,ths_noncontinuous_operating_np_ttm_uss,元,美股财务分析 / 美股衍生报表数据 / 基于利润表TTM,货币币种、TTM基准日,是
+16620,少数股东损益(TTM),ths_minoritygal_ttm_uss,元,美股财务分析 / 美股衍生报表数据 / 基于利润表TTM,货币币种、TTM基准日,是
+16811,基本每股收益（EPS、TTM）,ths_basic_eps_ttm_uss,元,美股财务分析 / 美股衍生报表数据 / 基于利润表TTM,货币币种、TTM基准日,是
+10377,企业自由现金流量,ths_corp_free_cash_flow_uss,元,美股财务分析 / 美股衍生报表数据 / 基于现金流量表,货币币种,是
+10378,当期计提折旧与摊销,ths_daa_ott_uss,元,美股财务分析 / 美股衍生报表数据 / 基于现金流量表,货币币种,是
+09608,经营活动产生的现金流量净额(TTM),ths_ncf_of_oa_ttm_uss,元,美股财务分析 / 美股衍生报表数据 / 基于现金流量表TTM,货币币种、TTM基准日,是
+09609,投资活动产生的现金流量净额(TTM),ths_ia_cash_flow_amt_ttm_uss,元,美股财务分析 / 美股衍生报表数据 / 基于现金流量表TTM,货币币种、TTM基准日,是
+09610,筹资活动产生的现金流量净额(TTM),ths_fa_cash_flow_net_amt_yoy_uss,元,美股财务分析 / 美股衍生报表数据 / 基于现金流量表TTM,货币币种、TTM基准日,是
+09611,现金及现金等价物净增加额(TTM),ths_net_increase_in_cce_ttm_uss,元,美股财务分析 / 美股衍生报表数据 / 基于现金流量表TTM,货币币种、TTM基准日,是
+10368,全部投入资本,ths_total_invested_capital_uss,元,美股财务分析 / 美股衍生报表数据 / 基于资产负债表,货币币种,是
+10369,营运资金,ths_operating_capital_uss,元,美股财务分析 / 美股衍生报表数据 / 基于资产负债表,货币币种,是
+10370,净营运资本,ths_net_operation_capital_uss,元,美股财务分析 / 美股衍生报表数据 / 基于资产负债表,货币币种,是
+10371,有形资产,ths_tangible_asset_uss,元,美股财务分析 / 美股衍生报表数据 / 基于资产负债表,货币币种,是
+10372,留存收益,ths_retainedincome_uss,元,美股财务分析 / 美股衍生报表数据 / 基于资产负债表,货币币种,是
+10373,净债务,ths_net_debt_uss,元,美股财务分析 / 美股衍生报表数据 / 基于资产负债表,货币币种,是
+10374,带息负债,ths_debt_with_interest_uss,元,美股财务分析 / 美股衍生报表数据 / 基于资产负债表,货币币种,是
+10375,无息流动负债,ths_noninterest_current_liab_uss,元,美股财务分析 / 美股衍生报表数据 / 基于资产负债表,货币币种,是
+10376,无息非流动负债,ths_noninterest_noncurrent_liab_uss,元,美股财务分析 / 美股衍生报表数据 / 基于资产负债表,货币币种,是
+17016,有形资产净值,ths_tanv_uss,元,美股财务分析 / 美股衍生报表数据 / 基于资产负债表,货币币种,是
+09612,资产总计(MRQ),ths_assets_mrq_uss,元,美股财务分析 / 美股衍生报表数据 / 基于资产负债表MRQ,货币币种,是
+09613,负债合计(MRQ),ths_total_liab_mrq_uss,元,美股财务分析 / 美股衍生报表数据 / 基于资产负债表MRQ,货币币种,是
+09614,权益合计(MRQ),ths_total_equity_mrq_uss,元,美股财务分析 / 美股衍生报表数据 / 基于资产负债表MRQ,货币币种,是
+09615,归属于母公司的股东权益(MRQ),ths_equity_atsopc_mrq_uss,元,美股财务分析 / 美股衍生报表数据 / 基于资产负债表MRQ,货币币种,是
+08039,资产负债率,ths_asset_liab_ratio_uss,%,美股财务分析 / 美股资本结构,,是
+08040,权益乘数,ths_equity_multiplier_uss,,美股财务分析 / 美股资本结构,,是
+08041,流动资产/总资产,ths_flow_assets_to_total_assets_uss,%,美股财务分析 / 美股资本结构,,是
+08042,非流动资产/总资产,ths_unflowassettototalasset_usk,%,美股财务分析 / 美股资本结构,,是
+08043,流动负债/负债合计,ths_flow_debt_to_total_debt_uss,%,美股财务分析 / 美股资本结构,,是
+08044,非流动负债/负债合计,ths_unflowdebttototaldebt_usk,%,美股财务分析 / 美股资本结构,,是
+10312,有形资产/总资产,ths_ta_to_total_asset_uss,%,美股财务分析 / 美股资本结构,,是
+10313,归属母公司股东的权益／全部投入资本,ths_equity_atsopc_to_total_invest_uss,%,美股财务分析 / 美股资本结构,,是
+10314,带息债务／全部投入资本,ths_dwi_toall_invest_capital_uss,%,美股财务分析 / 美股资本结构,,是
+10701,存款总额,ths_total_deposit_amt_uss,元,美股财务分析 / 美股银行业专项指标,货币币种,是
+10702,贷款总额,ths_total_loan_amt_uss,元,美股财务分析 / 美股银行业专项指标,货币币种,是
+10703,贷款损失准备,ths_loan_loss_reserve_uss,元,美股财务分析 / 美股银行业专项指标,货币币种,是
+10704,不良贷款(NPLs),ths_bad_loan_uss,元,美股财务分析 / 美股银行业专项指标,货币币种,是
+10708,计息负债,ths_interest_bearing_liab_uss,元,美股财务分析 / 美股银行业专项指标,货币币种,是
+10709,风险加权资产净额,ths_wgt_risk_net_amt_uss,元,美股财务分析 / 美股银行业专项指标,货币币种,是
+10710,净利差,ths_np_margin_uss,%,美股财务分析 / 美股银行业专项指标,,是
+10711,生息资产,ths_interest_earning_assets_uss,元,美股财务分析 / 美股银行业专项指标,货币币种,是
+10713,资本净额,ths_net_capital_uss,元,美股财务分析 / 美股银行业专项指标,货币币种,是
+10714,非利息收入,ths_non_interest_income_uss,元,美股财务分析 / 美股银行业专项指标,货币币种,是
+10715,一级资本净额,ths_net_primary_capital_net_amt_uss,元,美股财务分析 / 美股银行业专项指标,货币币种,是
+10716,核心一级资本净额,ths_net_core_first_capital_uss,元,美股财务分析 / 美股银行业专项指标,货币币种,是
+10722,不良贷款率,ths_bad_loan_rate_uss,%,美股财务分析 / 美股银行业专项指标,,是
+10723,资本充足率,ths_capital_adequacy_ratio_uss,%,美股财务分析 / 美股银行业专项指标,,是
+10726,存贷款比例,ths_deposit_loan_ratio_uss,%,美股财务分析 / 美股银行业专项指标,,是
+10736,净息差,ths_net_interest_margin_uss,%,美股财务分析 / 美股银行业专项指标,,是
+10737,非利息收入占比(％),ths_non_interest_income_ratio_uss,%,美股财务分析 / 美股银行业专项指标,,是
+10738,生息资产平均利率(%),ths_living_asset_avg_interest_uss,%,美股财务分析 / 美股银行业专项指标,,是
+10739,付息负债平均利率(%),ths_interest_liab_avg_interest_uss,%,美股财务分析 / 美股银行业专项指标,,是
+10742,一级资本充足率,ths_first_capital_adequacy_ratio_uss,%,美股财务分析 / 美股银行业专项指标,,是
+10743,核心一级资本充足率,ths_core_fc_adequacy_ratio_uss,%,美股财务分析 / 美股银行业专项指标,,是
+11658,报表格式,ths_statement_format_usk,,美股财务报表,,
+11659,原始币种,ths_original_currency_usk,,美股财务报表,,
+07980,营业费用,ths_operating_fee_uss,元,美股财务报表 / 美股REIT / 美股利润表,报表类型、货币币种,是
+07981,折旧和摊销,ths_p_depreciation_and_amortization_uss,元,美股财务报表 / 美股REIT / 美股利润表,报表类型、货币币种,是
+07983,其他费用,ths_othr_fees_uss,元,美股财务报表 / 美股REIT / 美股利润表,报表类型、货币币种,是
+07984,费用合计,ths_total_cost_uss,元,美股财务报表 / 美股REIT / 美股利润表,报表类型、货币币种,是
+09822,单季度-总收入,ths_sq_total_revenue_uss,元,美股财务报表 / 美股REIT / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09823,单季度-营业费用,ths_sq_operating_fee_uss,元,美股财务报表 / 美股REIT / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09824,单季度-折旧和摊销,ths_sq_daa_uss,元,美股财务报表 / 美股REIT / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09825,单季度-市场、销售和管理费用,ths_sq_mkt_sales_manage_fee_uss,元,美股财务报表 / 美股REIT / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09826,单季度-其他费用,ths_sq_other_fees_uss,元,美股财务报表 / 美股REIT / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09827,单季度-费用合计,ths_sq_total_cost_uss,元,美股财务报表 / 美股REIT / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09828,单季度-营业利润,ths_sq_op_uss,元,美股财务报表 / 美股REIT / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09829,单季度-利息收入,ths_sq_interest_income_uss,元,美股财务报表 / 美股REIT / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09830,单季度-利息支出,ths_sq_interest_payout_uss,元,美股财务报表 / 美股REIT / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09831,单季度-其他影响持续经营业务的税前利润的损益,ths_sq_other_gal_effect_pre_tax_uss,元,美股财务报表 / 美股REIT / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09832,单季度-持续经营业务的税前利润,ths_sq_conti_op_before_tax_uss,元,美股财务报表 / 美股REIT / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09833,单季度-所得税费用,ths_sq_income_tax_cost_uss,元,美股财务报表 / 美股REIT / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09834,单季度-持续经营业务利润,ths_sq_conti_op_uss,元,美股财务报表 / 美股REIT / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09835,单季度-已终止经营业务利润,ths_sq_stopped_ob_profit_uss,元,美股财务报表 / 美股REIT / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09836,单季度-其他影响净利润的损益,ths_sq_othergal_affect_np_uss,元,美股财务报表 / 美股REIT / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09837,单季度-净利润,ths_sq_np_uss,元,美股财务报表 / 美股REIT / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09838,单季度-优先股股利,ths_sq_preferred_sharesdividend_uss,元,美股财务报表 / 美股REIT / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09839,单季度-归属于少数股东的净利润,ths_sq_np_atms_uss,元,美股财务报表 / 美股REIT / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09840,单季度-归属于母公司股东的净利润特殊科目,ths_sq_np_atsopc_si_uss,元,美股财务报表 / 美股REIT / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09841,单季度-归属于母公司股东的净利润,ths_sq_np_atsopc_uss,元,美股财务报表 / 美股REIT / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09842,单季度-基本每股收益,ths_sq_basic_eps_uss,元,美股财务报表 / 美股REIT / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09843,单季度-基本每股收益(持续经营业务),ths_sq_bisic_eps_continue_uss,元,美股财务报表 / 美股REIT / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09844,单季度-基本每股收益(已终止经营业务),ths_sq_bisic_eps_stopped_uss,元,美股财务报表 / 美股REIT / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09845,单季度-稀释每股收益,ths_sq_dltd_earnings_per_share_uss,元,美股财务报表 / 美股REIT / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09846,单季度-稀释每股收益(持续经营业务),ths_sq_dltd_eps_continue_ob_uss,元,美股财务报表 / 美股REIT / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09847,单季度-稀释每股收益(已终止经营业务),ths_sq_dltd_eps_stopped_ob_uss,元,美股财务报表 / 美股REIT / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09848,单季度-其他全面收入,ths_sq_other_compre_income_uss,元,美股财务报表 / 美股REIT / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09849,单季度-全面收入总额,ths_sq_total_income_amt_uss,元,美股财务报表 / 美股REIT / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09850,单季度-归属于少数股东的全面收入总额,ths_sq_total_compre_income_atms_uss,元,美股财务报表 / 美股REIT / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09851,单季度-归属于母公司股东的全面收入总额,ths_sq_total_income_atsopc_uss,元,美股财务报表 / 美股REIT / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09916,单季度-经营活动现金流量净额,ths_sq_ncf_of_oa_uss,元,美股财务报表 / 美股REIT / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09917,单季度-折旧与摊销,ths_sq_daa_uss,元,美股财务报表 / 美股REIT / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09918,单季度-营运资金变动,ths_sq_operating_capital_change_uss,元,美股财务报表 / 美股REIT / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09919,单季度-投资活动现金流量净额,ths_sq_ncf_of_ia_uss,元,美股财务报表 / 美股REIT / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09920,单季度-资本性支出,ths_sq_capital_cost_uss,元,美股财务报表 / 美股REIT / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09921,单季度-投资购买,ths_sq_invest_buy_uss,元,美股财务报表 / 美股REIT / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09922,单季度-筹资活动现金流量净额,ths_sq_fa_cash_net_amt_uss,元,美股财务报表 / 美股REIT / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09923,单季度-股票发行,ths_sq_stock_issue_uss,元,美股财务报表 / 美股REIT / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09924,单季度-股份回购,ths_sq_shares_repur_uss,元,美股财务报表 / 美股REIT / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09925,单季度-支付股息,ths_sq_dividend_paid_uss,元,美股财务报表 / 美股REIT / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09926,单季度-汇率变动对现金及现金等价物的影响,ths_sq_effect_of_erc_on_cce_uss,元,美股财务报表 / 美股REIT / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09927,单季度-现金及现金等价物净增加额,ths_sq_net_increase_in_cce_uss,元,美股财务报表 / 美股REIT / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09928,单季度-现金及现金等价物净增加额(特殊科目),ths_sq_net_add_cce_si_uss,元,美股财务报表 / 美股REIT / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09929,单季度-期初现金及现金等价物余额,ths_sq_initial_cce_balance_uss,元,美股财务报表 / 美股REIT / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09930,单季度-期末现金及现金等价物余额,ths_sq_final_balance_of_cce_uss,元,美股财务报表 / 美股REIT / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09931,单季度-期末现金及现金等价物余额(特殊科目),ths_sq_final_balance_of_cce_si_uss,元,美股财务报表 / 美股REIT / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+07569,总收入,ths_total_revenue_uss,元,美股财务报表 / 美股一般企业 / 美股利润表,报表类型、货币币种,是
+07570,销售收入,ths_sales_income_uss,元,美股财务报表 / 美股一般企业 / 美股利润表,报表类型、货币币种,是
+07571,其他收入,ths_other_income_uss,元,美股财务报表 / 美股一般企业 / 美股利润表,报表类型、货币币种,是
+07572,销售成本,ths_sales_cost_uss,元,美股财务报表 / 美股一般企业 / 美股利润表,报表类型、货币币种,是
+07573,毛利,ths_gross_profit_uss,元,美股财务报表 / 美股一般企业 / 美股利润表,报表类型、货币币种,是
+07574,市场、销售和管理费用,ths_mkt_sales_manage_fee_uss,元,美股财务报表 / 美股一般企业 / 美股利润表,报表类型、货币币种,是
+07575,研发费用,ths_rad_cost_uss,元,美股财务报表 / 美股一般企业 / 美股利润表,报表类型、货币币种,是
+07576,利息支出,ths_interest_payout_uss,元,美股财务报表 / 美股一般企业 / 美股利润表,报表类型、货币币种,是
+07577,利息收入,ths_interest_income_uss,元,美股财务报表 / 美股一般企业 / 美股利润表,报表类型、货币币种,是
+07578,利息净支出,ths_interest_net_pay_uss,元,美股财务报表 / 美股一般企业 / 美股利润表,报表类型、货币币种,是
+07579,其他营业费用,ths_other_operate_fee_uss,元,美股财务报表 / 美股一般企业 / 美股利润表,报表类型、货币币种,是
+07580,营业费用合计,ths_total_operating_fee_uss,元,美股财务报表 / 美股一般企业 / 美股利润表,报表类型、货币币种,是
+07581,营业利润,ths_op_uss,元,美股财务报表 / 美股一般企业 / 美股利润表,报表类型、货币币种,是
+07582,应占关联公司利润,ths_toassociated_corp_profit_uss,元,美股财务报表 / 美股一般企业 / 美股利润表,报表类型、货币币种,是
+07583,其他影响持续经营业务的税前利润的损益,ths_other_gal_effct_profit_pre_tax_uss,元,美股财务报表 / 美股一般企业 / 美股利润表,报表类型、货币币种,是
+07584,持续经营业务的税前利润,ths_conti_op_before_tax_uss,元,美股财务报表 / 美股一般企业 / 美股利润表,报表类型、货币币种,是
+07585,所得税费用,ths_income_tax_cost_uss,元,美股财务报表 / 美股一般企业 / 美股利润表,报表类型、货币币种,是
+07586,持续经营业务利润,ths_conti_op_uss,元,美股财务报表 / 美股一般企业 / 美股利润表,报表类型、货币币种,是
+07587,已终止经营业务利润,ths_stopped_ob_profit_uss,元,美股财务报表 / 美股一般企业 / 美股利润表,报表类型、货币币种,是
+07588,其他影响净利润的损益,ths_other_gal_affect_np_uss,元,美股财务报表 / 美股一般企业 / 美股利润表,报表类型、货币币种,是
+07589,净利润,ths_np_uss,元,美股财务报表 / 美股一般企业 / 美股利润表,报表类型、货币币种,是
+07590,优先股股利,ths_preferred_sharesdividend_uss,元,美股财务报表 / 美股一般企业 / 美股利润表,报表类型、货币币种,是
+07591,归属于少数股东的净利润,ths_np_atms_uss,元,美股财务报表 / 美股一般企业 / 美股利润表,报表类型、货币币种,是
+07592,归属于母公司股东的净利润,ths_np_atsopc_uss,元,美股财务报表 / 美股一般企业 / 美股利润表,报表类型、货币币种,是
+07593,基本每股收益,ths_ps_basic_eps_uss,元,美股财务报表 / 美股一般企业 / 美股利润表,报表类型、货币币种,是
+07594,基本每股收益(持续经营业务),ths_bisic_eps_continue_uss,元,美股财务报表 / 美股一般企业 / 美股利润表,报表类型、货币币种,是
+07595,基本每股收益(已终止经营业务),ths_bisic_eps_stopped_uss,元,美股财务报表 / 美股一般企业 / 美股利润表,报表类型、货币币种,是
+07596,稀释每股收益,ths_dlt_earnings_per_share_uss,元,美股财务报表 / 美股一般企业 / 美股利润表,报表类型、货币币种,是
+07597,稀释每股收益(持续经营业务),ths_dltd_eps_continue_ob_uss,元,美股财务报表 / 美股一般企业 / 美股利润表,报表类型、货币币种,是
+07598,稀释每股收益(已终止经营业务),ths_dltd_eps_stopped_ob_uss,元,美股财务报表 / 美股一般企业 / 美股利润表,报表类型、货币币种,是
+07599,其他全面收入,ths_other_compre_income_uss,元,美股财务报表 / 美股一般企业 / 美股利润表,报表类型、货币币种,是
+07600,全面收入总额,ths_total_income_amt_uss,元,美股财务报表 / 美股一般企业 / 美股利润表,报表类型、货币币种,是
+07601,归属于少数股东的全面收入总额,ths_total_compre_income_atms_uss,元,美股财务报表 / 美股一般企业 / 美股利润表,报表类型、货币币种,是
+07602,归属于母公司股东的全面收入总额,ths_total_income_atsopc_uss,元,美股财务报表 / 美股一般企业 / 美股利润表,报表类型、货币币种,是
+09675,单季度-总收入,ths_sq_total_revenue_uss,元,美股财务报表 / 美股一般企业 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09676,单季度-销售收入,ths_sq_sales_income_uss,元,美股财务报表 / 美股一般企业 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09677,单季度-其他收入,ths_sq_other_revenues_uss,元,美股财务报表 / 美股一般企业 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09678,单季度-销售成本,ths_sq_sales_cost_uss,元,美股财务报表 / 美股一般企业 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09679,单季度-毛利,ths_sq_gross_profit_uss,元,美股财务报表 / 美股一般企业 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09680,单季度-市场营销、销售和一般行政支出,ths_sq_marketing_etc_cost_uss,元,美股财务报表 / 美股一般企业 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09681,单季度-研发费用,ths_sq_rad_cost_uss,元,美股财务报表 / 美股一般企业 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09682,单季度-利息支出,ths_sq_interest_payout_uss,元,美股财务报表 / 美股一般企业 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09683,单季度-利息收入,ths_sq_interest_income_uss,元,美股财务报表 / 美股一般企业 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09684,单季度-净利息支出,ths_sq_net_interest_cost_uss,元,美股财务报表 / 美股一般企业 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09685,单季度-其他营业费用,ths_sq_other_operate_fee_uss,元,美股财务报表 / 美股一般企业 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09686,单季度-营业费用合计,ths_sq_total_operating_fee_uss,元,美股财务报表 / 美股一般企业 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09687,单季度-营业利润,ths_sq_op_uss,元,美股财务报表 / 美股一般企业 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09688,单季度-应占关联公司利润,ths_sq_to_associated_corp_profit_uss,元,美股财务报表 / 美股一般企业 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09689,单季度-其他影响持续经营业务的税前利润的损益,ths_sq_other_gal_effect_pre_tax_uss,元,美股财务报表 / 美股一般企业 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09690,单季度-持续经营业务的税前利润,ths_sq_conti_op_before_tax_uss,元,美股财务报表 / 美股一般企业 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09691,单季度-所得税费用,ths_sq_income_tax_cost_uss,元,美股财务报表 / 美股一般企业 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09692,单季度-持续经营业务利润,ths_sq_conti_op_uss,元,美股财务报表 / 美股一般企业 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09693,单季度-已终止经营业务利润,ths_sq_stopped_ob_profit_uss,元,美股财务报表 / 美股一般企业 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09694,单季度-其他影响净利润的损益,ths_sq_othergal_affect_np_uss,元,美股财务报表 / 美股一般企业 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09695,单季度-净利润,ths_sq_np_uss,元,美股财务报表 / 美股一般企业 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09696,单季度-优先股股利,ths_sq_preferred_sharesdividend_uss,元,美股财务报表 / 美股一般企业 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09697,单季度-归属于少数股东的净利润,ths_sq_np_atms_uss,元,美股财务报表 / 美股一般企业 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09698,单季度-归属于母公司股东的净利润,ths_sq_np_atsopc_uss,元,美股财务报表 / 美股一般企业 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09699,单季度-归属于母公司股东的净利润特殊科目,ths_sq_np_atsopc_si_uss,元,美股财务报表 / 美股一般企业 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09700,单季度-基本每股收益(持续运营业务),ths_sq_basic_eps_continue_uss,元,美股财务报表 / 美股一般企业 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09701,单季度-基本每股收益(已终止运营业务),ths_sq_basic_eps_stopped_uss,元,美股财务报表 / 美股一般企业 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09702,单季度-基本每股收益,ths_sq_basic_eps_uss,元,美股财务报表 / 美股一般企业 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09703,单季度-稀释每股收益(持续运营业务),ths_sq_dlt_eps_continue_uss,元,美股财务报表 / 美股一般企业 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09704,单季度-稀释每股收益(已终止运营业务),ths_sq_dlt_eps_stopped_uss,元,美股财务报表 / 美股一般企业 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09705,单季度-稀释每股收益,ths_sq_dltd_earnings_per_share_uss,元,美股财务报表 / 美股一般企业 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09706,单季度-其他全面收入,ths_sq_other_compre_income_uss,元,美股财务报表 / 美股一般企业 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09707,单季度-全面收入总额,ths_sq_total_income_amt_uss,元,美股财务报表 / 美股一般企业 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09708,单季度-归属于少数股东的全面收入总额,ths_sq_total_compre_income_atms_uss,元,美股财务报表 / 美股一般企业 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09709,单季度-归属于母公司股东的全面收入总额,ths_sq_total_income_atsopc_uss,元,美股财务报表 / 美股一般企业 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+07603,经营活动现金流量净额,ths_ncf_of_oa_uss,元,美股财务报表 / 美股一般企业 / 美股现金流量表,报表类型、货币币种,是
+07604,投资活动现金流量净额,ths_ncf_of_ia_uss,元,美股财务报表 / 美股一般企业 / 美股现金流量表,报表类型、货币币种,是
+07605,资本性支出,ths_capital_cost_uss,元,美股财务报表 / 美股一般企业 / 美股现金流量表,报表类型、货币币种,是
+07606,筹资活动现金流量净额,ths_fa_cash_net_amt_uss,元,美股财务报表 / 美股一般企业 / 美股现金流量表,报表类型、货币币种,是
+07607,汇率变动对现金及现金等价物的影响,ths_effect_of_exchange_chg_on_cce_uss,元,美股财务报表 / 美股一般企业 / 美股现金流量表,报表类型、货币币种,是
+07608,现金及现金等价物净增加额,ths_net_increase_in_cce_uss,元,美股财务报表 / 美股一般企业 / 美股现金流量表,报表类型、货币币种,是
+07609,期初现金及现金等价物余额,ths_initial_cce_balance_uss,元,美股财务报表 / 美股一般企业 / 美股现金流量表,报表类型、货币币种,是
+07610,期末现金及现金等价物余额,ths_final_balance_of_cce_uss,元,美股财务报表 / 美股一般企业 / 美股现金流量表,报表类型、货币币种,是
+09381,折旧与摊销,ths_depreciation_and_amortization_uss,元,美股财务报表 / 美股一般企业 / 美股现金流量表,报表类型、货币币种,是
+09382,营运资金变动,ths_operating_capital_change_uss,元,美股财务报表 / 美股一般企业 / 美股现金流量表,报表类型、货币币种,是
+09383,投资购买,ths_invest_buy_uss,元,美股财务报表 / 美股一般企业 / 美股现金流量表,报表类型、货币币种,是
+09384,股份回购,ths_shares_repur_uss,元,美股财务报表 / 美股一般企业 / 美股现金流量表,报表类型、货币币种,是
+09385,支付股息,ths_dividend_paid_uss,元,美股财务报表 / 美股一般企业 / 美股现金流量表,报表类型、货币币种,是
+09386,股票发行,ths_stock_issue_uss,元,美股财务报表 / 美股一般企业 / 美股现金流量表,报表类型、货币币种,是
+09852,单季度-经营活动现金流量净额,ths_sq_ncf_of_oa_uss,元,美股财务报表 / 美股一般企业 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09853,单季度-折旧与摊销,ths_sq_daa_uss,元,美股财务报表 / 美股一般企业 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09854,单季度-营运资金变动,ths_sq_operating_capital_change_uss,元,美股财务报表 / 美股一般企业 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09855,单季度-投资活动现金流量净额,ths_sq_ncf_of_ia_uss,元,美股财务报表 / 美股一般企业 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09856,单季度-资本性支出,ths_sq_capital_cost_uss,元,美股财务报表 / 美股一般企业 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09857,单季度-投资购买,ths_sq_invest_buy_uss,元,美股财务报表 / 美股一般企业 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09858,单季度-筹资活动现金流量净额,ths_sq_fa_cash_net_amt_uss,元,美股财务报表 / 美股一般企业 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09859,单季度-股票发行,ths_sq_stock_issue_uss,元,美股财务报表 / 美股一般企业 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09860,单季度-股份回购,ths_sq_shares_repur_uss,元,美股财务报表 / 美股一般企业 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09861,单季度-支付股息,ths_sq_dividend_paid_uss,元,美股财务报表 / 美股一般企业 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09862,单季度-汇率变动对现金及现金等价物的影响,ths_sq_effect_of_erc_on_cce_uss,元,美股财务报表 / 美股一般企业 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09863,单季度-现金及现金等价物净增加额,ths_sq_net_increase_in_cce_uss,元,美股财务报表 / 美股一般企业 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09864,单季度-现金及现金等价物净增加额(特殊科目),ths_sq_net_add_cce_si_uss,元,美股财务报表 / 美股一般企业 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09865,单季度-期初现金及现金等价物余额,ths_sq_initial_cce_balance_uss,元,美股财务报表 / 美股一般企业 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09866,单季度-期末现金及现金等价物余额,ths_sq_final_balance_of_cce_uss,元,美股财务报表 / 美股一般企业 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09867,单季度-期末现金及现金等价物余额(特殊科目),ths_sq_final_balance_of_cce_si_uss,元,美股财务报表 / 美股一般企业 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+07558,优先股,ths_preferred_shares_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股所有者权益,报表类型、货币币种,是
+07559,普通股,ths_common_shares_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股所有者权益,报表类型、货币币种,是
+07560,资本公积,ths_capital_reserve_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股所有者权益,报表类型、货币币种,是
+07561,留存收益,ths_retained_income_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股所有者权益,报表类型、货币币种,是
+07562,库存股,ths_treasury_stock_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股所有者权益,报表类型、货币币种,是
+07563,累计损益,ths_accumgal_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股所有者权益,报表类型、货币币种,是
+07564,其他归属于母公司股东权益(归属于母公司股东权益特殊项目),ths_equity_atsopc_sbi_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股所有者权益,报表类型、货币币种,是
+07565,归属于母公司股东权益合计,ths_total_quity_atsopc_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股所有者权益,报表类型、货币币种,是
+07566,归属于少数股东权益,ths_equity_atms_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股所有者权益,报表类型、货币币种,是
+07567,其他权益(权益特殊项目),ths_other_equity_si_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股所有者权益,报表类型、货币币种,是
+07568,股东权益合计,ths_total_holders_equity_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股所有者权益,报表类型、货币币种,是
+07545,短期债务,ths_st_debt_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股流动负债,报表类型、货币币种,是
+07546,应付账款,ths_accounts_payable_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股流动负债,报表类型、货币币种,是
+07547,应交税费,ths_tax_payable_cl_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股流动负债,报表类型、货币币种,是
+07548,应计负债,ths_accrued_liab_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股流动负债,报表类型、货币币种,是
+07549,流动负债递延收入,ths_flow_debt_deferred_income_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股流动负债,报表类型、货币币种,是
+07550,其他流动负债(流动负债特殊项目),ths_other_cunrrent_liab_si_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股流动负债,报表类型、货币币种,是
+07551,流动负债合计,ths_total_current_liab_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股流动负债,报表类型、货币币种,是
+07525,现金和现金等价物,ths_cce_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股流动资产,报表类型、货币币种,是
+07526,短期投资,ths_st_investment_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股流动资产,报表类型、货币币种,是
+07527,总现金,ths_total_cash_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股流动资产,报表类型、货币币种,是
+07528,应收账款,ths_account_receivable_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股流动资产,报表类型、货币币种,是
+07529,存货,ths_inventory_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股流动资产,报表类型、货币币种,是
+07530,流动资产递延所得税资产,ths_flow_assets_dit_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股流动资产,报表类型、货币币种,是
+07531,预付款项,ths_pre_payment_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股流动资产,报表类型、货币币种,是
+07532,其他流动资产(流动资产特殊项目),ths_other_cunrrent_assets_si_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股流动资产,报表类型、货币币种,是
+07533,流动资产合计,ths_total_current_assets_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股流动资产,报表类型、货币币种,是
+07553,递延所得税负债,ths_dt_liab_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股非流动负债,报表类型、货币币种,是
+07554,非流动负债递延收入,ths_ncl_deferred_income_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股非流动负债,报表类型、货币币种,是
+07555,其他非流动负债(非流动负债特殊项目),ths_other_noncurrent_liab_si_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股非流动负债,报表类型、货币币种,是
+07556,非流动负债合计,ths_total_noncurrent_liab_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股非流动负债,报表类型、货币币种,是
+07557,负债合计,ths_total_liab_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股非流动负债,报表类型、货币币种,是
+07899,长期债务,ths_lt_debt_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股非流动负债,报表类型、货币币种,是
+07534,固定资产总额,ths_total_fixed_assets_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股非流动资产,报表类型、货币币种,是
+07535,固定资产折旧,ths_depreciation_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股非流动资产,报表类型、货币币种,是
+07536,固定资产净额,ths_net_fixed_assets_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股非流动资产,报表类型、货币币种,是
+07537,股权投资和长期投资,ths_equity_and_lt_invest_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股非流动资产,报表类型、货币币种,是
+07538,商誉,ths_goodwill_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股非流动资产,报表类型、货币币种,是
+07539,无形资产,ths_intangible_assets_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股非流动资产,报表类型、货币币种,是
+07540,累计摊销,ths_accum_amortized_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股非流动资产,报表类型、货币币种,是
+07541,非流动资产递延所得税资产,ths_noncurrent_assets_dit_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股非流动资产,报表类型、货币币种,是
+07542,其他非流动资产(非流动资产特殊项目),ths_other_noncurrent_assets_si_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股非流动资产,报表类型、货币币种,是
+07543,非流动资产合计,ths_total_noncurrent_assets_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股非流动资产,报表类型、货币币种,是
+07962,资产合计,ths_total_asset_uss,元,美股财务报表 / 美股一般企业 / 美股资产负债表 / 美股非流动资产,报表类型、货币币种,是
+05355,业绩简报实际披露日期,ths_perf_brief_actual_dd_usk,,美股财务报表 / 美股业绩预告,,
+05365,业绩报告实际披露日期,ths_perf_report_actual_dd_usk,,美股财务报表 / 美股业绩预告,,
+05631,业绩报告截止日期,ths_perf_report_ed_uss,,美股财务报表 / 美股业绩预告,,
+06393,业绩简报预计披露日期,ths_perf_briefing_fore_dd_usk,,美股财务报表 / 美股业绩预告,,
+06394,业绩报告预计披露日期,ths_perf_report_fore_dd_usk,,美股财务报表 / 美股业绩预告,,
+07917,保险费,ths_insurance_fee_uss,元,美股财务报表 / 美股保险公司 / 美股利润表,报表类型、货币币种,是
+07918,净投资收入(买卖交易),ths_net_invest_income_trade_uss,元,美股财务报表 / 美股保险公司 / 美股利润表,报表类型、货币币种,是
+07919,净投资利得(公允价值变动),ths_net_invest_income_fv_chg_uss,元,美股财务报表 / 美股保险公司 / 美股利润表,报表类型、货币币种,是
+07920,服务费、佣金和手续费,ths_service_and_commi_fee_uss,元,美股财务报表 / 美股保险公司 / 美股利润表,报表类型、货币币种,是
+07922,总损益,ths_total_gal_uss,元,美股财务报表 / 美股保险公司 / 美股利润表,报表类型、货币币种,是
+07923,计提的损失,ths_accrued_loss_uss,元,美股财务报表 / 美股保险公司 / 美股利润表,报表类型、货币币种,是
+07924,保单持有人利益和赔偿,ths_policy_holder_right_and_compen_uss,元,美股财务报表 / 美股保险公司 / 美股利润表,报表类型、货币币种,是
+07926,其他损益,ths_other_gal_uss,元,美股财务报表 / 美股保险公司 / 美股利润表,报表类型、货币币种,是
+09758,单季度-保险费,ths_sq_insurance_fee_uss,元,美股财务报表 / 美股保险公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09759,单季度-净投资收入(买卖交易),ths_sq_net_invest_income_trade_uss,元,美股财务报表 / 美股保险公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09760,单季度-净投资利得(公允价值变动),ths_sq_net_invest_income_fv_chg_uss,元,美股财务报表 / 美股保险公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09761,单季度-服务费、佣金和手续费,ths_sq_service_and_commi_fee_uss,元,美股财务报表 / 美股保险公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09762,单季度-其他收入,ths_sq_other_revenues_uss,元,美股财务报表 / 美股保险公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09763,单季度-总收入,ths_sq_total_revenue_uss,元,美股财务报表 / 美股保险公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09764,单季度-计提的损失,ths_sq_accrued_loss_uss,元,美股财务报表 / 美股保险公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09765,单季度-保单持有人利益和赔偿,ths_sq_policy_right_and_compen_uss,元,美股财务报表 / 美股保险公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09766,单季度-利息支出,ths_sq_interest_payout_uss,元,美股财务报表 / 美股保险公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09767,单季度-其他损益,ths_sq_othergal_uss,元,美股财务报表 / 美股保险公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09768,单季度-总损益,ths_sq_totalgal_uss,元,美股财务报表 / 美股保险公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09769,单季度-其他影响持续经营业务的税前利润的损益,ths_sq_other_gal_effect_pre_tax_uss,元,美股财务报表 / 美股保险公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09770,单季度-持续经营业务的税前利润,ths_sq_conti_op_before_tax_uss,元,美股财务报表 / 美股保险公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09771,单季度-所得税费用,ths_sq_income_tax_cost_uss,元,美股财务报表 / 美股保险公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09772,单季度-持续经营业务利润,ths_sq_conti_op_uss,元,美股财务报表 / 美股保险公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09773,单季度-已终止经营业务利润,ths_sq_stopped_ob_profit_uss,元,美股财务报表 / 美股保险公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09774,单季度-其他影响净利润的损益,ths_sq_othergal_affect_np_uss,元,美股财务报表 / 美股保险公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09775,单季度-净利润,ths_sq_np_uss,元,美股财务报表 / 美股保险公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09776,单季度-优先股股利,ths_sq_preferred_sharesdividend_uss,元,美股财务报表 / 美股保险公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09777,单季度-归属于少数股东的净利润,ths_sq_np_atms_uss,元,美股财务报表 / 美股保险公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09778,单季度-归属于母公司股东的净利润,ths_sq_np_atsopc_uss,元,美股财务报表 / 美股保险公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09779,单季度-归属于母公司股东的净利润特殊科目,ths_sq_np_atsopc_si_uss,元,美股财务报表 / 美股保险公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09780,单季度-基本每股收益,ths_sq_basic_eps_uss,元,美股财务报表 / 美股保险公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09781,单季度-基本每股收益(持续经营业务),ths_sq_bisic_eps_continue_uss,元,美股财务报表 / 美股保险公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09782,单季度-基本每股收益(已终止经营业务),ths_sq_bisic_eps_stopped_uss,元,美股财务报表 / 美股保险公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09783,单季度-稀释每股收益,ths_sq_dltd_earnings_per_share_uss,元,美股财务报表 / 美股保险公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09784,单季度-稀释每股收益(持续经营业务),ths_sq_dltd_eps_continue_ob_uss,元,美股财务报表 / 美股保险公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09785,单季度-稀释每股收益(已终止经营业务),ths_sq_dltd_eps_stopped_ob_uss,元,美股财务报表 / 美股保险公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09786,单季度-其他全面收入,ths_sq_other_compre_income_uss,元,美股财务报表 / 美股保险公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09787,单季度-全面收入总额,ths_sq_total_income_amt_uss,元,美股财务报表 / 美股保险公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09788,单季度-归属于少数股东的全面收入总额,ths_sq_total_compre_income_atms_uss,元,美股财务报表 / 美股保险公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09789,单季度-归属于母公司股东的全面收入总额,ths_sq_total_income_atsopc_uss,元,美股财务报表 / 美股保险公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09884,单季度-经营活动现金流量净额,ths_sq_ncf_of_oa_uss,元,美股财务报表 / 美股保险公司 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09885,单季度-折旧与摊销,ths_sq_daa_uss,元,美股财务报表 / 美股保险公司 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09886,单季度-营运资金变动,ths_sq_operating_capital_change_uss,元,美股财务报表 / 美股保险公司 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09887,单季度-投资活动现金流量净额,ths_sq_ncf_of_ia_uss,元,美股财务报表 / 美股保险公司 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09888,单季度-资本性支出,ths_sq_capital_cost_uss,元,美股财务报表 / 美股保险公司 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09889,单季度-投资购买,ths_sq_invest_buy_uss,元,美股财务报表 / 美股保险公司 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09890,单季度-筹资活动现金流量净额,ths_sq_fa_cash_net_amt_uss,元,美股财务报表 / 美股保险公司 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09891,单季度-股票发行,ths_sq_stock_issue_uss,元,美股财务报表 / 美股保险公司 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09892,单季度-股份回购,ths_sq_shares_repur_uss,元,美股财务报表 / 美股保险公司 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09893,单季度-支付股息,ths_sq_dividend_paid_uss,元,美股财务报表 / 美股保险公司 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09894,单季度-汇率变动对现金及现金等价物的影响,ths_sq_effect_of_erc_on_cce_uss,元,美股财务报表 / 美股保险公司 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09895,单季度-现金及现金等价物净增加额,ths_sq_net_increase_in_cce_uss,元,美股财务报表 / 美股保险公司 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09896,单季度-现金及现金等价物净增加额(特殊科目),ths_sq_net_add_cce_si_uss,元,美股财务报表 / 美股保险公司 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09897,单季度-期初现金及现金等价物余额,ths_sq_initial_cce_balance_uss,元,美股财务报表 / 美股保险公司 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09898,单季度-期末现金及现金等价物余额,ths_sq_final_balance_of_cce_uss,元,美股财务报表 / 美股保险公司 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09899,单季度-期末现金及现金等价物余额(特殊科目),ths_sq_final_balance_of_cce_si_uss,元,美股财务报表 / 美股保险公司 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+07894,政策收益,ths_policy_income_uss,元,美股财务报表 / 美股保险公司 / 美股资产负债表 / 美股负债,报表类型、货币币种,是
+07895,投保人基金,ths_policy_holder_fund_uss,元,美股财务报表 / 美股保险公司 / 美股资产负债表 / 美股负债,报表类型、货币币种,是
+07896,预收保费,ths_advance_premium_uss,元,美股财务报表 / 美股保险公司 / 美股资产负债表 / 美股负债,报表类型、货币币种,是
+07897,再保险负债,ths_rein_debt_uss,元,美股财务报表 / 美股保险公司 / 美股资产负债表 / 美股负债,报表类型、货币币种,是
+07901,应交税费,ths_tax_payable_uss,元,美股财务报表 / 美股保险公司 / 美股资产负债表 / 美股负债,报表类型、货币币种,是
+07902,独立账户负债,ths_independent_account_liab_uss,元,美股财务报表 / 美股保险公司 / 美股资产负债表 / 美股负债,报表类型、货币币种,是
+07876,持有至到期证券,ths_held_to_maturity_sec_uss,元,美股财务报表 / 美股保险公司 / 美股资产负债表 / 美股资产,报表类型、货币币种,是
+07877,权益证券,ths_equity_sec_uss,元,美股财务报表 / 美股保险公司 / 美股资产负债表 / 美股资产,报表类型、货币币种,是
+07878,交易性证券,ths_tradeable_sec_uss,元,美股财务报表 / 美股保险公司 / 美股资产负债表 / 美股资产,报表类型、货币币种,是
+07881,其他投资,ths_other_invest_uss,元,美股财务报表 / 美股保险公司 / 美股资产负债表 / 美股资产,报表类型、货币币种,是
+07884,累计投资收入,ths_accum_invest_income_uss,元,美股财务报表 / 美股保险公司 / 美股资产负债表 / 美股资产,报表类型、货币币种,是
+07885,保费和其他应收款,ths_premium_and_other_receivable_uss,元,美股财务报表 / 美股保险公司 / 美股资产负债表 / 美股资产,报表类型、货币币种,是
+07886,再保险资产,ths_rein_assets_uss,元,美股财务报表 / 美股保险公司 / 美股资产负债表 / 美股资产,报表类型、货币币种,是
+07887,递延保单成本,ths_deferred_policy_cost_uss,元,美股财务报表 / 美股保险公司 / 美股资产负债表 / 美股资产,报表类型、货币币种,是
+07888,递延所得税资产,ths_dt_assets_uss,元,美股财务报表 / 美股保险公司 / 美股资产负债表 / 美股资产,报表类型、货币币种,是
+07891,独立账户资产,ths_separate_account_uss,元,美股财务报表 / 美股保险公司 / 美股资产负债表 / 美股资产,报表类型、货币币种,是
+07754,利息收入合计,ths_total_interest_income_uss,元,美股财务报表 / 美股商业银行 / 美股利润表,报表类型、货币币种,是
+07755,利息收入：贷款和租赁,ths_interest_income_loan_and_lease_uss,元,美股财务报表 / 美股商业银行 / 美股利润表,报表类型、货币币种,是
+07756,利息收入：证券,ths_interest_income_sec_uss,元,美股财务报表 / 美股商业银行 / 美股利润表,报表类型、货币币种,是
+07757,利息收入：交易性金融资产,ths_interest_income_td_finan_debt_uss,元,美股财务报表 / 美股商业银行 / 美股利润表,报表类型、货币币种,是
+07758,利息收入：其他,ths_interest_income_others_uss,元,美股财务报表 / 美股商业银行 / 美股利润表,报表类型、货币币种,是
+07759,利息支出合计,ths_total_interest_pay_uss,元,美股财务报表 / 美股商业银行 / 美股利润表,报表类型、货币币种,是
+07760,利息支出：客户存款,ths_interest_pay_deposit_uss,元,美股财务报表 / 美股商业银行 / 美股利润表,报表类型、货币币种,是
+07761,利息支出：短期借款,ths_interest_pay_short_loan_uss,元,美股财务报表 / 美股商业银行 / 美股利润表,报表类型、货币币种,是
+07762,利息支出：长期债务,ths_interest_pay_lt_debt_uss,元,美股财务报表 / 美股商业银行 / 美股利润表,报表类型、货币币种,是
+07763,利息支出：交易性金融负债,ths_interest_pay_td_finan_debt_uss,元,美股财务报表 / 美股商业银行 / 美股利润表,报表类型、货币币种,是
+07764,利息支出：其他,ths_interest_pay_others_uss,元,美股财务报表 / 美股商业银行 / 美股利润表,报表类型、货币币种,是
+07765,利息净收入,ths_interest_net_income_uss,元,美股财务报表 / 美股商业银行 / 美股利润表,报表类型、货币币种,是
+07766,非利息收入合计,ths_total_non_interest_income_uss,元,美股财务报表 / 美股商业银行 / 美股利润表,报表类型、货币币种,是
+07767,佣金和手续费收入,ths_commiand_charge_income_uss,元,美股财务报表 / 美股商业银行 / 美股利润表,报表类型、货币币种,是
+07768,信用卡收入,ths_credit_card_income_uss,元,美股财务报表 / 美股商业银行 / 美股利润表,报表类型、货币币种,是
+07769,服务费,ths_service_fee_uss,元,美股财务报表 / 美股商业银行 / 美股利润表,报表类型、货币币种,是
+07770,投资证券收入,ths_invest_sec_income_uss,元,美股财务报表 / 美股商业银行 / 美股利润表,报表类型、货币币种,是
+07771,保险合同收入,ths_insurance_contract_income_uss,元,美股财务报表 / 美股商业银行 / 美股利润表,报表类型、货币币种,是
+07772,短期证券交易收入,ths_st_sec_trans_income_uss,元,美股财务报表 / 美股商业银行 / 美股利润表,报表类型、货币币种,是
+07773,其他非利息收入,ths_other_non_interest_income_uss,元,美股财务报表 / 美股商业银行 / 美股利润表,报表类型、货币币种,是
+07774,非利息支出合计,ths_total_non_interest_cost_uss,元,美股财务报表 / 美股商业银行 / 美股利润表,报表类型、货币币种,是
+07775,薪水和员工福利,ths_salary_and_staff_welfare_uss,元,美股财务报表 / 美股商业银行 / 美股利润表,报表类型、货币币种,是
+07776,技术、通信和设备支出,ths_tech_commun_and_equip_cost_uss,元,美股财务报表 / 美股商业银行 / 美股利润表,报表类型、货币币种,是
+07777,租赁费用,ths_lease_cost_uss,元,美股财务报表 / 美股商业银行 / 美股利润表,报表类型、货币币种,是
+07778,其他非利息支出,ths_other_non_interest_cost_uss,元,美股财务报表 / 美股商业银行 / 美股利润表,报表类型、货币币种,是
+07780,计提的信贷亏损,ths_accrued_credit_loan_loss_uss,元,美股财务报表 / 美股商业银行 / 美股利润表,报表类型、货币币种,是
+09710,单季度-利息净收入,ths_sq_interest_net_income_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09711,单季度-利息收入合计,ths_sq_total_interest_income_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09712,单季度-利息收入：贷款和租赁,ths_sq_ii_loan_and_lease_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09713,单季度-利息收入：证券,ths_sq_interest_income_sec_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09714,单季度-利息收入：交易性金融资产,ths_sq_ii_td_finan_debt_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09715,单季度-利息收入：其他,ths_sq_interest_income_others_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09716,单季度-利息支出合计,ths_sq_total_interest_pay_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09717,单季度-利息支出：客户存款,ths_sq_interest_pay_deposit_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09718,单季度-利息支出：短期借款,ths_sq_interest_pay_short_loan_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09719,单季度-利息支出：长期债务,ths_sq_interest_pay_lt_debt_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09720,单季度-利息支出：交易性金融负债,ths_sq_interest_pay_td_finan_debt_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09721,单季度-利息支出：其他,ths_sq_interest_pay_others_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09722,单季度-非利息收入合计,ths_sq_total_non_interest_income_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09723,单季度-佣金和手续费收入,ths_sq_commiand_charge_income_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09724,单季度-信用卡收入,ths_sq_credit_card_income_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09725,单季度-服务费,ths_sq_service_fee_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09726,单季度-投资证券收入,ths_sq_invest_sec_income_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09727,单季度-保险合同收入,ths_sq_insurance_contract_income_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09728,单季度-短期证券交易收入,ths_sq_st_sec_transincome_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09729,单季度-其他非利息收入,ths_sq_other_non_interest_income_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09730,单季度-总收入,ths_sq_total_revenue_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09731,单季度-非利息支出合计,ths_sq_total_non_interest_cost_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09732,单季度-薪水和员工福利,ths_sq_salary_and_staff_welfare_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09733,单季度-技术、通信和设备支出,ths_sq_tech_commun_and_equip_cost_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09734,单季度-租赁费用,ths_sq_lease_cost_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09735,单季度-其他非利息支出,ths_sq_other_non_interest_cost_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09736,单季度-计提的信贷亏损,ths_sq_accrued_credit_loan_loss_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09737,单季度-其他影响持续经营业务的税前利润的损益,ths_sq_other_gal_effect_pre_tax_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09738,单季度-持续经营业务的税前利润,ths_sq_conti_op_before_tax_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09739,单季度-所得税费用,ths_sq_income_tax_cost_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09740,单季度-持续经营业务利润,ths_sq_conti_op_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09741,单季度-已终止经营业务利润,ths_sq_stopped_ob_profit_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09742,单季度-其他影响净利润的损益,ths_sq_othergal_affect_np_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09743,单季度-净利润,ths_sq_np_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09744,单季度-优先股股利,ths_sq_preferred_sharesdividend_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09745,单季度-归属于少数股东的净利润,ths_sq_np_atms_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09746,单季度-归属于母公司股东的净利润,ths_sq_np_atsopc_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09747,单季度-归属于母公司股东的净利润特殊科目,ths_sq_np_atsopc_si_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09748,单季度-基本每股收益(持续经营业务),ths_sq_bisic_eps_continue_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09749,单季度-基本每股收益(已终止经营业务),ths_sq_bisic_eps_stopped_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09750,单季度-基本每股收益,ths_sq_basic_eps_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09751,单季度-稀释每股收益(持续经营业务),ths_sq_dltd_eps_continue_ob_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09752,单季度-稀释每股收益(已终止经营业务),ths_sq_dltd_eps_stopped_ob_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09753,单季度-稀释每股收益,ths_sq_dltd_earnings_per_share_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09754,单季度-其他全面收入,ths_sq_other_compre_income_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09755,单季度-全面收入总额,ths_sq_total_income_amt_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09756,单季度-归属于少数股东的全面收入总额,ths_sq_total_compre_income_atms_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09757,单季度-归属于母公司股东的全面收入总额,ths_sq_total_income_atsopc_uss,元,美股财务报表 / 美股商业银行 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09868,单季度-经营活动现金流量净额,ths_sq_ncf_of_oa_uss,元,美股财务报表 / 美股商业银行 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09869,单季度-折旧与摊销,ths_sq_daa_uss,元,美股财务报表 / 美股商业银行 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09870,单季度-营运资金变动,ths_sq_operating_capital_change_uss,元,美股财务报表 / 美股商业银行 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09871,单季度-投资活动现金流量净额,ths_sq_ncf_of_ia_uss,元,美股财务报表 / 美股商业银行 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09872,单季度-资本性支出,ths_sq_capital_cost_uss,元,美股财务报表 / 美股商业银行 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09873,单季度-投资购买,ths_sq_invest_buy_uss,元,美股财务报表 / 美股商业银行 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09874,单季度-筹资活动现金流量净额,ths_sq_fa_cash_net_amt_uss,元,美股财务报表 / 美股商业银行 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09875,单季度-股票发行,ths_sq_stock_issue_uss,元,美股财务报表 / 美股商业银行 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09876,单季度-股份回购,ths_sq_shares_repur_uss,元,美股财务报表 / 美股商业银行 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09877,单季度-支付股息,ths_sq_dividend_paid_uss,元,美股财务报表 / 美股商业银行 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09878,单季度-汇率变动对现金及现金等价物的影响,ths_sq_effect_of_erc_on_cce_uss,元,美股财务报表 / 美股商业银行 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09879,单季度-现金及现金等价物净增加额,ths_sq_net_increase_in_cce_uss,元,美股财务报表 / 美股商业银行 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09880,单季度-现金及现金等价物净增加额(特殊科目),ths_sq_net_add_cce_si_uss,元,美股财务报表 / 美股商业银行 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09881,单季度-期初现金及现金等价物余额,ths_sq_initial_cce_balance_uss,元,美股财务报表 / 美股商业银行 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09882,单季度-期末现金及现金等价物余额,ths_sq_final_balance_of_cce_uss,元,美股财务报表 / 美股商业银行 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09883,单季度-期末现金及现金等价物余额(特殊科目),ths_sq_final_balance_of_cce_si_uss,元,美股财务报表 / 美股商业银行 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+07735,同业存放款项,ths_interbank_deposit_uss,元,美股财务报表 / 美股商业银行 / 美股资产负债表 / 美股负债,报表类型、货币币种,是
+07736,购入联邦基金,ths_buy_federal_fund_uss,元,美股财务报表 / 美股商业银行 / 美股资产负债表 / 美股负债,报表类型、货币币种,是
+07737,交易性金融负债,ths_tradable_fnncl_liab_uss,元,美股财务报表 / 美股商业银行 / 美股资产负债表 / 美股负债,报表类型、货币币种,是
+07738,应付款项,ths_accrued_payables_uss,元,美股财务报表 / 美股商业银行 / 美股资产负债表 / 美股负债,报表类型、货币币种,是
+07739,短期借款,ths_st_loan_uss,元,美股财务报表 / 美股商业银行 / 美股资产负债表 / 美股负债,报表类型、货币币种,是
+07741,其他负债(负债特殊项目),ths_other_liab_si_uss,元,美股财务报表 / 美股商业银行 / 美股资产负债表 / 美股负债,报表类型、货币币种,是
+07720,现金和中央银行存款,ths_cash_and_central_bank_deposit_uss,元,美股财务报表 / 美股商业银行 / 美股资产负债表 / 美股资产,报表类型、货币币种,是
+07721,存放同业银行款项,ths_interbank_deposit_items_uss,元,美股财务报表 / 美股商业银行 / 美股资产负债表 / 美股资产,报表类型、货币币种,是
+07722,销售联邦基金,ths_sales_federal_funds_uss,元,美股财务报表 / 美股商业银行 / 美股资产负债表 / 美股资产,报表类型、货币币种,是
+07723,交易性金融资产,ths_tradable_fnncl_assets_uss,元,美股财务报表 / 美股商业银行 / 美股资产负债表 / 美股资产,报表类型、货币币种,是
+07724,债务证券资产,ths_bond_sec_asset_uss,元,美股财务报表 / 美股商业银行 / 美股资产负债表 / 美股资产,报表类型、货币币种,是
+07725,发放贷款总额,ths_total_grant_loan_uss,元,美股财务报表 / 美股商业银行 / 美股资产负债表 / 美股资产,报表类型、货币币种,是
+07726,贷款减值准备,ths_loan_ir_uss,元,美股财务报表 / 美股商业银行 / 美股资产负债表 / 美股资产,报表类型、货币币种,是
+07727,发放贷款净额,ths_grant_loan_net_amt_uss,元,美股财务报表 / 美股商业银行 / 美股资产负债表 / 美股资产,报表类型、货币币种,是
+07728,应收款项,ths_receivable_uss,元,美股财务报表 / 美股商业银行 / 美股资产负债表 / 美股资产,报表类型、货币币种,是
+07731,抵押贷款,ths_mortgage_uss,元,美股财务报表 / 美股商业银行 / 美股资产负债表 / 美股资产,报表类型、货币币种,是
+07733,其他资产(资产特殊项目),ths_other_asset_asset_balance_item_uss,元,美股财务报表 / 美股商业银行 / 美股资产负债表 / 美股资产,报表类型、货币币种,是
+07838,投资银行,ths_invest_bank_uss,元,美股财务报表 / 美股证券公司 / 美股利润表,报表类型、货币币种,是
+07839,资产管理和证券业务,ths_am_and_sec_bussiness_uss,元,美股财务报表 / 美股证券公司 / 美股利润表,报表类型、货币币种,是
+07842,其他收入,ths_other_revenues_uss,元,美股财务报表 / 美股证券公司 / 美股利润表,报表类型、货币币种,是
+07844,薪酬和福利,ths_salary_and_welfare_uss,元,美股财务报表 / 美股证券公司 / 美股利润表,报表类型、货币币种,是
+07847,市场推广费用,ths_mkt_promotion_fee_uss,元,美股财务报表 / 美股证券公司 / 美股利润表,报表类型、货币币种,是
+09790,单季度-投资银行,ths_sq_invest_bank_uss,元,美股财务报表 / 美股证券公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09791,单季度-资产管理和证券业务,ths_sq_am_and_secbussiness_uss,元,美股财务报表 / 美股证券公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09792,单季度-利息收入,ths_sq_interest_income_uss,元,美股财务报表 / 美股证券公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09793,单季度-利息支出,ths_sq_interest_payout_uss,元,美股财务报表 / 美股证券公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09794,单季度-其他收入,ths_sq_other_revenues_uss,元,美股财务报表 / 美股证券公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09795,单季度-总收入,ths_sq_total_revenue_uss,元,美股财务报表 / 美股证券公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09796,单季度-薪酬和福利,ths_sq_salary_and_welfare_uss,元,美股财务报表 / 美股证券公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09797,单季度-租赁费用,ths_sq_lease_cost_uss,元,美股财务报表 / 美股证券公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09798,单季度-技术、通信和设备支出,ths_sq_tech_commun_and_equip_cost_uss,元,美股财务报表 / 美股证券公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09799,单季度-市场推广费用,ths_sq_mkt_promotion_fee_uss,元,美股财务报表 / 美股证券公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09800,单季度-其他非利息支出,ths_sq_other_non_interest_cost_uss,元,美股财务报表 / 美股证券公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09801,单季度-非利息支出合计,ths_sq_total_non_interest_cost_uss,元,美股财务报表 / 美股证券公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09802,单季度-持续经营业务的税前利润,ths_sq_conti_op_before_tax_uss,元,美股财务报表 / 美股证券公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09803,单季度-所得税费用,ths_sq_income_tax_cost_uss,元,美股财务报表 / 美股证券公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09804,单季度-持续经营业务利润,ths_sq_conti_op_uss,元,美股财务报表 / 美股证券公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09805,单季度-已终止经营业务利润,ths_sq_stopped_ob_profit_uss,元,美股财务报表 / 美股证券公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09806,单季度-其他影响净利润的损益,ths_sq_othergal_affect_np_uss,元,美股财务报表 / 美股证券公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09807,单季度-净利润,ths_sq_np_uss,元,美股财务报表 / 美股证券公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09808,单季度-优先股股利,ths_sq_preferred_sharesdividend_uss,元,美股财务报表 / 美股证券公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09809,单季度-归属于少数股东的净利润,ths_sq_np_atms_uss,元,美股财务报表 / 美股证券公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09810,单季度-归属于母公司股东的净利润,ths_sq_np_atsopc_uss,元,美股财务报表 / 美股证券公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09811,单季度-归属于母公司股东的净利润特殊科目,ths_sq_np_atsopc_si_uss,元,美股财务报表 / 美股证券公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09812,单季度-基本每股收益,ths_sq_basic_eps_uss,元,美股财务报表 / 美股证券公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09813,单季度-基本每股收益(持续经营业务),ths_sq_bisic_eps_continue_uss,元,美股财务报表 / 美股证券公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09814,单季度-基本每股收益(已终止经营业务),ths_sq_bisic_eps_stopped_uss,元,美股财务报表 / 美股证券公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09815,单季度-稀释每股收益,ths_sq_dltd_earnings_per_share_uss,元,美股财务报表 / 美股证券公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09816,单季度-稀释每股收益(持续经营业务),ths_sq_dltd_eps_continue_ob_uss,元,美股财务报表 / 美股证券公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09817,单季度-稀释每股收益(已终止经营业务),ths_sq_dltd_eps_stopped_ob_uss,元,美股财务报表 / 美股证券公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09818,单季度-其他全面收入,ths_sq_other_compre_income_uss,元,美股财务报表 / 美股证券公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09819,单季度-全面收入总额,ths_sq_total_income_amt_uss,元,美股财务报表 / 美股证券公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09820,单季度-归属于少数股东的全面收入总额,ths_sq_total_compre_income_atms_uss,元,美股财务报表 / 美股证券公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09821,单季度-归属于母公司股东的全面收入总额,ths_sq_total_income_atsopc_uss,元,美股财务报表 / 美股证券公司 / 美股利润表（单季度）,年度、季度、报表类型、货币币种,是
+09900,单季度-经营活动现金流量净额,ths_sq_ncf_of_oa_uss,元,美股财务报表 / 美股证券公司 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09901,单季度-折旧与摊销,ths_sq_daa_uss,元,美股财务报表 / 美股证券公司 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09902,单季度-营运资金变动,ths_sq_operating_capital_change_uss,元,美股财务报表 / 美股证券公司 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09903,单季度-投资活动现金流量净额,ths_sq_ncf_of_ia_uss,元,美股财务报表 / 美股证券公司 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09904,单季度-资本性支出,ths_sq_capital_cost_uss,元,美股财务报表 / 美股证券公司 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09905,单季度-投资购买,ths_sq_invest_buy_uss,元,美股财务报表 / 美股证券公司 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09906,单季度-筹资活动现金流量净额,ths_sq_fa_cash_net_amt_uss,元,美股财务报表 / 美股证券公司 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09907,单季度-股票发行,ths_sq_stock_issue_uss,元,美股财务报表 / 美股证券公司 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09908,单季度-股份回购,ths_sq_shares_repur_uss,元,美股财务报表 / 美股证券公司 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09909,单季度-支付股息,ths_sq_dividend_paid_uss,元,美股财务报表 / 美股证券公司 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09910,单季度-汇率变动对现金及现金等价物的影响,ths_sq_effect_of_erc_on_cce_uss,元,美股财务报表 / 美股证券公司 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09911,单季度-现金及现金等价物净增加额,ths_sq_net_increase_in_cce_uss,元,美股财务报表 / 美股证券公司 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09912,单季度-现金及现金等价物净增加额(特殊科目),ths_sq_net_add_cce_si_uss,元,美股财务报表 / 美股证券公司 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09913,单季度-期初现金及现金等价物余额,ths_sq_initial_cce_balance_uss,元,美股财务报表 / 美股证券公司 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09914,单季度-期末现金及现金等价物余额,ths_sq_final_balance_of_cce_uss,元,美股财务报表 / 美股证券公司 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+09915,单季度-期末现金及现金等价物余额(特殊科目),ths_sq_final_balance_of_cce_si_uss,元,美股财务报表 / 美股证券公司 / 美股现金流量表（单季度）,年度、季度、报表类型、货币币种,是
+07810,总投资,ths_total_invest_uss,元,美股财务报表 / 美股证券公司 / 美股资产负债表 / 美股资产,报表类型、货币币种,是
+07812,借入证券,ths_borrowing_sec_uss,元,美股财务报表 / 美股证券公司 / 美股资产负债表 / 美股资产,报表类型、货币币种,是
+09030,Beta,ths_beta_uss,,美股风险指标,起始交易日期、截止交易日期、计算周期2、收益率计算方法、标的指数,
+12089,Alpha,ths_alpha_uss,,美股风险指标,起始交易日期、截止交易日期、计算周期、收益率计算方法、标的指数,
+12090,Sharpe,ths_sharpe_uss,,美股风险指标,起始交易日期、截止交易日期、计算周期、收益率计算方法、无风险收益率,
+12091,Sharpe(年化),ths_sharpenh_uss,,美股风险指标,起始交易日期、截止交易日期、计算周期、收益率计算方法、无风险收益率,
+12092,Treynor,ths_treynor_uss,,美股风险指标,起始交易日期、截止交易日期、计算周期、收益率计算方法、无风险收益率、标的指数,
+12093,Treynor(年化),ths_treynornh_uss,,美股风险指标,起始交易日期、截止交易日期、计算周期、收益率计算方法、无风险收益率、标的指数,
+12094,Jensen,ths_jensen_uss,,美股风险指标,起始交易日期、截止交易日期、计算周期、收益率计算方法、无风险收益率、标的指数,
+12095,Jensen(年化),ths_jensennh_uss,,美股风险指标,起始交易日期、截止交易日期、计算周期、收益率计算方法、无风险收益率、标的指数,
+12152,波动率,ths_volatility_uss,%,美股风险指标,起始交易日期、截止交易日期、计算周期1、收益率计算方法,
+12153,波动率(年化),ths_volatility_annual_uss,%,美股风险指标,起始交易日期、截止交易日期、计算周期1、收益率计算方法,
+17793,平均收益率,ths_avg_yield_uss,%,美股风险指标,起始交易日期、截止交易日期、计算周期1、收益率计算方法,
+17794,参数VaR,ths_var_uss,%,美股风险指标,起始交易日期、截止交易日期、计算周期1、收益率计算方法、置信水平,
+09937,首发价格,ths_ipo_price_uss,元,美股首发指标,,是
+09938,首发上市日期,ths_ipo_date_uss,,美股首发指标,,
+09939,首发数量,ths_ipo_quantity_uss,股,美股首发指标,,是
+09940,新股发行数量,ths_ipo_num_uss,股,美股首发指标,,是
+09941,股东售股数量,ths_holder_share_sale_num_uss,股,美股首发指标,,是
+09942,募集资金总额,ths_rc_total_amt_uss,元,美股首发指标,货币币种,是
+09943,首发募集资金,ths_ipo_rc_uss,元,美股首发指标,货币币种,是
+09944,首发发行费用,ths_ipo_fee_uss,元,美股首发指标,货币币种,是
+09945,招股公告日,ths_offering_ad_uss,,美股首发指标,,
+09946,首发主承销商,ths_ipo_main_underwrite_uss,,美股首发指标,,
+09947,上市首日开盘价,ths_open_on_debut_uss,元,美股首发指标 / 首发上市表现,,是
+09948,上市首日最高价,ths_high_on_debut_uss,元,美股首发指标 / 首发上市表现,,是
+09949,上市首日最低价,ths_low_on_debut_uss,元,美股首发指标 / 首发上市表现,,是
+09950,上市首日收盘价,ths_close_on_debut_uss,元,美股首发指标 / 首发上市表现,,是
+09951,上市首日成交量,ths_vol_on_debut_uss,股,美股首发指标 / 首发上市表现,,是
+09952,上市首日涨跌幅,ths_chang_ratio_on_debut_uss,%,美股首发指标 / 首发上市表现,,是

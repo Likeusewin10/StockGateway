@@ -1,0 +1,16 @@
+﻿指标代码,指标中文名,英文代码,单位,分类,参数,支持序列
+16212,发布机构,ths_b_crm_issuer_forex,,未分类,,
+12914,前收盘价,ths_pre_close_forex,,行情指标,,是
+12915,开盘价,ths_open_forex,,行情指标,,是
+12916,最高价,ths_high_forex,,行情指标,,是
+12917,最低价,ths_low_forex,,行情指标,,是
+12918,收盘价（不前推）,ths_close_forex,,行情指标,,是
+12919,收盘价（23：30）（不前推）,ths_close_2330_forex,,行情指标,,是
+12920,涨跌,ths_chg_forex,,行情指标,,是
+12921,涨跌幅（%）,ths_chg_ratio_forex,,行情指标,,是
+17774,最新交易日,ths_latesst_td_forex,,行情指标,,
+17790,区间涨跌幅,ths_chg_ratio_int_forex,,行情指标,起始交易日期、截止交易日期,
+17796,收盘价,ths_closef_forex,,行情指标,,是
+17797,收盘价（23:30）,ths_closef_2330_forex,,行情指标,,是
+20249,年最高价,ths_high_y_forex,元,行情指标,,是
+20250,年最低价,ths_low_y_forex,元,行情指标,,是

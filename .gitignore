@@ -43,3 +43,6 @@ audit/
 
 # 小盘股抓取的原始中间产物（派生数据，不入库）
 smallcap_scrape/_raw/
+
+# iFinD 命令生成器原始抓取(70MB,只提交归一化后的 CSV+手册)
+docs/catalog/_raw/

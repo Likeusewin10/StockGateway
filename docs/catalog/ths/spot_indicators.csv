@@ -1,0 +1,198 @@
+﻿指标代码,指标中文名,英文代码,单位,分类,参数,支持序列
+09147,现货简称,ths_spot_short_name_spot,,基础资料,,
+09148,现货代码,ths_spot_code_spot,,基础资料,,
+09149,证券类型,ths_sec_type_spot,,基础资料,,
+09150,交易品种,ths_td_variety_spot,,基础资料,,
+09151,交割实物标的,ths_delivery_real_underlying_spot,,基础资料,,
+09152,交易单位,ths_td_unit_spot,,基础资料,,
+09153,报价单位,ths_pricing_unit_spot,,基础资料,,
+09154,最小变动价位,ths_mini_chg_price_spot,,基础资料,,是
+09155,报价点差,ths_pricing_spread_spot,,基础资料,,
+09156,上市日期,ths_listed_date_spot,,基础资料,,
+09157,终止上市日期,ths_stop_listing_date_spot,,基础资料,,
+09158,交易市场,ths_td_mkt_spot,,基础资料,,
+09159,交易保证金,ths_td_deposit_spot,,基础资料,,
+09160,交易手续费率,ths_td_expense_spot,,基础资料,,
+09161,当前延期费率,ths_current_delay_rate_spot,,基础资料,,
+09162,提货费,ths_pick_up_charge_spot,,基础资料,,
+09163,单笔最大交易限额,ths_single_max_trade_limit_spot,,基础资料,,
+09164,最大持仓限额,ths_max_position_limit_spot,,基础资料,,
+09165,交收滞纳金收取方式,ths_dlf_collect_method_spot,,基础资料,,
+09166,客户交易手续费收取方式,ths_trans_fee_collection_method_spot,,基础资料,,
+09167,最小交收单位,ths_mini_intersection_unit_spot,,基础资料,,
+09168,交收宽限期,ths_delivery_term_spot,,基础资料,,
+09169,交收履约保证金比例,ths_delivery_perf_bond_ratio_spot,,基础资料,,
+09170,交收申请时间,ths_delivery_apply_time_spot,,基础资料,,
+09171,交易时间说明,ths_td_time_explain_spot,,基础资料,,
+09172,结算休市时间说明,ths_settle_close_time_explain_spot,,基础资料,,
+17774,最新交易日,ths_latest_td_date_spot,,基础资料,,
+33749,创历史新高,ths_his_high_spot,,技术形态 / 走势特征,近N天内,
+33750,创历史新低,ths_his_low_spot,,技术形态 / 走势特征,近N天内,
+33751,创阶段新高,ths_phase_high_spot,,技术形态 / 走势特征,近N天内、创N天以来新高,
+33752,创阶段新低,ths_phase_low_spot,,技术形态 / 走势特征,近N天内、创N天以来新高,
+33753,近期创历史新高成交额,ths_his_high_amt_spot,,技术形态 / 走势特征,近N天内,
+33754,近期创历史新高成交量,ths_his_high_vol_spot,,技术形态 / 走势特征,近N天内,
+33746,MA简单移动平均,ths_ma_spot,,技术指标 / 趋向指标,天数、计算周期,是
+33747,MACD指数平滑异同平均,ths_macd_spot,,技术指标 / 趋向指标,长期天数、短期天数、天数、MCAD指标选项、计算周期,是
+09559,区间开盘价,ths_open_int_spot,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+09560,区间最高价,ths_high_int_spot,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+09561,区间最低价,ths_low_int_spot,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+09562,区间收盘价,ths_close_int_spot,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+09563,区间结算价,ths_settle_int_spot,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+09564,区间最高收盘价,ths_high_close_int_spot,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+09565,区间最低收盘价,ths_low_close_int_spot,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+09566,区间最高结算价,ths_high_settle_int_spot,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+09567,区间最低结算价,ths_low_settle_int_spot,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+09568,区间前收盘价,ths_pre_close_int_spot,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+09569,区间前结算价,ths_pre_settle_int_spot,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+09570,区间成交均价,ths_avg_price_int_spot,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+09571,区间涨跌,ths_chg_int_spot,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+09572,区间涨跌(结算价),ths_chg_settle_int_spot,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+09573,区间涨跌幅,ths_int_chg_ratio_spot,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+09574,区间涨跌幅(结算价),ths_chg_ratio_settle_int_spot,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+09575,区间振幅,ths_swing_int_spot,%,行情指标 / 区间行情,起始交易日期、截止交易日期,
+09576,区间持仓变化,ths_oi_chg_int_spot,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+09577,区间成交量,ths_vol_int_spot,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+09578,区间成交额,ths_amt_int_spot,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+09579,区间持仓量,ths_position_int_spot,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+09580,区间日均成交量,ths_daily_avg_vol_int_spot,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+09581,区间日均成交额,ths_daily_avg_amt_int_spot,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+09582,区间日均持仓量,ths_daily_avg_position_int_spot,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+09583,区间最高收盘价日,ths_high_close_date_int_spot,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+09584,区间最低收盘价日,ths_low_close_date_int_spot,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+09585,区间最高结算价日,ths_high_settle_date_int_spot,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+09586,区间最低结算价日,ths_low_settle_date_int_spot,,行情指标 / 区间行情,起始交易日期、截止交易日期,
+33748,最新价较区间最高价跌幅(回撤),ths_int_chg_ratio_high_spot,‰,行情指标 / 区间行情,起始交易日期、截止交易日期,
+09447,周开盘价,ths_open_w_spot,,行情指标 / 周行情,,是
+09448,周最高价,ths_high_w_spot,,行情指标 / 周行情,,是
+09449,周最低价,ths_low_w_spot,,行情指标 / 周行情,,是
+09450,周收盘价,ths_close_w_spot,,行情指标 / 周行情,,是
+09451,周结算价,ths_settle_w_spot,,行情指标 / 周行情,,是
+09452,周最高收盘价,ths_high_close_w_spot,,行情指标 / 周行情,,是
+09453,周最低收盘价,ths_low_close_w_spot,,行情指标 / 周行情,,是
+09454,周最高结算价,ths_high_settle_w_spot,,行情指标 / 周行情,,是
+09455,周最低结算价,ths_low_settle_w_spot,,行情指标 / 周行情,,是
+09456,周前收盘价,ths_pre_close_w_spot,,行情指标 / 周行情,,是
+09457,周前结算价,ths_pre_settle_w_spot,,行情指标 / 周行情,,是
+09458,周成交均价,ths_avg_price_w_spot,,行情指标 / 周行情,,是
+09459,周涨跌,ths_chg_w_spot,,行情指标 / 周行情,,是
+09460,周涨跌(结算价),ths_settle_chg_w_spot,,行情指标 / 周行情,,是
+09461,周涨跌幅,ths_chg_ratio_w_spot,,行情指标 / 周行情,,是
+09462,周涨跌幅(结算价),ths_settle_chg_ratio_w_spot,,行情指标 / 周行情,,是
+09463,周振幅,ths_swing_w_spot,%,行情指标 / 周行情,,是
+09464,周持仓变化,ths_position_chg_w_spot,,行情指标 / 周行情,,是
+09465,周成交量,ths_vol_w_spot,,行情指标 / 周行情,,是
+09466,周成交额,ths_amt_w_spot,,行情指标 / 周行情,,是
+09467,周持仓量,ths_oi_w_spot,,行情指标 / 周行情,,是
+09468,周日均成交量,ths_daily_avg_vol_w_spot,,行情指标 / 周行情,,是
+09469,周日均成交额,ths_daily_avg_amt_w_spot,,行情指标 / 周行情,,是
+09470,周日均持仓量,ths_daily_avg_o_i_w_spot,,行情指标 / 周行情,,是
+09471,周最高收盘价日,ths_high_close_date_w_spot,,行情指标 / 周行情,,
+09472,周最低收盘价日,ths_low_close_date_w_spot,,行情指标 / 周行情,,
+09473,周最高结算价日,ths_high_settle_date_w_spot,,行情指标 / 周行情,,
+09474,周最低结算价日,ths_low_settle_date_w_spot,,行情指标 / 周行情,,
+09503,季开盘价,ths_open_q_spot,,行情指标 / 季行情,,是
+09504,季最高价,ths_high_q_spot,,行情指标 / 季行情,,是
+09505,季最低价,ths_low_q_spot,,行情指标 / 季行情,,是
+09506,季收盘价,ths_close_q_spot,,行情指标 / 季行情,,是
+09507,季结算价,ths_settle_q_spot,,行情指标 / 季行情,,是
+09508,季最高收盘价,ths_high_close_q_spot,,行情指标 / 季行情,,是
+09509,季最低收盘价,ths_low_close_q_spot,,行情指标 / 季行情,,是
+09510,季最高结算价,ths_high_settle_q_spot,,行情指标 / 季行情,,是
+09511,季最低结算价,ths_low_settle_q_spot,,行情指标 / 季行情,,是
+09512,季前收盘价,ths_pre_close_q_spot,,行情指标 / 季行情,,是
+09513,季前结算价,ths_pre_settle_q_spot,,行情指标 / 季行情,,是
+09514,季成交均价,ths_avg_price_q_spot,,行情指标 / 季行情,,是
+09515,季涨跌,ths_chg_q_spot,,行情指标 / 季行情,,是
+09516,季涨跌(结算价),ths_settle_chg_q_spot,,行情指标 / 季行情,,是
+09517,季涨跌幅,ths_chg_ratio_q_spot,,行情指标 / 季行情,,是
+09518,季涨跌幅(结算价),ths_settle_chg_ratio_q_spot,,行情指标 / 季行情,,是
+09519,季振幅,ths_swing_q_spot,%,行情指标 / 季行情,,是
+09520,季持仓变化,ths_position_chg_q_spot,,行情指标 / 季行情,,是
+09521,季成交量,ths_vol_q_spot,,行情指标 / 季行情,,是
+09522,季成交额,ths_amt_q_spot,,行情指标 / 季行情,,是
+09523,季持仓量,ths_open_interest_q_spot,,行情指标 / 季行情,,是
+09524,季日均成交量,ths_daily_avg_vol_q_spot,,行情指标 / 季行情,,是
+09525,季日均成交额,ths_daily_avg_amt_q_spot,,行情指标 / 季行情,,是
+09526,季日均持仓量,ths_daily_avg_position_q_spot,,行情指标 / 季行情,,是
+09527,季最高收盘价日,ths_high_close_date_q_spot,,行情指标 / 季行情,,
+09528,季最低收盘价日,ths_low_close_date_q_spot,,行情指标 / 季行情,,
+09529,季最高结算价日,ths_high_settle_date_q_spot,,行情指标 / 季行情,,
+09530,季最低结算价日,ths_low_settle_date_q_spot,,行情指标 / 季行情,,
+09531,年开盘价,ths_open_y_spot,,行情指标 / 年行情,,是
+09532,年最高价,ths_high_y_spot,,行情指标 / 年行情,,是
+09533,年最低价,ths_low_y_spot,,行情指标 / 年行情,,是
+09534,年收盘价,ths_close_y_spot,,行情指标 / 年行情,,是
+09535,年结算价,ths_settle_y_spot,,行情指标 / 年行情,,是
+09536,年最高收盘价,ths_high_close_y_spot,,行情指标 / 年行情,,是
+09537,年最低收盘价,ths_low_close_y_spot,,行情指标 / 年行情,,是
+09538,年最高结算价,ths_high_settle_y_spot,,行情指标 / 年行情,,是
+09539,年最低结算价,ths_low_settle_y_spot,,行情指标 / 年行情,,是
+09540,年前收盘价,ths_pre_close_y_spot,,行情指标 / 年行情,,是
+09541,年前结算价,ths_pre_settle_y_spot,,行情指标 / 年行情,,是
+09542,年成交均价,ths_avg_y_spot,,行情指标 / 年行情,,是
+09543,年涨跌,ths_chg_y_spot,,行情指标 / 年行情,,是
+09544,年涨跌(结算价),ths_settle_chg_y_spot,,行情指标 / 年行情,,是
+09545,年涨跌幅,ths_chg_ratio_y_spot,,行情指标 / 年行情,,是
+09546,年涨跌幅(结算价),ths_settle_chg_ratio_y_spot,,行情指标 / 年行情,,是
+09547,年振幅,ths_swing_y_spot,%,行情指标 / 年行情,,是
+09548,年持仓变化,ths_position_chg_y_spot,,行情指标 / 年行情,,是
+09549,年成交量,ths_vol_y_spot,,行情指标 / 年行情,,是
+09550,年成交额,ths_amt_y_spot,,行情指标 / 年行情,,是
+09551,年持仓量,ths_position_y_spot,,行情指标 / 年行情,,是
+09552,年日均成交量,ths_daily_avg_vol_y_spot,,行情指标 / 年行情,,是
+09553,年日均成交额,ths_daily_avg_amt_y_spot,,行情指标 / 年行情,,是
+09554,年日均持仓量,ths_daily_avg_position_y_spot,,行情指标 / 年行情,,是
+09555,年最高收盘价日,ths_high_close_date_y_spot,,行情指标 / 年行情,,
+09556,年最低收盘价日,ths_low_close_date_y_spot,,行情指标 / 年行情,,
+09557,年最高结算价日,ths_high_settle_date_y_spot,,行情指标 / 年行情,,
+09558,年最低结算价日,ths_low_settle_date_y_spot,,行情指标 / 年行情,,
+09180,开盘价,ths_open_price_spot,元,行情指标 / 日行情,,是
+09181,最高价,ths_high_price_spot,元,行情指标 / 日行情,,是
+09182,最低价,ths_low_spot,元,行情指标 / 日行情,,是
+09183,收盘价,ths_close_price_spot,元,行情指标 / 日行情,,是
+09184,加权平均价,ths_wgt_avg_price_spot,元,行情指标 / 日行情,,是
+09185,涨跌,ths_chg_spot,元,行情指标 / 日行情,,是
+09186,涨跌幅,ths_chg_ratio_spot,%,行情指标 / 日行情,,是
+09187,成交量,ths_vol_spot,千克,行情指标 / 日行情,,是
+09188,成交额,ths_amt_spot,元,行情指标 / 日行情,,是
+09189,持仓量,ths_open_interest_spot,千克,行情指标 / 日行情,,是
+09190,交收量,ths_delivery_vol_spot,千克,行情指标 / 日行情,,是
+09441,结算价,ths_settle_spot,,行情指标 / 日行情,,是
+09442,前结算价,ths_pre_settle_spot,,行情指标 / 日行情,,是
+09443,涨跌(结算价),ths_settle_chg_spot,,行情指标 / 日行情,,是
+09444,涨跌幅(结算价),ths_settle_chg_ratio_spot,,行情指标 / 日行情,,是
+09445,振幅,ths_swing_spot,%,行情指标 / 日行情,,是
+09446,持仓变化,ths_position_chg_spot,,行情指标 / 日行情,,是
+10481,前收盘价,ths_pre_close_spot,,行情指标 / 日行情,,是
+12331,交收方向,ths_settlement_direction_option,,行情指标 / 日行情,,
+09475,月开盘价,ths_open_m_spot,,行情指标 / 月行情,,是
+09476,月最高价,ths_high_m_spot,,行情指标 / 月行情,,是
+09477,月最低价,ths_low_m_spot,,行情指标 / 月行情,,是
+09478,月收盘价,ths_close_m_spot,,行情指标 / 月行情,,是
+09479,月结算价,ths_settle_m_spot,,行情指标 / 月行情,,是
+09480,月最高收盘价,ths_high_close_m_spot,,行情指标 / 月行情,,是
+09481,月最低收盘价,ths_low_close_m_spot,,行情指标 / 月行情,,是
+09482,月最高结算价,ths_high_settle_m_spot,,行情指标 / 月行情,,是
+09483,月最低结算价,ths_low_settle_m_spot,,行情指标 / 月行情,,是
+09484,月前收盘价,ths_pre_close_m_spot,,行情指标 / 月行情,,是
+09485,月前结算价,ths_pre_settle_m_spot,,行情指标 / 月行情,,是
+09486,月成交均价,ths_avg_price_m_spot,,行情指标 / 月行情,,是
+09487,月涨跌,ths_chgm_spot,,行情指标 / 月行情,,是
+09488,月涨跌(结算价),ths_settle_chgm_spot,,行情指标 / 月行情,,是
+09489,月涨跌幅,ths_chg_ratio_m_spot,,行情指标 / 月行情,,是
+09490,月涨跌幅(结算价),ths_settle_chg_ratio_m_spot,,行情指标 / 月行情,,是
+09491,月振幅,ths_swingm_spot,%,行情指标 / 月行情,,是
+09492,月持仓变化,ths_position_chgm_spot,,行情指标 / 月行情,,是
+09493,月成交量,ths_vol_m_spot,,行情指标 / 月行情,,是
+09494,月成交额,ths_amt_m_spot,,行情指标 / 月行情,,是
+09495,月持仓量,ths_oi_m_spot,,行情指标 / 月行情,,是
+09496,月日均成交量,ths_daily_avg_vol_m_spot,,行情指标 / 月行情,,是
+09497,月日均成交额,ths_daily_avg_amt_m_spot,,行情指标 / 月行情,,是
+09498,月日均持仓量,ths_daily_avg_position_m_spot,,行情指标 / 月行情,,是
+09499,月最高收盘价日,ths_high_close_date_m_spot,,行情指标 / 月行情,,
+09500,月最低收盘价日,ths_low_close_date_m_spot,,行情指标 / 月行情,,
+09501,月最高结算价日,ths_high_settle_date_m_spot,,行情指标 / 月行情,,
+09502,月最低结算价日,ths_low_settle_date_m_spot,,行情指标 / 月行情,,
+12268,平均收益率,ths_avg_yield_spot,%,风险指标,起始交易日期、截止交易日期、计算周期、收益率计算方法,
+12270,波动率,ths_volatility_spot,%,风险指标,起始交易日期、截止交易日期、计算周期、收益率计算方法,
