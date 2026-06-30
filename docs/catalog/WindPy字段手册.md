@@ -16,6 +16,8 @@
 
 > ⚠ **口径残余风险**:去前缀变体的中文名来自 xla 源码,极少数「去前缀后撞名」的字段,其中文名可能与该 WindPy 名的真实语义略有出入;基础高频字段(行情/估值/财务)已交叉核对无误。生成脚本 `scripts/catalog/extract_wind_xla2.py`、`wind_verify_xla_fields.py`、`gen_md_windpy.py`。
 
+> 🔹 **本表只覆盖 wss/wsd(历史截面/序列),其它函数另有独立字段集(未枚举)**:WindPy 共 24 个数据函数,实测 `wsq`(实时,`rt_` 前缀字段如 `rt_last`)、`wses`/`wsee`(板块聚合,`sec_*_avg` 如 `sec_close_avg`)各有**独立且互不相通**的字段命名空间(wss 拒 `rt_last`、wsq 拒 `close`),xla 里无对应候选、且属有限小集合,本表暂未纳入(待真需实时/板块字段时针对性补,探针 `wind_probe_other_funcs.py`)。
+
 
 ## 总览
 
