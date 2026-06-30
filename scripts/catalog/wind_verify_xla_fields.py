@@ -22,6 +22,7 @@ from WindPy import w   # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 XLA_CSV = os.path.join(ROOT, "docs", "catalog", "wind", "xla_fields.csv")
+XLA_FULL_CSV = os.path.join(ROOT, "docs", "catalog", "wind", "xla_fields_full.csv")
 PROBED_CSV = os.path.join(ROOT, "docs", "catalog", "wind", "probed_fields.csv")
 OUT = os.path.join(ROOT, "docs", "catalog", "wind", "windpy_fields.csv")
 
@@ -32,13 +33,19 @@ INVALID_EC = -40522006
 
 
 def load_xla():
+    """合并两个 xla 提取(WindFunc.xla 9698 + WindFunc_s.xla 7887,并集 ~10069)。"""
     rows = []
-    with open(XLA_CSV, encoding="utf-8-sig", newline="") as f:
-        for r in csv.DictReader(f):
-            code = (r.get("字段代码") or "").strip().lower()
-            if code:
-                rows.append((code, (r.get("中文名") or "").strip(),
-                             (r.get("参数") or "").strip()))
+    seen = set()
+    for path in (XLA_CSV, XLA_FULL_CSV):
+        if not os.path.exists(path):
+            continue
+        with open(path, encoding="utf-8-sig", newline="") as f:
+            for r in csv.DictReader(f):
+                code = (r.get("字段代码") or "").strip().lower()
+                if code and code not in seen:
+                    seen.add(code)
+                    rows.append((code, (r.get("中文名") or "").strip(),
+                                 (r.get("参数") or "").strip()))
     return rows
 
 
@@ -57,13 +64,14 @@ def load_probed():
 
 
 def variants(code):
-    """生成候选短名:原码 + 去 1 段 + 去 2 段。"""
+    """生成候选短名:原码 + 渐进去前缀(去 1 段、2 段、3 段)。
+    例 s_fa_roe_ttm → {s_fa_roe_ttm, fa_roe_ttm, roe_ttm, ttm}。
+    末段单字也保留(让 wss 字典裁定),最大化候选覆盖。"""
     segs = code.split("_")
     cands = {code}
-    if len(segs) >= 2:
-        cands.add("_".join(segs[1:]))
-    if len(segs) >= 3:
-        cands.add("_".join(segs[2:]))
+    for drop in (1, 2, 3):
+        if len(segs) > drop:
+            cands.add("_".join(segs[drop:]))
     return cands
 
 

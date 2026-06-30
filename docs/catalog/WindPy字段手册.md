@@ -1,6 +1,6 @@
 # WindPy 字段手册（实测可用）
 
-> 共 **5301 个字段**,**经 WindPy `wss` 真机逐字段批量验证认可**(Wind 字典层 `-40522006 invalid indicators` 是纯字段名级校验,与品种无关)。**本表字段代码可直接用于 `/wind/wsd`、`/wind/wss`**,是三套 Wind 字段口径里唯一「拿来即用」的那套。
+> 共 **5359 个字段**,**经 WindPy `wss` 真机逐字段批量验证认可**(Wind 字典层 `-40522006 invalid indicators` 是纯字段名级校验,与品种无关)。**本表字段代码可直接用于 `/wind/wsd`、`/wind/wss`**,是三套 Wind 字段口径里唯一「拿来即用」的那套。
 
 > 🔴 **三套 Wind 字段口径区别(必读)**:
 >
@@ -19,18 +19,18 @@
 
 | 分类 | 字段数 | 跳转 |
 |---|---|---|
-| 可转债 | 17 | [↓](#分类-可转债) |
+| 可转债 | 59 | [↓](#分类-可转债) |
 | ABS资产证券化 | 88 | [↓](#分类-ABS资产证券化) |
 | 基金 | 5 | [↓](#分类-基金) |
-| 基金净值 | 25 | [↓](#分类-基金净值) |
+| 基金净值 | 24 | [↓](#分类-基金净值) |
 | 基金(专项) | 4 | [↓](#分类-基金专项) |
 | 新股发行 | 237 | [↓](#分类-新股发行) |
 | 分红 | 68 | [↓](#分类-分红) |
 | 盈利预测 | 142 | [↓](#分类-盈利预测) |
 | 一致预期 | 237 | [↓](#分类-一致预期) |
 | ESG | 109 | [↓](#分类-ESG) |
-| 股东 | 71 | [↓](#分类-股东) |
-| 股本 | 86 | [↓](#分类-股本) |
+| 股东 | 83 | [↓](#分类-股东) |
+| 股本 | 81 | [↓](#分类-股本) |
 | 货币基金 | 13 | [↓](#分类-货币基金) |
 | 发行 | 37 | [↓](#分类-发行) |
 | 利率/评级 | 23 | [↓](#分类-利率-评级) |
@@ -39,39 +39,81 @@
 | 财务分析 | 90 | [↓](#分类-财务分析) |
 | 单季财务 | 37 | [↓](#分类-单季财务) |
 | 技术指标 | 4 | [↓](#分类-技术指标) |
-| 风险指标 | 86 | [↓](#分类-风险指标) |
-| 估值 | 51 | [↓](#分类-估值) |
+| 风险指标 | 89 | [↓](#分类-风险指标) |
+| 估值 | 54 | [↓](#分类-估值) |
 | 交易 | 2 | [↓](#分类-交易) |
 | 证券基础 | 4 | [↓](#分类-证券基础) |
 | 回购 | 1 | [↓](#分类-回购) |
-| 通用/行情/其他 | 3848 | [↓](#分类-通用-行情-其他) |
+| 通用/行情/其他 | 3852 | [↓](#分类-通用-行情-其他) |
 
-**合计 5301 个字段,26 个分类。**
+**合计 5359 个字段,26 个分类。**
 
 
 <a id="分类-可转债"></a>
 
-## 可转债（17 个字段）
+## 可转债（59 个字段）
 
 | 字段代码 | 中文名 | 参数 | 来源 |
 |---|---|---|---|
 | `cb_issueamount` | 转债发行总额 |  | xla去前缀变体 |
-| `cb_list_annocedate` | 转债发行结果公告日 |  | xla去前缀变体 |
-| `cb_list_dateinstoff` | 转债网下向机构投资者发行日期 |  | xla去前缀变体 |
-| `cb_list_dtonl` | 转债网上发行日期 |  | xla去前缀变体 |
+| `cb_list_annocedate` |  |  | xla原码 |
+| `cb_list_dateinstoff` |  |  | xla原码 |
+| `cb_list_dtonl` |  |  | xla原码 |
+| `cb_list_excesspchonl` |  |  | xla原码 |
 | `cb_list_issuevolonl` | 网上发行数量(不含优先配售) |  | xla原码 |
-| `cb_list_permitdate` | 转债发审委审批通过日期 |  | xla去前缀变体 |
-| `cb_list_rationchkindate` | 转债老股东配售股权登记日 |  | xla去前缀变体 |
-| `cb_list_rationdate` | 转债老股东配售日期 |  | xla去前缀变体 |
-| `cb_list_rationpaymtdate` | 转债老股东配售缴款日 |  | xla去前缀变体 |
+| `cb_list_originals` |  |  | xla原码 |
+| `cb_list_pchasecodeonl` |  |  | xla原码 |
+| `cb_list_pchnameonl` |  |  | xla原码 |
+| `cb_list_pchpriceonl` |  |  | xla原码 |
+| `cb_list_permitdate` |  |  | xla原码 |
+| `cb_list_rationchkindate` |  |  | xla原码 |
+| `cb_list_rationcode` |  |  | xla原码 |
+| `cb_list_rationdate` |  |  | xla原码 |
+| `cb_list_rationname` |  |  | xla原码 |
+| `cb_list_rationpaymtdate` |  |  | xla原码 |
+| `cb_list_rationprice` |  |  | xla原码 |
+| `cb_list_rationratiode` |  |  | xla原码 |
 | `cb_list_rationvol` | 向老股东配售数量 |  | xla原码 |
 | `cb_list_volinstoff` | 网下向机构投资者发行数量(不含优先配售) |  | xla原码 |
 | `cb_pq_highclose` | 区间最高收盘价 | StartDate、EndDate | xla原码 |
 | `cb_pq_lowclose` | 区间最低收盘价 | StartDate、EndDate | xla原码 |
+| `cb_pq_stockamnt` |  | BEGINDATE、EndDate、UnitVal | xla原码 |
+| `cb_pq_stockaveturnover` |  | BEGINDATE、EndDate | xla原码 |
 | `cb_pq_stockavg` | 正股区间均价(新增) | TD1、TD2 | xla原码 |
 | `cb_pq_stockchg` | 正股区间涨跌(新增) | TD1、TD2 | xla原码 |
+| `cb_pq_stockclose` |  | BEGINDATE、EndDate、TYPE | xla原码 |
+| `cb_pq_stockhigh` |  | BEGINDATE、EndDate、TYPE | xla原码 |
+| `cb_pq_stockhighclose` |  | BEGINDATE、EndDate、TYPE | xla原码 |
+| `cb_pq_stocklow` |  | BEGINDATE、EndDate、TYPE | xla原码 |
+| `cb_pq_stocklowclose` |  | BEGINDATE、EndDate、TYPE | xla原码 |
+| `cb_pq_stockopen` |  | BEGINDATE、EndDate、TYPE | xla原码 |
 | `cb_pq_stockpctchg` | 正股区间涨跌幅(新增) | TD1、TD2 | xla原码 |
+| `cb_pq_stockpreclose` |  | BEGINDATE、EndDate、TYPE | xla原码 |
+| `cb_pq_stockswing` |  | BEGINDATE、EndDate | xla原码 |
+| `cb_pq_stockturnover` |  | BEGINDATE、EndDate | xla原码 |
+| `cb_pq_stockvol` |  | BEGINDATE、EndDate、UnitVal | xla原码 |
 | `cb_pq_swing` | 区间振幅 | StartDate、EndDate、PRICETYPE | xla原码 |
+| `cb_result_avairationamttrad` |  | UnitVal | xla原码 |
+| `cb_result_balance` |  | UnitVal | xla原码 |
+| `cb_result_efamntnontrad` |  | UnitVal | xla原码 |
+| `cb_result_efinvestornontrad` |  |  | xla原码 |
+| `cb_result_efinvestors` |  |  | xla原码 |
+| `cb_result_efsubscrpamt` |  | UnitVal | xla原码 |
+| `cb_result_efsubscrpamtoff` |  | UnitVal | xla原码 |
+| `cb_result_efsubscrpamtonl` |  | UnitVal | xla原码 |
+| `cb_result_efsubscrpoff` |  |  | xla原码 |
+| `cb_result_efsubscrponl` |  |  | xla原码 |
+| `cb_result_explnration` |  |  | xla原码 |
+| `cb_result_placeamnttrad` |  | UnitVal | xla原码 |
+| `cb_result_rationamt` |  |  | xla原码 |
+| `cb_result_rationamtnontrad` |  | UnitVal | xla原码 |
+| `cb_result_rationamtoff` |  | UnitVal | xla原码 |
+| `cb_result_rationamtonl` |  | UnitVal | xla原码 |
+| `cb_result_rationcode` |  |  | xla原码 |
+| `cb_result_rationratioonl` |  |  | xla原码 |
+| `cb_result_sucrateoff` |  |  | xla原码 |
+| `cb_result_sucrateonl` |  |  | xla原码 |
+| `cb_war_annodatemeeting` |  |  | xla原码 |
 
 <a id="分类-ABS资产证券化"></a>
 
@@ -182,7 +224,7 @@
 
 <a id="分类-基金净值"></a>
 
-## 基金净值（25 个字段）
+## 基金净值（24 个字段）
 
 | 字段代码 | 中文名 | 参数 | 来源 |
 |---|---|---|---|
@@ -210,7 +252,6 @@
 | `nav_unit_transform` | 单位净值(支持转型基金) | TRADEDATE | xla去前缀变体 |
 | `nav_updatecompleteness` | 基金净值完整度 | StartDate、EndDate、CalcTerm | xla去前缀变体 |
 | `nav_updatefrequency` | 基金净值更新频率 |  | xla去前缀变体 |
-| `nav_winlossratio` | 基金盈利概率 | StartDate、EndDate、CalcTerm | xla去前缀变体 |
 
 <a id="分类-基金专项"></a>
 
@@ -1053,7 +1094,7 @@
 
 <a id="分类-股东"></a>
 
-## 股东（71 个字段）
+## 股东（83 个字段）
 
 | 字段代码 | 中文名 | 参数 | 来源 |
 |---|---|---|---|
@@ -1062,8 +1103,9 @@
 | `holder_avgnum` | 户均持股 |  | 探测法实测 |
 | `holder_avgpct` | 户均持股比例 | REPORTDATE | xla去前缀变体 |
 | `holder_avgpctchange` | 相对上一报告期户均持股比例差 | REPORTDATE | xla去前缀变体 |
-| `holder_controller` | 上市公司实际控制人名称(新增) | DEALDATE | xla去前缀变体 |
-| `holder_controllerattr` | 实际控制人属性 | TRADEDATE | xla去前缀变体 |
+| `holder_avgprofit` | 近三年归母净利润均值 | TRADEDATE | xla去前缀变体 |
+| `holder_begbalindinv` | 单一投资者报告期初持有份额 | REPORTDATE、Year、InvestorType、Number | xla去前缀变体 |
+| `holder_breaknetornot` | 是否破净 | TRADEDATE | xla去前缀变体 |
 | `holder_corp_holding` | 基金管理公司持有份额 | REPORTDATE | xla去前缀变体 |
 | `holder_corp_holdingpct` | 基金管理公司持有比例 | REPORTDATE | xla去前缀变体 |
 | `holder_detail` | 发行人债券机构持仓明细 | REPORTDATE、TYPE | xla去前缀变体 |
@@ -1071,14 +1113,21 @@
 | `holder_feeder_holdingpct` | ETF联接基金持有比例 | REPORTDATE | xla去前缀变体 |
 | `holder_havgchange` | 户均持股数半年增长率(新增) | D | xla去前缀变体 |
 | `holder_havgpctchange` | 户均持股比例半年增长率(新增) | D | xla去前缀变体 |
+| `holder_mergedholdingornot` | 持有份额是否为合并数据 | REPORTDATE | xla去前缀变体 |
+| `holder_mergednumberornot` | 持有人户数是否为合并数据 | REPORTDATE | xla去前缀变体 |
+| `holder_minclose20` | 前20个交易日最低收盘价(后复权) | TRADEDATE | xla去前缀变体 |
 | `holder_minpb20_lyr` | 前20个交易日最低市净率(最近会计年度) | TRADEDATE | xla去前缀变体 |
 | `holder_minpb20_mrq` | 前20个交易日最低市净率(最近报告期) | TRADEDATE | xla去前缀变体 |
 | `holder_mngemp_holding` | 管理人员工持有份额(新增) | REPORTDATE | xla去前缀变体 |
 | `holder_mngemp_holdingpct` | 管理人员工持有比例(新增) | REPORTDATE | xla去前缀变体 |
 | `holder_mngemp_totalholding` | 管理人员工持有份额(合计) | REPORTDATE | xla去前缀变体 |
 | `holder_mngemp_totalholdingpct` | 管理人员工持有比例(合计) | REPORTDATE | xla去前缀变体 |
-| `holder_num` | 股东户数 |  | 探测法实测 |
 | `holder_num2` | 股东户数 | REPORTDATE、Captype | xla去前缀变体 |
+| `holder_num_fund` | 持股基金数 | REPORTDATE | xla去前缀变体 |
+| `holder_num_i` | 持股机构数 | REPORTDATE | xla去前缀变体 |
+| `holder_pctbybywmp` | 券商理财产品持股比例(新增) | D | xla去前缀变体 |
+| `holder_pctbycorppension` | 企业年金持股比例(新增) | D | xla去前缀变体 |
+| `holder_pctbyfinancecorp` | 财务公司持股比例(新增) | D | xla去前缀变体 |
 | `holder_pctbyfund` | 基金持股比例(新增) | D | xla去前缀变体 |
 | `holder_pctbygeneralcorp` | 一般法人持股比例(新增) | D | xla去前缀变体 |
 | `holder_pctbyhf` | 阳光私募持股比例 |  | xla原码 |
@@ -1104,6 +1153,10 @@
 | `holder_qavgpctchange` | 户均持股比例季度增长率(新增) | D | xla去前缀变体 |
 | `holder_redmrptper` | 单一投资者报告期内赎回持有份额 | REPORTDATE、Year、InvestorType、Number | xla去前缀变体 |
 | `holder_rptcontroller` | 公布实际控制人名称 | DEALDATE | xla去前缀变体 |
+| `holder_single_totalholding` | 单一投资者报告期末持有份额合计 | REPORTDATETYPE、Year | xla去前缀变体 |
+| `holder_single_totalholdingpct` | 单一投资者报告期末持有比例合计 | REPORTDATETYPE、Year | xla去前缀变体 |
+| `holder_subrptper` | 单一投资者报告期内申购持有份额 | REPORTDATE、Year、InvestorType、Number | xla去前缀变体 |
+| `holder_sumt10pct` | 前十大股东持股比例合计 | REPORTDATE | xla去前缀变体 |
 | `holder_sumt10quantity` | 前十大股东持股数量合计 | REPORTDATE | xla去前缀变体 |
 | `holder_sumt5pct` | 前五大股东持股比例合计 | REPORTDATE | xla去前缀变体 |
 | `holder_sumt5quantity` | 前五大股东持股数量合计 | REPORTDATE | xla去前缀变体 |
@@ -1131,7 +1184,7 @@
 
 <a id="分类-股本"></a>
 
-## 股本（86 个字段）
+## 股本（81 个字段）
 
 | 字段代码 | 中文名 | 参数 | 来源 |
 |---|---|---|---|
@@ -1181,9 +1234,6 @@
 | `share_pct_hk` | 香港本地中介机构持股占比 | TRADEDATE | xla去前缀变体 |
 | `share_pct_hks` | 港股通持股占比 | TRADEDATE | xla去前缀变体 |
 | `share_pct_hksh` | 沪市港股通持股占比 | TRADEDATE | xla去前缀变体 |
-| `share_pct_hksz` | 深市港股通持股占比 | TRADEDATE | xla去前缀变体 |
-| `share_pct_n` | 沪(深)股通持股占比 | TRADEDATE | xla去前缀变体 |
-| `share_pledgeda_pct_largestholder` | 大股东累计质押数占持股数比例 | TRADEDATE | xla去前缀变体 |
 | `share_restricted_m` | 限售股份(高管持股) | TRADEDATE | xla去前缀变体 |
 | `share_restricted_pct` | 股改限售股份占总股本比例 |  | xla去前缀变体 |
 | `share_restricteda` | 限售A股 |  | xla去前缀变体 |
@@ -1219,8 +1269,6 @@
 | `share_totaltradable` | 流通股合计 |  | xla去前缀变体 |
 | `share_totshares_pre` | 上市前总股本 |  | xla去前缀变体 |
 | `share_tradable_current` | 本期解禁数量 | TRADEDATE | xla去前缀变体 |
-| `share_tradable_current_fwd` | 指定日之后最近一次解禁数量 | TRADEDATE | xla去前缀变体 |
-| `share_tradable_pct` | 流通股合计占总股本比例 |  | xla去前缀变体 |
 
 <a id="分类-货币基金"></a>
 
@@ -1253,9 +1301,9 @@
 | `issue_cef_inipurchase` | 封闭式基金认购数量(新增) |  | xla去前缀变体 |
 | `issue_cef_oversub` | 封闭式基金超额认购倍数(新增) |  | xla去前缀变体 |
 | `issue_cef_succratio` | 封闭式基金中签率(新增) |  | xla去前缀变体 |
-| `issue_channel` | 产品发行渠道 |  | xla去前缀变体 |
-| `issue_coordinator` | 基金发行协调人(新增) |  | xla去前缀变体 |
-| `issue_date` | 发行日期(新增) |  | xla去前缀变体 |
+| `issue_firstpricedate` | 首个定价日 |  | xla去前缀变体 |
+| `issue_initiator` | 基金发起人(新增) |  | xla去前缀变体 |
+| `issue_leadunderwriter` | 基金主承销商(新增) |  | xla去前缀变体 |
 | `issue_nominator` | 基金上市推荐人(新增) |  | xla去前缀变体 |
 | `issue_object` | 发行对象(新增) |  | xla去前缀变体 |
 | `issue_oef_confirmdate` | 认购比例确认公告日 |  | xla去前缀变体 |
@@ -1500,7 +1548,7 @@
 
 <a id="分类-风险指标"></a>
 
-## 风险指标（86 个字段）
+## 风险指标（89 个字段）
 
 | 字段代码 | 中文名 | 参数 | 来源 |
 |---|---|---|---|
@@ -1529,7 +1577,7 @@
 | `risk_avgtrackdeviation_trackindex` | 区间跟踪偏离度均值(跟踪指数) | StartDate、EndDate、CalcTerm、CalcMethod | xla去前缀变体 |
 | `risk_beta` | 波Beta | StartDate、EndDate、Period、TYPE、INDEX | xla原码 |
 | `risk_beta_bm` | Beta(业绩基准) | StartDate、EndDate、CalcTerm、CalcMethod | xla去前缀变体 |
-| `risk_betaunincometaxrate` | Beta(剔除所得税率) | StartDate、EndDate | xla去前缀变体 |
+| `risk_calmar` | Calmar | StartDate、EndDate | xla去前缀变体 |
 | `risk_correcoefficient` | 相关系数 | StartDate、EndDate、CT、CM、WINDCODE2 | xla去前缀变体 |
 | `risk_correcoefficient_trackindex` | 相关系数(跟踪指数) | StartDate、EndDate | xla去前缀变体 |
 | `risk_cvar` | 条件VaR | StartDate、EndDate | xla去前缀变体 |
@@ -1565,6 +1613,7 @@
 | `risk_returnyearly_naturalday` | 区间收益率(自然日年化) | StartDate、EndDate | xla去前缀变体 |
 | `risk_returnyearly_tradedate` | 年化收益率(工作日) | StartDate | xla去前缀变体 |
 | `risk_sharpe` | Sharpe(新增) | TD1、TD2 | xla去前缀变体 |
+| `risk_sharpe_nonannu` | Sharpe | StartDate、EndDate、Cycle、CalcType、No_Risk_Yield | xla去前缀变体 |
 | `risk_siml_avgalpha` | Alpha同类平均 | StartDate、EndDate、CalcTerm | xla去前缀变体 |
 | `risk_siml_avgannualpha` | Alpha(年化)同类平均 | StartDate、EndDate、CalcTerm | xla去前缀变体 |
 | `risk_siml_avgannusharpe` | Sharpe(年化)同类平均 | StartDate、EndDate、CalcTerm | xla去前缀变体 |
@@ -1579,6 +1628,8 @@
 | `risk_stdev` | 波动率 |  | xla原码 |
 | `risk_stdevclose` | 收盘价标准差 | StartDate、EndDate、Cycle | xla去前缀变体 |
 | `risk_stdevyearly` | 年化波动率(新增) | TD1、TD2 | xla去前缀变体 |
+| `risk_sterling1` | Sterling1 | StartDate、EndDate | xla去前缀变体 |
+| `risk_sterling2` | Sterling2 | StartDate、EndDate、ThresholdYield | xla去前缀变体 |
 | `risk_stock` | 选股能力(新增) | TD1、TD2 | xla去前缀变体 |
 | `risk_stockranking` | 选股能力同类排名(新增) | StartDate、EndDate | xla去前缀变体 |
 | `risk_time` | 选时能力(新增) | TD1、TD2 | xla去前缀变体 |
@@ -1593,7 +1644,7 @@
 
 <a id="分类-估值"></a>
 
-## 估值（51 个字段）
+## 估值（54 个字段）
 
 | 字段代码 | 中文名 | 参数 | 来源 |
 |---|---|---|---|
@@ -1611,6 +1662,7 @@
 | `val_dividendyield4` | 股息率TTM(剔除特别派息) | TRADEDATE | xla去前缀变体 |
 | `val_evebitda` | 企业倍数(TTM) | TRADEDATE | xla去前缀变体 |
 | `val_evebitda2` | 企业倍数2(TTM) | TRADEDATE | xla去前缀变体 |
+| `val_evsales` | EV/Sales | TRADEDATE | xla去前缀变体 |
 | `val_evtoebitda2` | 企业倍数2(EV2/EBITDA) | TRADEDATE | xla去前缀变体 |
 | `val_mv` | 指数总市值 | TRADEDATE | xla去前缀变体 |
 | `val_mv_ard` | 总市值 | TRADEDATE | xla去前缀变体 |
@@ -1638,6 +1690,7 @@
 | `val_penonngtv_percentile` | 市盈率PE(TTM,剔除负值)分位数 | TRADEDATE、StartDate、EndDate | xla去前缀变体 |
 | `val_pep` | 市盈率百分位 | StartDate、EndDate | xla去前缀变体 |
 | `val_pep2` | 市盈率百分位 | TRADEDATE、StartDate、EndDate | xla去前缀变体 |
+| `val_per` | PER(LYR) | TRADEDATE | xla去前缀变体 |
 | `val_pettm_avg` | 区间平均PE(TTM) | StartDate、EndDate | xla去前缀变体 |
 | `val_pettm_high` | 区间最高PE(TTM) | StartDate、EndDate | xla去前缀变体 |
 | `val_pettm_low` | 区间最低PE(TTM) | StartDate、EndDate | xla去前缀变体 |
@@ -1648,6 +1701,7 @@
 | `val_pslyr_high` | 区间最高PS(LYR) | StartDate、EndDate | xla去前缀变体 |
 | `val_pslyr_low` | 区间最低PS(LYR) | StartDate、EndDate | xla去前缀变体 |
 | `val_psttm_avg` | 区间平均PS(TTM) | StartDate、EndDate | xla去前缀变体 |
+| `val_psttm_high` | 区间最高PS(TTM) | StartDate、EndDate | xla去前缀变体 |
 
 <a id="分类-交易"></a>
 
@@ -1679,7 +1733,7 @@
 
 <a id="分类-通用-行情-其他"></a>
 
-## 通用/行情/其他（3848 个字段）
+## 通用/行情/其他（3852 个字段）
 
 | 字段代码 | 中文名 | 参数 | 来源 |
 |---|---|---|---|
@@ -1792,6 +1846,7 @@
 | `allreturndate` | 理论回售日 |  | xla去前缀变体 |
 | `allstock_pb` | 全部持股平均市净率 | REPORTDATE | xla去前缀变体 |
 | `allstock_pe` | 全部持股平均市盈率 | REPORTDATE | xla去前缀变体 |
+| `alpha2` | Alpha | SDATE、EDATE、PERIOD、TYPE、INDEX | xla去前缀变体 |
 | `amount` | 成交额 |  | xla去前缀变体 |
 | `amount_aht` | 盘后成交额 | TRADEDATE | xla去前缀变体 |
 | `amount_btin` | 成交额(含大宗交易) | TRADEDATE | xla去前缀变体 |
@@ -1867,6 +1922,7 @@
 | `askrt_avg` | 报价卖出收益率(算数平均) |  | xla去前缀变体 |
 | `askrt_bst` | 报价卖出收益率(最优) |  | xla去前缀变体 |
 | `asset_mrq` | 资产总计(MRQ) |  | xla去前缀变体 |
+| `assetapp` |  |  | xla去前缀变体 |
 | `assetmanagementshold_products` | 持有券商资管家数 | REPORTDATE | xla去前缀变体 |
 | `assetstoequity` | 权益乘数 | REPORTDATE | xla去前缀变体 |
 | `assetsturn` | 总资产周转率 |  | 探测法实测 |
@@ -2145,6 +2201,7 @@
 | `corpscale` | 企业规模 | TRADEDATE | xla去前缀变体 |
 | `cost_ttm` | 营业成本-非金融类(TTM) |  | xla去前缀变体 |
 | `cost_ttm2` | 营业成本-非金融类(TTM) | REPORTDATE | xla去前缀变体 |
+| `counterguar` |  |  | xla去前缀变体 |
 | `country` | 所属国家 |  | xla去前缀变体 |
 | `coupon` | 息票品种 |  | xla去前缀变体 |
 | `couponadj_max` | 票面利率调整上限 |  | xla去前缀变体 |
@@ -2188,6 +2245,7 @@
 | `current` | 流动比率 |  | 探测法实测 |
 | `currentdebttodebt` | 流动负债／负债合计 | REPORTDATE | xla去前缀变体 |
 | `currentdebttoequity` | 流动负债权益比率 | REPORTDATE | xla去前缀变体 |
+| `curyield` |  | DEALDATE | xla去前缀变体 |
 | `cusipnumber` | Cusip代码 |  | xla去前缀变体 |
 | `customizedfundornot` | 是否定制基金 |  | xla去前缀变体 |
 | `d_vol_surface` | 品种隐含波动率曲面(按Delta) | TRADEDATE、Delta、Term、Construction、Exercisetype、Multipliertype | xla去前缀变体 |
@@ -2239,12 +2297,12 @@
 | `delist_date` | 退市日期 |  | 探测法实测 |
 | `delistreason` | 终止上市原因 |  | xla去前缀变体 |
 | `deliveryfee` | 期货交割手续费 | TRADEDATE | xla去前缀变体 |
+| `delta` | Delta | DEALDATE | xla去前缀变体 |
 | `delta_atmcode` | Delta平值期权代码 | TRADEDATE、OptionalExpir、OptionType、Delta、AdjustmentState、Exercisetype、TermType、Multipliertype | xla去前缀变体 |
 | `delta_exch` | Delta(交易所) | TRADEDATE | xla去前缀变体 |
 | `depositarybank` | 存托机构 | TRADEDATE | xla去前缀变体 |
 | `diluterate` | 转股稀释率(新增) |  | xla去前缀变体 |
 | `director` | 公司董事 |  | xla去前缀变体 |
-| `dirty_cfets` | 估价全价(中国货币网) | TRADEDATE | xla去前缀变体 |
 | `dirty_cnbd` | 估价全价 |  | xla去前缀变体 |
 | `dirty_csi` | 估价全价(中证指数) |  | xla去前缀变体 |
 | `dirty_csi1` | 估价全价(中证指数) | DEALDATE、Credibility | xla去前缀变体 |
@@ -2277,6 +2335,7 @@
 | `dq_quote_bid` | 最优报买价 | TRADEDATE | xla去前缀变体 |
 | `dq_quote_mid` | 最优报中价 | TRADEDATE | xla去前缀变体 |
 | `dq_settle` | 结算价 |  | xla去前缀变体 |
+| `dq_stockclose` |  | DEALDATE、TYPE | xla去前缀变体 |
 | `dq_stockmktcap1` | 正股总市值1 | TRADEDATE | xla去前缀变体 |
 | `dq_stockmktcap2` | 正股总市值2 | TRADEDATE | xla去前缀变体 |
 | `dsceval` | 上市公司信息披露考评 | Year | xla去前缀变体 |
@@ -2284,17 +2343,18 @@
 | `dupont_intburden` | 利润总额／息税前利润(新增) | D | xla去前缀变体 |
 | `dupont_np` | 归属母公司股东的净利润／净利润(新增) | D | xla去前缀变体 |
 | `dupont_taxburden` | 净利润／利润总额(新增) | D | xla去前缀变体 |
-| `duration` | 久期 |  | 探测法实测 |
 | `eaname` | 证券扩位简称 |  | xla去前缀变体 |
 | `earning` | 是否尚未盈利 |  | xla去前缀变体 |
 | `ebbondpre_csi` | 可交换债纯债溢价率(中证指数) | TRADEDATE | xla去前缀变体 |
 | `ebconversionpre_csi` | 可交换债转股溢价率(中证指数) | TRADEDATE | xla去前缀变体 |
 | `ebit` | 息税前利润EBIT |  | 探测法实测 |
 | `ebit2` | EBIT(正常化) |  | 探测法实测 |
+| `ebit2_ttm` | EBIT(TTM) | REPORTDATE、UnitVal | xla去前缀变体 |
 | `ebit_ttm` | 息税前利润(TTM) |  | xla去前缀变体 |
 | `ebit_ttm2` | 息税前利润(TTM反推法) | REPORTDATE | xla去前缀变体 |
 | `ebitda` | 息税折旧摊销前利润EBITDA |  | 探测法实测 |
 | `ebitda2` | 息税折旧摊销前利润(正向法)(新增) | DEALDATE、TP | xla去前缀变体 |
+| `ebitda2_ttm` | EBITDA(TTM) | REPORTDATE、UnitVal | xla去前缀变体 |
 | `ebitda_ttm` | EBITDA(TTM反推法) | REPORTDATE | xla去前缀变体 |
 | `ebitdaps` | 每股EBITDA | REPORTDATE | xla去前缀变体 |
 | `ebitdatodebt` | 息税折旧摊销前利润／负债合计 | REPORTDATE | xla去前缀变体 |
@@ -2432,7 +2492,6 @@
 | `expiryvolumeratio` | 到期日期权成交量认沽认购比率 | TRADEDATE、ExpirationDate、Exercisetype、TermType、Multipliertype | xla去前缀变体 |
 | `expma` | EXPMA指数平均数 |  | xla原码 |
 | `exppropfdleundwt` | 主承销商自营资金获配说明 |  | xla去前缀变体 |
-| `extensioncreditenhancementmeasure` | 展期增信措施 | TRADEDATE | xla去前缀变体 |
 | `extensioninterestredemptionplan` | 展期利息兑付方案 | TRADEDATE | xla去前缀变体 |
 | `extensionprincipalredemptionplan` | 展期本金兑付方案 | TRADEDATE | xla去前缀变体 |
 | `extraordinary` | 非经常性损益 | REPORTDATE | xla去前缀变体 |
@@ -2581,6 +2640,7 @@
 | `fundinv_vat` | 基金投资收益-买卖基金差价收入应缴纳增值税额 | REPORTDATE | xla去前缀变体 |
 | `fundscale_latestdate` | 基金规模最新日期 |  | xla去前缀变体 |
 | `funduse` | 募集资金用途 |  | xla去前缀变体 |
+| `gamma` | Gamma | DEALDATE | xla去前缀变体 |
 | `gamma_exch` | Gamma(交易所) | TRADEDATE | xla去前缀变体 |
 | `gc2_ttm2` | 营业总成本2(TTM) | REPORTDATE | xla去前缀变体 |
 | `gc_ttm` | 营业总成本(TTM) |  | xla去前缀变体 |
@@ -2620,6 +2680,8 @@
 | `guaranteeornot` | 担保交收 |  | xla去前缀变体 |
 | `guaranteesettlement` | 是否可担保交收 |  | xla去前缀变体 |
 | `guarantor_type` | 担保人类型 |  | xla去前缀变体 |
+| `guarrange` |  |  | xla去前缀变体 |
+| `guarterm` |  |  | xla去前缀变体 |
 | `gxjsornot` | 是否高新技术企业 |  | xla去前缀变体 |
 | `handlingdate_pi` | 非公开发行股票受理日 |  | xla去前缀变体 |
 | `handlingdate_rs` | 配股受理日 |  | xla去前缀变体 |
@@ -2814,6 +2876,10 @@
 | `isscitechbond` | 是否科技创新债券 |  | xla去前缀变体 |
 | `issueamount` | 发行总额 |  | 探测法实测 |
 | `issuecurrencycode` | 发行币种 |  | xla去前缀变体 |
+| `issuefee_accont` |  |  | xla去前缀变体 |
+| `issuefee_feesum` |  |  | xla去前缀变体 |
+| `issuefee_legalconsl` |  |  | xla去前缀变体 |
+| `issuefee_underwrtspon` |  |  | xla去前缀变体 |
 | `issueok` | 是否发行失败 |  | xla去前缀变体 |
 | `issuer` | 创设机构,b_crm_issuer(新增) |  | xla去前缀变体 |
 | `issuer2` | 发行人国际评级 | TRADEDATE | xla去前缀变体 |
@@ -3150,7 +3216,6 @@
 | `jenseny` | Jensen(年化)(新增) | TD1、TD2 | xla去前缀变体 |
 | `kdj` | KDJ随机指标 |  | xla原码 |
 | `largecommodity` | 所属大宗商品概念板块 | TRADEDATE | xla去前缀变体 |
-| `lastdate_cfets` | 最新估值日期(中国货币网) |  | xla去前缀变体 |
 | `lastdate_cnbd` | 最新中债估值日期 |  | xla去前缀变体 |
 | `lastdate_csi` | 最新中证估值日期 |  | xla去前缀变体 |
 | `lastdate_shc` | 最新清算所估值日期 |  | xla去前缀变体 |
@@ -3334,6 +3399,11 @@
 | `modidura_cnbd` | 修正久期 |  | 探测法实测 |
 | `modidura_csi` | 估价修正久期(中证指数) |  | xla去前缀变体 |
 | `modidura_csi1` | 估价修正久期(中证指数) | DEALDATE、Credibility | xla去前缀变体 |
+| `modidura_shc` | 估价修正久期(上海清算所) |  | xla去前缀变体 |
+| `modiduration_ifexe` | 行权修正久期 | TRADEDATE | xla去前缀变体 |
+| `modifiedduration` | 修正久期 |  | xla去前缀变体 |
+| `modifiedduration_cbr` | 修正久期(中债资信) | TRADEDATE | xla去前缀变体 |
+| `monetary_cap` | 货币资金 |  | 探测法实测 |
 | `moneyness` | 价值状态 | TRADEDATE | xla去前缀变体 |
 | `mq_amount` | 月成交金额(新增) |  | xla去前缀变体 |
 | `mq_pctchange` | 月涨跌幅(新增) |  | xla去前缀变体 |
@@ -3462,7 +3532,8 @@
 | `officialstyle` | 指数风格 |  | xla去前缀变体 |
 | `ofrclosingyield_broker` | 卖出收盘收益率(经纪商) | TRADEDATE | xla去前缀变体 |
 | `ofryield_broker` | 卖出平均价收益率(经纪商) | TRADEDATE | xla去前缀变体 |
-| `oi` | 持仓量_期货历史同月 | DATE | xla去前缀变体 |
+| `oiamount` | 持仓额 | TRADEDATE | xla去前缀变体 |
+| `oiamount_nomargin` | 持仓额(不计保证金) | TRADEDATE | xla去前缀变体 |
 | `oichange` | 持仓变化_期货历史同月 | DATE | xla去前缀变体 |
 | `oiratio` | 持仓量认沽认购比率 | SettlementMonth、TRADEDATE | xla去前缀变体 |
 | `op_active_undly` | 期权主力标的代码 | TRADEDATE | xla去前缀变体 |
@@ -3521,6 +3592,7 @@
 | `orps` | 每股营业收入 | REPORTDATE | xla去前缀变体 |
 | `orps_ttm` | 每股营业收入(TTM) |  | xla去前缀变体 |
 | `otherrisks` | 其他风险提示 |  | xla去前缀变体 |
+| `others` | 流通股(其他) | TRADEDATE | xla去前缀变体 |
 | `outstandingbalance` | 债券余额,B_info_OutstandingBalance(新增) | DATE | xla去前缀变体 |
 | `pandabonds` | 是否熊猫债 |  | xla去前缀变体 |
 | `par` | 转债面值 |  | xla去前缀变体 |
@@ -3804,8 +3876,8 @@
 | `prt_financialbondtonavgrowth` | 金融债市值占基金资产净值比例增长 |  | xla去前缀变体 |
 | `prt_foundleverage` | 基金杠杆率 | REPORTDATE | xla去前缀变体 |
 | `prt_fundcotnachangeratio` | 所属基金公司资产净值合计变动率 |  | xla去前缀变体 |
-| `prt_fundcototalnetassets` | 所属基金公司资产净值合计 |  | xla去前缀变体 |
-| `prt_fundnoofsec` | 重仓证券持有基金数 | REPORTDATE | xla去前缀变体 |
+| `prt_fundtoasset` | 基金市值占基金资产总值比 |  | xla去前缀变体 |
+| `prt_fundtonav` | 基金市值占基金资产净值比 |  | xla去前缀变体 |
 | `prt_heavyweightreitsfundname` | 重仓REITs基金名称 | REPORTDATE、TopN | xla去前缀变体 |
 | `prt_heavyweightreitsfundquantity` | 重仓REITs基金持仓数量 | REPORTDATE、TopN | xla去前缀变体 |
 | `prt_heavyweightreitsfundtonav` | 重仓REITs基金市值占基金资产净值比 | REPORTDATE、TopN | xla去前缀变体 |
@@ -3824,19 +3896,19 @@
 | `prt_industryvaluegrowth_citic` | 分行业市值增长率(中信) | REPORTDATE、IndustryName | xla去前缀变体 |
 | `prt_industryvaluegrowth_sw` | 分行业市值增长率(申万) | REPORTDATE、IndustryName | xla去前缀变体 |
 | `prt_industryvaluegrowth_sw2021` | 分行业市值增长率(申万2021) | REPORTDATE、IndustryName | xla去前缀变体 |
-| `prt_industryvaluegrowth_wind` | 分行业市值增长率(Wind) | REPORTDATE、IndustryName | xla去前缀变体 |
-| `prt_industryvaluetonav_citic` | 分行业投资市值占基金资产净值比(中信) | REPORTDATE、IndustryName | xla去前缀变体 |
-| `prt_industryvaluetonav_sw` | 分行业投资市值占基金资产净值比(申万) | REPORTDATE、IndustryName | xla去前缀变体 |
-| `prt_industryvaluetonav_sw2021` | 分行业投资市值占基金资产净值比(申万2021) | REPORTDATE、IndustryName | xla去前缀变体 |
-| `prt_industryvaluetonav_wind` | 分行业投资市值占基金资产净值比(Wind) | REPORTDATE、IndustryName | xla去前缀变体 |
-| `prt_industryvaluetostockvalue_citic` | 分行业投资市值占股票投资市值比(中信) | REPORTDATE、IndustryName | xla去前缀变体 |
-| `prt_industryvaluetostockvalue_sw` | 分行业投资市值占股票投资市值比(申万) | REPORTDATE、IndustryName | xla去前缀变体 |
-| `prt_industryvaluetostockvalue_sw2021` | 分行业投资市值占股票投资市值比(申万2021) | REPORTDATE、IndustryName | xla去前缀变体 |
-| `prt_industryvaluetostockvalue_wind` | 分行业投资市值占股票投资市值比(Wind) | REPORTDATE、IndustryName | xla去前缀变体 |
-| `prt_localgov` | 地方政府债市值 | REPORTDATE | xla去前缀变体 |
-| `prt_localgovtoasset` | 地方政府债市值占基金资产总值比 | REPORTDATE | xla去前缀变体 |
-| `prt_localgovtobond` | 地方政府债市值占债券投资净值比 | REPORTDATE | xla去前缀变体 |
-| `prt_localgovtonav` | 地方政府债市值占基金资产净值比 | REPORTDATE | xla去前缀变体 |
+| `prt_ncdbycreditrating` | 按信用评级的同业存单投资市值 | REPORTDATE、CreditRatingType、CalcType | xla去前缀变体 |
+| `prt_ncdbycreditratingtonav` | 按信用评级的同业存单投资占基金资产净值比 | REPORTDATE、CreditRatingType、CalcType | xla去前缀变体 |
+| `prt_ncdtobond` | 同业存单市值占债券投资市值比 | REPORTDATE | xla去前缀变体 |
+| `prt_netasset` | 基金资产净值 | REPORTDATE | xla去前缀变体 |
+| `prt_netassetchange` | 基金资产净值变动 |  | xla去前缀变体 |
+| `prt_netassetchangeratio` | 基金资产净值变动率 |  | xla去前缀变体 |
+| `prt_nonmoneynetassets` | 所属基金公司资产净值合计(非货币) | REPORTDATE | xla去前缀变体 |
+| `prt_other` | 其他资产 | REPORTDATE | xla去前缀变体 |
+| `prt_otherbond` | 其他债券市值 | REPORTDATE | xla去前缀变体 |
+| `prt_otherbondtonav` | 其他债券市值占基金资产净值比 | REPORTDATE | xla去前缀变体 |
+| `prt_othertoasset` | 其他资产占基金资产总值比 | REPORTDATE | xla去前缀变体 |
+| `prt_othertonav` | 其他资产占基金资产净值比 | REPORTDATE | xla去前缀变体 |
+| `prt_othertonavgrowth` | 其他资产市值占基金资产净值比例增长 |  | xla去前缀变体 |
 | `prt_othervaluegrowth` | 其他资产市值增长率 |  | xla去前缀变体 |
 | `prt_pcf_moddur` | PCF中债修正久期 | TRADEDATE | xla去前缀变体 |
 | `prt_pfbtoasset` | 政策性金融债市值占基金资产总值比 | REPORTDATE | xla去前缀变体 |
@@ -3845,6 +3917,7 @@
 | `prt_pfbvalue` | 政策性金融债市值 | REPORTDATE | xla去前缀变体 |
 | `prt_qdii_countryregioninvestment` | 国家/地区投资市值(QDII) |  | xla去前缀变体 |
 | `prt_qdii_countryregioninvestmenttonav` | 国家/地区投资市值占基金资产净值比例(QDII) |  | xla去前缀变体 |
+| `prt_reverserepo` | 买入返售金融资产 | REPORTDATE | xla去前缀变体 |
 | `prt_reverserepotonav` | 买入返售证券占基金资产净值比例 | REPORTDATE | xla去前缀变体 |
 | `prt_seclendingvalue` | 转融通证券出借业务市值 | REPORTDATE | xla去前缀变体 |
 | `prt_seclendingvaluetoasset` | 转融通证券出借业务市值占基金资产总值比 | REPORTDATE | xla去前缀变体 |
@@ -4172,6 +4245,7 @@
 | `reits_dividendyield` | 股息率TTM | TRADEDATE | xla去前缀变体 |
 | `reits_fixmanagfee` | 固定管理费 | REPORTDATE | xla去前缀变体 |
 | `reits_flomanagfee` | 浮动管理费 | REPORTDATE | xla去前缀变体 |
+| `reits_pffo` | P / FFO | TRADEDATE | xla去前缀变体 |
 | `reits_unitdistributableamount` | 近一年单位可供分配金额 | TRADEDATE | xla去前缀变体 |
 | `rel_ipo_chg` | 上市后涨跌幅 |  | 探测法实测 |
 | `relatedbond` | 公司发行债券一览 |  | xla去前缀变体 |
@@ -4209,6 +4283,7 @@
 | `return_ytd` | 今年以来回报 |  | xla去前缀变体 |
 | `returntype` | 收益处理方式 |  | xla去前缀变体 |
 | `revenuetoassets` | 营业收入／总资产 | REPORTDATE | xla去前缀变体 |
+| `rho` | Rho | DEALDATE | xla去前缀变体 |
 | `rho_exch` | Rho(交易所) | TRADEDATE | xla去前缀变体 |
 | `rightsissue_actlnumtoemp` | 职工股实际配股数(新增) |  | xla去前缀变体 |
 | `rightsissue_actlnumtojur` | 法人股实际配股数(新增) |  | xla去前缀变体 |
@@ -4301,7 +4376,6 @@
 | `sechighbondrate` | 债券次高信用评级 | DEALDATE | xla去前缀变体 |
 | `sechighrating` | 发行人次高信用评级 | DEALDATE | xla去前缀变体 |
 | `secondarycapital` | 是否二级资本债 |  | xla去前缀变体 |
-| `sei` | 所属战略性新兴产业分类 | TRADEDATE、TYPE | xla去前缀变体 |
 | `settle` | 结算价_期货历史同月 | DATE | xla去前缀变体 |
 | `settlementmethod` | 结算方式 |  | xla去前缀变体 |
 | `sharpe` | Sharpe(新增) | TD1、TD2 | xla去前缀变体 |
@@ -4328,10 +4402,8 @@
 | `spread2` | 行权后利差 |  | xla去前缀变体 |
 | `spreadyield_cnbd` | 点差收益率 | TRADEDATE | xla原码 |
 | `srmi` | SRMI MI修正指标 |  | xla原码 |
-| `ssbpco` | 单季度.主营构成(按产品)-项目成本 | REPORTDATE、TopN | xla去前缀变体 |
-| `ssbpgp` | 单季度.主营构成(按产品)-项目毛利 | REPORTDATE、TopN | xla去前缀变体 |
 | `ssbrre` | 单季度.主营构成(按地区)-项目收入 | REPORTDATE、TopN | xla去前缀变体 |
-| `st_efforecast` | 有效预报 | TRADEDATE | xla去前缀变体 |
+| `st_efforecast` |  | TRADEDATE | xla去前缀变体 |
 | `st_stock` | 注册仓单数量 |  | xla去前缀变体 |
 | `staff_sub_ratio` | 管理人员工认购比例 |  | xla去前缀变体 |
 | `staff_sub_shares` | 管理人员工认购份额 |  | xla去前缀变体 |
@@ -4523,6 +4595,8 @@
 | `stm_navchange_7_paidincapital` | 基金申购款(实收基金) | REPORTDATE | xla去前缀变体 |
 | `stm_navchange_8_paidincapital` | 基金赎回款(实收基金) | REPORTDATE | xla去前缀变体 |
 | `stm_ra` | 受限资产 | REPORTDATE、TYPE | xla去前缀变体 |
+| `stm_rpt_e` | Get the end date of report | DATE、DATETYPE | xla去前缀变体 |
+| `stm_rpt_s` | Get the start date of report | DATE、DATETYPE | xla去前缀变体 |
 | `stmnote_ar_1` | 应收账款-金额 | REPORTDATE | xla去前缀变体 |
 | `stmnote_ar_2` | 应收账款-比例 | REPORTDATE | xla去前缀变体 |
 | `stmnote_arratio_cat` | 应收账款-比例(按性质) | REPORTDATE、Category | xla去前缀变体 |
@@ -4788,56 +4862,6 @@
 | `stmnote_bank_ibasst` | 同业资产 | REPORTDATE、TYPE | xla去前缀变体 |
 | `stmnote_bank_ibasstpct` | 同业资产占比 | REPORTDATE、TYPE | xla去前缀变体 |
 | `stmnote_bank_ibliabty` | 同业负债 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_bank_ibliabtypct` | 同业负债占比 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_bank_impair` | 计提减值准备 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_bank_ldr` | 贷款逾期率 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_bank_netequitycap` | 资本净额(2013) | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_bank_rl` | 已重组贷款 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_bank_rsf` | 所需的稳定资金 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_dpst_4406` | 美元存款(折算人民币) | REPORTDATE | xla去前缀变体 |
-| `stmnote_dpst_4407` | 日元存款(折算人民币) | REPORTDATE | xla去前缀变体 |
-| `stmnote_dpst_4408` | 欧元存款(折算人民币) | REPORTDATE | xla去前缀变体 |
-| `stmnote_dpst_4409` | 港币存款(折算人民币) | REPORTDATE | xla去前缀变体 |
-| `stmnote_dpst_4410` | 英镑存款(折算人民币) | REPORTDATE | xla去前缀变体 |
-| `stmnote_dpst_4411` | 其他货币存款(折算人民币) | REPORTDATE | xla去前缀变体 |
-| `stmnote_dpst_4412` | 银行存款合计 | REPORTDATE | xla去前缀变体 |
-| `stmnote_eduandunionfunds_add` | 工会经费和职工教育经费:本期增加 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_eduandunionfunds_de` | 工会经费和职工教育经费:本期减少 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_eduandunionfunds_eb` | 工会经费和职工教育经费:期末余额 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_eduandunionfunds_sb` | 工会经费和职工教育经费:期初余额 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_emplinjuryins_add` | 工伤保险费:本期增加 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_emplinjuryins_de` | 工伤保险费:本期减少 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_emplinjuryins_eb` | 工伤保险费:期末余额 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_emplinjuryins_sb` | 工伤保险费:期初余额 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_emplpayable_add` | 应付职工薪酬合计:本期增加 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_emplpayable_de` | 应付职工薪酬合计:本期减少 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_emplpayable_eb` | 应付职工薪酬合计:期末余额 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_emplpayable_sb` | 应付职工薪酬合计:期初余额 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_eoitems_10` | 企业合并产生的损益 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_eoitems_11` | 非货币性资产交换损益 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_eoitems_12` | 委托投资损益 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_eoitems_13` | 资产减值准备 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_eoitems_14` | 债务重组损益 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_eoitems_15` | 企业重组费用 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_eoitems_16` | 交易产生的损益 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_eoitems_17` | 同一控制下企业合并产生的子公司当期净损益 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_eoitems_18` | 预计负债产生的损益 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_eoitems_19` | 其他营业外收支净额 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_eoitems_20` | 中国证监会认定的其他项目 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_eoitems_21` | 非经常性损益项目小计 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_eoitems_22` | 所得税影响数 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_eoitems_23` | 少数股东损益影响数 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_eoitems_24` | 非经常性损益项目合计 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_eoitems_28` | 持有(或处置)交易性金融资产和负债产生的公允价值变动损益 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_eoitems_29` | 单独进行监制测试的应收款项减值准备转回 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_eoitems_30` | 对外委托贷款取得的收益 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_eoitems_31` | 公允价值法计量的投资性房地产价值变动损益 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_eoitems_32` | 法规要求一次性损益调整影响 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_eoitems_33` | 受托经营取得的托管费收入 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_eoitems_6` | 非流动资产处置损益 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_eoitems_7` | 税收返还、减免 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_eoitems_8` | 政府补助 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_eoitems_9` | 资金占用费 | REPORTDATE、TYPE | xla去前缀变体 |
 | `stmnote_faaviableforsale_0001` | 可供出售金融资产:产生的利得/(损失) | REPORTDATE、TYPE | xla去前缀变体 |
 | `stmnote_faaviableforsale_0002` | 可供出售金融资产:产生的所得税影响 | REPORTDATE、TYPE | xla去前缀变体 |
 | `stmnote_faaviableforsale_0003` | 可供出售金融资产:前期计入其他综合收益当期转入损益的金额 | REPORTDATE、TYPE | xla去前缀变体 |
@@ -5083,12 +5107,12 @@
 | `stmnote_np_1` | 应付票据-商业承兑汇票 | REPORTDATE、TYPE | xla去前缀变体 |
 | `stmnote_np_2` | 应付票据-银行承兑汇票 | REPORTDATE、TYPE | xla去前缀变体 |
 | `stmnote_np_3` | 应付票据-其他 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_np_total` | 应付票据-合计 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_npls` | 租赁资产不良率 | Year | xla去前缀变体 |
-| `stmnote_nr_1` | 应收票据-商业承兑汇票 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_nr_2` | 应收票据-银行承兑汇票 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_nr_3` | 应收票据-其他 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_nr_total` | 应收票据-合计 | REPORTDATE、TYPE | xla去前缀变体 |
+| `stmnote_others_7630` | 租赁费(销售费用) | REPORTDATE、TYPE | xla去前缀变体 |
+| `stmnote_others_7631` | 租赁费(管理费用) | REPORTDATE、TYPE | xla去前缀变体 |
+| `stmnote_others_7632` | 仓储运输费(销售费用) | REPORTDATE、TYPE | xla去前缀变体 |
+| `stmnote_others_7633` | 广告宣传推广费(销售费用) | REPORTDATE、TYPE | xla去前缀变体 |
+| `stmnote_others_7634` | 业务招待费(管理费用) | REPORTDATE、TYPE | xla去前缀变体 |
+| `stmnote_others_7635` | 差旅费(管理费用) | REPORTDATE、TYPE | xla去前缀变体 |
 | `stmnote_others_7636` | 一年内到期的长期借款 | REPORTDATE、TYPE | xla去前缀变体 |
 | `stmnote_others_7637` | 一年内到期的应付债券 | REPORTDATE、TYPE | xla去前缀变体 |
 | `stmnote_others_7639` | 短期融资债(其他流动负债) | REPORTDATE、TYPE | xla去前缀变体 |
@@ -5106,12 +5130,12 @@
 | `stmnote_others_7651` | 研发费用-股份支付 | REPORTDATE、TYPE | xla去前缀变体 |
 | `stmnote_patentright` | 专利权_账面价值 | REPORTDATE、TYPE | xla去前缀变体 |
 | `stmnote_profitapr_1` | 期初未分配利润 | REPORTDATE | xla去前缀变体 |
-| `stmnote_profitapr_10` | 提取一般风险准备 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_profitapr_2` | 本报告期实现净利润 | REPORTDATE | xla去前缀变体 |
-| `stmnote_profitapr_3` | 期末可分配利润 | REPORTDATE | xla去前缀变体 |
-| `stmnote_profitapr_4` | 支付普通股股利 | REPORTDATE | xla去前缀变体 |
-| `stmnote_profitapr_5` | 提取法定盈余公积 | REPORTDATE | xla去前缀变体 |
-| `stmnote_profitapr_6` | 提取任意公积金 | REPORTDATE | xla去前缀变体 |
+| `stmnote_rdexp_cost` | 本期费用化研发支出 | REPORTDATE | xla去前缀变体 |
+| `stmnote_rdexp_costtosales` | 研发费用占营业收入比例 | REPORTDATE、TYPE | xla去前缀变体 |
+| `stmnote_rdexp_pct` | 研发投入资本化的比重 | REPORTDATE、TYPE | xla去前缀变体 |
+| `stmnote_rdexptosales` | 研发支出总额占营业收入比例 | REPORTDATE | xla去前缀变体 |
+| `stmnote_rdinv` | 研发费用-直接投入 | REPORTDATE | xla去前缀变体 |
+| `stmnote_rdlease` | 研发费用-租赁费 | REPORTDATE | xla去前缀变体 |
 | `stmnote_rdothers` | 研发费用-其他 | REPORTDATE | xla去前缀变体 |
 | `stmnote_rdsalary` | 研发费用-工资薪酬 | REPORTDATE | xla去前缀变体 |
 | `stmnote_rdtravel` | 研发费用-差旅费 | REPORTDATE、TYPE | xla去前缀变体 |
@@ -5184,25 +5208,50 @@
 | `stmnote_securitieslending_4` | 融出证券:转融通融入证券 | REPORTDATE、TYPE | xla去前缀变体 |
 | `stmnote_securitieslending_5` | 融出证券:转融通融入证券余额 | REPORTDATE、TYPE | xla去前缀变体 |
 | `stmnote_securitieslending_6` | 融出证券:减值准备 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_tax` | 债券/报表附注函数/所得税税率 | RPTYEAR | xla去前缀变体 |
-| `stmnote_tax_building` | 房产税 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_tax_business` | 营业税金及附加合计 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_tax_construction` | 城建税 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_tax_consumption` | 消费税 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_tax_edesupplementtary` | 教育费附加 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_tax_oth` | 其他营业税金及附加 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_tax_stamp` | 印花税 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_tax_urbanlanduse` | 土地使用税 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_tfa_1` | 交易性金融资产-股票/股权 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_tfa_10` | 交易性金融资产-债券/债务 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_tfa_11` | 交易性金融资产-信托 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_tfa_12` | 交易性金融资产-理财产品 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_tfa_13` | 交易性金融资产-永续债/优先股 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_tfa_14` | 交易性金融资产-资管产品 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_tfa_15` | 交易性金融资产-非上市股权 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_tfa_2` | 交易性金融资产-贵金属 | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_tfa_3` | 交易性金融资产-基金(合计) | REPORTDATE、TYPE | xla去前缀变体 |
-| `stmnote_tfa_4` | 交易性金融资产-基金(其他) | REPORTDATE、TYPE | xla去前缀变体 |
+| `stmnote_seg_1501` | 海外业务收入 | REPORTDATE | xla去前缀变体 |
+| `stmnote_seg_1501_pct` | 境外业务收入占比 | REPORTDATE | xla去前缀变体 |
+| `stmnote_seg_1502` | 境外业务成本 | REPORTDATE | xla去前缀变体 |
+| `stmnote_seg_1503` | 境外业务毛利率 | REPORTDATE | xla去前缀变体 |
+| `stmnote_seg_1701` | 主营业务收入 | REPORTDATE、TYPE | xla去前缀变体 |
+| `stmnote_seg_1702` | 主营业务成本 | REPORTDATE、TYPE | xla去前缀变体 |
+| `stmnote_seg_1703` | 其他业务收入 | REPORTDATE、TYPE | xla去前缀变体 |
+| `stmnote_seg_1704` | 其他业务成本 | REPORTDATE、TYPE | xla去前缀变体 |
+| `stmnote_seg_1705` | 营业收入扣除后金额 | REPORTDATE、TYPE | xla去前缀变体 |
+| `stmnote_socialsecurity_add` | 社会保险费:本期增加 | REPORTDATE、TYPE | xla去前缀变体 |
+| `stmnote_socialsecurity_de` | 社会保险费:本期减少 | REPORTDATE、TYPE | xla去前缀变体 |
+| `stmnote_socialsecurity_eb` | 社会保险费:期末余额 | REPORTDATE、TYPE | xla去前缀变体 |
+| `stmnote_socialsecurity_sb` | 社会保险费:期初余额 | REPORTDATE、TYPE | xla去前缀变体 |
+| `stmnote_software` | 软件_账面价值 | REPORTDATE、TYPE | xla去前缀变体 |
+| `stmnote_spuar_0001` | 买入返售金融资产:证券 | REPORTDATE、TYPE | xla去前缀变体 |
+| `stmnote_spuar_0002` | 买入返售金融资产:票据 | REPORTDATE、TYPE | xla去前缀变体 |
+| `stmnote_spuar_0003` | 买入返售金融资产:贷款 | REPORTDATE、TYPE | xla去前缀变体 |
+| `stmnote_spuar_0004` | 买入返售金融资产:信托及其他受益权 | REPORTDATE、TYPE | xla去前缀变体 |
+| `stmnote_spuar_0005` | 买入返售金融资产:长期应收款 | REPORTDATE、TYPE | xla去前缀变体 |
+| `stmnote_spuar_0006` | 买入返售金融资产:其他担保物 | REPORTDATE、TYPE | xla去前缀变体 |
+| `stmnote_spuar_0007` | 买入返售金融资产:减值准备 | REPORTDATE、TYPE | xla去前缀变体 |
+| `stmnote_spuar_10001` | 买入返售金融资产:股票质押式回购 | REPORTDATE、TYPE | xla去前缀变体 |
+| `stmnote_spuar_10002` | 买入返售金融资产:约定购回式证券 | REPORTDATE、TYPE | xla去前缀变体 |
+| `stmnote_spuar_10003` | 买入返售金融资产:债券买断式回购 | REPORTDATE、TYPE | xla去前缀变体 |
+| `stmnote_spuar_10004` | 买入返售金融资产:债券质押式回购 | REPORTDATE、TYPE | xla去前缀变体 |
+| `stmnote_spuar_10005` | 买入返售金融资产:其他 | REPORTDATE、TYPE | xla去前缀变体 |
+| `stmnote_spuar_10006` | 买入返售金融资产合计 | REPORTDATE、TYPE | xla去前缀变体 |
+| `stmnote_spuar_10007` | 买入返售金融资产:债券回购 | REPORTDATE、TYPE | xla去前缀变体 |
+| `stmnote_stborrow_4505` | 人民币短期借款 | REPORTDATE | xla去前缀变体 |
+| `stmnote_stborrow_4506` | 美元短期借款(折算人民币) | REPORTDATE | xla去前缀变体 |
+| `stmnote_stborrow_4507` | 日元短期借款(折算人民币) | REPORTDATE | xla去前缀变体 |
+| `stmnote_stborrow_4508` | 欧元短期借款(折算人民币) | REPORTDATE | xla去前缀变体 |
+| `stmnote_stborrow_4509` | 港币短期借款(折算人民币) | REPORTDATE | xla去前缀变体 |
+| `stmnote_stborrow_4510` | 英镑短期借款(折算人民币) | REPORTDATE | xla去前缀变体 |
+| `stmnote_stborrow_4511` | 其他货币短期借款(折算人民币) | REPORTDATE | xla去前缀变体 |
+| `stmnote_stborrow_4512` | 短期借款小计 | REPORTDATE | xla去前缀变体 |
+| `stmnote_stborrow_4513` | 质押短期借款 | REPORTDATE | xla去前缀变体 |
+| `stmnote_stborrow_4514` | 抵押短期借款 | REPORTDATE | xla去前缀变体 |
+| `stmnote_stborrow_4515` | 保证短期借款 | REPORTDATE | xla去前缀变体 |
+| `stmnote_stborrow_4516` | 信用短期借款 | REPORTDATE | xla去前缀变体 |
+| `stmnote_stborrow_4517` | 其他短期借款 | REPORTDATE | xla去前缀变体 |
+| `stmnote_stempl_add` | 短期薪酬:本期增加 | REPORTDATE、TYPE | xla去前缀变体 |
+| `stmnote_stempl_de` | 短期薪酬:本期减少 | REPORTDATE、TYPE | xla去前缀变体 |
+| `stmnote_stempl_ed` | 短期薪酬:期末余额 | REPORTDATE、TYPE | xla去前缀变体 |
 | `stmnote_tfa_5` | 交易性金融资产-私募基金 | REPORTDATE、TYPE | xla去前缀变体 |
 | `stmnote_tfa_6` | 交易性金融资产-公募基金 | REPORTDATE、TYPE | xla去前缀变体 |
 | `stmnote_tfa_7` | 交易性金融资产-票据 | REPORTDATE、TYPE | xla去前缀变体 |
@@ -5271,6 +5320,8 @@
 | `tbf_basis01` | 基差 | FuturePriceType、DeliveryCode、TRADEDATE | xla去前缀变体 |
 | `tbf_basis02` | 基差(CTD) | PRICETYPE、TradingVenue、TRADEDATE | xla去前缀变体 |
 | `tbf_bonddeliverydate` | 交券日 | TRADEDATE | xla去前缀变体 |
+| `tbf_ctd` | CTD | TRADEDATE、ExchangeType | xla去前缀变体 |
+| `tbf_ctd02` | CTD | PriceType、TradingVenue、TRADEDATE | xla去前缀变体 |
 | `tbf_ctd2` | CTD(支持历史) | TRADEDATE | xla去前缀变体 |
 | `tbf_cvf` | 转换因子 |  | xla去前缀变体 |
 | `tbf_cvf2` | 转换因子 |  | xla去前缀变体 |
@@ -5286,6 +5337,9 @@
 | `tbf_interestpayment` | 区间付息 | DeliveryCode、TRADEDATE | xla去前缀变体 |
 | `tbf_invoiceprice` | 发票价格 | TRADEDATE | xla去前缀变体 |
 | `tbf_invoiceprice01` | 发票价格 | FuturePriceType、DeliveryCode、TRADEDATE | xla去前缀变体 |
+| `tbf_irr` | IRR | TRADEDATE、TYPE | xla去前缀变体 |
+| `tbf_irr01` | IRR | FuturePriceType、DeliveryCode、TRADEDATE | xla去前缀变体 |
+| `tbf_irr02` | IRR(CTD) | PriceType、TradingVenue、TRADEDATE | xla去前缀变体 |
 | `tbf_irr2` | IRR(支持历史) | TRADEDATE、PRICETYPE | xla去前缀变体 |
 | `tbf_lastdeliverydate` | 最后交割日 | TRADEDATE | xla去前缀变体 |
 | `tbf_netbasis` | 净基差 | TRADEDATE | xla去前缀变体 |
@@ -5333,6 +5387,7 @@
 | `thematicindustry_sib` | 所属科创板主题行业 | TRADEDATE、TYPE | xla去前缀变体 |
 | `thematicindustry_wind` | 所属Wind主题行业名称 | TRADEDATE | xla去前缀变体 |
 | `theoryvalue` | 理论价格 |  | xla去前缀变体 |
+| `theta` | Theta | DEALDATE | xla去前缀变体 |
 | `theta_exch` | Theta(交易所) | TRADEDATE | xla去前缀变体 |
 | `thours` | 交易时间说明 |  | xla去前缀变体 |
 | `thours2` | 交易时间说明 | TRADEDATE | xla去前缀变体 |
@@ -5357,7 +5412,7 @@
 | `towithdrawalamt` | 撤标总金额 |  | xla去前缀变体 |
 | `trackedbyfunds` | 跟踪标的基金代码 | TRADEDATE | xla去前缀变体 |
 | `trackedbyfundsnum` | 跟踪标的基金数量 | TRADEDATE | xla去前缀变体 |
-| `tradecode` | 期权交易代码 | TRADEDATE | xla去前缀变体 |
+| `tradecode` |  | stock | xla去前缀变体 |
 | `tradefee` | 期权交易手续费 | DEALDATE | xla去前缀变体 |
 | `tradeyiled_broker` | 成交收盘收益率(经纪商) | TRADEDATE | xla去前缀变体 |
 | `tranche` | 各级发行总额 | Tranche | xla去前缀变体 |
@@ -5428,6 +5483,7 @@
 | `ussharewindcode` | 同公司美股Wind代码 |  | xla去前缀变体 |
 | `valueatrisk_historical` | 历史VaR | StartDate、EndDate | xla去前缀变体 |
 | `valueatrisk_param` | 参数VaR | StartDate、EndDate | xla去前缀变体 |
+| `vega` | Vega | DEALDATE | xla去前缀变体 |
 | `vega_exch` | Vega(交易所) | TRADEDATE | xla去前缀变体 |
 | `vhf` | VHF纵横指标 |  | xla原码 |
 | `vic` | 经办评估人员 |  | xla去前缀变体 |
@@ -5436,6 +5492,7 @@
 | `vmacd` | VMACD量指数平滑异同平均 |  | xla原码 |
 | `vobp_cnbd` | 加权平均结算价基点价值 | TRADEDATE | xla原码 |
 | `vobp_shc` | 估价基点价值(上海清算所) |  | xla去前缀变体 |
+| `vol_ratio` | 量比 |  | xla去前缀变体 |
 | `volatilityratio` | 历史波动率 | TRADEDATE | xla去前缀变体 |
 | `volume` | 成交量 |  | 探测法实测 |
 | `volume_aht` | 盘后成交量 | TRADEDATE | xla去前缀变体 |
@@ -5446,6 +5503,7 @@
 | `vote` | 是否存在投票权差异 | TRADEDATE | xla去前缀变体 |
 | `vstd` | VSTD成交量标准差 |  | xla原码 |
 | `vwap` | 均价VWAP |  | 探测法实测 |
+| `war_lasttradedate` |  |  | xla去前缀变体 |
 | `website` | 公司网站 |  | xla去前缀变体 |
 | `weightedrt` | 加权剩余期限(年）(新增) |  | xla去前缀变体 |
 | `weightedrt2` | 加权剩余期限(按本金) | TRADEDATE | xla去前缀变体 |
