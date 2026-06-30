@@ -120,52 +120,106 @@ def decompress(buf):
     return bytes(out)
 
 
+def module_offsets(ole):
+    """解析 VBA `dir` 流(MS-OVBA),返回 {模块名: MODULEOFFSET}。
+    MODULEOFFSET(rid 0x0031)指向模块流里真正压缩源码的起点,跳过 PerformanceCache。"""
+    d = decompress(ole.get("dir"))
+    offs = {}
+    p = 0
+    while True:
+        p = d.find(b"\x19\x00", p)   # MODULENAME(0x0019)
+        if p < 0:
+            break
+        sz = struct.unpack("<I", d[p + 2:p + 6])[0]
+        if 0 < sz < 64:
+            raw_nm = d[p + 6:p + 6 + sz]
+            if all(c >= 0x20 or c > 127 for c in raw_nm):
+                nm = raw_nm.decode("gbk", "ignore")
+                o = d.find(b"\x31\x00\x04\x00\x00\x00", p)  # MODULEOFFSET(0x0031,size4)
+                if o >= 0:
+                    offs[nm] = struct.unpack("<I", d[o + 6:o + 10])[0]
+        p += 2
+    return offs
+
+
 def main():
     os.makedirs(RAW, exist_ok=True)
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     ole = Ole(open(XLA, "rb").read())
+    offs = module_offsets(ole)
     modules = [n for n in ole.ents if n.startswith("NewFunc")]
-    print("VBA 模块流:", modules)
+    print("VBA 模块流:", modules, "offsets:", {m: offs.get(m) for m in modules})
 
     text = ""
     for m in modules:
         raw = ole.get(m)
-        # VBA 模块流 = PerformanceCache + CompressedSourceCode。
-        # 压缩容器从某个 0x01 字节起;扫描首个 0x01 后能成功解压的位置。
-        best = b""
-        for off in range(0, min(len(raw), 8192)):
-            if raw[off] == 0x01:
-                try:
-                    dec = decompress(raw[off:])
-                except Exception:
-                    continue
-                if len(dec) > len(best):
-                    best = dec
-                if len(best) > 100000:
-                    break
-        src = best.decode("gbk", "ignore")
+        off = offs.get(m)
+        if off is None or off >= len(raw):
+            print(f"  {m}: 无有效 MODULEOFFSET,跳过")
+            continue
+        # 真源码压缩容器从 MODULEOFFSET 起(跳过 PerformanceCache)
+        src = decompress(raw[off:]).decode("gbk", "ignore")
         open(os.path.join(RAW, m + ".bas"), "w", encoding="utf-8").write(src)
         text += "\n" + src
-        print(f"  {m}: raw {len(raw)} -> 解压 {len(best)} bytes")
+        kw = src.count("Function") + src.count("Sub ")
+        print(f"  {m}: raw {len(raw)} @off {off} -> 源码 {len(src)} 字符 (VBA关键字 {kw})")
 
     _extract_pairs(text)
 
 
 def _extract_pairs(text):
-    # 字段代码↔中文名配对:VBA 源码里常见模式如
-    #   "字段代码","中文名"  /  Array("code","中文")  / code = "中文"
-    pairs = {}
-    for code, name in re.findall(r'["\x27]([a-zA-Z][a-zA-Z0-9_]{1,30})["\x27]\s*,\s*["\x27]([^"\x27]{1,40})["\x27]', text):
-        if re.search(r"[一-鿿]", name) and "_" in code or code.islower():
-            pairs.setdefault(code.lower(), name)
-    print(f"\n提取『代码→中文』配对: {len(pairs)}")
+    """从解压 VBA 源码提取字段。每字段一个 Function,其上一行注释为
+    `'中文名,字段代码`(代码即 Function 名,大写形式)。同时抓 Function 形参作参数列。
+    例:
+        '预测每股收益(明细值),S_Est_EPS_Inst
+        Function s_est_eps_inst(WINDCODE_ As Variant, RPTYEAR_ As Integer, ParamArray ...) As Variant
+    """
+    rows = {}
+    lines = text.replace("\r", "").split("\n")
+    func_re = re.compile(r"^\s*(?:Public\s+|Private\s+)?Function\s+([a-zA-Z][a-zA-Z0-9_]*)\s*\(([^)]*)\)", re.I)
+    for i, ln in enumerate(lines):
+        m = func_re.match(ln)
+        if not m:
+            continue
+        code = m.group(1).lower()
+        params = m.group(2)
+        # 上一行注释取中文名
+        cname = ""
+        if i > 0:
+            c = lines[i - 1].strip()
+            if c.startswith("'"):
+                body = c[1:].strip()
+                # 形如 中文名,Code —— 末段是代码,前段是中文名
+                if "," in body:
+                    head, tail = body.rsplit(",", 1)
+                    if tail.strip().lower() == code:
+                        cname = head.strip()
+                    else:
+                        cname = body
+                else:
+                    cname = body
+        if not re.search(r"[一-鿿]", cname):
+            continue   # 无中文名的(内部辅助函数)跳过
+        # 形参名(去掉类型/可选/ParamArray)作可读参数
+        pnames = []
+        for seg in params.split(","):
+            seg = seg.strip()
+            if not seg:
+                continue
+            pn = re.sub(r"^(ByVal|ByRef|Optional|ParamArray)\s+", "", seg, flags=re.I)
+            pn = pn.split(" As ")[0].split("(")[0].strip().rstrip("_")
+            if pn and pn.lower() not in ("windcode", "paramset", "optionalparams"):
+                pnames.append(pn)
+        rows[code] = (cname, "、".join(pnames))
+    print(f"\n提取字段(带中文名): {len(rows)}")
     import csv
     with open(OUT, "w", encoding="utf-8-sig", newline="") as f:
         w = csv.writer(f)
-        w.writerow(["字段代码", "中文名"])
-        for code in sorted(pairs):
-            w.writerow([code, pairs[code]])
-    print("样例:", list(pairs.items())[:15])
+        w.writerow(["字段代码", "字段(大写)", "中文名", "参数"])
+        for code in sorted(rows):
+            cname, pn = rows[code]
+            w.writerow([code, code.upper(), cname, pn])
+    print("样例:", [(c, rows[c][0]) for c in list(rows)[:12]])
     print("->", OUT)
 
 
