@@ -29,7 +29,7 @@ logging.basicConfig(
 logger = logging.getLogger("stocksdk")
 
 # 路由依赖 SDK，须在 .env 加载后导入
-from stocksdk import routes_em, routes_health, routes_qmt, routes_ths, routes_wind, routes_ws  # noqa: E402
+from stocksdk import routes_em, routes_health, routes_qmt, routes_tdx, routes_ths, routes_wind, routes_ws  # noqa: E402
 
 
 @asynccontextmanager
@@ -42,7 +42,7 @@ async def _lifespan(_app: FastAPI):
     yield
 
 
-app = FastAPI(title="股票数据服务", description="EM + iFinD + Wind 取数 + QMT 交易统一接口", lifespan=_lifespan)
+app = FastAPI(title="股票数据服务", description="EM + iFinD + Wind + TDX 取数 + QMT 交易统一接口", lifespan=_lifespan)
 
 # CORS：默认拒绝跨域；CORS_ORIGINS 显式配置白名单才放开。
 _cors_origins = get_cors_origins()
@@ -57,6 +57,7 @@ if _cors_origins:
 app.include_router(routes_em.router)
 app.include_router(routes_ths.router)
 app.include_router(routes_wind.router)
+app.include_router(routes_tdx.router)
 app.include_router(routes_qmt.router)
 app.include_router(routes_ws.router)
 app.include_router(routes_health.router)

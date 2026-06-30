@@ -23,8 +23,29 @@ from stocksdk.config import (
     get_qmt_package_dir,
     get_qmt_session_id,
     get_qmt_userdata_path,
+    get_tdx_pyplugins_dir,
     require_ths_credentials,
 )
+
+
+def _bootstrap_tdx_path() -> None:
+    """把通达信 tqcenter 所在目录注入 sys.path（机制同 _bootstrap_xtquant_path）。
+
+    tqcenter 依赖同目录的 TPyth*.dll/tdxrpc*.dll，故还用 os.add_dll_directory 加该目录。
+    测试下 conftest 已把 tqcenter 桩塞进 sys.modules，真实导入被跳过，此注入无副作用。
+    """
+    pkg = get_tdx_pyplugins_dir()
+    if not pkg or not os.path.isdir(pkg):
+        return
+    if pkg not in sys.path:
+        sys.path.append(pkg)
+    try:
+        os.add_dll_directory(pkg)
+    except (AttributeError, OSError):
+        pass
+
+
+_bootstrap_tdx_path()
 
 
 def _bootstrap_xtquant_path() -> None:
@@ -52,12 +73,15 @@ _bootstrap_xtquant_path()
 from xtquant.xttrader import XtQuantTrader, XtQuantTraderCallback   # noqa: E402
 from xtquant.xttype import StockAccount   # noqa: E402
 
+from tqcenter import tq as tdx   # noqa: E402  通达信 TQ 单例（类，方法直接 tdx.xxx()）
+
 # 全局锁：SDK 单会话，所有取数串行化。整个服务唯一一把锁。
 lock = threading.Lock()
 
 _em_ready = False
 _ths_ready = False
 _wind_ready = False
+_tdx_ready = False
 
 # 会话/登录失效类错误码（命中即强制重登重试）。
 # EM：10001009 登录数超限/被挤、10001005/10001006 未登录类、10001020 令牌失效。
@@ -203,6 +227,70 @@ def wind_exec(fn: Callable[[], Any]) -> Any:
     r = fn()
     if _wind_session_dead(r):
         ensure_wind(force=True)
+        r = fn()
+    return r
+
+
+# ============================================================================
+# 通达信 TQ（TdxQuant）取数会话
+#
+# 与 EM/iFinD/Wind 同构的「单会话取数」：tqcenter.tq 是单例，首次使用时
+# ensure_tdx() 调 tq.initialize() 连本机通达信终端，之后取数经全局 lock 串行。
+# 前提：本机通达信金融终端已开启并登录（同 QMT 的 XtMiniQmt 模型）。
+# 返回 dict 带 'ErrorId' 字段（'0' 为成功）；TQ 无显式会话失效码，连接断时
+# initialize 会抛异常，由 tdx_exec 兜底重连重试一次。
+# ============================================================================
+
+# initialize 需要一个路径参数（官方样例传 __file__），仅用于 TQ 内部标识。
+_TDX_INIT_PATH = os.path.abspath(__file__)
+
+
+def ensure_tdx(force: bool = False) -> None:
+    """通达信 TQ 惰性初始化（依赖本机终端已登录，无需账号密码）。
+
+    force=True 无视 flag 重新 initialize。initialize 失败（终端未开/未登录）抛 502。
+    调用方须已持有全局 lock。
+    """
+    global _tdx_ready
+    if _tdx_ready and not force:
+        return
+    try:
+        tdx.initialize(_TDX_INIT_PATH)
+    except Exception as e:
+        _tdx_ready = False
+        raise HTTPException(502, "TDX 初始化失败（确认通达信终端已开启并登录）：{}".format(e))
+    _tdx_ready = True
+
+
+def _tdx_session_dead(result: Any) -> bool:
+    """通达信 TQ 返回是否表示会话/连接失效。
+
+    返回 dict 时看 ErrorId（非 '0'/0 且消息含登录关键词判失效）；
+    None / 空（取数彻底失败，常因终端断连）也视为失效，触发一次重连重试。
+    """
+    if result is None:
+        return True
+    if isinstance(result, dict):
+        eid = result.get("ErrorId")
+        if eid not in ("0", 0, None):
+            return _text_has_session_keyword(result.get("Error", "") or result.get("Msg", ""))
+    return False
+
+
+def tdx_exec(fn: Callable[[], Any]) -> Any:
+    """在已初始化会话里执行 TDX 取数 thunk；连接失效则重新 initialize 并重试一次。
+
+    调用方须已持有全局 lock（本函数不自己加锁，沿用现有串行化）。
+    """
+    ensure_tdx()
+    try:
+        r = fn()
+    except Exception:
+        ensure_tdx(force=True)
+        r = fn()
+        return r
+    if _tdx_session_dead(r):
+        ensure_tdx(force=True)
         r = fn()
     return r
 

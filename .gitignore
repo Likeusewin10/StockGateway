@@ -46,3 +46,6 @@ smallcap_scrape/_raw/
 
 # iFinD 命令生成器原始抓取(70MB,只提交归一化后的 CSV+手册)
 docs/catalog/_raw/
+
+# 通达信 TdxQuant 接口文档原始件(30MB PDF + 抽出的全文,只作本机参考,不入库)
+docs/catalog/tdx/_raw/

@@ -23,6 +23,12 @@ QMT_DEFAULT_DAILY_ORDER_CAP = 50      # 当日累计下单笔数上限
 # 导入前用 sys.path + os.add_dll_directory 显式注入；可经 QMT_PACKAGE_DIR 覆盖。
 QMT_DEFAULT_PACKAGE_DIR = r"D:\Softwares\君弘君智交易系统\bin.x64\Lib\site-packages"
 
+# ---- 通达信 TQ（TdxQuant，官方 Python 量化框架）取数接入默认值 ----
+# TDX 是第四个数据源（/tdx/*），与 EM/iFinD/Wind 并列，只读取数、不交易（交易类硬拦 403）。
+# tqcenter 模块在通达信终端安装目录的 PYPlugins\sys 下，依赖同目录 TPyth*.dll/tdxrpc*.dll。
+# import 前须把该目录注入 sys.path（机制同 QMT 的 _bootstrap_xtquant_path）。
+TDX_DEFAULT_PYPLUGINS_DIR = r"D:\Softwares\new_tdx64\PYPlugins\sys"
+
 # .env 路径：项目根目录（本文件位于 stocksdk/ 下，故取父目录的父目录）
 _ENV_PATH = Path(__file__).resolve().parent.parent / ".env"
 
@@ -130,3 +136,10 @@ def get_qmt_code_whitelist() -> list[str]:
     if not raw:
         return []
     return [c.strip() for c in raw.split(",") if c.strip()]
+
+
+# ---- 通达信 TQ 配置读取 ----
+
+def get_tdx_pyplugins_dir() -> str:
+    """tqcenter 所在目录（通达信终端 PYPlugins\\sys）。可经 TDX_PYPLUGINS_DIR 覆盖。"""
+    return os.environ.get("TDX_PYPLUGINS_DIR", TDX_DEFAULT_PYPLUGINS_DIR).strip()

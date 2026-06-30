@@ -56,6 +56,36 @@ def wind_result(r):
     }
 
 
+def tdx_result(r):
+    """通达信 TQ 返回统一成 JSON 友好结构。
+
+    TQ 返回三种形态：
+    - get_market_data：dict{字段名: DataFrame(index=股票码, columns=时间)} → 每个 DataFrame 转 records。
+    - get_market_snapshot/get_stock_info：扁平 dict（含 'ErrorId'）。
+    - query_*/get_stock_list/板块：list[dict] 或 list[str]。
+    失败判定：dict 的 ErrorId 非 '0'/0 → 502；list/其它直接返回。
+    """
+    import pandas as pd
+    if isinstance(r, dict):
+        eid = r.get("ErrorId")
+        if eid not in ("0", 0, None):
+            raise HTTPException(502, "TDX 取数失败：ErrorId={} {}".format(
+                eid, r.get("Error", "") or r.get("Msg", "")))
+        # get_market_data 形态：值是 DataFrame → 转 records
+        if any(isinstance(v, pd.DataFrame) for v in r.values()):
+            out = {}
+            for k, v in r.items():
+                if isinstance(v, pd.DataFrame):
+                    out[k] = v.reset_index().to_dict(orient="records")
+                else:
+                    out[k] = v
+            return out
+        return r
+    if isinstance(r, pd.DataFrame):
+        return r.reset_index().to_dict(orient="records")
+    return r
+
+
 def em_quote_to_dict(qd):
     """EmQuantData 推送对象 → JSON 友好 dict。"""
     if getattr(qd, "ErrorCode", 0) not in (0, None):

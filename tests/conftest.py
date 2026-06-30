@@ -112,8 +112,78 @@ class FakeWindClient:
         return FakeWindData(error_code=0)
 
 
-# ----------------------------- QMT（XtQuant）桩 -----------------------------
+# ----------------------------- 通达信 TQ 桩 -----------------------------
 
+class FakeTdxClient:
+    """模拟 tqcenter.tq（类，方法直接调用）。返回结构对齐官方文档。
+
+    测试钩子：
+    - get_market_data 对 code=='FAIL.SH' 返回空 dict（取数失败模拟）
+    - 各 dict 返回带 'ErrorId':'0'；snapshot/stock_info 为扁平 dict
+    """
+
+    def initialize(self, *a, **k):
+        return None
+
+    def close(self, *a, **k):
+        return None
+
+    def get_market_data(self, field_list=None, stock_list=None, period="1d", start_time="",
+                        end_time="", count=-1, dividend_type="none", fill_data=True):
+        import pandas as pd
+        codes = stock_list or ["600519.SH"]
+        idx = codes
+        return {
+            "Close": pd.DataFrame({"2026-06-30": [1185.49] * len(idx)}, index=idx),
+            "Open": pd.DataFrame({"2026-06-30": [1187.0] * len(idx)}, index=idx),
+            "ForwardFactor": pd.DataFrame({"2026-06-30": [1.0] * len(idx)}, index=idx),
+        }
+
+    def get_market_snapshot(self, stock_code, field_list=None):
+        return {"ItemNum": "3342", "LastClose": "34.21", "Now": "35.06",
+                "Buyp": ["35.05", "35.04"], "Sellp": ["35.06", "35.07"], "ErrorId": "0"}
+
+    def get_stock_info(self, stock_code, field_list=None):
+        return {"Name": "贵州茅台", "Unit": "100", "BelongHS300": "1", "ErrorId": "0"}
+
+    def get_financial_data(self, stock_list=None, field_list=None, start_time="",
+                          end_time="", report_type="report_time"):
+        return {"Fn193": {"688318.SH": 1.23}, "ErrorId": "0"}
+
+    def get_stock_list_in_sector(self, block_code, block_type=0, list_type=0):
+        return [{"Code": "600456.SH", "Name": "宝钛股份"}] if list_type else ["600456.SH"]
+
+    def get_stock_list(self, market=None, list_type=0):
+        return [{"Code": "600000.SH", "Name": "浦发银行"}] if list_type else ["600000.SH"]
+
+    def get_trading_dates(self, market, start_time="", end_time="", count=-1):
+        return ["20260629", "20260630"]
+
+    def get_divid_factors(self, stock_code, start_time="", end_time=""):
+        import pandas as pd
+        return pd.DataFrame({"factor": [1.0]}, index=["2026-06-30"])
+
+    def order_stock(self, *a, **k):
+        # 交易函数：不应被透传调用到（路由层 403 拦截）；桩存在仅供 methods 标注
+        return {"ErrorId": "0", "Value": 1}
+
+    def cancel_order_stock(self, *a, **k):
+        return {"ErrorId": "0", "Value": 1}
+
+    def query_stock_asset(self, *a, **k):
+        return {"Cash": "30234.07", "ErrorId": "0"}
+
+    def stock_account(self, *a, **k):
+        return 0
+
+    def subscribe_hq(self, *a, **k):
+        return {"ErrorId": "0"}
+
+    def send_message(self, *a, **k):
+        return {"ErrorId": "0"}
+
+
+# ----------------------------- QMT（XtQuant）桩 -----------------------------
 class _Obj:
     """通用属性容器，模拟 xttype 的 Xt* 数据对象。"""
 
@@ -244,6 +314,14 @@ def _install_fake_sdks():
     wind_mod.w = FakeWindClient()
     sys.modules["WindPy"] = wind_mod
 
+    # tqcenter 模块（通达信 TQ），导出 tq + tqconst
+    tq_mod = types.ModuleType("tqcenter")
+    tq_mod.tq = FakeTdxClient()
+    _tqconst = types.SimpleNamespace(STOCK_BUY=0, STOCK_SELL=1, PRICE_MY=0,
+                                     PRICE_SJ=1, PRICE_ZTJ=2, PRICE_DTJ=3)
+    tq_mod.tqconst = _tqconst
+    sys.modules["tqcenter"] = tq_mod
+
     # xtquant 包 + 子模块（xttrader/xttype/xtconstant）
     xt_pkg = types.ModuleType("xtquant")
     xt_const = types.ModuleType("xtquant.xtconstant")
@@ -298,6 +376,11 @@ def fake_wind():
 
 
 @pytest.fixture
+def fake_tdx():
+    return sys.modules["tqcenter"].tq
+
+
+@pytest.fixture
 def app_client(monkeypatch):
     """构建带鉴权关闭的 TestClient，并重置会话状态。"""
     monkeypatch.setenv("API_KEY", "")
@@ -317,6 +400,10 @@ def app_client(monkeypatch):
     importlib.reload(guards)
     import stocksdk.sessions as sessions
     importlib.reload(sessions)
+    # 限流器是进程级共享状态（60/60s），不随模块 reload 重置；逐测试清空命中记录，
+    # 避免累计请求数跨用例溢出导致 429（多源端点变多后尤其明显）。
+    import stocksdk.security as security
+    security._limiter._hits.clear()
     import app as app_module
     importlib.reload(app_module)
     return TestClient(app_module.app)
