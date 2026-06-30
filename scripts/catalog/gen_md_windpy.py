@@ -1,7 +1,7 @@
-"""把 docs/catalog/wind/windpy_fields.csv(5301 个 WindPy 实测认可字段)生成
+"""把 docs/catalog/wind/windpy_fields.csv(WindPy 实测认可字段,~5359 个)生成
 WindPy 字段手册——这是**真正可直接喂 /wind/wsd、/wind/wss 的命名口径**。
 
-与 gen_md_wind.py(xla Excel 插件口径,9689 字段,仅供查中文名/找指标)区别见手册抬头。
+与 gen_md_wind.py(xla Excel 插件口径,仅供查中文名/找指标)区别见手册抬头。
 按字段代码首段前缀粗分类。
 用法:.venv-api\\Scripts\\python scripts\\catalog\\gen_md_windpy.py
 输出:docs/catalog/WindPy字段手册.md
@@ -61,14 +61,15 @@ def main():
     md.append("> 🔴 **三套 Wind 字段口径区别(必读)**:\n>\n"
               "> | 口径 | 字段数 | 命名样例 | 用途 | 文件 |\n"
               "> |---|---|---|---|---|\n"
-              "> | **WindPy 实测(本表)** | 5301 | `close`/`pe_ttm`/`roe` | **可直接喂 `/wind/wss`** | `windpy_fields.csv` |\n"
-              "> | Excel 插件(xla) | 9689 | `s_dq_close`/`s_val_pe` | 查中文名/找指标,**不能直接喂 wss** | `xla_fields.csv` / `Wind指标字段手册.md` |\n"
+              "> | **WindPy 实测(本表)** | {} | `close`/`pe_ttm`/`roe` | **可直接喂 `/wind/wss`** | `windpy_fields.csv` |\n"
+              "> | Excel 插件(xla,2 个 .xla 并集) | 10069 | `s_dq_close`/`s_val_pe` | 查中文名/找指标,**不能直接喂 wss** | `xla_fields*.csv` / `Wind指标字段手册.md` |\n"
               "> | 探测子集(早期) | 130 | `close`/`open` | 已并入本表 | `probed_fields.csv` |\n>\n"
-              "> 本表由 xla 9689 码生成「原码 + 去 1 段前缀 + 去 2 段前缀」候选变体(25683 个),"
-              "批量喂 wss、二分定位,留下 5301 个被 Wind 字典认可的名。中文名取生成该名的最短源 xla 码的中文名。\n")
+              "> 本表由 xla 并集 10069 码生成「原码 + 渐进去前缀(去 1/2/3 段)」候选变体(28327 个),"
+              "批量喂 wss、二分定位,留下被 Wind 字典认可的名。中文名取生成该名的最短源 xla 码的中文名。\n".format(len(rows)))
+    md.append("> 📌 **为何不是「上万」(已深究确认这就是上限)**:① Wind 的 Excel 插件函数库(2 个 .xla 合并)本就只有 ~1 万个 Excel 口径码,是 Wind **自己 curated 的常用字段子集**;② 候选池从 9698 扩到并集 10069 + 更深变体后,wss 认可数仅从 5301 微增到本表数(**已饱和**),瓶颈是 wss 字典本身;③ `wsd` 与 `wss` 共用同一字段字典(实测 wsd 不认 wss 拒绝的名),无独立命名空间可榨;④ 字段名校验与品种无关,不存在「换品种解锁更多」。EM 1.85万含专题报表 ctr、iFinD 2.29万是 13 品种分别计数(跨品种重复),与本表「去重统一 wss 字段名空间」口径不同。更全的字段锁在 DLL 加密的 `Indicator.xml`/`wind_IndicatorTree.dat`(GUI 树用),WindPy 接口够不到。\n")
     md.append("> ⚠ **口径残余风险**:去前缀变体的中文名来自 xla 源码,极少数「去前缀后撞名」"
               "的字段,其中文名可能与该 WindPy 名的真实语义略有出入;基础高频字段(行情/估值/财务)已交叉核对无误。"
-              "生成脚本 `scripts/catalog/wind_verify_xla_fields.py`、`gen_md_windpy.py`。\n")
+              "生成脚本 `scripts/catalog/extract_wind_xla2.py`、`wind_verify_xla_fields.py`、`gen_md_windpy.py`。\n")
 
     md.append("\n## 总览\n")
     md.append("| 分类 | 字段数 | 跳转 |")
