@@ -1,8 +1,10 @@
-# 万得 Wind 字段手册（全量）
+# 万得 Wind 字段手册（Excel 插件 xla 口径 / 指标索引）
 
-> 共 **9689 个字段**,从 Wind 金融终端 Excel 插件 `WindFunc.xla`(函数向导)解析提取(OLE2 复合文档 → MS-OVBA 解压 VBA 源码 → 按 `'中文名,字段代码` + Function 签名抽取)。对标 EM(1.85万)/iFinD(2.29万),为 Wind 字段的全量级字典。
+> ⚠ **本表不是 WindPy 可直接调用的字段表**——要喂 `/wind/wsd`、`/wind/wss` 请用 [`WindPy字段手册.md`](WindPy字段手册.md)（5301 个实测可用名）。本表是 **Excel 插件命名口径**(`s_dq_close`/`s_val_pe`/`s_fa_roe_ttm`,带品种/类别前缀),仅用于**查中文名、找指标、做产品设计**。
 
-> 🔴 **命名口径(必读)**:本表字段代码是 **Excel 插件口径**(带品种/类别前缀,如 `s_dq_close`/`s_val_pe`/`s_fa_roe_ttm`)。**WindPy(`/wind/wsd`、`/wind/wss`)用的是另一套更短的命名**(如 `close`/`pe`/`roe_ttm`),二者指向同一底层指标但**不能混用**。经实测,多数 WindPy 名 ≈ 本表代码**去掉品种/类别前缀**(`s_dq_close`→`close`、`s_fa_roe_ttm`→`roe_ttm`),但**非 100% 规则**(如 `s_dq_mv` 的 WindPy 名不是 `mv`)。**直接用于 `/wind/wss` 前请以探测子集 `docs/catalog/wind/probed_fields.csv`(130 个已实测 WindPy 名)为准**,或用本表代码查中文名/找指标、再去 WindPy 验证短名。
+> 共 **9689 个字段**,从 Wind 金融终端 Excel 插件 `WindFunc.xla`(函数向导)解析提取(OLE2 复合文档 → MS-OVBA 解压 VBA 源码 → 按 `'中文名,字段代码` + Function 签名抽取)。
+
+> 🔴 **三套 Wind 字段口径(必读)**:① **WindPy 实测可用**(5301,`close`,见 `WindPy字段手册.md`,**可直接喂 wss**);② **本表 Excel 插件 xla**(9689,`s_dq_close`,**查指标用,不能直接喂 wss**);③ 探测子集(130,已并入①)。本表 9689 码经「原码 + 去前缀变体」批量喂 wss 验证,仅 113 个原码 + 去前缀后共 5301 个被 WindPy 字典认可——故 **xla 9689 ≠ WindPy 全集**,二者是不同命名体系。
 
 > 「参数」列为该字段在 `options`/调用里可带的设置项(如报告期 `rptDate`/`year`、币种等)。来源:`DataBrowse/XLA/WindFunc.xla`;提取脚本 `scripts/catalog/extract_wind_xla.py`。
 
