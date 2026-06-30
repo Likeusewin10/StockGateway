@@ -145,7 +145,7 @@ FastMCP `create_proxy` + `gateway.mount`，把每个上游 server 以 `f"{provid
 - **工具链**：`ifind_crawl.js`（浏览器爬虫,递归 `list_by_seq?seq=&type=` 指标树）→ `parse_ifind.py`（JSON→CSV 去重）→ `gen_md_ifind.py`（CSV→手册）。70MB 原始 JSON 在 `docs/catalog/_raw/`（已 gitignore）。说明见 `docs/字段清单说明.md`，记忆见 `ifind-catalog-webapi-breakthrough`。
 - **未完成**：Wind 字段字典仍空白（本机可做、不卡 IP，待 spike）。
 
-> **Wind 更新（2026-06-30）**：Wind 与前两家不同，**无公网命令生成器**——全量字典加密锁在本地终端，四条路实测全堵（公网帮助中心 `wx.wind.com.cn` 只放函数手册、本机终端不开 TCP 端口、SPA 不含树、CDP 调试端口被屏蔽、`Indicator.xml`/`wind_IndicatorTree.dat` 加密仅 DLL 可解）。当前以**探测法**（`scripts/catalog/wind_probe_fields.py` 逐字段调 `/wind/wss` 实测，种子 `wind_field_seeds.txt`）产出 **130 个常用字段**子集 → `docs/catalog/wind/probed_fields.csv` + `Wind指标字段手册.md`。**全量线索**：`DataBrowse/XLA/WindFunc.xla`（Excel 插件，OLE2 文档）内含 ~15000 字段 token，待解 VBA 流配中文名。坑与死路见记忆 `wind-catalog-probe-approach`。
+> **Wind 更新（2026-06-30）**：Wind 与前两家不同，**无公网命令生成器**——全量字典加密锁在本地终端，四条路实测全堵（公网帮助中心 `wx.wind.com.cn` 只放函数手册、本机终端不开 TCP 端口、SPA 不含树、CDP 调试端口被屏蔽、`Indicator.xml`/`wind_IndicatorTree.dat` 加密仅 DLL 可解）。**突破口=Excel 插件 `DataBrowse/XLA/WindFunc.xla`**（OLE2）：解析 VBA `dir` 流 MODULEOFFSET 定位真源码 → MS-OVBA 解压 → 每字段一个 Function、注释 `'中文名,字段代码` → 提取 **9689 全量字段(带中文名+参数)** = `docs/catalog/Wind指标字段手册.md`（脚本 `extract_wind_xla.py`）。⚠ **两套命名**：xla 是 Excel 插件口径（`s_dq_close`），WindPy wsd/wss 用短名（`close`），多数=去前缀但非100%；喂 `/wind/wss` 以探测子集 `probed_fields.csv`（130 实测 WindPy 名，脚本 `wind_probe_fields.py`）为准。死路与坑见记忆 `wind-catalog-probe-approach`。
 
 ## 约定
 
