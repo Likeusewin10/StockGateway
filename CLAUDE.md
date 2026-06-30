@@ -135,6 +135,18 @@ FastMCP `create_proxy` + `gateway.mount`，把每个上游 server 以 `f"{provid
 
 服务经 ngrok 公网暴露，鉴权/限流为必需。`X-API-Key` 常量时间比较（`secrets.compare_digest`）；按 IP 滑动窗口限流（默认 `60 次/60s`，见 `config.py` 常量）。框架无关原语在 `ratelimit.py`，供网关复用同一份逻辑避免漂移；`security.py` 只做 FastAPI 适配。未配 `API_KEY` 时不鉴权（仅本机/内网），启动时 warning。
 
+### 字段字典抓取（scripts/catalog/ + docs/catalog/，与运行时服务无关）
+
+给消费方做产品/接口设计用的**全量指标字段字典**（≠ 运行时取数）。两家 SDK 都**无全量字典枚举接口**（实测：`THS_DataPool/ReportQuery/EDBQuery` 都是「给代码取数」，字典在加密的 `excel.xml`），唯一可行路径是**各家官网「命令生成器」的后台 JSON 接口**：
+
+- **EM**：`quantapi.eastmoney.com`，已抓 18512 字段（css 11823 + csd 570 + ctr 6119）→ `docs/catalog/em/*.csv` + `东方财富EM指标字段手册.md`。
+- **iFinD**：`quantapi.51ifind.com`，已抓 22940 指标 / 13 品种 → `docs/catalog/ths/{品种}_indicators.csv` + `同花顺iFinD指标字段手册.md`。
+- **🔴 iFinD 抓取的两个反直觉坑**（踩过，别重走）：① **不是 IP 封**——同 IP 用 curl 打登录端点正常,只有**自动化浏览器(CDP)被反爬拦**;普通浏览器正常。② **session 绑登录浏览器**——cookie 搬到服务器 curl 报 `-1010 已登出`,故抓取**必须在用户已登录的普通浏览器 Console 就地 fetch**。
+- **工具链**：`ifind_crawl.js`（浏览器爬虫,递归 `list_by_seq?seq=&type=` 指标树）→ `parse_ifind.py`（JSON→CSV 去重）→ `gen_md_ifind.py`（CSV→手册）。70MB 原始 JSON 在 `docs/catalog/_raw/`（已 gitignore）。说明见 `docs/字段清单说明.md`，记忆见 `ifind-catalog-webapi-breakthrough`。
+- **未完成**：Wind 字段字典仍空白（本机可做、不卡 IP，待 spike）。
+
+> **Wind 更新（2026-06-30）**：Wind 与前两家不同，**无公网命令生成器**——全量字典加密锁在本地终端，四条路实测全堵（公网帮助中心 `wx.wind.com.cn` 只放函数手册、本机终端不开 TCP 端口、SPA 不含树、CDP 调试端口被屏蔽、`Indicator.xml`/`wind_IndicatorTree.dat` 加密仅 DLL 可解）。当前以**探测法**（`scripts/catalog/wind_probe_fields.py` 逐字段调 `/wind/wss` 实测，种子 `wind_field_seeds.txt`）产出 **130 个常用字段**子集 → `docs/catalog/wind/probed_fields.csv` + `Wind指标字段手册.md`。**全量线索**：`DataBrowse/XLA/WindFunc.xla`（Excel 插件，OLE2 文档）内含 ~15000 字段 token，待解 VBA 流配中文名。坑与死路见记忆 `wind-catalog-probe-approach`。
+
 ## 约定
 
 - **凭据一律从 `.env` / 环境变量读**，无硬编码。`config.load_dotenv` 用 `setdefault`（真实环境变量优先）。`.env` / `userInfo` / `*.log` 已 gitignore。配置模板见 `.env.example`。

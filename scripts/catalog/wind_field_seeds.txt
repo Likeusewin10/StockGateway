@@ -1,0 +1,163 @@
+# Wind WindPy 候选字段种子表 —— 方案 C 探测法输入。
+#
+# 用途:scripts/catalog/wind_probe_fields.py 逐字段 /wind/wss 探测,
+#       区分「有效(字段存在)」/「无效(invalid indicators)」,产出实测验证字段表。
+#
+# 来源:① 帮助中心 notebook 示例;② Wind 通用常用字段(A股为主,覆盖
+#       行情/估值/财务/股本/分析/日期 等维度)。候选种子,非全量——探测法只能
+#       验证已知候选,发现不了未知 field(方案 C 固有边界,见计划)。
+# 格式:每行 `字段代码  中文名`(空白分隔)。# 注释。[section] 分类标记,产出按分类归并。
+
+[行情]
+open  开盘价
+high  最高价
+low  最低价
+close  收盘价
+pre_close  前收盘价
+volume  成交量
+amt  成交额
+vwap  均价VWAP
+chg  涨跌
+pct_chg  涨跌幅
+swing  振幅
+turn  换手率
+free_turn  换手率(自由流通)
+maxupordown  涨跌停状态
+trade_status  交易状态
+susp_days  连续停牌天数
+rel_ipo_chg  上市后涨跌幅
+adjfactor  复权因子
+
+[估值]
+pe_ttm  市盈率PE(TTM)
+pe_lyr  市盈率PE(LYR)
+pb_lf  市净率PB(LF)
+pb_mrq  市净率PB(MRQ)
+ps_ttm  市销率PS(TTM)
+pcf_ocf_ttm  市现率PCF(经营,TTM)
+pcf_ncf_ttm  市现率PCF(净额,TTM)
+dividendyield2  股息率(近12月)
+ev  企业价值EV
+ev1  企业价值EV1
+ev2  企业价值EV2
+mkt_cap_ard  总市值
+mkt_cap_ashare  A股市值
+mkt_freeshares  自由流通市值
+val_pe_deducted_ttm  市盈率(扣非,TTM)
+estpeg_west  PEG(预测)
+pe  市盈率PE
+pb  市净率PB
+
+[财务-盈利]
+roe  净资产收益率ROE
+roe_ttm2  ROE(TTM)
+roe_diluted  ROE(摊薄)
+roa  总资产报酬率ROA
+roa2  总资产净利率ROA2
+roa_ttm2  ROA(TTM)
+eps_basic  每股收益EPS(基本)
+eps_diluted  每股收益EPS(稀释)
+eps_ttm  每股收益EPS(TTM)
+grossprofitmargin  销售毛利率
+netprofitmargin  销售净利率
+grossprofitmargin_ttm2  毛利率(TTM)
+ebit  息税前利润EBIT
+ebitda  息税折旧摊销前利润EBITDA
+ebit2  EBIT(正常化)
+np_belongto_parcomsh  归母净利润
+net_profit_is  净利润(利润表)
+or_ttm  营业收入(TTM)
+roic  投入资本回报率ROIC
+
+[财务-成长]
+yoy_or  营业收入同比
+yoyop  营业利润同比
+yoyprofit  净利润同比
+yoynetprofit  归母净利润同比
+yoy_tr  营业总收入同比
+yoyeps_basic  EPS同比
+yoyroe  ROE同比(增减)
+yoy_assets  总资产同比
+yoy_equity  净资产同比
+qfa_yoysales  单季营收同比
+qfa_yoynetprofit  单季净利润同比
+
+[财务-偿债/营运]
+current  流动比率
+quick  速动比率
+cashratio  现金比率
+debttoassets  资产负债率
+longdebttodebt  长期负债占比
+assetsturn  总资产周转率
+invturn  存货周转率
+arturn  应收账款周转率
+faturn  固定资产周转率
+ocftodebt  经营现金流/负债
+ocftointerest  经营现金流/利息
+catoassets  流动资产占比
+
+[财务-报表]
+tot_assets  资产总计
+tot_liab  负债合计
+tot_equity  所有者权益合计
+monetary_cap  货币资金
+acct_rcv  应收账款
+inventories  存货
+fix_assets  固定资产
+tot_cur_assets  流动资产合计
+tot_cur_liab  流动负债合计
+tot_oper_rev  营业总收入
+oper_rev  营业收入
+tot_oper_cost  营业总成本
+oper_cost  营业成本
+net_profit_is  净利润(报表)
+net_cash_flows_oper_act  经营活动现金流净额
+net_incr_cash_cash_equ_dm  现金及等价物净增加
+
+[股本/股东]
+total_shares  总股本
+float_a_shares  流通A股
+free_float_shares  自由流通股本
+holder_num  股东户数
+holder_avgnum  户均持股
+share_rtd_state  限售股状态
+mrg_long_amt  融资余额
+share_totala  A股总股本
+free_float_shares_ratio  自由流通比例
+holder_top10quantity  前十大股东持股
+
+[基本资料]
+sec_name  证券简称
+sec_englishname  英文简称
+sec_type  证券类型
+sec_status  上市状态
+ipo_date  上市日期
+delist_date  退市日期
+exch_city  交易所
+industry_sw  申万行业
+industry_citic  中信行业
+industry_gics  GICS行业
+windcode  Wind代码
+trade_code  交易代码
+ipo_listdate  上市日期(IPO)
+mfprice  发行价格
+ipo_price  发行价
+
+[债券]
+ytm_b  到期收益率
+duration  久期
+convexity  凸性
+modidura_cnbd  修正久期
+accruedinterest  应计利息
+couponrate  票面利率
+ptmyear  剩余期限(年)
+issueamount  发行总额
+
+[预测/评级]
+west_eps_ftm  预测EPS(FTM)
+west_netprofit_ftm  预测净利润(FTM)
+west_avgroe_ftm_chn  预测ROE(FTM)
+rating_avg  综合评级
+rating_instnum  评级机构数
+west_sales_ftm  预测营收(FTM)
+targetprice_avg  目标价(均值)
