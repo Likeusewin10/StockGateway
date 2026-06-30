@@ -1,7 +1,5 @@
-"""把 docs/catalog/wind/probed_fields.csv 生成 Wind 字段手册(方案 C 实测版)。
-
-仿 EM/iFinD 手册结构:总览 + 按分类 → 字段表,但明确标注「探测法实测、非全量」。
-只收录「有效=是」的字段。
+"""把 docs/catalog/wind/xla_fields.csv(方法A,WindFunc.xla 提取的全量字段)
+生成 Wind 字段手册。按字段代码前缀归类(Wind 命名体系:s_证券/f_基金/b_债券…)。
 
 用法:.venv-api\\Scripts\\python scripts\\catalog\\gen_md_wind.py
 输出:docs/catalog/Wind指标字段手册.md
@@ -11,57 +9,85 @@ import os
 from collections import OrderedDict
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-CSV_PATH = os.path.join(ROOT, "docs", "catalog", "wind", "probed_fields.csv")
+CSV_PATH = os.path.join(ROOT, "docs", "catalog", "wind", "xla_fields.csv")
 OUT = os.path.join(ROOT, "docs", "catalog", "Wind指标字段手册.md")
+
+# 前缀 → 品种/分类(Wind 字段命名体系)
+PREFIX = OrderedDict([
+    ("s", "证券(股票/通用)"), ("f", "基金"), ("b", "债券"), ("cb", "可转债"),
+    ("hks", "港股"), ("tws", "台股"), ("w", "通用/指数"), ("fs", "基金(专项)"),
+    ("i", "指数"), ("fut", "期货"), ("fa", "财务分析"), ("o", "期权"),
+    ("his", "历史行情"), ("mrg", "融资融券"), ("qfa", "单季财务"),
+])
+# 非字段的辅助函数(VBA 内部),排除
+SKIP = {"moveoptionalparam", "windcodevals", "windcodexy", "getvaliddate",
+        "getvalidafterdate", "getvalidcurtype", "getvaliddbl", "getyear",
+        "getguidcode", "selfwrittencode", "prewindcode"}
 
 
 def _esc(v):
     return (v or "").replace("|", "\\|").replace("\n", " ").strip()
 
 
-def _anchor(sect):
-    return "分类-" + sect.replace("/", "-").replace(" ", "")
+def _cat(code):
+    pre = code.split("_")[0]
+    if pre in PREFIX:
+        return PREFIX[pre]
+    return "技术指标/其他"
+
+
+def _anchor(cat):
+    return "分类-" + cat.replace("/", "-").replace("(", "").replace(")", "").replace(" ", "")
 
 
 def main():
     with open(CSV_PATH, encoding="utf-8-sig") as f:
-        rows = [r for r in csv.DictReader(f) if r["有效"] == "是"]
+        rows = [r for r in csv.DictReader(f) if r["字段代码"] not in SKIP]
 
-    by_sect = OrderedDict()
+    by_cat = OrderedDict()
+    # 先按 PREFIX 顺序建桶,再归入
+    for _, name in PREFIX.items():
+        by_cat.setdefault(name, [])
+    by_cat["技术指标/其他"] = []
     for r in rows:
-        by_sect.setdefault(r["分类"], []).append(r)
+        by_cat[_cat(r["字段代码"])].append(r)
+    by_cat = OrderedDict((k, v) for k, v in by_cat.items() if v)
 
     md = []
-    md.append("# 万得 Wind 字段手册（探测法实测版）\n")
-    md.append("> 🔴 **口径说明（必读）**：Wind 的全量字段字典被加密锁在本地终端内，"
-              "无任何可编程旁路（公网帮助中心只放函数手册、本机不开端口、CDP 被屏蔽、字典文件加密）。"
-              "本表是**方案 C 探测法**产物：用一份常用字段候选清单，逐字段调本机 `/wind/wss` 实测，"
-              "只保留 Wind 确认存在的字段。**因此这是「经实测验证的常用字段子集」，不是 EM/iFinD 那种全量字典。**\n")
-    md.append("> 字段代码可直接用于 `/wind/wsd`（日序列）/ `/wind/wss`（截面）的 `fields` 参数。"
-              "部分财务字段取值需在 `options` 带 `rptDate=`/`year=` 等报告期参数（样例值为空即此类）。\n")
-    md.append("> 数据来源:WindPy 真机 `w.wss` 探测(经本服务 `/wind/wss`);"
-              "种子清单见 `scripts/catalog/wind_field_seeds.txt`,探测器 `scripts/catalog/wind_probe_fields.py`。\n")
+    md.append("# 万得 Wind 字段手册（全量）\n")
+    md.append("> 共 **{} 个字段**,从 Wind 金融终端 Excel 插件 `WindFunc.xla`(函数向导)"
+              "解析提取(OLE2 复合文档 → MS-OVBA 解压 VBA 源码 → 按 `'中文名,字段代码` + Function 签名抽取)。"
+              "对标 EM(1.85万)/iFinD(2.29万),为 Wind 字段的全量级字典。\n".format(len(rows)))
+    md.append("> 🔴 **命名口径(必读)**:本表字段代码是 **Excel 插件口径**(带品种/类别前缀,如 "
+              "`s_dq_close`/`s_val_pe`/`s_fa_roe_ttm`)。**WindPy(`/wind/wsd`、`/wind/wss`)用的是另一套更短的命名**"
+              "(如 `close`/`pe`/`roe_ttm`),二者指向同一底层指标但**不能混用**。经实测,多数 WindPy 名 ≈ "
+              "本表代码**去掉品种/类别前缀**(`s_dq_close`→`close`、`s_fa_roe_ttm`→`roe_ttm`),但**非 100% 规则**"
+              "(如 `s_dq_mv` 的 WindPy 名不是 `mv`)。**直接用于 `/wind/wss` 前请以探测子集 "
+              "`docs/catalog/wind/probed_fields.csv`(130 个已实测 WindPy 名)为准**,或用本表代码查中文名/找指标、"
+              "再去 WindPy 验证短名。\n")
+    md.append("> 「参数」列为该字段在 `options`/调用里可带的设置项(如报告期 `rptDate`/`year`、币种等)。"
+              "来源:`DataBrowse/XLA/WindFunc.xla`;提取脚本 `scripts/catalog/extract_wind_xla.py`。\n")
 
     md.append("\n## 总览\n")
     md.append("| 分类 | 字段数 | 跳转 |")
     md.append("|---|---|---|")
-    for sect, items in by_sect.items():
-        md.append(f"| {sect} | {len(items)} | [↓](#{_anchor(sect)}) |")
-    md.append(f"\n**合计 {len(rows)} 个实测有效字段,{len(by_sect)} 个分类。**\n")
+    for cat, items in by_cat.items():
+        md.append(f"| {cat} | {len(items)} | [↓](#{_anchor(cat)}) |")
+    md.append(f"\n**合计 {len(rows)} 个字段,{len(by_cat)} 个分类。**\n")
 
-    for sect, items in by_sect.items():
-        md.append(f'\n<a id="{_anchor(sect)}"></a>')
-        md.append(f"\n## {sect}（{len(items)} 个字段）\n")
-        md.append("| 字段代码 | 中文名 | 命中品种 | 样例值 |")
-        md.append("|---|---|---|---|")
+    for cat, items in by_cat.items():
+        items.sort(key=lambda r: r["字段代码"])
+        md.append(f'\n<a id="{_anchor(cat)}"></a>')
+        md.append(f"\n## {cat}（{len(items)} 个字段）\n")
+        md.append("| 字段代码 | 中文名 | 参数 |")
+        md.append("|---|---|---|")
         for r in items:
-            md.append("| `{}` | {} | {} | {} |".format(
-                _esc(r["字段代码"]), _esc(r["中文名"]),
-                _esc(r["命中品种"]), _esc(r["样例值"])))
+            md.append("| `{}` | {} | {} |".format(
+                _esc(r["字段代码"]), _esc(r["中文名"]), _esc(r.get("参数", ""))))
 
     with open(OUT, "w", encoding="utf-8") as f:
         f.write("\n".join(md) + "\n")
-    print(f"生成 {OUT}  ({len(md)} 行,{len(rows)} 字段)")
+    print(f"生成 {OUT}  ({len(md)} 行,{len(rows)} 字段,{len(by_cat)} 分类)")
 
 
 if __name__ == "__main__":
