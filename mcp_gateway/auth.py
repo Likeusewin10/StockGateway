@@ -10,13 +10,16 @@ from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.requests import Request
 from starlette.responses import JSONResponse
 
-from stocksdk.config import RATE_LIMIT_REQUESTS, RATE_LIMIT_WINDOW_SECONDS
 from stocksdk.ratelimit import RateLimiter, keys_match
-from mcp_gateway.config import get_api_key
+from mcp_gateway.config import (
+    GATEWAY_RATE_LIMIT_REQUESTS,
+    GATEWAY_RATE_LIMIT_WINDOW_SECONDS,
+    get_api_key,
+)
 
 logger = logging.getLogger("mcp_gateway.auth")
 
-_limiter = RateLimiter(RATE_LIMIT_REQUESTS, RATE_LIMIT_WINDOW_SECONDS)
+_limiter = RateLimiter(GATEWAY_RATE_LIMIT_REQUESTS, GATEWAY_RATE_LIMIT_WINDOW_SECONDS)
 
 
 def _extract_key(request: Request) -> str:
@@ -30,8 +33,22 @@ def _extract_key(request: Request) -> str:
     return ""
 
 
+def _rate_key(request: Request) -> str:
+    """限流键：优先按 MCP 会话（mcp-session-id），回退到客户端 IP。
+
+    经 ngrok 后所有客户端的 request.client.host 折叠成同一隧道 IP，按 IP 限流会
+    让多个客户端共享一个预算、互相挤爆。按 session 计则每个 MCP 会话独立预算。
+    握手期首个 POST（尚无 session-id）回退到 IP，阈值已放宽到不影响正常握手。
+    """
+    sid = request.headers.get("mcp-session-id")
+    if sid:
+        return "sid:" + sid
+    client_ip = request.client.host if request.client else "unknown"
+    return "ip:" + client_ip
+
+
 class ApiKeyAuthMiddleware(BaseHTTPMiddleware):
-    """按 API Key 鉴权 + 按客户端 IP 限流。"""
+    """按 API Key 鉴权 + 按 MCP 会话限流。"""
 
     async def dispatch(self, request: Request, call_next):
         expected = get_api_key()
@@ -40,12 +57,16 @@ class ApiKeyAuthMiddleware(BaseHTTPMiddleware):
             if not keys_match(provided, expected):
                 return JSONResponse({"error": "缺少或错误的 API Key"}, status_code=401)
 
-        client_ip = request.client.host if request.client else "unknown"
-        if not _limiter.check(client_ip):
+        # SSE 长流（GET）与会话拆除（DELETE）属传输控制，非取数调用，不计入限流。
+        # MCP 客户端会每 1000ms 重连 SSE，若计入会瞬间打满限流并拖垮整条会话。
+        if request.method in ("GET", "DELETE"):
+            return await call_next(request)
+
+        if not _limiter.check(_rate_key(request)):
             return JSONResponse(
                 {
                     "error": "请求过于频繁：{}s 内最多 {} 次".format(
-                        RATE_LIMIT_WINDOW_SECONDS, RATE_LIMIT_REQUESTS
+                        GATEWAY_RATE_LIMIT_WINDOW_SECONDS, GATEWAY_RATE_LIMIT_REQUESTS
                     )
                 },
                 status_code=429,

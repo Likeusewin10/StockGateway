@@ -26,6 +26,16 @@ DEFAULT_GATEWAY_HOST = "0.0.0.0"
 DEFAULT_GATEWAY_PORT = 8765       # 与现有 REST 服务 8000 隔离，二者可并存
 MCP_PATH = "/mcp"                 # streamable-http 挂载路径
 
+# ---- 网关限流（不同于 REST 的 60/60s）----
+# MCP streamable-http 客户端行为与取数完全不同：一次会话会密集调几十个工具，
+# 且 SSE 长流断线每 1000ms 重连；经 ngrok 后所有客户端的 request.client.host
+# 折叠成同一隧道 IP。若沿用 REST 的 60/60s 按 IP，单个正常客户端秒级打满限流，
+# 表现为 initialize 过、紧接的 tools/list 被拦（客户端报 tools fetch failed）。
+# 故网关：① 限流键优先用 mcp-session-id（每会话独立预算，非折叠 IP）；
+# ② 阈值放宽到 600/60s；③ SSE 的 GET 与会话拆除 DELETE 属传输控制、不计限流。
+GATEWAY_RATE_LIMIT_REQUESTS = 600
+GATEWAY_RATE_LIMIT_WINDOW_SECONDS = 60
+
 # ---- 服务器端 Agent 工具（agent_run/agent_status/agent_result）----
 # 子进程执行目录：锁死本仓库根，防止任意路径读写。可用 AGENT_PROJECT_DIR 覆盖。
 AGENT_PROJECT_DIR_DEFAULT = str(_ROOT)
