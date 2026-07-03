@@ -19,7 +19,13 @@ from pydantic import BaseModel
 from xtquant import xtconstant, xtdata
 
 from stocksdk import guards
-from stocksdk.config import is_qmt_trading_enabled
+from stocksdk.config import (
+    get_qmt_code_whitelist,
+    get_qmt_daily_order_cap,
+    get_qmt_max_notional,
+    is_qmt_offhours_allowed,
+    is_qmt_trading_enabled,
+)
 from stocksdk.security import rate_limit, require_key
 from stocksdk.serialize import (
     qmt_asset,
@@ -115,7 +121,7 @@ def qmt_get_trades(_=Depends(require_key), __=Depends(rate_limit)):
 def qmt_get_events(_=Depends(require_key)):
     """最近的交易回调事件（委托/成交/错误/断连），审计与观测用。"""
     return {"events": recent_qmt_events(),
-            "daily_order_count": guards.current_daily_count()}
+            "daily_order_count": guards.current_daily_count("qmt")}
 
 
 # ----------------------------- 写：下单/撤单 -----------------------------
@@ -157,13 +163,17 @@ def qmt_place_order(body: OrderReq, _=Depends(require_key), __=Depends(rate_limi
     _require_trading_enabled()
     order_type, price_type, send_price, guard_price = _resolve_order(body)
 
-    guards.enforce(body.stock_code, body.volume, guard_price)   # 越限抛 409
+    guards.enforce(
+        "qmt", body.stock_code, body.volume, guard_price,
+        max_notional=get_qmt_max_notional(), daily_cap=get_qmt_daily_order_cap(),
+        whitelist=get_qmt_code_whitelist(), allow_offhours=is_qmt_offhours_allowed(),
+    )   # 越限抛 409
 
     preview = {
         "side": body.side, "stock_code": body.stock_code, "volume": body.volume,
         "price_type": body.price_type, "price": send_price,
         "strategy": body.strategy, "remark": body.remark,
-        "daily_order_count": guards.current_daily_count(),
+        "daily_order_count": guards.current_daily_count("qmt"),
     }
     if not body.confirm:
         _audit({"action": "order", "result": "dry_run", **preview})
@@ -175,7 +185,7 @@ def qmt_place_order(body: OrderReq, _=Depends(require_key), __=Depends(rate_limi
             qmt_account(), body.stock_code, order_type, body.volume,
             price_type, send_price, body.strategy, body.remark)
     if order_id != -1:
-        guards.record_order()
+        guards.record_order("qmt")
     _audit({"action": "order", "result": "sent", "order_id": order_id, **preview})
     return qmt_order_id_result(order_id)
 

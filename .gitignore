@@ -49,3 +49,6 @@ docs/catalog/_raw/
 
 # 通达信 TdxQuant 接口文档原始件(30MB PDF + 抽出的全文,只作本机参考,不入库)
 docs/catalog/tdx/_raw/
+
+# 调试探针临时输出
+tdx_probe_*.txt

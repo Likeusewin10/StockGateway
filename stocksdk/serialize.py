@@ -86,6 +86,43 @@ def tdx_result(r):
     return r
 
 
+# ---- 通达信 TQ 交易写路径归一化 ----
+# order_stock 返回 {'ErrorId','Msg','Value'}，Value: 0失败/1待确认/2成功（实盘正常返 1）。
+# cancel_order_stock 返回 {'ErrorId','Msg','Value'}，Value: 0失败/1成功。与 QMT 返回码完全不同。
+
+def tdx_order_result(res) -> dict:
+    """order_stock 返回 dict → 归一化。ErrorId 非0 或 Value==0（下单失败）→ 502。
+
+    Value 语义：0 失败 / 1 待用户确认（实盘走客户端弹窗，正常路径）/ 2 成功。
+    委托编号 Wtbh 仅成功时返回。
+    """
+    if not isinstance(res, dict):
+        raise HTTPException(502, "TDX 下单返回异常：{}".format(res))
+    eid = res.get("ErrorId")
+    value = res.get("Value")
+    if eid not in ("0", 0, None) or value in (0, "0"):
+        raise HTTPException(502, "TDX 下单失败：ErrorId={} Value={} {}".format(
+            eid, value, res.get("Msg", "")))
+    return {"dry_run": False, "value": value,
+            "order_id": res.get("Wtbh"), "msg": res.get("Msg", "")}
+
+
+def tdx_cancel_result(res) -> dict:
+    """cancel_order_stock 返回 dict → 归一化。ErrorId 非0 → 502；Value==0（撤单失败）→ 409。
+
+    Value 语义：0 失败 / 1 成功。
+    """
+    if not isinstance(res, dict):
+        raise HTTPException(502, "TDX 撤单返回异常：{}".format(res))
+    eid = res.get("ErrorId")
+    if eid not in ("0", 0, None):
+        raise HTTPException(502, "TDX 撤单失败：ErrorId={} {}".format(eid, res.get("Msg", "")))
+    value = res.get("Value")
+    if value in (0, "0"):
+        raise HTTPException(409, "TDX 撤单未成功：{}".format(res.get("Msg", "")))
+    return {"value": value, "msg": res.get("Msg", "")}
+
+
 def em_quote_to_dict(qd):
     """EmQuantData 推送对象 → JSON 友好 dict。"""
     if getattr(qd, "ErrorCode", 0) not in (0, None):

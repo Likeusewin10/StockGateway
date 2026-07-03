@@ -3,7 +3,7 @@ import logging
 
 import pytest
 
-from mcp_gateway.providers import IFIND, MX, PROVIDERS, Provider, ProviderServer
+from mcp_gateway.providers import IFIND, MX, PROVIDERS, Provider, ProviderServer, TUSHARE
 
 
 class TestRegistry:
@@ -64,6 +64,68 @@ class TestMxProvider:
         headers = _auth_headers(MX)
         # 裸 key 注入到 em_api_key 头，而非 Authorization；读的是 MIAO_XIANG_MCP_KEY
         assert headers == {"em_api_key": "mx-key-123"}
+
+
+class TestTushareProvider:
+    """Tushare：凭据走 URL 查询串（?token=），不是 header。单独固化这条差异。"""
+
+    def test_tushare_is_registered(self):
+        assert TUSHARE in PROVIDERS
+
+    def test_tushare_has_single_server(self):
+        assert len(TUSHARE.servers) == 1
+
+    def test_server_url_is_single_endpoint(self):
+        # base_url 本身即完整端点（含结尾 /），不追加 /{server}
+        url = TUSHARE.server_url(TUSHARE.servers[0])
+        assert url == "https://api.tushare.pro/mcp/"
+
+    def test_prefix_namespacing(self):
+        assert TUSHARE.prefix(TUSHARE.servers[0]) == "tushare_ds"
+
+    def test_auth_query_field_set(self):
+        assert TUSHARE.auth_query == "token"
+
+    def test_auth_headers_empty_for_query_auth(self, monkeypatch):
+        # query 鉴权厂商：凭据不进 header，_auth_headers 返回 {}
+        from mcp_gateway.upstream import _auth_headers
+
+        monkeypatch.setenv("TUSHARE_MCP_TOKEN", "tok-abc")
+        assert _auth_headers(TUSHARE) == {}
+
+    def test_auth_headers_none_when_token_missing(self, monkeypatch, caplog):
+        # 缺 token 仍走跳过逻辑（返回 None + warning），与 header 路径对称
+        from mcp_gateway.upstream import _auth_headers
+
+        monkeypatch.delenv("TUSHARE_MCP_TOKEN", raising=False)
+        with caplog.at_level(logging.WARNING):
+            assert _auth_headers(TUSHARE) is None
+        assert any("TUSHARE_MCP_TOKEN" in r.message for r in caplog.records)
+
+    def test_server_url_appends_token_query(self, monkeypatch):
+        from mcp_gateway.upstream import _server_url
+
+        monkeypatch.setenv("TUSHARE_MCP_TOKEN", "tok-abc")
+        url = _server_url(TUSHARE, TUSHARE.servers[0])
+        assert url == "https://api.tushare.pro/mcp/?token=tok-abc"
+
+    def test_server_url_none_when_token_missing(self, monkeypatch):
+        from mcp_gateway.upstream import _server_url
+
+        monkeypatch.delenv("TUSHARE_MCP_TOKEN", raising=False)
+        assert _server_url(TUSHARE, TUSHARE.servers[0]) is None
+
+    def test_client_url_carries_token(self, monkeypatch):
+        from mcp_gateway.upstream import make_server_client
+
+        monkeypatch.setenv("TUSHARE_MCP_TOKEN", "tok-abc")
+        client = make_server_client(TUSHARE, TUSHARE.servers[0], {})
+        assert "token=tok-abc" in client.transport.url
+
+    def test_token_not_in_provider_repr(self):
+        # 注册表只含环境变量名，不含 token 本身
+        assert "TUSHARE_MCP_TOKEN" in repr(TUSHARE)
+        assert "55e2d5be" not in repr(TUSHARE)
 
 
 class TestCredentialInjection:

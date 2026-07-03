@@ -30,11 +30,15 @@ class Provider:
     auth_env: str | None = None          # 该厂商凭据的环境变量名，如 "IFIND_MCP_JWT"
     auth_header: str = "Authorization"   # 凭据注入到哪个 header
     auth_scheme: str = ""                # 头部前缀，如 "Bearer "；裸 token 留空
+    auth_query: str | None = None        # 若上游把凭据放 URL 查询串（如 Tushare ?token=），填参数名；
+                                         # 非 None 时凭据经查询串注入、不进 header（见 upstream.py）
     transport: str = "http"              # 当前仅 streamable-http
     adapter: str = "fastmcp_proxy"       # 预留：不兼容时切 "raw_reverse_proxy"
     url_template: str = "{base_url}/{server}"
     connect_timeout: float | None = None  # 上游 TCP 连接超时(秒)；None=沿用上游默认
     read_timeout: float | None = None     # 上游读/请求超时(秒)；None=沿用上游默认
+    aggregate: bool = False               # True=该厂商工具在网关层聚合成分类分发工具
+                                          # (tool-per-API 型"吵闹"厂商用,见 aggregation.py)
 
     def server_url(self, server: ProviderServer) -> str:
         """拼接某 server 的完整上游 URL。"""
@@ -77,5 +81,18 @@ MX = Provider(
     read_timeout=120,        # 官方 timeout
 )
 
-# 以后追加厂商：PROVIDERS = (IFIND, MX, WIND, CHOICE, ...)
-PROVIDERS: tuple[Provider, ...] = (IFIND, MX)
+# Tushare：单个 server，上游把 token 放 URL 查询串（?token=<TOKEN>），不是请求头。
+# 故 auth_query="token"：upstream 读 TUSHARE_MCP_TOKEN 拼进查询串、请求头留空（凭据不进 header/日志）。
+# base_url 本身即完整端点（含结尾 /），url_template 只用 {base_url}；工具前缀 tushare_ds_。
+TUSHARE = Provider(
+    name="tushare",
+    base_url="https://api.tushare.pro/mcp/",
+    servers=(ProviderServer(name="tushare-mcp", short_name="ds"),),
+    auth_env="TUSHARE_MCP_TOKEN",
+    auth_query="token",      # 凭据走 URL 查询串，而非 header
+    url_template="{base_url}",
+    aggregate=True,          # 上游 tool-per-API 258 个,网关层聚合成 ~13 个分类工具
+)
+
+# 以后追加厂商：PROVIDERS = (IFIND, MX, TUSHARE, WIND, CHOICE, ...)
+PROVIDERS: tuple[Provider, ...] = (IFIND, MX, TUSHARE)

@@ -3,4 +3,6 @@
 fastmcp>=2.0
 uvicorn[standard]
 httpx
+# 让上游 TLS 走操作系统信任库（企业代理/杀软 TLS 检测根证书只在 OS 库、不在 certifi 时必需）。
+truststore
 pytest

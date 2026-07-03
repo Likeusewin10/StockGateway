@@ -41,7 +41,7 @@ def test_wind_methods_labels(app_client):
     assert out["wsd"] == "ok"
     assert out["start"].startswith("ok(会话管理")
     assert out["wsq"].startswith("ok(异步")
-    assert out["torder"].startswith("blocked(交易")   # 交易类标注为已拦截
+    assert out["torder"].startswith("guarded(交易")   # 交易类：需总开关放行
 
 
 def test_wind_call_passthrough_ok(app_client):
@@ -49,9 +49,17 @@ def test_wind_call_passthrough_ok(app_client):
     assert r.status_code == 200
 
 
-def test_wind_call_trading_blocked_403(app_client):
+def test_wind_call_trading_blocked_when_disabled_503(app_client):
+    # 默认 WIND_TRADING_ENABLED 未开 → 交易类 503
     r = app_client.post("/wind/call/torder", json={"args": []})
-    assert r.status_code == 403
+    assert r.status_code == 503
+
+
+def test_wind_call_trading_allowed_when_enabled(app_client, monkeypatch):
+    monkeypatch.setenv("WIND_TRADING_ENABLED", "true")
+    r = app_client.post("/wind/call/torder", json={"args": []})
+    # 桩 torder 返回 ErrorCode=0 的 WindData → 放行成功（不再 503/403）
+    assert r.status_code == 200
 
 
 def test_wind_call_private_403(app_client):

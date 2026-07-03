@@ -23,11 +23,14 @@ QMT_DEFAULT_DAILY_ORDER_CAP = 50      # 当日累计下单笔数上限
 # 导入前用 sys.path + os.add_dll_directory 显式注入；可经 QMT_PACKAGE_DIR 覆盖。
 QMT_DEFAULT_PACKAGE_DIR = r"D:\Softwares\君弘君智交易系统\bin.x64\Lib\site-packages"
 
-# ---- 通达信 TQ（TdxQuant，官方 Python 量化框架）取数接入默认值 ----
-# TDX 是第四个数据源（/tdx/*），与 EM/iFinD/Wind 并列，只读取数、不交易（交易类硬拦 403）。
+# ---- 通达信 TQ（TdxQuant，官方 Python 量化框架）取数 + 交易接入默认值 ----
+# TDX 是第四个数据源（/tdx/*），与 EM/iFinD/Wind 并列取数；同时是**独立券商交易腿**
+# （与 QMT 平级，两个券商接口各自独立），交易经与 QMT 同构的多重护栏。
 # tqcenter 模块在通达信终端安装目录的 PYPlugins\sys 下，依赖同目录 TPyth*.dll/tdxrpc*.dll。
 # import 前须把该目录注入 sys.path（机制同 QMT 的 _bootstrap_xtquant_path）。
 TDX_DEFAULT_PYPLUGINS_DIR = r"D:\Softwares\new_tdx64\PYPlugins\sys"
+TDX_DEFAULT_MAX_NOTIONAL = 50000.0    # 单笔委托金额上限（volume×price），默认 5 万
+TDX_DEFAULT_DAILY_ORDER_CAP = 50      # 当日累计下单笔数上限
 
 # .env 路径：项目根目录（本文件位于 stocksdk/ 下，故取父目录的父目录）
 _ENV_PATH = Path(__file__).resolve().parent.parent / ".env"
@@ -69,6 +72,15 @@ def require_ths_credentials() -> tuple[str, str]:
     if not user or not pwd:
         raise RuntimeError("缺少环境变量 THS_USER / THS_PWD（检查 .env）")
     return user, pwd
+
+
+def is_wind_trading_enabled() -> bool:
+    """Wind 交易/写操作总开关：默认关。关时 /wind/call 调 torder/tlogon/wupf 等返回 503。
+
+    Wind 交易函数签名各异（无固定 order 端点），故走「总开关 + 审计」两层，
+    不做逐笔 dry-run/护栏；总开关关时物理锁死，是 API Key 之外的第二道闸。
+    """
+    return _env_flag("WIND_TRADING_ENABLED", False)
 
 
 # ---- QMT 配置读取（全部实时读 env，便于按请求生效与测试）----
@@ -138,8 +150,46 @@ def get_qmt_code_whitelist() -> list[str]:
     return [c.strip() for c in raw.split(",") if c.strip()]
 
 
-# ---- 通达信 TQ 配置读取 ----
-
+# ---- 通达信 TQ 配置读取（取数 + 交易，交易配置与 QMT 独立，不共用）----
 def get_tdx_pyplugins_dir() -> str:
     """tqcenter 所在目录（通达信终端 PYPlugins\\sys）。可经 TDX_PYPLUGINS_DIR 覆盖。"""
     return os.environ.get("TDX_PYPLUGINS_DIR", TDX_DEFAULT_PYPLUGINS_DIR).strip()
+
+
+def is_tdx_trading_enabled() -> bool:
+    """TDX 交易总开关：默认关。关时 /tdx/order、/tdx/cancel 等写操作返回 503。"""
+    return _env_flag("TDX_TRADING_ENABLED", False)
+
+
+def is_tdx_offhours_allowed() -> bool:
+    """是否允许非交易时段下单（默认否）。测试/调试可置 true。"""
+    return _env_flag("TDX_ALLOW_OFFHOURS", False)
+
+
+def get_tdx_account() -> tuple[str, str]:
+    """返回 (资金账号, 账号类型)。类型默认 STOCK；缺账号抛 RuntimeError。"""
+    account_id = os.environ.get("TDX_ACCOUNT_ID", "").strip()
+    if not account_id:
+        raise RuntimeError("缺少环境变量 TDX_ACCOUNT_ID（资金账号）")
+    account_type = os.environ.get("TDX_ACCOUNT_TYPE", "STOCK").strip() or "STOCK"
+    return account_id, account_type
+
+
+def get_tdx_max_notional() -> float:
+    """单笔委托金额上限（元）。"""
+    raw = os.environ.get("TDX_MAX_NOTIONAL", "").strip()
+    return float(raw) if raw else TDX_DEFAULT_MAX_NOTIONAL
+
+
+def get_tdx_daily_order_cap() -> int:
+    """当日累计下单笔数上限。"""
+    raw = os.environ.get("TDX_DAILY_ORDER_CAP", "").strip()
+    return int(raw) if raw else TDX_DEFAULT_DAILY_ORDER_CAP
+
+
+def get_tdx_code_whitelist() -> list[str]:
+    """标的白名单（逗号分隔）。留空表示不限制。"""
+    raw = os.environ.get("TDX_CODE_WHITELIST", "").strip()
+    if not raw:
+        return []
+    return [c.strip() for c in raw.split(",") if c.strip()]

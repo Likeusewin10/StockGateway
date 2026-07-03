@@ -23,6 +23,7 @@ from stocksdk.config import (
     get_qmt_package_dir,
     get_qmt_session_id,
     get_qmt_userdata_path,
+    get_tdx_account,
     get_tdx_pyplugins_dir,
     require_ths_credentials,
 )
@@ -82,6 +83,8 @@ _em_ready = False
 _ths_ready = False
 _wind_ready = False
 _tdx_ready = False
+# TDX 交易账户句柄（int，来自 tdx.stock_account()）。None=未取；合法值可为 0，故不能用 0/falsy 判空。
+_tdx_account_id: Any = None
 
 # 会话/登录失效类错误码（命中即强制重登重试）。
 # EM：10001009 登录数超限/被挤、10001005/10001006 未登录类、10001020 令牌失效。
@@ -251,7 +254,7 @@ def ensure_tdx(force: bool = False) -> None:
     force=True 无视 flag 重新 initialize。initialize 失败（终端未开/未登录）抛 502。
     调用方须已持有全局 lock。
     """
-    global _tdx_ready
+    global _tdx_ready, _tdx_account_id
     if _tdx_ready and not force:
         return
     try:
@@ -260,6 +263,8 @@ def ensure_tdx(force: bool = False) -> None:
         _tdx_ready = False
         raise HTTPException(502, "TDX 初始化失败（确认通达信终端已开启并登录）：{}".format(e))
     _tdx_ready = True
+    if force:
+        _tdx_account_id = None   # 会话重建后旧句柄可能失效，清空触发按需重取
 
 
 def _tdx_session_dead(result: Any) -> bool:
@@ -293,6 +298,29 @@ def tdx_exec(fn: Callable[[], Any]) -> Any:
         ensure_tdx(force=True)
         r = fn()
     return r
+
+
+def ensure_tdx_account(force: bool = False) -> Any:
+    """取/复用 TDX 交易资金账号句柄（int）。首次调 tdx.stock_account(account, type)。
+
+    句柄可合法为 0；None/-1 视为取号失败 → 502。调用方须已持有全局 lock。
+    ensure_tdx(force=True) 会把句柄清空（None），下次经此重取。
+    """
+    global _tdx_account_id
+    ensure_tdx()
+    if _tdx_account_id is not None and not force:
+        return _tdx_account_id
+    account_id, account_type = get_tdx_account()
+    handle = tdx.stock_account(account=account_id, account_type=account_type)
+    if handle is None or handle == -1:
+        raise HTTPException(502, "TDX 取账户句柄失败：stock_account 返回 {}（确认账号已登录）".format(handle))
+    _tdx_account_id = handle
+    return _tdx_account_id
+
+
+def tdx_account() -> Any:
+    """当前 TDX 资金账号句柄（ensure_tdx_account 后可用）。"""
+    return _tdx_account_id
 
 
 # ============================================================================

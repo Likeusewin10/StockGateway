@@ -163,18 +163,32 @@ class FakeTdxClient:
         import pandas as pd
         return pd.DataFrame({"factor": [1.0]}, index=["2026-06-30"])
 
-    def order_stock(self, *a, **k):
-        # 交易函数：不应被透传调用到（路由层 403 拦截）；桩存在仅供 methods 标注
-        return {"ErrorId": "0", "Value": 1}
+    def order_stock(self, account_id=-1, stock_code="", order_type=0, order_volume=0,
+                    price_type=0, price=0.0, notify=0):
+        # 交易函数：正常返回 {'ErrorId','Msg','Value'}，Value 1=待确认。FAIL.SH → Value 0 失败。
+        if stock_code == "FAIL.SH":
+            return {"ErrorId": "0", "Msg": "资金不足", "Value": 0}
+        return {"ErrorId": "0", "Msg": "已发送信号至客户端，待用户确认！", "Value": 1, "Wtbh": "58545"}
 
-    def cancel_order_stock(self, *a, **k):
-        return {"ErrorId": "0", "Value": 1}
+    def cancel_order_stock(self, account_id=-1, stock_code="", order_id=""):
+        # order_id==-999 → Value 0 撤单失败；否则 Value 1 成功。
+        if order_id == -999:
+            return {"ErrorId": "0", "Msg": "委托已完成", "Value": 0}
+        return {"ErrorId": "0", "Msg": "撤单已受理", "Value": 1}
 
-    def query_stock_asset(self, *a, **k):
-        return {"Cash": "30234.07", "ErrorId": "0"}
+    def stock_account(self, account="", account_type="STOCK"):
+        return 0   # int 句柄（合法值可为 0）
 
-    def stock_account(self, *a, **k):
-        return 0
+    def query_stock_asset(self, account_id=-1):
+        return {"Currency": "人民币", "Balance": "30234.070", "Cash": "30234.070",
+                "Asset": "1233041.070", "MarketValue": "1201690.000", "ErrorId": "0"}
+
+    def query_stock_positions(self, account_id=-1):
+        return [{"Code": "000001.SZ", "Cbj": "10.693", "TotalVol": "100", "CanUseVol": "100"}]
+
+    def query_stock_orders(self, account_id=-1, stock_code="", cancelable_only=False):
+        return [{"Wtbh": "58545", "Code": "688318.SH", "Time": "93853", "BSFlag": -1,
+                 "Status": 0, "WtPrice": "125.000", "WtVol": "1000"}]
 
     def subscribe_hq(self, *a, **k):
         return {"ErrorId": "0"}
@@ -390,10 +404,22 @@ def app_client(monkeypatch):
     monkeypatch.setenv("QMT_ACCOUNT_ID", "test-acct")
     monkeypatch.setenv("QMT_SESSION_ID", "1")
     monkeypatch.setenv("QMT_ALLOW_OFFHOURS", "true")
-    monkeypatch.delenv("QMT_TRADING_ENABLED", raising=False)
+    monkeypatch.setenv("QMT_TRADING_ENABLED", "false")  # setenv 而非 delenv：抗 load_dotenv setdefault 重灌本机 .env
     monkeypatch.delenv("QMT_CODE_WHITELIST", raising=False)
     monkeypatch.delenv("QMT_MAX_NOTIONAL", raising=False)
     monkeypatch.delenv("QMT_DAILY_ORDER_CAP", raising=False)
+    # TDX 交易桩所需环境：账号（桩不真连），交易开关默认关、放行非交易时段
+    monkeypatch.setenv("TDX_ACCOUNT_ID", "test-tdx-acct")
+    monkeypatch.setenv("TDX_ALLOW_OFFHOURS", "true")
+    monkeypatch.setenv("TDX_TRADING_ENABLED", "false")  # setenv 而非 delenv：抗 load_dotenv setdefault 重灌本机 .env
+    monkeypatch.delenv("TDX_CODE_WHITELIST", raising=False)
+    monkeypatch.delenv("TDX_MAX_NOTIONAL", raising=False)
+    monkeypatch.delenv("TDX_DAILY_ORDER_CAP", raising=False)
+    # Wind 交易总开关默认关（交易类透传 503，除非用例显式开启）。
+    # 用 setenv("false") 而非 delenv：TestClient 启动时 load_dotenv 的 setdefault 会
+    # 在 delenv 后把本机 .env 的 WIND_TRADING_ENABLED=true 重新灌回，导致本用例假失败；
+    # 显式置 false 后 setdefault 不覆盖已存在值，测试不再受本机 .env 影响。
+    monkeypatch.setenv("WIND_TRADING_ENABLED", "false")
     from fastapi.testclient import TestClient
     import importlib
     import stocksdk.guards as guards

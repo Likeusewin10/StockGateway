@@ -8,18 +8,42 @@
    (只持 API Key)                         (验 Key/限流)   (JWT 仅在本机)
 ```
 
-首个厂商是 iFinD（同花顺）的 7 个 MCP server（stock/fund/edb/news/bond/global-stock/index，
-共 32 个工具），在网关里以 `ifind_<server>_<tool>` 前缀暴露。
+当前已挂载三家上游厂商（工具前缀 `<name>_<server>_<tool>`）：
+
+| 厂商 | `name` | 上游 server | 工具数 | 鉴权方式 |
+|---|---|---|---|---|
+| 同花顺 iFinD | `ifind` | 7 个（stock/fund/edb/news/bond/global-stock/index） | 32 | `Authorization` 头（裸 JWE） |
+| 妙想（东方财富） | `mx` | 1 个（mx-ds-mcp） | 11 | `em_api_key` 头（裸 key） |
+| Tushare | `tushare` | 1 个（tushare-mcp） | 上游 258 → **网关聚合成 14**（`tushare_cat_*`） | 🔴 **URL 查询串** `?token=`（非 header） |
+
+加上本机自有的 11 个 `agent_*` 工具，网关对外暴露 **68 个工具**（聚合前为 305）。
+
+> **Tushare 为何要聚合？** 上游是 tool-per-API 设计（`daily`/`stock_basic`/`adj_factor`… 各一个工具，共 258 个），
+> 直接透传会撑爆客户端上下文（业界实测工具选择准确率在 30~50 个后显著下降）。
+> 网关层用 `ToolAggregationMiddleware`（`mcp_gateway/aggregation.py`）把 258 个收成 14 个**分类分发工具**：
+> `on_list_tools` 把 `tushare_ds_*` 从列表隐藏、替换成 `tushare_cat_<分类>`（`api_name` enum + `params` 透传）；
+> `on_call_tool` 把 `tushare_cat_stock_quote(api_name="daily", params={...})` 改写回 `tushare_ds_daily` 走原 proxy。
+> 分类运行时从上游工具 description 的官方路径 `/数据接口/<L1>/<L2>/...` 解析（上游加接口自动落桶，解析不出进 `misc` 兜底）。
+> 14 桶：stock_quote(58)/stock_ref(52)/stock_fin(10)/index(20)/alt(20)/macro(19)/fund(18)/bond(17)/hk(12)/futures(11)/us(9)/option(4)/fx_spot(4)/misc(4)。
+> 代价：丢失 per-API 参数 schema（与 REST 侧 `/tdx/call/{method}` 同一权衡），各 api 参数见分类工具 description 与 Tushare 官方文档。
+> 开关：`providers.py` 里该厂商 `aggregate=True`；改回 False 即恢复 258 个原样透传。
+> **已真机验证（2026-07-02）**：14 桶各实调 1 个代表 API，12/14 取数成功；`us_daily`/`news` 失败是
+> Tushare 官方 40203（**账号积分不够、无该接口权限**，错误原样透传），非聚合层问题——换桶内有权限的
+> API（如 `us_basic`/`cctv_news`）或升级积分即可。跨桶调用（经 stock_quote 调 income）会被网关拒绝。
 
 ---
 
 ## 一、本机启动（提供方）
 
 ### 1. 准备 `.env`
-从 `.env.example` 复制，填三项：
+从 `.env.example` 复制，填：
 - `API_KEY`：你签发给远端的鉴权 key（随机串）。
 - `IFIND_MCP_JWT`：iFinD 上游 JWT（从 `~/.claude.json` 里任一 iFinD server 的 `Authorization` 整串复制）。
+- `MIAO_XIANG_MCP_KEY`：妙想（东方财富）上游 API key。
+- `TUSHARE_MCP_TOKEN`：Tushare 上游 token（网关拼进上游 URL 查询串 `?token=`，凭据不进 header/日志）。
 - `MCP_GATEWAY_PORT`：默认 8765，可不改。
+
+缺某厂商凭据时，该厂商启动时被跳过并告警，不影响其它厂商。
 
 ### 2. 起网关（看门狗自重启）
 ```bat
@@ -83,6 +107,21 @@ DEMO = Provider(
 PROVIDERS = (IFIND, DEMO)
 ```
 
+示例（凭据走 URL 查询串的厂商，如 Tushare —— token 放 `?token=`，不是 header）：
+```python
+TUSHARE = Provider(
+    name="tushare",
+    base_url="https://api.tushare.pro/mcp/",   # base_url 本身即完整端点
+    servers=(ProviderServer("tushare-mcp", "ds"),),
+    auth_env="TUSHARE_MCP_TOKEN",
+    auth_query="token",       # 🔴 凭据经查询串注入、不进 header（upstream 收口拼 URL）
+    url_template="{base_url}",
+)
+PROVIDERS = (IFIND, MX, TUSHARE)
+```
+`auth_query` 非空时，`upstream._server_url` 把 `TUSHARE_MCP_TOKEN` 拼进上游 URL 查询串、请求头留空；
+缺 token 与 header 路径一样跳过该厂商并告警。工具前缀 `tushare_ds_*`。
+
 ---
 
 ## 四、运维要点
@@ -92,6 +131,14 @@ PROVIDERS = (IFIND, DEMO)
 - **鉴权**：未配 `API_KEY` 且监听 `0.0.0.0` 时，启动日志会告警「不鉴权，勿暴露公网」。公网必配。
 - **限流**：按客户端 IP 滑动窗口（默认 60s 内 60 次），超限返回 429。复用 `stocksdk/ratelimit.py`。
 - **健康自检**：`curl -X POST http://127.0.0.1:8765/mcp` 无 key 应返回 401；带正确 key 的 MCP `initialize` 应返回 200。
+- **🔴 TLS 信任（重启后全上游 `list_tools` 失败必查）**：若日志刷 `[SSL: CERTIFICATE_VERIFY_FAILED]
+  unable to get local issuer certificate`、**所有厂商**都列不出工具（只剩 4 个 `agent_*`），根因是本机上游
+  证书链到的根证书只在 **Windows 信任库**、不在 Python httpx 默认的 certifi bundle（典型是企业代理/杀软的
+  TLS 检测根证书）。判据：`curl` 打同一 URL 成功（用 OS 库），Python 失败。修法：`.venv-mcp` 装 `truststore`
+  （已列入 `requirements-mcp.txt`），`server.py` 启动时 `truststore.inject_into_ssl()` 让 Python 改走 OS 信任库
+  （与 curl 一致）。此非 Tushare 专属，影响全部 https 上游。
+- **重启网关**：看门狗 `start_mcp_gateway.bat` 里 uvicorn 退出后 5s 自动重启。手动重启：
+  `netstat -ano | findstr :8765`（LISTENING 行取 PID）→ `taskkill /PID <pid> /F` → 约 13s 后重新监听。
 
 ## 五、本机连通自测
 
@@ -110,14 +157,17 @@ curl -s -o /dev/null -w '%{http_code}\n' -X POST \
 
 ## 六、服务器端 Agent 工具（本地指挥服务器干活）
 
-除转发上游厂商 MCP 外，网关还自带三个**本机工具**，让远端 Agent 在服务器上异步启动
-一个 `claude` / `codex` 子进程干活，结果回传。命名空间 `agent`，工具名：
+除转发上游厂商 MCP 外，网关还自带 **11 个本机工具**（命名空间 `agent`），让远端 Agent 在服务器上异步启动
+一个 `claude` / `codex` 子进程干活，结果回传。核心三件套：
 
 | 工具 | 入参 | 返回 | 作用 |
 |---|---|---|---|
 | `agent_agent_run` | `engine`(claude/codex), `prompt` | `{task_id, status}` | 异步起子进程，立即返 task_id |
 | `agent_agent_status` | `task_id` | `{task_id, status[, error]}` | 轮询状态：running/done/failed/timeout/unknown |
 | `agent_agent_result` | `task_id` | `{status, output, error, returncode, ...}` | 取完整输出 |
+
+其余 8 个：`agent_sessions`（扫盘列历史会话，仿 `/resume`）、`agent_events`/`agent_send`/`agent_close`
+（流式事件与常驻 live 会话交互）、`agent_memory_set/get/list/delete`（服务器端跨任务记忆 KV）。
 
 ### 异步轮询流程
 

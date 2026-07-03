@@ -12,11 +12,22 @@ from starlette.middleware import Middleware
 
 from mcp_gateway.auth import ApiKeyAuthMiddleware
 from mcp_gateway.agent_tools import agent as agent_tools
+from mcp_gateway.aggregation import ToolAggregationMiddleware
 from mcp_gateway.config import MCP_PATH, get_api_key, load_dotenv
 from mcp_gateway.providers import PROVIDERS
 from mcp_gateway.upstream import iter_upstreams
 
 load_dotenv()
+
+# 让上游 TLS 走操作系统信任库（与 curl/浏览器一致），而非 certifi 自带 CA bundle。
+# 某些环境（企业代理 / 杀软 TLS 检测根证书）只把根证书装进 OS 信任库，certifi 里没有，
+# 会导致 httpx 报 CERTIFICATE_VERIFY_FAILED、所有上游 list_tools 失败。truststore 缺失时静默跳过。
+try:
+    import truststore
+
+    truststore.inject_into_ssl()
+except Exception:  # noqa: BLE001  truststore 未装或注入失败都不应拖垮网关启动
+    pass
 
 logging.basicConfig(
     level=logging.INFO,
@@ -35,6 +46,15 @@ def build_gateway() -> FastMCP:
             gateway.mount(proxy, namespace=provider.prefix(server))
             mounted += 1
             logger.info("已挂载上游 %s -> 前缀 %s", server.name, provider.prefix(server))
+        # aggregate 厂商:该厂商全部 server 的原始工具在网关层收成分类分发工具
+        # (tushare_ds_* 258 个 → tushare_cat_* ~13 个,原始工具从 tools/list 隐藏但仍可被改写调用)。
+        if provider.aggregate:
+            for server in provider.servers:
+                gateway.add_middleware(ToolAggregationMiddleware(
+                    raw_prefix=f"{provider.prefix(server)}_",
+                    cat_prefix=f"{provider.name}_cat_",
+                ))
+                logger.info("已启用工具聚合:%s_* -> %s_cat_*", provider.prefix(server), provider.name)
     # 本机自有工具：服务器端 Agent（agent_run/agent_status/agent_result/agent_sessions），命名空间 agent。
     gateway.mount(agent_tools, namespace="agent")
     logger.info("已挂载本机工具 -> 前缀 agent（agent_run/agent_status/agent_result/agent_sessions）")

@@ -1,25 +1,51 @@
 """通达信 TQ（TdxQuant）HTTP 路由：/tdx/*。
 
-第四个数据源，与 /em /ths /wind 并列，只读取数、不交易。固定端点
-（bars/snapshot/stock_info/sector/financial）+ 通用透传（call/methods）。
-🔴 交易/写操作类（order_stock/cancel_order_stock/send_* 等）硬拦截 403——
-项目定位 QMT 是唯一交易源，TDX 与 EM/iFinD/Wind 同为只读（定位边界）。
+第四个数据源，与 /em /ths /wind 并列取数；同时是**独立券商交易腿**——与 QMT（/qmt/*）
+平级、各自独立（不是替代，两个券商接口互不干扰）。取数只读；交易走与 QMT 同构的
+安全分层。
+
+安全分层（服务经 ngrok 公网，交易端点务必收紧）：
+- 写操作（order/cancel）默认被 TDX_TRADING_ENABLED=false 全拦（503）。
+- /tdx/order 默认 dry-run，只回显将发送的委托；confirm=true 才真发单。
+- 真发单前过 guards 四道护栏（金额/白名单/当日笔数/交易时段），并写审计 jsonl。
+读操作（bars/snapshot/asset/positions/orders/... /methods）不受交易开关限制。
+
+🔴 TQ 下单常量与 QMT 不同：tqconst.STOCK_BUY=0/STOCK_SELL=1、PRICE_MY=0(限价)/
+PRICE_SJ=1(市价)；order_stock/cancel_order_stock 返回 dict{'ErrorId','Msg','Value'}，
+与 QMT 的返回码完全不同（归一化见 serialize.tdx_order_result/tdx_cancel_result）。
 前提：本机通达信金融终端已开启并登录。
 """
+import datetime
+import json
+from pathlib import Path
 from typing import Any, List
 
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
+from stocksdk import guards
+from stocksdk.config import (
+    get_tdx_code_whitelist,
+    get_tdx_daily_order_cap,
+    get_tdx_max_notional,
+    is_tdx_offhours_allowed,
+    is_tdx_trading_enabled,
+)
 from stocksdk.security import rate_limit, require_key
-from stocksdk.serialize import tdx_result
-from stocksdk.sessions import lock, tdx_exec, tdx
+from stocksdk.serialize import tdx_cancel_result, tdx_order_result, tdx_result
+from stocksdk.sessions import ensure_tdx, ensure_tdx_account, lock, tdx, tdx_account, tdx_exec
+
+from tqcenter import tqconst   # noqa: E402  下单方向/报价类型常量（sessions 已完成 tqcenter 引导）
 
 router = APIRouter(prefix="/tdx", tags=["通达信 TDX"])
 
-# 🔴 交易/写操作类：违反「只读取数不交易」定位边界，硬拦截 403，不暴露。
-_TDX_TRADING = {"order_stock", "cancel_order_stock", "stock_account",
-                "query_stock_asset", "query_stock_positions", "query_stock_orders"}
+_SIDE = {"buy": tqconst.STOCK_BUY, "sell": tqconst.STOCK_SELL}
+_PRICE_TYPE = {"limit": tqconst.PRICE_MY, "market": tqconst.PRICE_SJ}
+
+# 交易类：必须走带护栏的固定端点（/tdx/order|/tdx/cancel），透传一律 403。
+_TDX_GUARDED = {"order_stock", "cancel_order_stock"}
+# 需账户句柄的查询类：走固定端点（/tdx/asset|positions|orders）自动注入句柄，透传标注引导。
+_TDX_ACCOUNT = {"stock_account", "query_stock_asset", "query_stock_positions", "query_stock_orders"}
 # 写客户端状态/发消息类：会改通达信终端状态或向其推送，禁止透传。
 _TDX_WRITE = {"send_message", "send_warn", "send_file", "send_bt_data", "send_user_block",
               "create_sector", "delete_sector", "rename_sector", "clear_sector",
@@ -28,12 +54,33 @@ _TDX_WRITE = {"send_message", "send_warn", "send_file", "send_bt_data", "send_us
 _TDX_SESSION = {"initialize", "close"}
 # 异步推送类：回调模型，同步 HTTP 单请求拿不到结果（后续可仿 routes_ws 做 WS）。
 _TDX_ASYNC = {"subscribe_hq", "unsubscribe_hq", "get_subscribe_hq_stock_list", "subscribe_quote"}
-_TDX_BLOCKED = _TDX_TRADING | _TDX_WRITE | _TDX_SESSION
+_TDX_BLOCKED = _TDX_GUARDED | _TDX_ACCOUNT | _TDX_WRITE | _TDX_SESSION
+
+_AUDIT_DIR = Path(__file__).resolve().parent.parent / "audit"
 
 
 def _split_csv(s: str) -> List[str]:
     return [x.strip() for x in s.split(",") if x.strip()]
 
+
+def _audit(event: dict) -> None:
+    """每笔交易请求/响应落本机 jsonl（gitignore）。绝不因审计失败影响下单流程。"""
+    try:
+        _AUDIT_DIR.mkdir(exist_ok=True)
+        event = {"ts": datetime.datetime.now().isoformat(timespec="seconds"), **event}
+        fname = _AUDIT_DIR / "tdx-{}.jsonl".format(datetime.date.today().isoformat())
+        with fname.open("a", encoding="utf-8") as f:
+            f.write(json.dumps(event, ensure_ascii=False) + "\n")
+    except Exception:
+        pass
+
+
+def _require_trading_enabled() -> None:
+    if not is_tdx_trading_enabled():
+        raise HTTPException(503, "TDX 交易未启用（设 TDX_TRADING_ENABLED=true 开启）")
+
+
+# ----------------------------- 取数（只读，不受交易开关限制）-----------------------------
 
 @router.get("/bars")
 def tdx_bars(codes: str, fields: str = "", period: str = "1d",
@@ -103,15 +150,142 @@ def tdx_trading_dates(market: str, start: str = "", end: str = "", count: int = 
             market=market, start_time=start, end_time=end, count=count)))
 
 
+# ----------------------------- 交易查询（读，需账户句柄，不受交易开关限制）-----------------------------
+
+@router.get("/health")
+def tdx_health(_=Depends(require_key)):
+    """深度健康：尝试初始化会话并取账户句柄。不抛错（未就绪返回 connected=false）。"""
+    with lock:
+        try:
+            ensure_tdx()
+            handle = ensure_tdx_account()
+            return {"connected": True, "account": handle}
+        except HTTPException as e:
+            return {"connected": False, "detail": e.detail}
+        except Exception as e:  # 缺账号配置(RuntimeError)等非 HTTP 异常也须优雅降级,不抛 500
+            return {"connected": False, "detail": str(e)}
+
+
+@router.get("/asset")
+def tdx_get_asset(_=Depends(require_key), __=Depends(rate_limit)):
+    """资金账户资产（余额/可用/资产/市值）。"""
+    with lock:
+        acc = ensure_tdx_account()
+        return tdx_result(tdx_exec(lambda: tdx.query_stock_asset(account_id=acc)))
+
+
+@router.get("/positions")
+def tdx_get_positions(_=Depends(require_key), __=Depends(rate_limit)):
+    """持仓列表。"""
+    with lock:
+        acc = ensure_tdx_account()
+        return tdx_result(tdx_exec(lambda: tdx.query_stock_positions(account_id=acc)))
+
+
+@router.get("/orders")
+def tdx_get_orders(code: str = "", cancelable: int = 0,
+                   _=Depends(require_key), __=Depends(rate_limit)):
+    """当日委托列表。code 可选按证券代码过滤；cancelable=1 只看可撤委托。"""
+    with lock:
+        acc = ensure_tdx_account()
+        return tdx_result(tdx_exec(lambda: tdx.query_stock_orders(
+            account_id=acc, stock_code=code, cancelable_only=bool(cancelable))))
+
+
+# ----------------------------- 交易写：下单/撤单 -----------------------------
+
+class TdxOrderReq(BaseModel):
+    side: str                       # buy | sell
+    stock_code: str                 # 如 "600519.SH"
+    volume: int                     # 股
+    price_type: str = "limit"       # limit（自填价 PRICE_MY）| market（市价 PRICE_SJ）
+    price: float = 0.0              # 限价单必填(>0)；市价单忽略
+    confirm: bool = False           # 缺省 dry-run；true 才真发
+
+
+class TdxCancelReq(BaseModel):
+    stock_code: str                 # 撤单需证券代码（与 QMT 不同）
+    order_id: int                   # 委托编号 Wtbh
+    confirm: bool = False
+
+
+def _resolve_order(body: TdxOrderReq) -> tuple[int, int, float, float]:
+    """校验并解析下单参数 → (order_type, price_type_const, send_price, guard_price)。"""
+    if body.side not in _SIDE:
+        raise HTTPException(400, "side 必须为 buy|sell")
+    if body.price_type not in _PRICE_TYPE:
+        raise HTTPException(400, "price_type 必须为 limit|market")
+    if body.price_type == "limit":
+        if not body.price or body.price <= 0:
+            raise HTTPException(400, "限价单必须提供正的 price")
+        send_price, guard_price = body.price, body.price
+    else:   # market：市价委托，price 传 0；金额无法预估，护栏跳过金额项
+        send_price, guard_price = 0.0, 0.0
+    return _SIDE[body.side], _PRICE_TYPE[body.price_type], send_price, guard_price
+
+
+@router.post("/order")
+def tdx_place_order(body: TdxOrderReq, _=Depends(require_key), __=Depends(rate_limit)):
+    """下单。默认 dry-run 只回显；confirm=true 且过护栏才真发单。"""
+    _require_trading_enabled()
+    order_type, price_type, send_price, guard_price = _resolve_order(body)
+
+    guards.enforce(
+        "tdx", body.stock_code, body.volume, guard_price,
+        max_notional=get_tdx_max_notional(), daily_cap=get_tdx_daily_order_cap(),
+        whitelist=get_tdx_code_whitelist(), allow_offhours=is_tdx_offhours_allowed(),
+    )   # 越限抛 409
+
+    preview = {
+        "side": body.side, "stock_code": body.stock_code, "volume": body.volume,
+        "price_type": body.price_type, "price": send_price,
+        "daily_order_count": guards.current_daily_count("tdx"),
+    }
+    if not body.confirm:
+        _audit({"action": "order", "result": "dry_run", **preview})
+        return {"dry_run": True, "would_send": preview}
+
+    with lock:
+        acc = ensure_tdx_account()
+        res = tdx_exec(lambda: tdx.order_stock(
+            account_id=acc, stock_code=body.stock_code, order_type=order_type,
+            order_volume=body.volume, price_type=price_type, price=send_price, notify=0))
+    out = tdx_order_result(res)   # Value==0/ErrorId!=0 → 502
+    guards.record_order("tdx")
+    _audit({"action": "order", "result": "sent", **out, **preview})
+    return out
+
+
+@router.post("/cancel")
+def tdx_cancel(body: TdxCancelReq, _=Depends(require_key), __=Depends(rate_limit)):
+    """撤单。默认 dry-run；confirm=true 才真撤。撤单需 stock_code + order_id。"""
+    _require_trading_enabled()
+    if not body.confirm:
+        return {"dry_run": True,
+                "would_cancel": {"stock_code": body.stock_code, "order_id": body.order_id}}
+    with lock:
+        acc = ensure_tdx_account()
+        res = tdx_exec(lambda: tdx.cancel_order_stock(
+            account_id=acc, stock_code=body.stock_code, order_id=body.order_id))
+    out = tdx_cancel_result(res)
+    _audit({"action": "cancel", "stock_code": body.stock_code,
+            "order_id": body.order_id, **out})
+    return out
+
+
+# ----------------------------- 透传 / 方法清单 -----------------------------
+
 @router.get("/methods")
 def tdx_methods(_=Depends(require_key)):
-    """列出 tqcenter.tq 所有可调用方法及类别标注（交易/写类标注为已拦截）。"""
+    """列出 tqcenter.tq 所有可调用方法及类别标注。"""
     out = {}
     for name in sorted(n for n in dir(tdx) if not n.startswith("_")):
         if not callable(getattr(tdx, name, None)):
             continue
-        if name in _TDX_TRADING:
-            out[name] = "blocked(交易类,定位边界禁止,调用返回 403)"
+        if name in _TDX_GUARDED:
+            out[name] = "blocked(交易类,请用 /tdx/order|/tdx/cancel 带护栏端点)"
+        elif name in _TDX_ACCOUNT:
+            out[name] = "blocked(需账户句柄,请用 /tdx/asset|positions|orders 端点)"
         elif name in _TDX_WRITE:
             out[name] = "blocked(写客户端状态,透传禁止,返回 403)"
         elif name in _TDX_SESSION:
@@ -131,12 +305,13 @@ class TdxCall(BaseModel):
 @router.post("/call/{method}")
 def tdx_call(method: str, body: TdxCall = TdxCall(),
              _=Depends(require_key), __=Depends(rate_limit)):
-    """透传调用只读类 tq.<method>(*args, **kwargs)。交易/写/会话类一律 403。
+    """透传调用只读取数类 tq.<method>(*args, **kwargs)。交易/账户/写/会话类一律 403
+    （交易走 /tdx/order|/tdx/cancel，账户查询走 /tdx/asset|positions|orders）。
     例：method=get_divid_factors args=["688318.SH","",""]"""
     if method.startswith("_"):
         raise HTTPException(403, "不可调用私有方法：{}".format(method))
     if method in _TDX_BLOCKED:
-        raise HTTPException(403, "禁止调用交易/写/会话类方法（本服务只读取数）：{}".format(method))
+        raise HTTPException(403, "禁止透传（交易/账户/写/会话类请走专用端点）：{}".format(method))
     fn = getattr(tdx, method, None)
     if fn is None or not callable(fn):
         raise HTTPException(404, "未知方法：{}".format(method))

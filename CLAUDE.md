@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 把两个 Windows-only、单会话的桌面股票数据 SDK（东方财富 **EMQuantAPI** 与同花顺 **iFinD**）包成可远程取数的服务，并把多厂商上游 MCP 聚合成本机一个网关。三件独立产物：
 
-1. **REST + WebSocket 取数服务**（`app.py` + `stocksdk/`，端口 8000）—— 别的项目用 `ip:端口 + 参数` 取数，不写 SDK 代码。当前接**四源**（EM、iFinD、Wind、TDX）：EM/iFinD 真机已用；**第三源 Wind（WindPy）`/wind/*` 路由已实现并桩测全绿，真机环境已打通**（实现与登录踩坑见 [`.claude/plans/wind-windpy-integration.plan.md`](.claude/plans/wind-windpy-integration.plan.md)）；**第四源 TDX（通达信 TQ/TdxQuant）`/tdx/*` 路由已实现、桩测全绿、真机端到端已验证**（见架构要点「通达信 TDX 接口」）。
+1. **REST + WebSocket 取数服务**（`app.py` + `stocksdk/`，端口 8000）—— 别的项目用 `ip:端口 + 参数` 取数，不写 SDK 代码。当前接**四源**（EM、iFinD、Wind、TDX）：EM/iFinD 真机已用；**第三源 Wind（WindPy）`/wind/*` 路由已实现并桩测全绿，真机环境已打通**（实现与登录踩坑见 [`.claude/plans/wind-windpy-integration.plan.md`](.claude/plans/wind-windpy-integration.plan.md)）；**第四源 TDX（通达信 TQ/TdxQuant）`/tdx/*` 已实现读+交易完整功能、桩测全绿、只读部分真机端到端已验证**（见架构要点「通达信 TDX 接口」）。
 2. **MCP 聚合网关**（`mcp_gateway/`，端口 8765）—— 把上游厂商 MCP 中转给远程标准 MCP 客户端，上游凭据只存本机。
 3. **生产压测工具**（`loadtest/`）—— 验证崩溃自愈、并发承载、WS 长稳。
 
@@ -14,9 +14,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### 🔴 定位边界（别搞混两个仓库）
 
-**本仓库以「数据提供方」为主：EM/iFinD/Wind 三源只读取数、不下单、不交易。** 消费方曾是**另一个仓库 STS-codex**（交易系统，本机不存在）。
+**本仓库现为「数据 + 交易」双职能**：EM/iFinD/Wind 以取数为主，QMT/TDX 是真实券商交易腿。消费方曾是**另一个仓库 STS-codex**（交易系统，本机不存在）。
 
-> ⚠ **定位更新（2026-06-26）**：经用户决策，**新增本机交易能力**——君弘君智（迅投 QMT/XtQuant）`/qmt/*` 路由直接做进本服务（详见架构要点「QMT 交易接口」）。交易**默认关**（`QMT_TRADING_ENABLED=false`）、下单**默认 dry-run**、过四道护栏、写审计；EM/iFinD/Wind 仍维持只读，Wind 的 `torder` 等仍 403 硬拦截。「下单只走 STS-codex / signal-submit」的旧红线在交易腿并入本仓库后已被此决策覆盖。
+> ⚠ **定位更新（2026-06-26 / 2026-07-01）**：经用户决策,**全面放开交易/写能力,靠鉴权(API Key)兜底**。各源现状:
+> - **QMT / TDX**:两个**独立券商交易腿**(各自独立、互不干扰),真实券商下单。交易**默认关**(各自 `QMT_TRADING_ENABLED` / `TDX_TRADING_ENABLED=false`)、下单**默认 dry-run**、过四道护栏、写审计。见架构要点「QMT 交易接口」「通达信 TDX 接口」。
+> - **Wind**:`torder`/`tlogon`/`wupf` 等真实交易/写函数经 `/wind/call` 放行,受**独立总开关 `WIND_TRADING_ENABLED`(默认关,关时 503)** 控制 + 写审计。Wind 交易函数签名各异、无固定 order 端点,故走「总开关 + 审计」两层(不做逐笔 dry-run/护栏)。
+> - **EM**:`/em/call` 已不拦截任何方法;`porder`/`pcreate` 等是**虚拟组合持仓操作(无真实资金)**,非真实券商下单。
+> - **iFinD**:数据版 SDK **无任何交易函数**(纯取数),`/ths/call` 亦不拦截。
+>
+> 「下单只走 STS-codex / signal-submit」「只读取数不交易」的旧红线已被此决策整体覆盖。公网放开真实交易(QMT/TDX/Wind 总开关)前需显式确认。
 
 `docs/数据激活.md`（数据源激活手册）里的 `trading-system` CLI、SQLite、source-priority resolver **全部属于 STS-codex，不在本仓库实现**。本仓库对它只负责两件事：① 把数据取出来；② 用 [`docs/数据源对照-StockSDK提供.md`](docs/数据源对照-StockSDK提供.md) 说明「哪个字段走哪个端点」。看到要在本仓库实现 resolver / Choice provider 的需求，先回到这条边界确认。
 
@@ -36,7 +42,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### Wind（WindPy）环境与登录（已实测打通；`/wind/*` 路由已实现，见 [`stocksdk/routes_wind.py`](stocksdk/routes_wind.py) 与 [`.claude/plans/wind-windpy-integration.plan.md`](.claude/plans/wind-windpy-integration.plan.md)）
 
-Wind 是第三个**单会话/单点登录**桌面 SDK，接入方式与 EM/iFinD 同构（全局锁串行化 + 会话自愈三件套 `ensure_wind`/`wind_exec`/`_wind_session_dead`，会话失效码集 `{-2, -103, -40520004}`）。路由层 `/wind/*`：固定端点 `GET /wind/wsd`（日序列）、`GET /wind/wss`（日截面，均默认 `usedf=True`），透传 `POST /wind/call/{method}`、`GET /wind/methods`。**仅读取数、不做交易**——交易/写操作类（`tlogon/tlogout/torder/tcancel/tquery/wupf`）在 `routes_wind.py:_WIND_TRADING` 中**硬拦截 403**，遵循定位边界。`wsq` 实时为异步回调，HTTP 同步端点不暴露（`/wind/methods` 标注，实时推送后续仿 `routes_ws.py`）。
+Wind 是第三个**单会话/单点登录**桌面 SDK，接入方式与 EM/iFinD 同构（全局锁串行化 + 会话自愈三件套 `ensure_wind`/`wind_exec`/`_wind_session_dead`，会话失效码集 `{-2, -103, -40520004}`）。路由层 `/wind/*`：固定端点 `GET /wind/wsd`（日序列）、`GET /wind/wss`（日截面，均默认 `usedf=True`），透传 `POST /wind/call/{method}`、`GET /wind/methods`。**取数为主,交易/写能力受控放开**——交易/写操作类（`tlogon/tlogout/torder/tcancel/tquery/wupf` + `c_t*` 底层，见 `routes_wind.py:_WIND_TRADING`）经 `/wind/call` 放行,但受**独立总开关 `WIND_TRADING_ENABLED`(默认关,`config.is_wind_trading_enabled`)** 控制:关时返回 **503**,开时放行并写审计 `audit/wind-*.jsonl`。Wind 交易函数签名各异、无固定 order 端点,故走「总开关 + 审计」两层(不做逐笔 dry-run/护栏),靠 API Key + 总开关兜底(需交易权限的 Wind 终端,通常机构版)。`wsq` 实时为异步回调，HTTP 同步端点不暴露（`/wind/methods` 标注，实时推送后续仿 `routes_ws.py`）。
 
 - **注册（一次性）**：装好 Wind 金融终端后，用官方脚本写 `.pth`（机制同 EM）：
   ```bat
@@ -115,25 +121,27 @@ SDK 回调在后台线程触发 → `loop.call_soon_threadsafe` 塞进 `asyncio.
 
 ### MCP 网关（mcp_gateway/）
 
-FastMCP `create_proxy` + `gateway.mount`，把每个上游 server 以 `f"{provider}_{server_short}"` 前缀挂载（命名空间隔离）。**加新厂商 = 往 `providers.py` 的 `PROVIDERS` 追加一个 `Provider` 条目 + 在 `.env` 填该厂商凭据变量**，不改任何执行代码。凭据读取在 `upstream.py` 收口（注册表只存环境变量**名**，绝不存凭据本身）。缺凭据的厂商被跳过（warning），不影响其它厂商。
+FastMCP `create_proxy` + `gateway.mount`，把每个上游 server 以 `f"{provider}_{server_short}"` 前缀挂载（命名空间隔离）。**加新厂商 = 往 `providers.py` 的 `PROVIDERS` 追加一个 `Provider` 条目 + 在 `.env` 填该厂商凭据变量**，不改任何执行代码。凭据读取在 `upstream.py` 收口（注册表只存环境变量**名**，绝不存凭据本身）。缺凭据的厂商被跳过（warning），不影响其它厂商。当前挂 3 家：iFinD（`Authorization` 头 / 32 工具）、妙想 MX（`em_api_key` 头 / 11 工具）、Tushare（`auth_query="token"` 走 **URL 查询串**、非 header / 上游 258 工具经 `aggregation.py` **聚合成 14 个 `tushare_cat_*` 分类分发工具**，`Provider.aggregate=True` 开启）。**鉴权两通道**：默认注入 header（`auth_header`/`auth_scheme`）；`auth_query` 非空则由 `upstream._server_url` 把 token 拼进 URL 查询串、请求头留空（Tushare 用此路）。🔴 上游 TLS 走 OS 信任库：`server.py` 启动时 `truststore.inject_into_ssl()`，否则企业代理/杀软根证书不在 certifi bundle 时**全上游** `CERTIFICATE_VERIFY_FAILED`（`curl` 能连、Python 不能即此症，见 [`docs/MCP中转网关.md`](docs/MCP中转网关.md) 四）。
 
 ### 服务器端 Agent 工具（mcp_gateway/agent_runner.py + agent_tools.py）
 
-网关自带三个本机工具（命名空间 `agent`，工具名 `agent_agent_run`/`_status`/`_result`），让远端 Agent 在服务器上**异步**起一次性 `claude -p` / `codex exec` 子进程干活、轮询取结果，实现「本地 Agent 指挥服务器 Agent」。异步模型（立即返 `task_id` + 后台线程跑 + 轮询）避开 MCP 同步超时；状态机 `running→done|failed|timeout`。🔴 子进程全自动非交互（`--dangerously-*`），靠两道防线：① 复用网关 X-API-Key（强随机、只发可信机器）；② **cwd 锁死 `AGENT_PROJECT_DIR`**（`config.get_agent_project_dir` 校验覆盖值仍在仓库根内）。引擎限 `claude`/`codex` 白名单 + `shutil.which` 探活，未装/未登录返回 `failed` 不崩。命令模板里 `--` 在 `{prompt}` 前，防 `-` 开头 prompt 被当 flag。第一步不做常驻会话/跨任务上下文（服务器 `CLAUDE.md` 随 prompt 自动加载弥补）。详见 [`docs/MCP中转网关.md`](docs/MCP中转网关.md) 第六节。
+网关自带 11 个本机工具（命名空间 `agent`；核心 `agent_agent_run`/`_status`/`_result`，另有 `_sessions` 会话列表、`_events`/`_send`/`_close` 流式与常驻会话、`_memory_*` 服务器端记忆 KV），让远端 Agent 在服务器上**异步**起一次性 `claude -p` / `codex exec` 子进程干活、轮询取结果，实现「本地 Agent 指挥服务器 Agent」。异步模型（立即返 `task_id` + 后台线程跑 + 轮询）避开 MCP 同步超时；状态机 `running→done|failed|timeout`。🔴 子进程全自动非交互（`--dangerously-*`），靠两道防线：① 复用网关 X-API-Key（强随机、只发可信机器）；② **cwd 锁死 `AGENT_PROJECT_DIR`**（`config.get_agent_project_dir` 校验覆盖值仍在仓库根内）。引擎限 `claude`/`codex` 白名单 + `shutil.which` 探活，未装/未登录返回 `failed` 不崩。命令模板里 `--` 在 `{prompt}` 前，防 `-` 开头 prompt 被当 flag。第一步不做常驻会话/跨任务上下文（服务器 `CLAUDE.md` 随 prompt 自动加载弥补）。详见 [`docs/MCP中转网关.md`](docs/MCP中转网关.md) 第六节。
 
 ### 通达信 TDX 接口（routes_tdx.py + sessions.py 的 ensure_tdx）
 
-通达信 TQ（TdxQuant，官方 Python 量化框架）是**第四个数据源**，`/tdx/*` 与 `/em /ths /wind` 并列，**只读取数、不交易**（交易类硬拦 403，QMT 仍是唯一交易源）。接入要点：
+通达信 TQ（TdxQuant，官方 Python 量化框架）是**第四个数据源 + 独立券商交易腿**，`/tdx/*` 与 `/em /ths /wind` 并列取数，同时**与 QMT 平级独立**做交易（两个券商接口各自独立，非替代）。取数只读；交易走与 QMT 同构的安全分层。接入要点：
 
-- **运行时引入**：`tqcenter` 模块在通达信终端安装目录 `PYPlugins\sys` 下（默认 `config.TDX_DEFAULT_PYPLUGINS_DIR`，`TDX_PYPLUGINS_DIR` 可覆盖），依赖同目录 `TPyth*.dll`/`tdxrpc*.dll`。`sessions.py:_bootstrap_tdx_path()` 在 `from tqcenter import tq as tdx` 前用 `sys.path` + `os.add_dll_directory` 注入（机制同 QMT）。`tq` 是**类**，方法直接 `tdx.xxx()`。
-- **会话模型**：同 EM/iFinD/Wind 的单会话取数 + 复用全局 `lock` 串行化。自愈三件套 `ensure_tdx`/`tdx_exec`/`_tdx_session_dead`：`ensure_tdx()` 调 `tdx.initialize(路径)`（终端未开/未登录抛 502）；失效判定 = 返回 `None` 或 dict `ErrorId!=0` 且消息含登录关键词；`tdx_exec` 还兜底 `except`（终端断连时 initialize 抛异常）重连重试一次。前提：本机通达信金融终端（64位）已开启登录、且已在「发现→API插件」修复 Python 接口。
-- **端点**：固定只读端点 `GET /tdx/bars`（K线，dict-of-DataFrame）、`/tdx/snapshot`（五档快照）、`/tdx/stock_info`（基础财务）、`/tdx/financial`（专业财务 Fn 字段）、`/tdx/sector`（板块成分）、`/tdx/stock_list`（按市场取码）、`/tdx/trading_dates`（交易日历）；透传 `POST /tdx/call/{method}` + `GET /tdx/methods`。透传**硬拦三类 403**：交易类（`order_stock`/`cancel_order_stock`/`query_*`/`stock_account`）、写客户端类（`send_*`/板块增删改/`download_file`）、会话类（`initialize`/`close`）。`subscribe_hq` 异步推送 HTTP 不暴露（后续可仿 `routes_ws`）。
-- **返回归一化**：`serialize.tdx_result`——dict 含 DataFrame 值（get_market_data）→每个转 records；扁平 dict（snapshot/stock_info）直返；`ErrorId!=0`→502；list 直返。**代码须标准格式（`600519.SH`），日期 `YYYYMMDD`**（与前三源 `YYYY-MM-DD` 不同）。🔴 下单常量与 QMT 不同（TQ `tqconst.STOCK_BUY=0/SELL=1`、`PRICE_MY=0`；QMT 是 23/24/11），但本源不交易，仅记录备忘。
-- **官方文档**：`docs/catalog/tdx/_raw/TdxQuant接口说明文档.pdf`（231页）+ 抽出的 `tdxquant_doc.txt`，所有端点字段口径/签名据此实现。
+- **运行时引入**：`tqcenter` 模块在通达信终端安装目录 `PYPlugins\sys` 下（默认 `config.TDX_DEFAULT_PYPLUGINS_DIR`，`TDX_PYPLUGINS_DIR` 可覆盖），依赖同目录 `TPyth*.dll`/`tdxrpc*.dll`。`sessions.py:_bootstrap_tdx_path()` 在 `from tqcenter import tq as tdx` 前用 `sys.path` + `os.add_dll_directory` 注入（机制同 QMT）。`tq` 是**类**，方法直接 `tdx.xxx()`；下单常量走 `from tqcenter import tqconst`。
+- **会话模型**：单会话取数 + 复用全局 `lock` 串行化。自愈三件套 `ensure_tdx`/`tdx_exec`/`_tdx_session_dead`：`ensure_tdx()` 调 `tdx.initialize(路径)`（终端未开/未登录抛 502）；失效判定 = 返回 `None` 或 dict `ErrorId!=0` 且消息含登录关键词；`tdx_exec` 还兜底 `except` 重连重试一次。**交易账户句柄** `ensure_tdx_account`/`tdx_account`：首次调 `tdx.stock_account(account,type)` 取 **int 句柄**（合法值可为 0，故用 `None` 判空、不用 falsy；-1/None 判失败抛 502），缓存复用，`ensure_tdx(force=True)` 会清空句柄触发重取。前提：本机通达信金融终端（64位）已开启登录、且已在「发现→API插件」修复 Python 接口。
+- **取数端点（只读，不受交易开关限制）**：`GET /tdx/bars`（K线，dict-of-DataFrame）、`/tdx/snapshot`、`/tdx/stock_info`、`/tdx/financial`、`/tdx/sector`、`/tdx/stock_list`、`/tdx/trading_dates`。
+- **交易端点（与 QMT 同构安全分层）**：读 `GET /tdx/health|asset|positions|orders`（需账户句柄，不受开关限制）；写 `POST /tdx/order|/tdx/cancel`。三层安全：① 交易总开关 `TDX_TRADING_ENABLED` 默认 **false**，写操作 503（**与 QMT 开关独立**）；② `/tdx/order` 默认 **dry-run**，`confirm=true` 才真发；③ `guards.py` 四道护栏（金额/白名单/当日笔数/交易时段，**当日计数按 `source="tdx"` 与 QMT 分桶独立**）+ 审计 `audit/tdx-*.jsonl`。🔴 撤单需 `stock_code + order_id`（比 QMT 多要 stock_code）。
+- **透传** `POST /tdx/call/{method}` + `GET /tdx/methods`：**硬拦四类 403**——交易类（`order_stock`/`cancel_order_stock` 走带护栏端点）、账户查询类（`stock_account`/`query_*` 走 `/tdx/asset|positions|orders`）、写客户端类（`send_*`/板块增删改/`download_file`）、会话类（`initialize`/`close`）。`subscribe_hq` 异步推送 HTTP 不暴露（后续可仿 `routes_ws`）。
+- **返回归一化**：取数 `serialize.tdx_result`（dict-of-DataFrame→records / 扁平 dict 直返 / `ErrorId!=0`→502 / list 直返）；交易写路径 `serialize.tdx_order_result`（`order_stock` 返回 `{'ErrorId','Msg','Value','Wtbh'}`，**Value 0失败/1待确认/2成功**，Value==0 或 ErrorId!=0 → 502；`Wtbh`=委托号）、`serialize.tdx_cancel_result`（`{'Value'(0失败/1成功),'Msg'}`，Value==0→409、ErrorId!=0→502）。**代码须标准格式（`600519.SH`），日期 `YYYYMMDD`**（与前三源 `YYYY-MM-DD` 不同）。🔴 下单常量与 QMT 不同（TQ `tqconst.STOCK_BUY=0/SELL=1`、`PRICE_MY=0`限价/`PRICE_SJ=1`市价；QMT 是 23/24/11），路由 `_SIDE`/`_PRICE_TYPE` 映射据此，别照抄 QMT。
+- **官方文档**：`docs/catalog/tdx/_raw/TdxQuant接口说明文档.pdf`（231页）+ 抽出的 `tdxquant_doc.txt`（交易接口在行号 7551-8071），所有端点字段口径/签名据此实现。
 
 ### QMT 交易接口（routes_qmt.py + sessions.py 的 ensure_qmt）
 
-君弘君智（迅投 QMT/XtQuant）是本服务**唯一交易源**，`/qmt/*` 与 `/em /ths /wind` 并列。接入要点：
+君弘君智（迅投 QMT/XtQuant）是本服务**两个独立券商交易腿之一**（与 TDX `/tdx/*` 平级独立），`/qmt/*` 与 `/em /ths /wind` 并列。接入要点：
 
 - **运行时引入**：xtquant 原生 pyd 含 cp311，在 `.venv-api` 直接用。中文安装路径在 `.pth` 里按本地编码读不可靠，故 `sessions.py:_bootstrap_xtquant_path()` 在导入前用 `sys.path` + `os.add_dll_directory(bin.x64)` 注入（默认路径见 `config.QMT_DEFAULT_PACKAGE_DIR`，`QMT_PACKAGE_DIR` 可覆盖）。
 - **会话模型**：不同于三源的无状态取数，QMT 是长连接 trader + 异步回调。`ensure_qmt()` 建单例 `XtQuantTrader` 并 `start/connect/subscribe`，复用全局 `lock` 串行下单；回调（`_QmtCallback`）只把委托/成交/错误**入队** `_qmt_events`，**回调线程内绝不调 `query_*`**（否则后续回调卡死）。前提：本机 `XtMiniQmt.exe` 已登录（极简/独立模式），`connect()!=0` → 502。
@@ -190,4 +198,4 @@ FastMCP `create_proxy` + `gateway.mount`，把每个上游 server 以 `f"{provid
   - **主营构成**：`get_stock_financials` 仅返回 **Top5**；要**全量**走 **EM 的 `MBSALESCONS`**。主题须**挂在真实业务收入占比**上，**单股各主题占比之和 = 100%**。
 - **⑤ 红线（不可逾越）**：
   - **`API_KEY` 走 env**，不入库、不打印；
-  - ~~不碰本地交易核心~~ / ~~以只读取数为主~~ / ~~唯一下单路径 = `signal-submit`，不自动下单~~ —— **已于 2026-06-26 经用户决策放宽**：交易腿（君弘君智 QMT `/qmt/*`）并入本仓库，见上「QMT 交易接口」。替代约束：**交易默认关（`QMT_TRADING_ENABLED=false`）、下单默认 dry-run、必过四道护栏、全量审计**，公网放开交易前需显式确认。
+  - ~~不碰本地交易核心~~ / ~~以只读取数为主~~ / ~~唯一下单路径 = `signal-submit`，不自动下单~~ —— **已于 2026-06-26 / 2026-07-01 经用户决策全面放开交易/写能力,靠鉴权(API Key)兜底**。真实券商交易腿:**QMT `/qmt/*`、TDX `/tdx/*`**(独立总开关默认关 + 默认 dry-run + 四道护栏 + 审计);**Wind `/wind/*`** 交易/写(`torder` 等)经 `WIND_TRADING_ENABLED`(默认关)+ 审计放行;EM `porder` 是虚拟组合(无真实资金),iFinD 无交易函数。替代约束:**各交易源总开关默认关、真实下单默认 dry-run(QMT/TDX)、护栏 + 全量审计、公网放开真实交易前需显式确认**。
