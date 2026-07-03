@@ -56,6 +56,7 @@ def patch_which_ok(monkeypatch):
 
 
 def test_submit_done(monkeypatch, patch_which_ok):
+    monkeypatch.setattr(ar, "AGENT_STREAM_JSON", False)  # 本用例测非流式 communicate 路径(FakeProc 模型)
     captured = {}
 
     def fake_popen(cmd, cwd=None, **kw):
@@ -75,6 +76,7 @@ def test_submit_done(monkeypatch, patch_which_ok):
 
 
 def test_submit_nonzero_exit_failed(monkeypatch, patch_which_ok):
+    monkeypatch.setattr(ar, "AGENT_STREAM_JSON", False)  # 本用例测非流式 communicate 路径(FakeProc 模型)
     monkeypatch.setattr(
         ar.subprocess, "Popen",
         lambda cmd, cwd=None, **kw: FakeProc(stderr="boom", returncode=1),
@@ -86,6 +88,7 @@ def test_submit_nonzero_exit_failed(monkeypatch, patch_which_ok):
 
 
 def test_submit_timeout_kills(monkeypatch, patch_which_ok):
+    monkeypatch.setattr(ar, "AGENT_STREAM_JSON", False)  # 本用例测非流式 communicate 路径(FakeProc 模型)
     proc = FakeProc(hang=True)
     monkeypatch.setattr(ar.subprocess, "Popen", lambda cmd, cwd=None, **kw: proc)
     runner = AgentRunner(timeout_seconds=1)
@@ -219,6 +222,7 @@ def _is_uuid(value: str) -> bool:
 
 def test_claude_fresh_returns_server_generated_session_id(monkeypatch, patch_which_ok):
     # claude 首轮：服务器预生成 UUID，submit 返回里即带 session_id，命令行含 --session-id <该id>。
+    monkeypatch.setattr(ar, "AGENT_STREAM_JSON", False)  # 终态断言走非流式 communicate 路径(FakeProc 模型)
     captured = {}
     monkeypatch.setattr(
         ar.subprocess, "Popen",
