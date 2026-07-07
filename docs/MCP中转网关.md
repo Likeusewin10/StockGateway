@@ -215,8 +215,10 @@ codex:   codex exec "<prompt>" --dangerously-bypass-approvals-and-sandbox
 ```
 客户端 ── hub 网关 :8765 (MCP_GATEWAY_MODE=full，默认)
            ├── agent_*                  本机 agent 工具
-           ├── peer_pc2_agent_run …    对等机 pc2（经 frp 47.76.104.225:18766）
-           └── peer_pc3_agent_run …    对等机 pc3（经 frp :18767）
+           ├── peer_pc2_agent_run …    对等机 pc2（https://mcp-pc2.jiantx.net/mcp）
+           └── peer_mac1_agent_run …   对等机 mac1（https://mcp-mac1.jiantx.net/mcp）
+（域名由香港节点 Caddy 终结 HTTPS → frps 内部口 187xx → 对等机 frpc；
+  frps 明文口被 nftables 封，公网裸 IP:端口连不通，MCP_PEERS 必须填域名 HTTPS。）
 对等机 ── 同一仓库，MCP_GATEWAY_MODE=agent-only：只暴露裸名 agent_run 等，
           不挂任何厂商上游（不需要股票凭据）。
 ```

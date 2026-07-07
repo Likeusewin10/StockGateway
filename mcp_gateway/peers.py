@@ -5,9 +5,12 @@
 
 配置全部走环境变量（每台机器的 peers 不同，不硬编码进 providers.py）：
 
-    MCP_PEERS=pc2=http://47.76.104.225:18766/mcp,pc3=http://47.76.104.225:18767/mcp
+    MCP_PEERS=pc2=https://mcp-pc2.jiantx.net/mcp,mac1=https://mcp-mac1.jiantx.net/mcp
     PEER_PC2_API_KEY=<pc2 网关的 API_KEY>
-    PEER_PC3_API_KEY=<pc3 网关的 API_KEY>
+    PEER_MAC1_API_KEY=<mac1 网关的 API_KEY>
+
+URL 用域名 HTTPS（香港 Caddy 终结 TLS + Let's Encrypt）；frps 的明文转发口被
+nftables 封（仅 loopback），公网裸 IP:端口连不通。
 
 复用 providers.Provider / upstream.iter_upstreams 全套机制：缺 key 的 peer 被跳过
 （warning）不拖垮网关；凭据经 X-API-Key 头注入、绝不入日志。

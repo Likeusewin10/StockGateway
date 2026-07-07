@@ -28,10 +28,16 @@
 | 参数 | 说明 | 本次取值（用户填/口头告知） |
 |---|---|---|
 | `PEER_NAME` | 本机在集群里的名字，小写字母数字下划线且字母开头（如 `pc2`、`mac1`） | ______ |
-| `REMOTE_PORT` | frps 上分配给本机的公网端口。**约定：pc2=18766，pc3=18767，mac1=18768**（18000/18765 已被 hub 占用，勿撞车） | ______ |
+| `REMOTE_PORT` | frps 上分配给本机的**内部转发端口**（公网不直连它，见下）。**约定：pc2=18766，pc3=18767，mac1=18768**（18000/18765 已被 hub 占用，勿撞车） | ______ |
+| `PEER_DOMAIN` | 本机的公网入口域名，规则固定 `mcp-<PEER_NAME>.jiantx.net`（如 `mcp-pc2.jiantx.net`）。由香港节点 Caddy 终结 HTTPS（见 5b 步，hub 侧/用户操作） | 按规则派生 |
 | `FRP_TOKEN` | 香港 frps 节点（47.76.104.225）的认证 token，向用户要（在 hub 机的 `frpc.secret.bat` 里） | 用户口头/安全渠道提供 |
 | 仓库访问 | GitHub 私有仓库 `https://github.com/Likeusewin10/StockGateway.git` 的访问方式（Git Credential Manager 弹窗登录 / PAT / SSH key） | 用户操作或提供 |
 | 安装目录 | Windows 推荐 `D:\dev\Project\StockSDK`（无 D 盘则 C 盘）；macOS 推荐 `~/dev/Project/StockSDK` | ______ |
+
+> 🔴 **公网链路口径（与 hub 相同的域名架构，别用裸 IP:端口）**：香港节点 nftables 把 frps 的
+> 明文转发口（18000/18765/187xx）**只对 loopback 放行**，公网访问一律 drop——所以
+> `http://47.76.104.225:<REMOTE_PORT>` 从公网**连不通，也不该连**。真实链路是：
+> `对等机 frpc →(TLS)→ 香港 frps 127.0.0.1:<REMOTE_PORT> ← Caddy（https://mcp-<peer>.jiantx.net 终结 TLS,Let's Encrypt）← hub/客户端`。
 
 ## 1. 前置环境检查（缺什么装什么）
 
@@ -203,11 +209,34 @@ launchctl print gui/$(id -u)/com.stocksdk.mcpgateway | grep state   # 应为 run
    ```bash
    launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.stocksdk.frpc.plist
    ```
-4. **公网自验**（两系统同，应与第 4 步本机自验输出一致）：
+4. **隧道自验**（此时只验 frpc→frps 段）：看 `frpc_peer.log` 出现 `start proxy success`
+   即隧道注册成功。**公网还不通是正常的**——明文口被香港 nftables 封死，要等 5b 步
+   Caddy 配好域名后走 HTTPS 验证。
+
+## 5b. 香港节点接入域名（hub 侧/用户操作，不在对等机上做）
+
+对等机自己做不了这步（需要香港服务器 SSH 权限），执行者把下面内容**原样转告用户**（或由 hub 机上的 Claude 执行；SSH 私钥在 hub 机 `.ssh-frp/hk_frps`）：
+
+1. **DNS**：给 `jiantx.net` 加一条 A 记录 `mcp-<PEER_NAME>` → `47.76.104.225`
+   （DNS 服务商控制台操作；若在 Cloudflare，**代理必须关**——灰云 DNS only，见 frp 迁移踩坑）。
+2. **Caddy**：在香港节点 `/etc/caddy/Caddyfile` 追加一个 site block（照抄现有
+   `mcp.jiantx.net` 的写法，仅换域名和上游端口）：
+   ```caddyfile
+   mcp-<PEER_NAME>.jiantx.net {
+       reverse_proxy 127.0.0.1:<REMOTE_PORT> {
+           flush_interval -1
+       }
+   }
    ```
-   <venv-python> scripts/check_mcp_gateway.py http://47.76.104.225:<REMOTE_PORT>/mcp
+   然后 `sudo systemctl reload caddy`。Caddy 会经 TLS-ALPN-01 自动申请 Let's Encrypt
+   证书（无需开 80 口），自动续期。
+3. **nftables**：把 `<REMOTE_PORT>` 加进 `inet frpguard` 的 drop 集合（与 18000/18765
+   同款规则：loopback 放行、公网 drop），并同步 `/etc/nftables.conf` 持久化。
+4. **公网自验**（对等机或任何机器上，受信证书无需 `-k`）：
    ```
-   失败先看 `frpc_peer.log`：`start proxy success` 表示隧道通；`port already used` 表示端口被占（换口并同步告知用户）；token 错则连不上 frps。
+   <venv-python> scripts/check_mcp_gateway.py https://mcp-<PEER_NAME>.jiantx.net/mcp
+   ```
+   （CHECK_API_KEY 用对等机的 API_KEY；输出应与第 4 步本机自验一致，裸名 agent_run 等。）
 
 ## 6. 部署完成后回报给用户（hub 接入需要）
 
@@ -215,16 +244,18 @@ launchctl print gui/$(id -u)/com.stocksdk.mcpgateway | grep state   # 应为 run
 
 ```
 PEER_NAME  = <peer 名>
-PEER_URL   = http://47.76.104.225:<REMOTE_PORT>/mcp
+PEER_URL   = https://mcp-<PEER_NAME>.jiantx.net/mcp
 API_KEY    = （已生成，见本机 .env；请安全传递到 hub）
 ```
+
+并提醒用户：若 5b 步（DNS + Caddy + nftables）还没做，先完成 5b 再接 hub。
 
 ## 7. hub 侧接入（在 hub 主机上做，不在对等机）
 
 hub 机 `.env` 追加（多个 peer 逗号相接，Mac peer 与 Windows peer 写法完全一样）：
 
 ```ini
-MCP_PEERS=pc2=http://47.76.104.225:18766/mcp,mac1=http://47.76.104.225:18768/mcp
+MCP_PEERS=pc2=https://mcp-pc2.jiantx.net/mcp,mac1=https://mcp-mac1.jiantx.net/mcp
 PEER_PC2_API_KEY=<pc2 的 API_KEY>
 PEER_MAC1_API_KEY=<mac1 的 API_KEY>
 ```
@@ -248,7 +279,8 @@ Get-CimInstance Win32_Process -Filter "Name='uvicorn.exe'" |
 | 症状 | 原因/处置 |
 |---|---|
 | `check_mcp_gateway.py` 报 401 | CHECK_API_KEY 与该网关 `.env` 的 API_KEY 不一致 |
-| 本机通、公网不通 | frpc 未起或注册被拒：看 `frpc_peer.log`（token 错 / proxy name 重复 / 端口占用） |
+| 本机通、公网不通 | 按链路分段查：① `frpc_peer.log` 无 `start proxy success` → frpc 未注册（token 错 / proxy name 重复 / 端口占用）；② 隧道通但域名不通 → 5b 步没做全（DNS 未生效 / Caddy 没 reload / 证书还在申请）；③ 别试图裸连 `http://47.76.104.225:187xx`——nftables 封明文，公网本来就不通 |
+| 域名解析到了但 TLS 报错 | Cloudflare 代理没关（必须灰云 DNS only），或 Caddy 证书申请中（等 1-2 分钟看 `journalctl -u caddy`） |
 | hub 日志无 `已挂载对等机` | hub `.env` 的 MCP_PEERS 格式错（`name=url` 逗号分隔）或缺 `PEER_<NAME大写>_API_KEY`（缺 key 会 warning 跳过） |
 | `peer_*_agent_run` 调用 failed: engine not found | 对等机 claude CLI 未装/未登录（第 1 步没做完） |
 | agent 任务 session_id 在别的机器续接失败 | 预期行为：会话历史存各机本地，session_id 只在创建它的那台机器有效 |

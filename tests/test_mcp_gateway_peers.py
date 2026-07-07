@@ -24,10 +24,10 @@ class TestLoadPeers:
         assert load_peers("  ,  ,") == ()
 
     def test_single_peer(self):
-        peers = load_peers("pc2=http://47.76.104.225:18766/mcp")
+        peers = load_peers("pc2=https://mcp-pc2.jiantx.net/mcp")
         assert len(peers) == 1
         p = peers[0]
-        assert p.base_url == "http://47.76.104.225:18766/mcp"
+        assert p.base_url == "https://mcp-pc2.jiantx.net/mcp"
         assert p.auth_env == "PEER_PC2_API_KEY"
         assert p.auth_header == "X-API-Key"
 
