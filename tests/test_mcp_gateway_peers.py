@@ -29,7 +29,9 @@ class TestLoadPeers:
         p = peers[0]
         assert p.base_url == "https://mcp-pc2.jiantx.net/mcp"
         assert p.auth_env == "PEER_PC2_API_KEY"
-        assert p.auth_header == "X-API-Key"
+        # 🔴 必须小写:fastmcp 代理转发入站头(小写)后与配置头 dict 合并,
+        # 大小写不一致会双发同名头,peer 读到 hub 的 key 而 401
+        assert p.auth_header == "x-api-key"
 
     def test_multiple_peers(self):
         peers = load_peers("pc2=http://a/mcp, pc3=https://b/mcp")
@@ -94,7 +96,7 @@ class TestPeerCredentialInjection:
 
         monkeypatch.setenv("PEER_PC2_API_KEY", "peer-key-abc")
         p = load_peers("pc2=http://a/mcp")[0]
-        assert _auth_headers(p) == {"X-API-Key": "peer-key-abc"}
+        assert _auth_headers(p) == {"x-api-key": "peer-key-abc"}
 
     def test_missing_key_skips_peer(self, monkeypatch, caplog):
         from mcp_gateway.upstream import iter_upstreams

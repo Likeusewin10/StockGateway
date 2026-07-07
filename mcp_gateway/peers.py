@@ -85,7 +85,10 @@ def load_peers(raw: str | None = None) -> tuple[Provider, ...]:
             base_url=url,
             servers=(ProviderServer(name=name, short_name=name),),
             auth_env=peer_key_env(name),
-            auth_header="X-API-Key",
+            # 🔴 必须小写：fastmcp 3.x 代理会把调用方入站头(转小写,含 x-api-key=hub 自己的 key)
+            # 转发给上游并与配置头做 dict 合并(配置头在右侧优先)。若这里写 "X-API-Key"
+            # 大小写不同则合并不覆盖、两个同名头同发,peer 侧读到 hub 的 key → 401。
+            auth_header="x-api-key",
             auth_scheme="",
             url_template="{base_url}",
             connect_timeout=PEER_CONNECT_TIMEOUT_SECONDS,
