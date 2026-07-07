@@ -225,11 +225,16 @@ launchctl print gui/$(id -u)/com.stocksdk.mcpgateway | grep state   # 应为 run
    mcp-<PEER_NAME>.jiantx.net {
        reverse_proxy 127.0.0.1:<REMOTE_PORT> {
            flush_interval -1
+           # 🔴 必须：新版 fastmcp 自带 DNS-rebinding 防护(Host 白名单只认 localhost)，
+           # 不改写 Host 会被 MCP 传输层拒成 421 Misdirected Request。
+           # 边缘由 Caddy 可信终结 TLS，改写安全。
+           header_up Host localhost
        }
    }
    ```
-   然后 `sudo systemctl reload caddy`。Caddy 会经 TLS-ALPN-01 自动申请 Let's Encrypt
-   证书（无需开 80 口），自动续期。
+   然后 `sudo systemctl restart caddy`（这台 caddy.service 未配 ExecReload，`reload` 会报
+   `Job type reload is not applicable`，直接 restart）。Caddy 会经 TLS-ALPN-01 自动申请
+   Let's Encrypt 证书（无需开 80 口），自动续期。
 3. **nftables**：把 `<REMOTE_PORT>` 加进 `inet frpguard` 的 drop 集合（与 18000/18765
    同款规则：loopback 放行、公网 drop），并同步 `/etc/nftables.conf` 持久化。
 4. **公网自验**（对等机或任何机器上，受信证书无需 `-k`）：
@@ -281,6 +286,7 @@ Get-CimInstance Win32_Process -Filter "Name='uvicorn.exe'" |
 | `check_mcp_gateway.py` 报 401 | CHECK_API_KEY 与该网关 `.env` 的 API_KEY 不一致 |
 | 本机通、公网不通 | 按链路分段查：① `frpc_peer.log` 无 `start proxy success` → frpc 未注册（token 错 / proxy name 重复 / 端口占用）；② 隧道通但域名不通 → 5b 步没做全（DNS 未生效 / Caddy 没 reload / 证书还在申请）；③ 别试图裸连 `http://47.76.104.225:187xx`——nftables 封明文，公网本来就不通 |
 | 域名解析到了但 TLS 报错 | Cloudflare 代理没关（必须灰云 DNS only），或 Caddy 证书申请中（等 1-2 分钟看 `journalctl -u caddy`） |
+| 域名通但报 **421 Misdirected Request**（Server: uvicorn） | Caddy site block 少了 `header_up Host localhost`——新版 fastmcp 的 DNS-rebinding 防护只认 localhost Host（5b 步模板已含，别删） |
 | hub 日志无 `已挂载对等机` | hub `.env` 的 MCP_PEERS 格式错（`name=url` 逗号分隔）或缺 `PEER_<NAME大写>_API_KEY`（缺 key 会 warning 跳过） |
 | `peer_*_agent_run` 调用 failed: engine not found | 对等机 claude CLI 未装/未登录（第 1 步没做完） |
 | agent 任务 session_id 在别的机器续接失败 | 预期行为：会话历史存各机本地，session_id 只在创建它的那台机器有效 |
