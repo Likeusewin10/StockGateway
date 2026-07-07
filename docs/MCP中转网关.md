@@ -206,3 +206,34 @@ codex:   codex exec "<prompt>" --dangerously-bypass-approvals-and-sandbox
 
 相关配置（`.env`，均可选）：`AGENT_PROJECT_DIR` 覆盖执行目录；超时/任务上限在
 `mcp_gateway/config.py`（`AGENT_TASK_TIMEOUT_SECONDS` / `AGENT_MAX_TASKS`）。
+
+## 七、多机 Agent 协同（hub + 对等机）
+
+把另外 N 台机器上的 Agent 能力聚合进本机网关：**对等机跑 agent-only 网关，hub 把它们
+当上游 MCP 挂载**，客户端仍只连 hub 一个入口、一把 key。
+
+```
+客户端 ── hub 网关 :8765 (MCP_GATEWAY_MODE=full，默认)
+           ├── agent_*                  本机 agent 工具
+           ├── peer_pc2_agent_run …    对等机 pc2（经 frp 47.76.104.225:18766）
+           └── peer_pc3_agent_run …    对等机 pc3（经 frp :18767）
+对等机 ── 同一仓库，MCP_GATEWAY_MODE=agent-only：只暴露裸名 agent_run 等，
+          不挂任何厂商上游（不需要股票凭据）。
+```
+
+- **hub 配置**：`.env` 填 `MCP_PEERS=name=url,…` + 每机一把 `PEER_<NAME大写>_API_KEY`
+  （= 对等机自己的 API_KEY）。解析在 `mcp_gateway/peers.py`，复用 Provider/upstream
+  全套机制：缺 key / 条目畸形只 warning 跳过；凭据经 `X-API-Key` 头注入，不进日志。
+- **对等机部署**：全流程见 [`docs/部署-对等机AgentMCP.md`](部署-对等机AgentMCP.md)
+  （可直接丢给对等机上的 Claude Code 自动执行）。
+- **容错**：peer 的 connect 超时固定 5s（`peers.py`），对等机宕机不拖死 hub；长期关机的
+  peer 建议从 `MCP_PEERS` 摘除。
+- **边界**：session_id 不跨机（会话历史存各机本地）；agent_memory 也是各机独立存储；
+  🔴 别把 hub 自己的地址写进 hub 的 MCP_PEERS（环形自代理）。
+- **自检**：`scripts/check_mcp_gateway.py`（CHECK_API_KEY + 可选 URL 参数）对本机/对等机
+  做握手 + tools/list。
+
+> 对等机同时支持 **Windows 与 macOS**：网关/agent 代码本身跨平台（agent_runner 用
+> `shutil.which` 解析引擎路径，两平台通吃）；差异只在运维壳——Windows 走计划任务 +
+> 看门狗 bat，macOS 走 launchd（`KeepAlive` 自带自愈），frp token 分别放
+> `frpc.secret.bat` / `frpc.secret.sh`（均 gitignore）。系统分支详见部署手册。

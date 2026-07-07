@@ -10,6 +10,24 @@ __pycache__/
 userInfo
 docs/quantapi/相关信息.txt
 
+# SSH 密钥（连香港 frps 节点用）—— 私钥绝不入库
+.ssh-frp/
+
+# frp 认证 token —— 绝不入库（start_frpc.bat 启动前 call 设为环境变量）
+frpc.secret.bat
+# macOS 对等机的 frp token（launchd 经 sh -c source 后起 frpc）—— 同样绝不入库
+frpc.secret.sh
+# frpc 计划任务定义 —— register_frpc_task.ps1 自动生成的派生物
+frpc_task_def.xml
+# 对等机(peer)专属派生物：frpc_peer.toml 从 example 复制填端口后各机不同,不入库
+frpc_peer.toml
+frpc_peer_task_def.xml
+# MCP 网关计划任务定义 —— register_mcp_gateway_task.ps1 自动生成
+mcp_gateway_task_def.xml
+# frpc.exe 二进制（大文件，各机自行下载，不入库）
+frp/frpc.exe
+frp/*.zip
+
 # 日志
 *.log
 

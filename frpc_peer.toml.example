@@ -1,0 +1,33 @@
+# frpc 对等机(peer)配置模板 —— 只暴露 MCP 网关(8765)一条隧道到香港 frps 节点。
+#
+# 用法(在对等机上):
+#   1. 复制本文件为 frpc_peer.toml(已 gitignore,不会弄脏 git 工作区);
+#   2. 把下面两处 <PEER_NAME> 换成本机 peer 名(如 pc2)、<REMOTE_PORT> 换成分配的
+#      公网端口(pc2=18766 / pc3=18767,勿与 hub 的 18000/18765 及其它 peer 撞车);
+#   3. 同目录建 frpc.secret.bat(已 gitignore)写入: set FRP_TOKEN=<真实token>
+#   4. 启停走 start_frpc_peer.bat / 计划任务 register_frpc_peer_task.ps1。
+#
+# 🔴 proxy name 在 frps 全局唯一:hub 已占用 "api"/"mcp",peer 必须带机器名后缀,
+#    否则 frps 拒绝注册、frpc 反复重连。
+
+serverAddr = "47.76.104.225"
+serverPort = 7000
+
+# frpc<->frps 段强制 TLS 加密(frps 侧 transport.tls.force=true 要求)
+transport.tls.enable = true
+
+# 认证 token 走环境变量插值(FRP_TOKEN),不硬编码入库。
+auth.method = "token"
+auth.token = "{{ .Envs.FRP_TOKEN }}"
+
+log.to = "frpc_peer.log"
+log.level = "info"
+log.maxDays = 7
+
+# ---- 隧道:本机 agent-only MCP 网关 ----
+[[proxies]]
+name = "mcp-<PEER_NAME>"
+type = "tcp"
+localIP = "127.0.0.1"
+localPort = 8765
+remotePort = <REMOTE_PORT>

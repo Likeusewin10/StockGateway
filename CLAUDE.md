@@ -10,7 +10,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 2. **MCP 聚合网关**（`mcp_gateway/`，端口 8765）—— 把上游厂商 MCP 中转给远程标准 MCP 客户端，上游凭据只存本机。
 3. **生产压测工具**（`loadtest/`）—— 验证崩溃自愈、并发承载、WS 长稳。
 
-公网暴露通过 ngrok（一个 agent 同时暴露 8000 + 8765）。文档在 `docs/`（含 MCP 中转网关、iFinD 字段字典等）。
+公网暴露有两条并行通道（可同时跑,切换稳定后停 ngrok）：**① ngrok**（一个 agent 同时暴露 8000 + 8765）；**② 自建 frp 香港节点**（本机 `frpc` → 香港 `frps 47.76.104.225` 转发,大陆可达、自建自控,平替 ngrok,见 `docs/运维手册.md` 6b 与记忆 `frp-hk-tunnel-migration`）。文档在 `docs/`（含 MCP 中转网关、iFinD 字段字典等）。
 
 ### 🔴 定位边界（别搞混两个仓库）
 
@@ -80,8 +80,11 @@ start_server.bat
 :: 启动 MCP 网关（看门狗）
 start_mcp_gateway.bat
 
-:: 公网暴露（一个 ngrok agent 同时暴露 8000+8765）
+:: 公网暴露 —— 两条并行通道
+:: ① ngrok（一个 agent 同时暴露 8000+8765）
 start_ngrok_gateway.bat
+:: ② 自建 frp 香港节点（平替,大陆可达）：本机 frpc 看门狗,转发到 47.76.104.225:18000/18765
+schtasks /Run /TN FrpcTunnel
 
 :: 交互式 API 文档
 :: http://<ip>:8000/docs
@@ -127,6 +130,8 @@ FastMCP `create_proxy` + `gateway.mount`，把每个上游 server 以 `f"{provid
 
 网关自带 11 个本机工具（命名空间 `agent`；核心 `agent_agent_run`/`_status`/`_result`，另有 `_sessions` 会话列表、`_events`/`_send`/`_close` 流式与常驻会话、`_memory_*` 服务器端记忆 KV），让远端 Agent 在服务器上**异步**起一次性 `claude -p` / `codex exec` 子进程干活、轮询取结果，实现「本地 Agent 指挥服务器 Agent」。异步模型（立即返 `task_id` + 后台线程跑 + 轮询）避开 MCP 同步超时；状态机 `running→done|failed|timeout`。🔴 子进程全自动非交互（`--dangerously-*`），靠两道防线：① 复用网关 X-API-Key（强随机、只发可信机器）；② **cwd 锁死 `AGENT_PROJECT_DIR`**（`config.get_agent_project_dir` 校验覆盖值仍在仓库根内）。引擎限 `claude`/`codex` 白名单 + `shutil.which` 探活，未装/未登录返回 `failed` 不崩。命令模板里 `--` 在 `{prompt}` 前，防 `-` 开头 prompt 被当 flag。第一步不做常驻会话/跨任务上下文（服务器 `CLAUDE.md` 随 prompt 自动加载弥补）。详见 [`docs/MCP中转网关.md`](docs/MCP中转网关.md) 第六节。
 
+**多机 Agent 协同（hub + 对等机）**：对等机（支持 Windows/macOS）跑同一仓库、`MCP_GATEWAY_MODE=agent-only`（只暴露裸名 `agent_run` 等，不挂厂商上游），经 frp 各占一个公网端口（pc2=18766/pc3=18767/mac1=18768）；hub（默认 full 模式）在 `.env` 填 `MCP_PEERS=name=url,…` + `PEER_<NAME>_API_KEY`（一机一 key），由 `mcp_gateway/peers.py` 动态生成 Provider 挂载为 `peer_<name>_agent_run` 等（connect 超时 5s 防 peer 宕机拖死 hub）。session_id/记忆不跨机；对等机部署手册（可丢给对等机 Claude 自动执行，含 Windows/macOS 系统分支，mac 走 launchd）见 [`docs/部署-对等机AgentMCP.md`](docs/部署-对等机AgentMCP.md)。
+
 ### 通达信 TDX 接口（routes_tdx.py + sessions.py 的 ensure_tdx）
 
 通达信 TQ（TdxQuant，官方 Python 量化框架）是**第四个数据源 + 独立券商交易腿**，`/tdx/*` 与 `/em /ths /wind` 并列取数，同时**与 QMT 平级独立**做交易（两个券商接口各自独立，非替代）。取数只读；交易走与 QMT 同构的安全分层。接入要点：
@@ -161,7 +166,8 @@ FastMCP `create_proxy` + `gateway.mount`，把每个上游 server 以 `f"{provid
 - **iFinD**：`quantapi.51ifind.com`，已抓 22940 指标 / 13 品种 → `docs/catalog/ths/{品种}_indicators.csv` + `同花顺iFinD指标字段手册.md`。
 - **🔴 iFinD 抓取的两个反直觉坑**（踩过，别重走）：① **不是 IP 封**——同 IP 用 curl 打登录端点正常,只有**自动化浏览器(CDP)被反爬拦**;普通浏览器正常。② **session 绑登录浏览器**——cookie 搬到服务器 curl 报 `-1010 已登出`,故抓取**必须在用户已登录的普通浏览器 Console 就地 fetch**。
 - **工具链**：`ifind_crawl.js`（浏览器爬虫,递归 `list_by_seq?seq=&type=` 指标树）→ `parse_ifind.py`（JSON→CSV 去重）→ `gen_md_ifind.py`（CSV→手册）。70MB 原始 JSON 在 `docs/catalog/_raw/`（已 gitignore）。说明见 `docs/字段清单说明.md`，记忆见 `ifind-catalog-webapi-breakthrough`。
-- **未完成**：Wind 字段字典仍空白（本机可做、不卡 IP，待 spike）。
+- **TDX（通达信 TQ）**：与前三家**根本不同——字段是「文档型」不是「探测型」**。全量字段本就白纸黑字写在随终端附带的**官方《TdxQuant接口说明文档》PDF（231页）**里,天然合法、零封控风险,**不需要爬取/不需要遍历指标树**（遍历正是 iFinD 被封根因,见记忆 `data-fetch-discipline-no-traversal`）。用 PyMuPDF `find_tables()` 结构化抽表 → `docs/catalog/tdx/tdx_fields.csv`（**49 接口 / 1115 字段行**）+ `通达信TDX字段手册.md`。工具链:`extract_tdx.py`（抽）→ `gen_md_tdx.py`（生手册）。**三个坑**:① `find_tables` 把字段码下划线抽成空格+尾部`_`（`STOCK_BUY`→`STOCK BUY _`,`fix_code` 规整）;② 6 列表有空首尾列（按表头非空列裁剪）;③ 交易函数区（`stock_account/query_*/order_stock/cancel_order_stock`）+ 常量枚举区方法名不带 `get_/send_` 前缀,签名正则抓不到,用 `PAGE_OVERRIDE` 显式归属。财务(FN)/经济(SC)类需先在客户端下载对应数据包才能取数。
+- **未完成**：无（EM/iFinD/Wind/TDX 四源字段字典均已建）。
 
 > **Wind 更新（2026-06-30）**：Wind 与前两家不同，**无公网命令生成器**，且**有三套字段口径别混用**。全量字典加密锁在本地终端，五条路实测全堵（公网帮助中心 `wx.wind.com.cn` 只放函数手册、本机终端不开 TCP 端口、SPA 不含树、CDP 调试端口被屏蔽、`Indicator.xml`/`wind_IndicatorTree.dat` 加密仅 DLL 可解、`w.menu()` 回调是 GUI 接口 headless 推 0 条）。**取数突破口=Excel 插件 `DataBrowse/XLA/*.xla`**（OLE2）：`WindFunc.xla`(7.4MB,9698 码) + `WindFunc_s.xla`(22MB,7887 码;需修 OLE2 DIFAT 截断 bug 才完整解出),并集 **10069 个 Excel 插件口径字段**（脚本 `extract_wind_xla2.py`,产出 `xla_fields*.csv` + `Wind指标字段手册.md`)。⚠ **三套口径**：① **WindPy 实测可用 5359 个**（`close`/`pe_ttm`/`roe`，**可直接喂 `/wind/wsd|wss`**）= `docs/catalog/WindPy字段手册.md`（`windpy_fields.csv`，脚本 `wind_verify_xla_fields.py`+`gen_md_windpy.py`）；② **Excel 插件 xla 并集 10069 个**（`s_dq_close`，**仅查中文名/找指标，不能直接喂 wss**）；③ 探测子集 130（已并入①）。**5359 = 并集 10069 码生「原码+渐进去前缀」变体（28327 个）批量喂 wss、按 `-40522006`（纯名级校验，与品种无关）二分定位得到,已饱和（候选 9698→10069 仅 +58）**——`wsd`/`wss` 共用同一字段字典,WindPy 字段就 ~5350 量级,非"少一个数量级"（EM 1.85万含专题报表 ctr、iFinD 2.29万跨 13 品种重复计;Wind 是去重统一名空间）。死路与坑见记忆 `wind-catalog-probe-approach`。
 

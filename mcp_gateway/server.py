@@ -13,7 +13,14 @@ from starlette.middleware import Middleware
 from mcp_gateway.auth import ApiKeyAuthMiddleware
 from mcp_gateway.agent_tools import agent as agent_tools
 from mcp_gateway.aggregation import ToolAggregationMiddleware
-from mcp_gateway.config import MCP_PATH, get_api_key, load_dotenv
+from mcp_gateway.config import (
+    GATEWAY_MODE_AGENT_ONLY,
+    MCP_PATH,
+    get_api_key,
+    get_gateway_mode,
+    load_dotenv,
+)
+from mcp_gateway.peers import load_peers
 from mcp_gateway.providers import PROVIDERS
 from mcp_gateway.upstream import iter_upstreams
 
@@ -58,6 +65,13 @@ def build_gateway() -> FastMCP:
     # 本机自有工具：服务器端 Agent（agent_run/agent_status/agent_result/agent_sessions），命名空间 agent。
     gateway.mount(agent_tools, namespace="agent")
     logger.info("已挂载本机工具 -> 前缀 agent（agent_run/agent_status/agent_result/agent_sessions）")
+    # 对等机 agent 网关（多机协同）：MCP_PEERS 定义，缺 key 的 peer 被跳过（warning）。
+    # 对等机跑 agent-only 模式（工具裸名），挂载后即 peer_<机器名>_agent_run 等。
+    for provider in load_peers():
+        for server, client in iter_upstreams(provider):
+            proxy = create_proxy(client)
+            gateway.mount(proxy, namespace=provider.prefix(server))
+            logger.info("已挂载对等机 %s -> 前缀 %s", server.name, provider.prefix(server))
     logger.info("网关挂载完成：%d 个上游 server", mounted)
     if mounted == 0:
         logger.warning("没有任何上游被挂载：请检查各厂商凭据环境变量（如 IFIND_MCP_JWT）")
@@ -65,9 +79,20 @@ def build_gateway() -> FastMCP:
 
 
 def build_app():
-    """构造对外 ASGI 应用（带鉴权/限流中间件）。"""
+    """构造对外 ASGI 应用（带鉴权/限流中间件）。
+
+    MCP_GATEWAY_MODE=agent-only：对等机形态，只暴露本机 agent 工具（裸名
+    agent_run 等，无 agent_ 前缀），不挂任何厂商上游/peers —— hub 挂载它时
+    加 peer_<机器名>_ 前缀即得 peer_pc2_agent_run。鉴权中间件两种模式一致。
+    """
     if not get_api_key():
         logger.warning("未配置 API_KEY：网关当前不鉴权，请勿暴露到公网")
+    if get_gateway_mode() == GATEWAY_MODE_AGENT_ONLY:
+        logger.info("agent-only 模式：仅暴露本机 agent 工具（供 hub 对等挂载），不挂任何厂商上游")
+        return agent_tools.http_app(
+            path=MCP_PATH,
+            middleware=[Middleware(ApiKeyAuthMiddleware)],
+        )
     gateway = build_gateway()
     return gateway.http_app(
         path=MCP_PATH,

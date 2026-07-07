@@ -167,6 +167,22 @@ def encode_claude_project_dir(cwd: str) -> str:
 
 
 
+# ---- 网关运行模式（多机协同）----
+# full（默认）：厂商上游 + 本机 agent 工具 + 对等机 peers 全挂载（hub 形态）。
+# agent-only：只暴露本机 agent 工具（裸名 agent_run 等，无 agent_ 前缀），
+#             供 hub 以 peer_<机器名>_ 前缀挂载 —— 对等机形态。
+GATEWAY_MODE_FULL = "full"
+GATEWAY_MODE_AGENT_ONLY = "agent-only"
+
+
+def get_gateway_mode() -> str:
+    """网关运行模式；MCP_GATEWAY_MODE 留空或不识别则回退 full。"""
+    raw = os.environ.get("MCP_GATEWAY_MODE", "").strip().lower()
+    if raw in {"agent-only", "agent_only", "agentonly"}:
+        return GATEWAY_MODE_AGENT_ONLY
+    return GATEWAY_MODE_FULL
+
+
 def get_gateway_port() -> int:
     """网关监听端口；MCP_GATEWAY_PORT 留空则用默认 8765。"""
     raw = os.environ.get("MCP_GATEWAY_PORT", "").strip()
