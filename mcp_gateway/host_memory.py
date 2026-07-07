@@ -157,13 +157,20 @@ def recall_for_prompt(host_id: str, prompt: str, query: str = "", top_k: int = 8
 
     selected = non_user_ordered[:top_k]
 
+    # Preamble must be pure ASCII: any non-ASCII byte in a spawned prompt
+    # breaks Windows subprocess delivery. Fact data (slug/body/description)
+    # comes from the DB and may be non-ASCII, so sanitize the whole preamble
+    # below; the appended `prompt` itself is left untouched.
+    def _ascii(s: str) -> str:
+        return s.encode("ascii", "backslashreplace").decode("ascii")
+
     guidance = (
-        f"可调用 agent_memory_set(host_id='{host_id}', slug=..., body=..., "
-        "description=..., type=...) 记录长期事实，"
-        "type 取值：user/project/feedback/reference。"
+        f"Call agent_memory_set(host_id='{host_id}', slug=..., body=..., "
+        "description=..., type=...) to record long-term facts; "
+        "type is one of: user/project/feedback/reference."
     )
 
-    header = f"[Host memory — {host_id}]"
+    header = f"[Host memory - {host_id}]"
     user_lines = [f"[user] {r[0]}: {r[1]}" for r in user_facts]
     non_user_lines = [f"[{r[2]}] {r[0]} - {r[3]}" for r in selected]
 
@@ -173,4 +180,4 @@ def recall_for_prompt(host_id: str, prompt: str, query: str = "", top_k: int = 8
         non_user_lines = [f"[{r[2]}] {r[0]}" for r in selected]
         preamble = "\n".join([header] + user_lines + non_user_lines + [guidance])
 
-    return f"{preamble}\n---\n{prompt}"
+    return f"{_ascii(preamble)}\n---\n{prompt}"

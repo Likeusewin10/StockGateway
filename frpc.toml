@@ -1,0 +1,42 @@
+# frpc 客户端配置 —— 连香港 frps 节点,把本机 REST(8000)+ MCP 网关(8765)转发到公网。
+#
+# 与 ngrok-gateway.yml 对等:两条隧道,一个进程。frps 侧在香港云(Debian),bindPort 7000。
+# 🔴 认证 token 不写在此(避免入库):放在同目录 frpc.secret.toml(已 gitignore),
+#    由 includes 合并加载。真实 token 见 frpc.secret.toml。
+#
+# 过渡期(无域名):type=tcp,消费方连 47.76.104.225:18000 / :18765。
+# 域名下来后:改 type=https + customDomains + 证书,见 .claude/plans/frp-hk-tunnel-migration.plan.md 阶段6。
+#
+# 启停:start_frpc.bat(看门狗) / 计划任务 FrpcTunnel(register_frpc_task.ps1)。
+
+serverAddr = "47.76.104.225"
+serverPort = 7000
+
+# frpc<->frps 段强制 TLS 加密(frps 侧 transport.tls.force=true 要求)
+transport.tls.enable = true
+
+# 认证 token 走环境变量插值(FRP_TOKEN),不硬编码入库。
+# start_frpc.bat 启动前从 frpc.secret.bat 设好 FRP_TOKEN。
+# 🔴 frp 的 includes 只合并 [[proxies]]/[[visitors]],不合并 auth 等全局字段,故这里用 Envs 插值。
+auth.method = "token"
+auth.token = "{{ .Envs.FRP_TOKEN }}"
+
+log.to = "frpc.log"
+log.level = "info"
+log.maxDays = 7
+
+# ---- 隧道 1:REST 股票数据服务(含 WebSocket) ----
+[[proxies]]
+name = "api"
+type = "tcp"
+localIP = "127.0.0.1"
+localPort = 8000
+remotePort = 18000
+
+# ---- 隧道 2:MCP 聚合网关(含 SSE) ----
+[[proxies]]
+name = "mcp"
+type = "tcp"
+localIP = "127.0.0.1"
+localPort = 8765
+remotePort = 18765

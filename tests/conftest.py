@@ -146,6 +146,16 @@ class FakeTdxClient:
     def get_stock_info(self, stock_code, field_list=None):
         return {"Name": "贵州茅台", "Unit": "100", "BelongHS300": "1", "ErrorId": "0"}
 
+    def get_more_info(self, stock_code, field_list=None):
+        data = {"FCAmo": "12345.67", "EverZTCount": "2", "ZTPrice": "38.57", "ErrorId": "0"}
+        if field_list:
+            data = {k: v for k, v in data.items() if k in set(field_list) or k == "ErrorId"}
+        return data
+
+    def get_gpjy_value(self, stock_list=None, field_list=None, start_time="", end_time=""):
+        return {"GP14": {"600519.SH": 1.0}, "GP15": {"600519.SH": 2.0},
+                "GP24": {"600519.SH": 93000.0}, "ErrorId": "0"}
+
     def get_financial_data(self, stock_list=None, field_list=None, start_time="",
                           end_time="", report_type="report_time"):
         return {"Fn193": {"688318.SH": 1.23}, "ErrorId": "0"}

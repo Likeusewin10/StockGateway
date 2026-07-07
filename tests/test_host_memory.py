@@ -154,7 +154,7 @@ def test_recall_empty_db_contains_guidance():
 def test_recall_injects_memories_before_prompt():
     mem_set("host1", "lang", "Python", type="user")
     result = recall_for_prompt("host1", "What's my language?")
-    assert result.startswith("[Host memory — host1]")
+    assert result.startswith("[Host memory - host1]")
     assert "lang: Python" in result
     assert result.endswith("What's my language?")
 

@@ -29,7 +29,7 @@ logging.basicConfig(
 logger = logging.getLogger("stocksdk")
 
 # 路由依赖 SDK，须在 .env 加载后导入
-from stocksdk import routes_em, routes_health, routes_qmt, routes_tdx, routes_ths, routes_wind, routes_ws  # noqa: E402
+from stocksdk import routes_downloads, routes_em, routes_health, routes_qmt, routes_tdx, routes_ths, routes_wind, routes_ws  # noqa: E402
 
 
 @asynccontextmanager
@@ -61,6 +61,7 @@ app.include_router(routes_tdx.router)
 app.include_router(routes_qmt.router)
 app.include_router(routes_ws.router)
 app.include_router(routes_health.router)
+app.include_router(routes_downloads.router)
 
 
 @app.get("/health")

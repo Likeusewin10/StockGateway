@@ -1,0 +1,1116 @@
+﻿page,interface,kind,field,flag,dtype,value,desc
+21,get_report_data,PARAM,stock_list,Y,List[str],,订阅的证券代码
+21,get_report_data,PARAM,callback,Y,str,,回调函数
+23,get_report_data,PARAM,stock_list,Y,List[str],,证券代码
+25,refresh_cache,PARAM,force,Y,bool,,是否强制刷新
+25,refresh_cache,PARAM,market,Y,str,,指定刷新的市场
+27,refresh_kline,PARAM,stock_list,Y,List[str],,证券代码列表，证券代码格式为6 位数+市场后缀（.SH/.SZ/.BJ等）
+27,refresh_kline,PARAM,period,Y,str,,周期 1d为日线、1m为一分钟线、 5m为五分钟线，只支持这三种， 其它周期的数据均由这三种数据生 成
+28,send_message,PARAM,msg_str,Y,str,,消息字符串
+29,send_warn,PARAM,stock_list,Y,List[str],,证券代码列表
+29,send_warn,PARAM,time_list,Y,List[str],,时间列表
+29,send_warn,PARAM,price_list,N,List[str],,现价列表
+29,send_warn,PARAM,close_list,N,List[str],,收盘价列表
+29,send_warn,PARAM,volum_list,N,List[str],,成交额列表
+29,send_warn,PARAM,bs_flag_list,N,List[str],,买卖标志：0买1卖2未知
+29,send_warn,PARAM,warn_type_list,N,List[str],,预警类型：0常规预警（目前仅支 持）
+29,send_warn,PARAM,reason_list,N,List[str],,预警原因
+29,send_warn,PARAM,count,N,int,,有效数据个数
+31,send_file,PARAM,file,Y,str,,文件路径
+32,send_bt_data,PARAM,stock_code,Y,List[str],,证券代码
+32,send_bt_data,PARAM,time_list,Y,List[str],,时间列表
+32,send_bt_data,PARAM,data_list,N,List[List[str]],,回测数据列表
+32,send_bt_data,PARAM,count,N,int,,有效数据个数
+34,send_bt_data,PARAM,stock_code,Y,List[str],,证券代码
+34,send_bt_data,PARAM,down_time,Y,List[str],,指定日期
+34,send_bt_data,PARAM,down_type,Y,List[str],,指定下载类型
+36,get_trading_dates,PARAM,market,Y,str,,市场代码（暂固定为SH）
+36,get_trading_dates,PARAM,start_time,N,str,,起始日期
+36,get_trading_dates,PARAM,end_time,N,str,,结束日期
+36,get_trading_dates,PARAM,count,N,int,,返回最近的count个交易日
+38,get_trading_dates,PARAM,df_list,Y,list[pd.DataFrame],,多组数据的DataF 表，每组table对应 DataFrame；每个 DataFrame非空且 日期（datetime64 符串类型），后续列 因子名称；列表长 组数
+38,get_trading_dates,PARAM,sp_name,N,str,,生成.sp文件的名称 空时默认生成pyth
+38,get_trading_dates,PARAM,xml_filename,N,str,,生成的xml文件名 含.xml后缀），为空 达信面板配置关联 填
+38,get_trading_dates,PARAM,jsn_filenames,Y,list[str],,每组数据对应的.js 表，列表非空且长 组数（与df list一 _ 名建议包含.jsn后缀
+38,get_trading_dates,PARAM,vertical,N,int,,纵向排列的table组 （≥1），与horizo 一，horizontal优先
+40,exec_to_tdx,PARAM,url,Y,str,,功能调用串或网址
+42,get_match_stkinfo,PARAM,key_word,Y,str,,关键词
+42,get_match_stkinfo,RETURN,Code,Y,str,,证券代码
+42,get_match_stkinfo,RETURN,Name,Y,str,,证券名称
+44,get_market_data,PARAM,field_list,N,List[str],,字段筛选，传空则返回全部
+44,get_market_data,PARAM,stock_list,Y,List[str],,证券代码列表
+44,get_market_data,PARAM,period,Y,str,,周期
+44,get_market_data,PARAM,start_time,N,str,,起始时间
+44,get_market_data,PARAM,end_time,N,str,,结束时间
+44,get_market_data,PARAM,count,N,int,,返回数据个数（每只股票）
+44,get_market_data,PARAM,dividend_type,N,str,,复权类型 ：none不复权、front 前复权、back后复权
+44,get_market_data,PARAM,fill_data,N,bool,,是否向后填充空缺数据
+45,get_market_data,RETURN,Date,Y,str,,日期
+45,get_market_data,RETURN,Time,Y,str,,时间
+45,get_market_data,RETURN,Open,Y,str,,开盘价
+45,get_market_data,RETURN,High,Y,str,,最高价
+45,get_market_data,RETURN,Low,Y,str,,最低价
+45,get_market_data,RETURN,Close,Y,str,,收盘价
+45,get_market_data,RETURN,Volume,Y,str,,成交量
+45,get_market_data,RETURN,Amount,Y,str,,成交额
+45,get_market_data,RETURN,ForwardFactor,Y,str,,前复权因子，当 dividend type=none时候返回有 _ 效值
+45,get_market_data,RETURN,VolInStock,N,str,,持仓量
+47,get_market_snapshot,PARAM,stock_code,Y,str,,证券代码
+47,get_market_snapshot,PARAM,field_list,N,List[str],,字段筛选，传空则返回全部
+47,get_market_snapshot,RETURN,ItemNum,Y,str,,快照笔数
+47,get_market_snapshot,RETURN,LastClose,Y,str,,前收盘价
+47,get_market_snapshot,RETURN,Open,Y,str,,开盘价
+47,get_market_snapshot,RETURN,Max,Y,str,,最高价
+47,get_market_snapshot,RETURN,Min,Y,str,,最低价
+47,get_market_snapshot,RETURN,Now,Y,str,,现价
+47,get_market_snapshot,RETURN,Volume,Y,str,,总手
+47,get_market_snapshot,RETURN,NowVol,Y,str,,现手
+47,get_market_snapshot,RETURN,Amount,Y,str,,总成交金额
+47,get_market_snapshot,RETURN,Inside,Y,str,,内盘 板块指数时为跌停家数
+47,get_market_snapshot,RETURN,Outside,Y,str,,外盘 板块指数时为涨停家数
+47,get_market_snapshot,RETURN,TickDiff,Y,str,,笔涨跌
+47,get_market_snapshot,RETURN,InOutFlag,Y,str,,内外盘标志 0:Buy 1:Sell 2:Unknown
+48,get_market_snapshot,RETURN,Jjjz,Y,str,,基金净值
+48,get_market_snapshot,RETURN,Buyp,Y,List[str],,五个买价
+48,get_market_snapshot,RETURN,Buyv,Y,List[str],,对应的五个买盘量
+48,get_market_snapshot,RETURN,Sellp,Y,List[str],,五个卖价
+48,get_market_snapshot,RETURN,Sellv,Y,List[str],,对应的五个卖盘量
+48,get_market_snapshot,RETURN,UpHome,Y,str,,上涨家数 对于指数有效
+48,get_market_snapshot,RETURN,DownHome,Y,str,,下跌家数 对于指数有效
+48,get_market_snapshot,RETURN,Before5MinNow,Y,str,,5分钟前价格
+48,get_market_snapshot,RETURN,Average,Y,str,,均价
+48,get_market_snapshot,RETURN,XsFlag,Y,str,,小数位数
+48,get_market_snapshot,RETURN,Zangsu,Y,str,,涨速
+48,get_market_snapshot,RETURN,ZAFPre3,Y,str,,3日涨幅
+50,get_stock_info,PARAM,stock_code,Y,str,,证券代码
+50,get_stock_info,PARAM,field_list,Y,List[str],,字段筛选，不能为空
+50,get_stock_info,RETURN,Name,Y,str,,证券名称
+50,get_stock_info,RETURN,Unit,Y,str,,交易单位
+50,get_stock_info,RETURN,VolBase,Y,str,,量比的基量
+50,get_stock_info,RETURN,MinPrice,Y,str,,最小价格变动
+50,get_stock_info,RETURN,XsFlag,Y,str,,价格小数位数
+50,get_stock_info,RETURN,Fz[8],Y,List[str],,开收市时间（4段）
+50,get_stock_info,RETURN,DelayMin,Y,str,,延时分钟数
+50,get_stock_info,RETURN,QHVolBaseRate,Y,str,,期货期权的每手乘数
+50,get_stock_info,RETURN,HKVolBaseRate,Y,str,,港股/日股/新加坡股 每手股数
+50,get_stock_info,RETURN,BelongHS300,Y,str,,是否属于沪深300
+50,get_stock_info,RETURN,BelongHasKQZ,Y,str,,是否含可转债
+50,get_stock_info,RETURN,BelongRZRQ,Y,str,,是否是融资融券标的
+50,get_stock_info,RETURN,BelongHSGT,Y,str,,是否属于沪深股通
+51,get_stock_info,RETURN,IsHKGP,Y,str,,是否是港股
+51,get_stock_info,RETURN,IsQH,Y,str,,是否是期货
+51,get_stock_info,RETURN,IsQQ,Y,str,,是否是期权
+51,get_stock_info,RETURN,IsSTGP,Y,str,,是否是ST股票
+51,get_stock_info,RETURN,IsQuitGP,Y,str,,是否是退市整理板股票
+51,get_stock_info,RETURN,TodayDRFlag,Y,str,,当天是否有除权除息(沪深京)
+51,get_stock_info,RETURN,HSStockKind,Y,str,,"沪深京品种类型 0:指数,1:A股主 板,2:北证A股,3:创业板,4:科创 板,5:B股,6:债券,7:基金,8:权证,9:其 它,10:非沪深京品种"
+51,get_stock_info,RETURN,ActiveCapital,Y,str,,流通股本(万股)
+51,get_stock_info,RETURN,J_zgb,Y,str,,总股本(万股)
+51,get_stock_info,RETURN,J_bg,Y,str,,B股(万股)
+51,get_stock_info,RETURN,J_hg,Y,str,,H股(万股)
+51,get_stock_info,RETURN,J_zzc,Y,str,,总资产(万元)
+51,get_stock_info,RETURN,J_ldzc,Y,str,,流动资产(万元)
+51,get_stock_info,RETURN,J_gdzc,Y,str,,固定资产(万元)
+51,get_stock_info,RETURN,J_wxzc,Y,str,,无形资产(万元)
+51,get_stock_info,RETURN,J_ldfz,Y,str,,流动负债(万元)
+51,get_stock_info,RETURN,J_cqfz,Y,str,,少数股东权益(万元)
+51,get_stock_info,RETURN,J_zbgjj,Y,str,,资本公积金(万元)
+51,get_stock_info,RETURN,J_jzc,Y,str,,股东权益/净资产(万元)
+51,get_stock_info,RETURN,J_yysy,Y,str,,营业收入(万元)
+51,get_stock_info,RETURN,J_yycb,Y,str,,营业成本(万元)
+51,get_stock_info,RETURN,J_yszk,Y,str,,应收账款(万元)
+51,get_stock_info,RETURN,J_yyly,Y,str,,营业利润(万元)
+51,get_stock_info,RETURN,J_tzsy,Y,str,,投资收益(万元)
+51,get_stock_info,RETURN,J_jyxjl,Y,str,,经营现金净流量(万元)
+52,get_stock_info,RETURN,J_zxjl,Y,str,,总现金净流量(万元)
+52,get_stock_info,RETURN,J_ch,Y,str,,存货(万元)
+52,get_stock_info,RETURN,J_lyze,Y,str,,利润总额(万元)
+52,get_stock_info,RETURN,J_shly,Y,str,,税后利润(万元)
+52,get_stock_info,RETURN,J_jly,Y,str,,净利润(万元)
+52,get_stock_info,RETURN,J_wfply,Y,str,,未分配利益(万元)
+52,get_stock_info,RETURN,J_jyl,Y,str,,净资产收益率
+52,get_stock_info,RETURN,J_mgwfp,Y,str,,每股未分配
+52,get_stock_info,RETURN,J_mgsy,Y,str,,每股收益（折算为全年）
+52,get_stock_info,RETURN,J_mgsy2,Y,str,,季报每股收益 (财报中提供的每股 收益)
+52,get_stock_info,RETURN,J_mggjj,Y,str,,每股公积金
+52,get_stock_info,RETURN,J_mgjzc,Y,str,,每股净资产
+52,get_stock_info,RETURN,J_mgjzc2,Y,str,,季报每股净资产 (财报中提供的每 股收益)
+52,get_stock_info,RETURN,J_gdqyb,Y,str,,股东权益比
+52,get_stock_info,RETURN,J_gdrs,Y,str,,股东人数
+52,get_stock_info,RETURN,J_HalfYearFlag,Y,str,,"报告期月份(3,6,9,12)"
+52,get_stock_info,RETURN,J_start,Y,str,,上市日期
+52,get_stock_info,RETURN,tdx_dycode,Y,str,,通达信地域代码
+52,get_stock_info,RETURN,tdx_dyname,Y,str,,通达信地域
+52,get_stock_info,RETURN,rs_hycode_sim,Y,str,,通达信行业代码
+52,get_stock_info,RETURN,rs_hyname,Y,str,,通达信行业
+52,get_stock_info,RETURN,blockzscode,Y,str,,所属的行业板块指数代码
+52,get_stock_info,RETURN,underly_setcode,Y,str,,标的市场代码(比如：当前ETF跟踪 的指数市场)
+52,get_stock_info,RETURN,underly_code,Y,str,,标的代码(比如：当前ETF跟踪的指 数代码)
+55,get_more_info,PARAM,stock_code,Y,str,,股票代码
+55,get_more_info,PARAM,field_list,N,List[str],,字段筛选，传空则返回全部
+55,get_more_info,RETURN,MainBusiness,Y,str,,主营构成
+55,get_more_info,RETURN,SafeValue,Y,str,,安全分
+55,get_more_info,RETURN,ShineValue,Y,str,,亮点数
+55,get_more_info,RETURN,ShapeValue,Y,str,,短期形态+中期形态+长期形态 编 号
+55,get_more_info,RETURN,TPFlag,Y,str,,停牌标识
+55,get_more_info,RETURN,ZTPrice,Y,str,,涨停价
+55,get_more_info,RETURN,DTPrice,Y,str,,跌停价
+55,get_more_info,RETURN,HqDate,Y,str,,行情日期
+55,get_more_info,RETURN,fHSL,Y,str,,换手率
+55,get_more_info,RETURN,fLianB,Y,str,,量比
+55,get_more_info,RETURN,Wtb,Y,str,,委比
+55,get_more_info,RETURN,Zsz,Y,str,,总市值(亿)
+56,get_more_info,RETURN,Ltsz,Y,str,,流通市值(亿)
+56,get_more_info,RETURN,vzangsu,Y,str,,量涨速
+56,get_more_info,RETURN,Fzhsl,Y,str,,分钟换手率
+56,get_more_info,RETURN,FzAmo,Y,str,,2分钟金额(万元)
+56,get_more_info,RETURN,VOpenZAF,Y,str,,抢筹涨幅
+56,get_more_info,RETURN,ZAF,Y,str,,涨幅
+56,get_more_info,RETURN,ZAFYesterday,Y,str,,昨日涨幅
+56,get_more_info,RETURN,ZAFPre2D,Y,str,,前天涨幅
+56,get_more_info,RETURN,ZAFPre5,Y,str,,5日涨幅
+56,get_more_info,RETURN,ZAFPre10,Y,str,,10日涨幅
+56,get_more_info,RETURN,ZAFPre20,Y,str,,20日涨幅
+56,get_more_info,RETURN,ZAFPre30,Y,str,,30日涨幅
+56,get_more_info,RETURN,ZAFPre60,Y,str,,60日涨幅
+56,get_more_info,RETURN,ZAFYear,Y,str,,年初至今涨幅
+56,get_more_info,RETURN,ZAFPreMyMonth,Y,str,,涨幅(本月来)
+56,get_more_info,RETURN,ZAFPreOneYear,Y,str,,涨幅(一年来)
+56,get_more_info,RETURN,Zjl,Y,str,,主买净额(万元)
+56,get_more_info,RETURN,Zjl_HB,Y,str,,主力净流入(万元)
+56,get_more_info,RETURN,TotalBVol,Y,str,,总买量
+56,get_more_info,RETURN,TotalSVol,Y,str,,总卖量
+56,get_more_info,RETURN,BCancel,Y,str,,总撤买量
+56,get_more_info,RETURN,SCancel,Y,str,,总撤卖量
+56,get_more_info,RETURN,L2TicNum,Y,str,,L2逐笔成交数
+56,get_more_info,RETURN,L2OrderNum,Y,str,,L2逐笔委托数
+56,get_more_info,RETURN,FCAmo,Y,str,,封单额(万元)
+57,get_more_info,RETURN,FCb,Y,str,,封成比
+57,get_more_info,RETURN,OpenAmo,Y,str,,开盘金额(万元)(A股和板块指数有 效)
+57,get_more_info,RETURN,OpenZTBuy,Y,str,,竞价涨停买入金额(万元)
+57,get_more_info,RETURN,OpenAmoPre1,Y,str,,昨开盘金额(万元)
+57,get_more_info,RETURN,OpenVolPre1,Y,str,,昨开盘量
+57,get_more_info,RETURN,CJJEPre1,Y,str,,昨成交额(万元)
+57,get_more_info,RETURN,CJJEPre3,Y,str,,3日成交额(万元)
+57,get_more_info,RETURN,FDEPre1,Y,str,,昨封单额(万元)
+57,get_more_info,RETURN,FDEPre2,Y,str,,前封单额(万元)
+57,get_more_info,RETURN,ZTGPNum,Y,str,,板块指数的涨停家数
+57,get_more_info,RETURN,LastStartZT,Y,str,,几天
+57,get_more_info,RETURN,LastZTHzNum,Y,str,,几板
+57,get_more_info,RETURN,EverZTCount,Y,str,,连板天
+57,get_more_info,RETURN,ConZAFDateNum,Y,str,,连涨天数
+57,get_more_info,RETURN,YearZTDay,Y,str,,年涨停天数
+57,get_more_info,RETURN,MA5Value,Y,str,,5日均价
+57,get_more_info,RETURN,HisHigh,Y,str,,52周最高
+57,get_more_info,RETURN,HisLow,Y,str,,52周最低
+57,get_more_info,RETURN,IPO_Price,Y,str,,发行价
+57,get_more_info,RETURN,More_YJL,Y,str,,"ETF,LOF溢价率"
+57,get_more_info,RETURN,BetaValue,Y,str,,贝塔系数
+57,get_more_info,RETURN,DynaPE,Y,str,,动态市盈率
+57,get_more_info,RETURN,MorePE,Y,str,,"市盈率(港股:动,其他扩展:静)"
+57,get_more_info,RETURN,StaticPE_TTM,Y,str,,市盈率(TTM)
+57,get_more_info,RETURN,DYRatio,Y,str,,股息率
+58,get_more_info,RETURN,PB_MRQ,Y,str,,市净率(MRQ)
+58,get_more_info,RETURN,IsT0Fund,Y,str,,是否是T+0基金
+58,get_more_info,RETURN,IsZCZGP,Y,str,,是否是注册制A股
+58,get_more_info,RETURN,IsKzz,Y,str,,是否是可转债
+58,get_more_info,RETURN,Kzz_HSCode,Y,str,,可转债对应的正股代码
+58,get_more_info,RETURN,QHMainYYMM,Y,str,,"主力合约关联的月份(期货),主力和 次主力"
+58,get_more_info,RETURN,FreeLtgb,Y,str,,自由流通股本(万)
+58,get_more_info,RETURN,Yield,Y,str,,"应计利息(债券),占款天数(回购)"
+58,get_more_info,RETURN,KfEarnMoney,Y,str,,扣非净利润(万元)
+58,get_more_info,RETURN,RDInputFee,Y,str,,研发费用(万元)
+58,get_more_info,RETURN,CashZJ,Y,str,,货币资金(万元)
+58,get_more_info,RETURN,PreReceiveZJ,Y,str,,合同负债(万元)
+58,get_more_info,RETURN,OtherQYJzc,Y,str,,其它权益工具(万元)
+58,get_more_info,RETURN,StaffNum,Y,str,,员工人数
+58,get_more_info,RETURN,RecentGGJYDate,Y,str,,最近北上大额交易日
+58,get_more_info,RETURN,RecentHGDate,Y,str,,最近回购预案日
+58,get_more_info,RETURN,RecentIncentDate,Y,str,,最近股权激励预案日
+58,get_more_info,RETURN,NoticeDate_Recent,Y,str,,最近业绩预告日
+58,get_more_info,RETURN,RecentReleaseDate,Y,str,,最近解禁日
+58,get_more_info,RETURN,RecentDZDate,Y,str,,最近定增日
+58,get_more_info,RETURN,ReportDate,Y,str,,最近财报公告日期
+58,get_more_info,RETURN,ZTDate_Recent,Y,str,,近2年最近涨停板日期
+58,get_more_info,RETURN,DTDate_Recent,Y,str,,近2年最近跌停板日期
+58,get_more_info,RETURN,TopDate_Recent,Y,str,,近2年最近龙虎榜日期
+58,get_more_info,RETURN,StopJYDate_Recent,Y,str,,最近停牌日期
+61,get_pricevol,PARAM,stock_list,Y,List[str],,证券代码列表
+61,get_pricevol,RETURN,LastClose,Y,str,,前收盘价
+61,get_pricevol,RETURN,Now,Y,str,,现价
+61,get_pricevol,RETURN,Volume,Y,str,,成交量
+63,get_divid_factors,PARAM,stock_code,Y,str,,证券代码
+63,get_divid_factors,PARAM,start_time,N,str,,起始时间
+63,get_divid_factors,PARAM,end_time,N,str,,结束时间
+63,get_divid_factors,RETURN,Type,Y,str,,类型 1:除权除息 11:扩缩股 15:重 新调整
+63,get_divid_factors,RETURN,Bonus,Y,str,,红利
+63,get_divid_factors,RETURN,AlloPrice,Y,str,,配股价
+63,get_divid_factors,RETURN,ShareBonus,Y,str,,送股/扩缩股比例
+63,get_divid_factors,RETURN,Allotment,Y,str,,配股
+65,get_relation,PARAM,stock_code,Y,str,,股票代码
+65,get_relation,RETURN,BlockCode,Y,str,,板块代码
+65,get_relation,RETURN,BlockName,Y,str,,板块名称
+65,get_relation,RETURN,BlockType,Y,str,,板块类型
+65,get_relation,RETURN,GPNume,Y,str,,成份股数量
+67,get_ipo_info,PARAM,ipo_type,Y,str,,自定义板块简称
+67,get_ipo_info,PARAM,ipo_date,Y,int,,自定义板块名称
+67,get_ipo_info,RETURN,Code,Y,str,,证券代码
+67,get_ipo_info,RETURN,Name,Y,str,,证券名称
+67,get_ipo_info,RETURN,SGDate,Y,str,,申购日期
+67,get_ipo_info,RETURN,SGPrice,Y,str,,申购价格
+67,get_ipo_info,RETURN,SGCode,Y,str,,申购代码
+67,get_ipo_info,RETURN,MaxSG,Y,str,,申购上限
+67,get_ipo_info,RETURN,PE_Issue,Y,str,,发行市盈率
+69,get_gb_info,PARAM,stock_code,Y,str,,股票代码
+69,get_gb_info,PARAM,date_list,Y,List[str],,日期数组
+69,get_gb_info,PARAM,count,Y,int,,日期有效个数
+69,get_gb_info,RETURN,Date,,double,,日期
+69,get_gb_info,RETURN,Zgb,,double,,总股本
+69,get_gb_info,RETURN,Ltgb,,double,,流通股本
+71,get_gb_info_by_date,PARAM,stock_code,Y,str,,股票代码
+71,get_gb_info_by_date,PARAM,start_date,Y,str,,开始日期
+71,get_gb_info_by_date,PARAM,end_date,Y,str,,截止日期
+71,get_gb_info_by_date,RETURN,Date,,double,,日期
+71,get_gb_info_by_date,RETURN,Zgb,,double,,总股本
+71,get_gb_info_by_date,RETURN,Ltgb,,double,,流通股本
+74,get_financial_data,PARAM,stock_list,Y,List[str],,"证券代码列表例如 [""600519.SH""]"
+74,get_financial_data,PARAM,field_list,Y,List[str],,字段筛选，不能为空，字段名须与 系统定义一致（如 FN193 ）
+74,get_financial_data,PARAM,start_time,Y,str,,起始时间，格式 YYYYMMDD ，如 '20250101'
+74,get_financial_data,PARAM,end_time,N,str,,结束时间，格式 YYYYMMDD ，为 空表示无结束限制
+74,get_financial_data,PARAM,report_type,N,bool,,按截止日期还是公告日期筛选，可 选值： 'announce time' （按公 _ 告日期筛选）或 'tag time' （按 _ 报告期筛选）
+74,get_financial_data,RETURN,announce_time,,int,,公告日期
+74,get_financial_data,RETURN,tag_time,,int,,报告期
+74,get_financial_data,RETURN,FN1,,double,,基本每股收益
+74,get_financial_data,RETURN,FN2,,double,,扣除非经常性损益每股收益
+74,get_financial_data,RETURN,FN3,,double,,每股未分配利润
+75,get_financial_data,RETURN,FN4,,double,,每股净资产
+75,get_financial_data,RETURN,FN5,,double,,每股资本公积金
+75,get_financial_data,RETURN,FN6,,double,,净资产收益率
+75,get_financial_data,RETURN,FN7,,double,,每股经营现金流量
+75,get_financial_data,RETURN,FN8,,double,,货币资金
+75,get_financial_data,RETURN,FN9,,double,,交易性金融资产
+75,get_financial_data,RETURN,FN10,,double,,应收票据
+75,get_financial_data,RETURN,FN11,,double,,应收账款
+75,get_financial_data,RETURN,FN12,,double,,预付款项
+75,get_financial_data,RETURN,FN13,,double,,其他应收款
+75,get_financial_data,RETURN,FN14,,double,,应收关联公司款
+75,get_financial_data,RETURN,FN15,,double,,应收利息
+75,get_financial_data,RETURN,FN16,,double,,应收股利
+75,get_financial_data,RETURN,FN17,,double,,存货
+75,get_financial_data,RETURN,FN18,,double,,其中：消耗性生物资产
+75,get_financial_data,RETURN,FN19,,double,,一年内到期的非流动资产
+75,get_financial_data,RETURN,FN20,,double,,其他流动资产
+75,get_financial_data,RETURN,FN21,,double,,流动资产合计
+75,get_financial_data,RETURN,FN22,,double,,可供出售金融资产
+75,get_financial_data,RETURN,FN23,,double,,持有至到期投资
+75,get_financial_data,RETURN,FN24,,double,,长期应收款
+75,get_financial_data,RETURN,FN25,,double,,长期股权投资
+75,get_financial_data,RETURN,FN26,,double,,投资性房地产
+75,get_financial_data,RETURN,FN27,,double,,固定资产
+75,get_financial_data,RETURN,FN28,,double,,在建工程
+75,get_financial_data,RETURN,FN29,,double,,工程物资
+75,get_financial_data,RETURN,FN30,,double,,固定资产清理
+76,get_financial_data,RETURN,FN31,,double,,生产性生物资产
+76,get_financial_data,RETURN,FN32,,double,,油气资产
+76,get_financial_data,RETURN,FN33,,double,,无形资产
+76,get_financial_data,RETURN,FN34,,double,,开发支出
+76,get_financial_data,RETURN,FN35,,double,,商誉
+76,get_financial_data,RETURN,FN36,,double,,长期待摊费用
+76,get_financial_data,RETURN,FN37,,double,,递延所得税资产
+76,get_financial_data,RETURN,FN38,,double,,其他非流动资产
+76,get_financial_data,RETURN,FN39,,double,,非流动资产合计
+76,get_financial_data,RETURN,FN40,,double,,资产总计
+76,get_financial_data,RETURN,FN41,,double,,短期借款
+76,get_financial_data,RETURN,FN42,,double,,交易性金融负债
+76,get_financial_data,RETURN,FN43,,double,,应付票据
+76,get_financial_data,RETURN,FN44,,double,,应付账款
+76,get_financial_data,RETURN,FN45,,double,,预收款项
+76,get_financial_data,RETURN,FN46,,double,,应付职工薪酬
+76,get_financial_data,RETURN,FN47,,double,,应交税费
+76,get_financial_data,RETURN,FN48,,double,,应付利息
+76,get_financial_data,RETURN,FN49,,double,,应付股利
+76,get_financial_data,RETURN,FN50,,double,,其他应付款
+76,get_financial_data,RETURN,FN51,,double,,应付关联公司款
+76,get_financial_data,RETURN,FN52,,double,,一年内到期的非流动负债
+76,get_financial_data,RETURN,FN53,,double,,其他流动负债
+76,get_financial_data,RETURN,FN54,,double,,流动负债合计
+76,get_financial_data,RETURN,FN55,,double,,长期借款
+76,get_financial_data,RETURN,FN56,,double,,应付债券
+76,get_financial_data,RETURN,FN57,,double,,长期应付款
+77,get_financial_data,RETURN,FN58,,double,,专项应付款
+77,get_financial_data,RETURN,FN59,,double,,预计负债 （非流动负债）
+77,get_financial_data,RETURN,FN60,,double,,递延所得税负债
+77,get_financial_data,RETURN,FN61,,double,,其他非流动负债
+77,get_financial_data,RETURN,FN62,,double,,非流动负债合计
+77,get_financial_data,RETURN,FN63,,double,,负债合计
+77,get_financial_data,RETURN,FN64,,double,,实收资本（或股本）
+77,get_financial_data,RETURN,FN65,,double,,资本公积
+77,get_financial_data,RETURN,FN66,,double,,盈余公积
+77,get_financial_data,RETURN,FN67,,double,,减：库存股
+77,get_financial_data,RETURN,FN68,,double,,未分配利润
+77,get_financial_data,RETURN,FN69,,double,,少数股东权益
+77,get_financial_data,RETURN,FN70,,double,,外币报表折算价差
+77,get_financial_data,RETURN,FN71,,double,,非正常经营项目收益调整
+77,get_financial_data,RETURN,FN72,,double,,所有者权益（或股东权益）合计
+77,get_financial_data,RETURN,FN73,,double,,负债和所有者（或股东权益）合计
+77,get_financial_data,RETURN,FN98,,double,,销售商品、提供劳务收到的现金
+77,get_financial_data,RETURN,FN99,,double,,收到的税费返还
+77,get_financial_data,RETURN,FN100,,double,,收到其他与经营活动有关的现金
+77,get_financial_data,RETURN,FN101,,double,,经营活动现金流入小计
+77,get_financial_data,RETURN,FN102,,double,,购买商品、接受劳务支付的现金
+77,get_financial_data,RETURN,FN103,,double,,支付给职工以及为职工支付的现金
+77,get_financial_data,RETURN,FN104,,double,,支付的各项税费
+77,get_financial_data,RETURN,FN105,,double,,支付其他与经营活动有关的现金
+77,get_financial_data,RETURN,FN106,,double,,经营活动现金流出小计
+77,get_financial_data,RETURN,FN107,,double,,经营活动产生的现金流量净额
+77,get_financial_data,RETURN,FN108,,double,,收回投资收到的现金
+78,get_financial_data,RETURN,FN109,,double,,取得投资收益收到的现金
+78,get_financial_data,RETURN,FN110,,double,,处置固定资产、无形资产和其他长期资 产收回的现金净额
+78,get_financial_data,RETURN,FN111,,double,,处置子公司及其他营业单位收到的现金 净额
+78,get_financial_data,RETURN,FN112,,double,,收到其他与投资活动有关的现金
+78,get_financial_data,RETURN,FN113,,double,,投资活动现金流入小计
+78,get_financial_data,RETURN,FN114,,double,,购建固定资产、无形资产和其他长期资 产支付的现金
+78,get_financial_data,RETURN,FN115,,double,,投资支付的现金
+78,get_financial_data,RETURN,FN116,,double,,取得子公司及其他营业单位支付的现金 净额
+78,get_financial_data,RETURN,FN117,,double,,支付其他与投资活动有关的现金
+78,get_financial_data,RETURN,FN118,,double,,投资活动现金流出小计
+78,get_financial_data,RETURN,FN119,,double,,投资活动产生的现金流量净额
+78,get_financial_data,RETURN,FN120,,double,,吸收投资收到的现金
+78,get_financial_data,RETURN,FN121,,double,,取得借款收到的现金
+78,get_financial_data,RETURN,FN122,,double,,收到其他与筹资活动有关的现金
+78,get_financial_data,RETURN,FN123,,double,,筹资活动现金流入小计
+78,get_financial_data,RETURN,FN124,,double,,偿还债务支付的现金
+78,get_financial_data,RETURN,FN125,,double,,分配股利、利润或偿付利息支付的现金
+78,get_financial_data,RETURN,FN126,,double,,支付其他与筹资活动有关的现金
+78,get_financial_data,RETURN,FN127,,double,,筹资活动现金流出小计
+78,get_financial_data,RETURN,FN128,,double,,筹资活动产生的现金流量净额
+78,get_financial_data,RETURN,FN129,,double,,四、汇率变动对现金的影响
+78,get_financial_data,RETURN,FN130,,double,,四(2)、其他原因对现金的影响
+78,get_financial_data,RETURN,FN131,,double,,五、现金及现金等价物净增加额
+78,get_financial_data,RETURN,FN132,,double,,期初现金及现金等价物余额
+78,get_financial_data,RETURN,FN133,,double,,期末现金及现金等价物余额
+79,get_financial_data,RETURN,FN134,,double,,净利润
+79,get_financial_data,RETURN,FN135,,double,,加：资产减值准备
+79,get_financial_data,RETURN,FN136,,double,,固定资产折旧、油气资产折耗、生产性 生物资产折旧
+79,get_financial_data,RETURN,FN137,,double,,无形资产摊销
+79,get_financial_data,RETURN,FN138,,double,,长期待摊费用摊销
+79,get_financial_data,RETURN,FN139,,double,,处置固定资产、无形资产和其他长期资 产的损失
+79,get_financial_data,RETURN,FN140,,double,,固定资产报废损失
+79,get_financial_data,RETURN,FN141,,double,,公允价值变动损失
+79,get_financial_data,RETURN,FN142,,double,,财务费用
+79,get_financial_data,RETURN,FN143,,double,,投资损失
+79,get_financial_data,RETURN,FN144,,double,,递延所得税资产减少
+79,get_financial_data,RETURN,FN145,,double,,递延所得税负债增加
+79,get_financial_data,RETURN,FN146,,double,,存货的减少
+79,get_financial_data,RETURN,FN147,,double,,经营性应收项目的减少
+79,get_financial_data,RETURN,FN148,,double,,经营性应付项目的增加
+79,get_financial_data,RETURN,FN149,,double,,其他
+79,get_financial_data,RETURN,FN150,,double,,经营活动产生的现金流量净额2
+79,get_financial_data,RETURN,FN151,,double,,债务转为资本
+79,get_financial_data,RETURN,FN152,,double,,一年内到期的可转换公司债券
+79,get_financial_data,RETURN,FN153,,double,,融资租入固定资产
+79,get_financial_data,RETURN,FN154,,double,,现金的期末余额
+79,get_financial_data,RETURN,FN155,,double,,减：现金的期初余额
+79,get_financial_data,RETURN,FN156,,double,,加：现金等价物的期末余额
+79,get_financial_data,RETURN,FN157,,double,,减：现金等价物的期初余额
+79,get_financial_data,RETURN,FN158,,double,,现金及现金等价物净增加额
+79,get_financial_data,RETURN,FN159,,double,,流动比率(非金融类指标)
+80,get_financial_data,RETURN,FN160,,double,,速动比率(非金融类指标)
+80,get_financial_data,RETURN,FN161,,double,,现金比率(%)(非金融类指标)
+80,get_financial_data,RETURN,FN162,,double,,利息保障倍数(非金融类指标)
+80,get_financial_data,RETURN,FN163,,double,,非流动负债比率(%)(非金融类指标)
+80,get_financial_data,RETURN,FN164,,double,,流动负债比率(%)(非金融类指标)
+80,get_financial_data,RETURN,FN166,,double,,有形资产净值债务率(%)
+80,get_financial_data,RETURN,FN167,,double,,权益乘数(%)
+80,get_financial_data,RETURN,FN168,,double,,股东的权益/负债合计(%)
+80,get_financial_data,RETURN,FN169,,double,,有形资产/负债合计(%)
+80,get_financial_data,RETURN,FN170,,double,,经营活动产生的现金流量净额/负债合计 (%)(非金融类指标)
+80,get_financial_data,RETURN,FN171,,double,,EBITDA/负债合计(%)(非金融类指标)
+80,get_financial_data,RETURN,FN172,,double,,应收帐款周转率(非金融类指标)
+80,get_financial_data,RETURN,FN173,,double,,存货周转率(非金融类指标)
+80,get_financial_data,RETURN,FN174,,double,,运营资金周转率(非金融类指标)
+80,get_financial_data,RETURN,FN175,,double,,总资产周转率(非金融类指标)
+80,get_financial_data,RETURN,FN176,,double,,固定资产周转率(非金融类指标)
+80,get_financial_data,RETURN,FN177,,double,,应收帐款周转天数(非金融类指标)
+80,get_financial_data,RETURN,FN178,,double,,存货周转天数(非金融类指标)
+80,get_financial_data,RETURN,FN179,,double,,流动资产周转率(非金融类指标)
+80,get_financial_data,RETURN,FN180,,double,,流动资产周转天数(非金融类指标)
+80,get_financial_data,RETURN,FN181,,double,,总资产周转天数(非金融类指标)
+80,get_financial_data,RETURN,FN182,,double,,股东权益周转率(非金融类指标)
+80,get_financial_data,RETURN,FN183,,double,,营业收入增长率(%)
+80,get_financial_data,RETURN,FN184,,double,,净利润增长率(%)
+80,get_financial_data,RETURN,FN185,,double,,净资产增长率(%)
+80,get_financial_data,RETURN,FN186,,double,,固定资产增长率(%)
+80,get_financial_data,RETURN,FN187,,double,,总资产增长率(%)
+81,get_financial_data,RETURN,FN188,,double,,投资收益增长率(%)
+81,get_financial_data,RETURN,FN189,,double,,营业利润增长率(%)
+81,get_financial_data,RETURN,FN190,,double,,扣非每股收益同比(%)
+81,get_financial_data,RETURN,FN191,,double,,扣非净利润同比(%)
+81,get_financial_data,RETURN,FN192,,double,,暂无
+81,get_financial_data,RETURN,FN193,,double,,成本费用利润率(%)
+81,get_financial_data,RETURN,FN194,,double,,营业利润率(非金融类指标)
+81,get_financial_data,RETURN,FN195,,double,,营业税金率(非金融类指标)
+81,get_financial_data,RETURN,FN196,,double,,营业成本率(非金融类指标)
+81,get_financial_data,RETURN,FN197,,double,,净资产收益率
+81,get_financial_data,RETURN,FN198,,double,,投资收益率
+81,get_financial_data,RETURN,FN199,,double,,销售净利率(%)
+81,get_financial_data,RETURN,FN200,,double,,总资产净利率
+81,get_financial_data,RETURN,FN201,,double,,净利润率(非金融类指标)
+81,get_financial_data,RETURN,FN202,,double,,销售毛利率(%)(非金融类指标)
+81,get_financial_data,RETURN,FN203,,double,,三费比重(非金融类指标)
+81,get_financial_data,RETURN,FN204,,double,,管理费用率(非金融类指标)
+81,get_financial_data,RETURN,FN205,,double,,财务费用率(非金融类指标)
+81,get_financial_data,RETURN,FN206,,double,,扣除非经常性损益后的净利润
+81,get_financial_data,RETURN,FN207,,double,,息税前利润(EBIT)
+81,get_financial_data,RETURN,FN208,,double,,息税折旧摊销前利润(EBITDA)
+81,get_financial_data,RETURN,FN209,,double,,EBITDA/营业总收入(%)(非金融类指标)
+81,get_financial_data,RETURN,FN210,,double,,资产负债率(%)
+81,get_financial_data,RETURN,FN211,,double,,流动资产比率(非金融类指标)
+81,get_financial_data,RETURN,FN212,,double,,货币资金比率(非金融类指标)
+81,get_financial_data,RETURN,FN213,,double,,存货比率(非金融类指标)
+81,get_financial_data,RETURN,FN214,,double,,固定资产比率
+82,get_financial_data,RETURN,FN215,,double,,负债结构比(非金融类指标)
+82,get_financial_data,RETURN,FN216,,double,,归属于母公司股东权益/全部投入资本(%)
+82,get_financial_data,RETURN,FN217,,double,,股东的权益/带息债务(%)
+82,get_financial_data,RETURN,FN218,,double,,有形资产/净债务(%)
+82,get_financial_data,RETURN,FN219,,double,,每股经营性现金流(元)
+82,get_financial_data,RETURN,FN220,,double,,营业收入现金含量(%)(非金融类指标)
+82,get_financial_data,RETURN,FN221,,double,,经营活动产生的现金流量净额/经营活动 净收益(%)
+82,get_financial_data,RETURN,FN222,,double,,销售商品提供劳务收到的现金/营业收入 (%)
+82,get_financial_data,RETURN,FN223,,double,,经营活动产生的现金流量净额/营业收入
+82,get_financial_data,RETURN,FN224,,double,,资本支出/折旧和摊销
+82,get_financial_data,RETURN,FN225,,double,,每股现金流量净额(元)
+82,get_financial_data,RETURN,FN226,,double,,经营净现金比率（短期债务）(非金融类 指标)
+82,get_financial_data,RETURN,FN227,,double,,经营净现金比率（全部债务）
+82,get_financial_data,RETURN,FN228,,double,,经营活动现金净流量与净利润比率
+82,get_financial_data,RETURN,FN229,,double,,全部资产现金回收率
+82,get_financial_data,RETURN,FN230,,double,,营业收入
+82,get_financial_data,RETURN,FN231,,double,,营业利润
+82,get_financial_data,RETURN,FN232,,double,,归属于母公司所有者的净利润
+82,get_financial_data,RETURN,FN233,,double,,扣除非经常性损益后的净利润
+82,get_financial_data,RETURN,FN234,,double,,经营活动产生的现金流量净额
+82,get_financial_data,RETURN,FN235,,double,,投资活动产生的现金流量净额
+82,get_financial_data,RETURN,FN236,,double,,筹资活动产生的现金流量净额
+82,get_financial_data,RETURN,FN237,,double,,现金及现金等价物净增加额
+82,get_financial_data,RETURN,FN238,,double,,总股本
+82,get_financial_data,RETURN,FN239,,double,,已上市流通A股
+82,get_financial_data,RETURN,FN240,,double,,已上市流通B股
+83,get_financial_data,RETURN,FN241,,double,,已上市流通H股
+83,get_financial_data,RETURN,FN242,,double,,股东人数(户)
+83,get_financial_data,RETURN,FN243,,double,,第一大股东的持股数量
+83,get_financial_data,RETURN,FN244,,double,,十大流通股东持股数量合计(股)
+83,get_financial_data,RETURN,FN245,,double,,十大股东持股数量合计(股)
+83,get_financial_data,RETURN,FN246,,double,,机构总量（家）
+83,get_financial_data,RETURN,FN247,,double,,机构持股总量(股)
+83,get_financial_data,RETURN,FN248,,double,,QFII机构数
+83,get_financial_data,RETURN,FN249,,double,,QFII持股量
+83,get_financial_data,RETURN,FN250,,double,,券商机构数
+83,get_financial_data,RETURN,FN251,,double,,券商持股量
+83,get_financial_data,RETURN,FN252,,double,,保险机构数
+83,get_financial_data,RETURN,FN253,,double,,保险持股量
+83,get_financial_data,RETURN,FN254,,double,,基金机构数
+83,get_financial_data,RETURN,FN255,,double,,基金持股量
+83,get_financial_data,RETURN,FN256,,double,,社保机构数
+83,get_financial_data,RETURN,FN257,,double,,社保持股量
+83,get_financial_data,RETURN,FN258,,double,,私募机构数
+83,get_financial_data,RETURN,FN259,,double,,私募持股量
+83,get_financial_data,RETURN,FN260,,double,,财务公司机构数
+83,get_financial_data,RETURN,FN261,,double,,财务公司持股量
+83,get_financial_data,RETURN,FN262,,double,,年金机构数
+83,get_financial_data,RETURN,FN263,,double,,年金持股量
+83,get_financial_data,RETURN,FN264,,double,,十大流通股东持有的流通A股合计(股)[ 注：2019半年报之前，季度报告中，若 股东持股除了流通A股、还有流通B股或 流通H股，指标264取的是包含流通B股或 流通H股的流通股数]
+83,get_financial_data,RETURN,FN265,,double,,第一大流通股东持股量(股)
+84,get_financial_data,RETURN,FN266,,double,,自由流通股(股)[注：1.自由流通股=已流 通A股-持股5%以上股东的流通A股（一 致行动人算一起）；2.指标按报告期展 示，新股在上市日的下个报告期才有数 据]
+84,get_financial_data,RETURN,FN267,,double,,受限流通A股(股)
+84,get_financial_data,RETURN,FN268,,double,,一般风险准备(金融类)
+84,get_financial_data,RETURN,FN269,,double,,其他综合收益(利润表)
+84,get_financial_data,RETURN,FN270,,double,,综合收益总额(利润表)
+84,get_financial_data,RETURN,FN271,,double,,归属于母公司股东权益(资产负债表)
+84,get_financial_data,RETURN,FN272,,double,,银行机构数(家)(机构持股)
+84,get_financial_data,RETURN,FN273,,double,,银行持股量(股)(机构持股)
+84,get_financial_data,RETURN,FN274,,double,,一般法人机构数(家)(机构持股)
+84,get_financial_data,RETURN,FN275,,double,,一般法人持股量(股)(机构持股)
+84,get_financial_data,RETURN,FN276,,double,,近一年净利润(元)
+84,get_financial_data,RETURN,FN277,,double,,信托机构数(家)(机构持股)
+84,get_financial_data,RETURN,FN278,,double,,信托持股量(股)(机构持股)
+84,get_financial_data,RETURN,FN279,,double,,特殊法人机构数(家)(机构持股)
+84,get_financial_data,RETURN,FN280,,double,,特殊法人持股量(股)(机构持股)
+84,get_financial_data,RETURN,FN281,,double,,加权净资产收益率(每股指标)
+84,get_financial_data,RETURN,FN282,,double,,扣非每股收益(单季度财务指标)
+84,get_financial_data,RETURN,FN283,,double,,最近一年营业收入(万元)
+84,get_financial_data,RETURN,FN284,,double,,国家队持股数量（万股)[注：本指标统计 包含汇金公司、证金公司、外汇管理局 旗下投资平台、国家队基金、国开、养 老金以及中科汇通等国家队机构持股数 量]
+84,get_financial_data,RETURN,FN285,,double,,业绩预告-本期归母净利润同比增幅下 限%[注：指标285至294展示未来一个报 告期的数据。例，3月31日至6月29日这 段时间内展示的是中报的数据；如果最 新的财务报告后面有多个报告期的业绩 预告/快报，只能展示最新的财务报告后 面的一个报告期的业绩预告/快报]
+85,get_financial_data,RETURN,FN286,,double,,业绩预告-本期归母净利润同比增幅上 限%
+85,get_financial_data,RETURN,FN287,,double,,业绩快报-归母净利润
+85,get_financial_data,RETURN,FN288,,double,,业绩快报-扣非净利润
+85,get_financial_data,RETURN,FN289,,double,,业绩快报-总资产
+85,get_financial_data,RETURN,FN290,,double,,业绩快报-净资产
+85,get_financial_data,RETURN,FN291,,double,,业绩快报-每股收益
+85,get_financial_data,RETURN,FN292,,double,,业绩快报-摊薄净资产收益率
+85,get_financial_data,RETURN,FN293,,double,,业绩快报-加权净资产收益率
+85,get_financial_data,RETURN,FN294,,double,,业绩快报-每股净资产
+85,get_financial_data,RETURN,FN295,,double,,应付票据及应付账款(资产负债表)
+85,get_financial_data,RETURN,FN296,,double,,应收票据及应收账款(资产负债表)
+85,get_financial_data,RETURN,FN297,,double,,递延收益(资产负债表-非流动负债)
+85,get_financial_data,RETURN,FN298,,double,,其他综合收益(资产负债表)
+85,get_financial_data,RETURN,FN299,,double,,其他权益工具(资产负债表)
+85,get_financial_data,RETURN,FN300,,double,,其他收益(利润表)
+85,get_financial_data,RETURN,FN301,,double,,资产处置收益(利润表)
+85,get_financial_data,RETURN,FN302,,double,,持续经营净利润(利润表)
+85,get_financial_data,RETURN,FN303,,double,,终止经营净利润(利润表)
+85,get_financial_data,RETURN,FN304,,double,,研发费用(利润表)
+85,get_financial_data,RETURN,FN305,,double,,其中:利息费用(利润表-财务费用)
+85,get_financial_data,RETURN,FN306,,double,,其中:利息收入(利润表-财务费用)
+85,get_financial_data,RETURN,FN307,,double,,近一年经营活动现金流净额
+85,get_financial_data,RETURN,FN308,,double,,近一年归母净利润(万元)
+85,get_financial_data,RETURN,FN309,,double,,近一年扣非净利润(万元)
+85,get_financial_data,RETURN,FN310,,double,,近一年现金净流量(万元)
+85,get_financial_data,RETURN,FN311,,double,,基本每股收益（单季度）
+85,get_financial_data,RETURN,FN312,,double,,营业总收入(单季度)(万元)
+86,get_financial_data,RETURN,FN313,,double,,"业绩预告公告日期 [注：本指标展示未来 一个报告期的数据。例,3月31日至6月29 日这段时间内展示的是中报的数据；如 果最新的财务报告后面有多个报告期的 业绩预告/快报，只能展示最新的财务报 告后面的一个报告期的业绩预告/快报的 数据；公告日期格式为YYMMDD，例： 190101代表2019年1月1日]"
+86,get_financial_data,RETURN,FN314,,double,,"财报公告日期 [注：日期格式为 YYMMDD,例：190101代表2019年1月1 日]"
+86,get_financial_data,RETURN,FN315,,double,,"业绩快报公告日期 [注：本指标展示未来 一个报告期的数据。例,3月31日至6月29 日这段时间内展示的是中报的数据；如 果最新的财务报告后面有多个报告期的 业绩预告/快报，只能展示最新的财务报 告后面的一个报告期的业绩预告/快报的 数据；公告日期格式为YYMMDD，例： 190101代表2019年1月1日]"
+86,get_financial_data,RETURN,FN316,,double,,近一年投资活动现金流净额(万元)
+86,get_financial_data,RETURN,FN317,,double,,业绩预告-本期归母净利润下限(万元) [注：指标317至318展示未来一个报告期 的数据。例，3月31日至6月29日这段时 间内展示的是中报的数据；如果最新的 财务报告后面有多个报告期的业绩预告/ 快报，只能展示最新的财务报告后面的 一个报告期的业绩预告/快报]
+86,get_financial_data,RETURN,FN318,,double,,业绩预告-本期归母净利润上限(万元)
+86,get_financial_data,RETURN,FN319,,double,,营业总收入TTM(万元)
+86,get_financial_data,RETURN,FN320,,double,,员工总数(人)
+86,get_financial_data,RETURN,FN321,,double,,每股企业自由现金流
+86,get_financial_data,RETURN,FN322,,double,,每股股东自由现金流
+86,get_financial_data,RETURN,FN323,,double,,近一年营业利润(万元)
+86,get_financial_data,RETURN,FN324,,double,,净利润（单季度）(万元)
+86,get_financial_data,RETURN,FN325,,double,,北上资金数（家）(机构持股）
+86,get_financial_data,RETURN,FN326,,double,,北上资金持股量（股）(机构持股）
+86,get_financial_data,RETURN,FN327,,double,,有息负债率
+87,get_financial_data,RETURN,FN328,,double,,营业成本（单季度）(万元)
+87,get_financial_data,RETURN,FN329,,double,,投入资本回报率（ROIC）(获利能力分析)
+87,get_financial_data,RETURN,FN330,,double,,业绩快报-营业收入（本期）
+87,get_financial_data,RETURN,FN331,,double,,业绩快报-营业收入（上期）
+87,get_financial_data,RETURN,FN332,,double,,业绩快报-营业利润（本期）
+87,get_financial_data,RETURN,FN333,,double,,业绩快报-营业利润（上期）
+87,get_financial_data,RETURN,FN334,,double,,业绩快报-利润总额（本期）
+87,get_financial_data,RETURN,FN335,,double,,业绩快报-利润总额（上期）
+87,get_financial_data,RETURN,FN336,,double,,"审计意见 [注：0-未审计,1-无保留意见,2- 带强调事项段的无保留意见,3-保留意 见,4-无法表示意见,5-否定意见及其他]"
+87,get_financial_data,RETURN,FN337,,double,,股利支付率（%）
+87,get_financial_data,RETURN,FN338,,double,,近一年营业成本-非金融类(万元)
+87,get_financial_data,RETURN,FN339,,double,,近一年营业成本-金融类(万元)
+87,get_financial_data,RETURN,FN340,,double,,业绩预告-本期扣非后净利润下限(万元)
+87,get_financial_data,RETURN,FN341,,double,,业绩预告-本期扣非后净利润上限(万元)
+87,get_financial_data,RETURN,FN342,,double,,业绩预告-本期扣非后净利润同比增长下 限（%）
+87,get_financial_data,RETURN,FN343,,double,,业绩预告-本期扣非后净利润同比增长上 限（%）
+87,get_financial_data,RETURN,FN344,,double,,业绩预告-预告基本每股收益下限(元)
+87,get_financial_data,RETURN,FN345,,double,,业绩预告-预告基本每股收益上限(元)
+87,get_financial_data,RETURN,FN346,,double,,业绩预告-预告基本每股收益同比增长下 限（%）
+87,get_financial_data,RETURN,FN347,,double,,业绩预告-预告基本每股收益同比增长上 限（%）
+87,get_financial_data,RETURN,FN348,,double,,业绩预告-预告扣非后基本每股收益下限 (元)
+87,get_financial_data,RETURN,FN349,,double,,业绩预告-预告扣非后基本每股收益上限 (元)
+88,get_financial_data,RETURN,FN350,,double,,业绩预告-预告扣非后基本每股收益同比 增长下限（%）
+88,get_financial_data,RETURN,FN351,,double,,业绩预告-预告扣非后基本每股收益同比 增长上限（%）
+88,get_financial_data,RETURN,FN352,,double,,业绩预告-预告营业收入下限(万元)
+88,get_financial_data,RETURN,FN353,,double,,业绩预告-预告营业收入上限(万元)
+88,get_financial_data,RETURN,FN354,,double,,业绩预告-预告营业收入同比增长下限 （%）
+88,get_financial_data,RETURN,FN355,,double,,业绩预告-预告营业收入同比增长上限 （%）
+88,get_financial_data,RETURN,FN356,,double,,业绩预告-预告扣除后营业收入下限(万 元)
+88,get_financial_data,RETURN,FN357,,double,,业绩预告-预告扣除后营业收入上限(万 元)
+88,get_financial_data,RETURN,FN358,,double,,主营业务收入(内销)(万元)
+88,get_financial_data,RETURN,FN359,,double,,主营业务收入(外销)(万元)
+88,get_financial_data,RETURN,FN360,,double,,资管计划机构数(家)
+88,get_financial_data,RETURN,FN361,,double,,资管计划持股量(股)
+88,get_financial_data,RETURN,FN362,,double,,财务总评分
+88,get_financial_data,RETURN,FN401,,double,,专项储备(万元)
+88,get_financial_data,RETURN,FN402,,double,,结算备付金(万元)
+88,get_financial_data,RETURN,FN403,,double,,拆出资金(万元)
+88,get_financial_data,RETURN,FN404,,double,,发放贷款及垫款(万元)(流动资产科目)
+88,get_financial_data,RETURN,FN405,,double,,衍生金融资产(万元)
+88,get_financial_data,RETURN,FN406,,double,,应收保费(万元)
+88,get_financial_data,RETURN,FN407,,double,,应收分保账款(万元)
+88,get_financial_data,RETURN,FN408,,double,,应收分保合同准备金(万元)
+88,get_financial_data,RETURN,FN409,,double,,买入返售金融资产(万元)
+88,get_financial_data,RETURN,FN410,,double,,划分为持有待售的资产(万元)
+88,get_financial_data,RETURN,FN411,,double,,发放贷款及垫款(万元)(非流动资产科目)
+89,get_financial_data,RETURN,FN412,,double,,向中央银行借款(万元)
+89,get_financial_data,RETURN,FN413,,double,,吸收存款及同业存放(万元)
+89,get_financial_data,RETURN,FN414,,double,,拆入资金(万元)
+89,get_financial_data,RETURN,FN415,,double,,衍生金融负债(万元)
+89,get_financial_data,RETURN,FN416,,double,,卖出回购金融资产款(万元)
+89,get_financial_data,RETURN,FN417,,double,,应付手续费及佣金(万元)
+89,get_financial_data,RETURN,FN418,,double,,应付分保账款(万元)
+89,get_financial_data,RETURN,FN419,,double,,保险合同准备金(万元)
+89,get_financial_data,RETURN,FN420,,double,,代理买卖证券款(万元)
+89,get_financial_data,RETURN,FN421,,double,,代理承销证券款(万元)
+89,get_financial_data,RETURN,FN422,,double,,划分为持有待售的负债(万元)
+89,get_financial_data,RETURN,FN423,,double,,预计负债(万元) （流动负债）
+89,get_financial_data,RETURN,FN424,,double,,递延收益(万元)（流动负债科目，公告此 科目的股票较少，大部分公司没有此数 据）
+89,get_financial_data,RETURN,FN425,,double,,其中:优先股(万元)(非流动负债科目)
+89,get_financial_data,RETURN,FN426,,double,,永续债(万元)(非流动负债科目)
+89,get_financial_data,RETURN,FN427,,double,,长期应付职工薪酬(万元)
+89,get_financial_data,RETURN,FN428,,double,,其中:优先股(万元)(所有者权益科目)
+89,get_financial_data,RETURN,FN429,,double,,永续债(万元)(所有者权益科目)
+89,get_financial_data,RETURN,FN430,,double,,债权投资(万元)
+89,get_financial_data,RETURN,FN431,,double,,其他债权投资(万元)
+89,get_financial_data,RETURN,FN432,,double,,其他权益工具投资(万元)
+89,get_financial_data,RETURN,FN433,,double,,其他非流动金融资产(万元)
+89,get_financial_data,RETURN,FN434,,double,,合同负债(万元)
+89,get_financial_data,RETURN,FN435,,double,,合同资产(万元)
+89,get_financial_data,RETURN,FN436,,double,,其他资产(万元)
+89,get_financial_data,RETURN,FN437,,double,,应收款项融资(万元)
+90,get_financial_data,RETURN,FN438,,double,,使用权资产(万元)
+90,get_financial_data,RETURN,FN439,,double,,租赁负债(万元)
+90,get_financial_data,RETURN,FN440,,double,,发放贷款及垫款(万元) [注：金融类科目]
+90,get_financial_data,RETURN,FN441,,double,,应收款项(万元) [注：证券类指标]
+90,get_financial_data,RETURN,FN442,,double,,存出保证金(万元) [注：证券类指标]
+90,get_financial_data,RETURN,FN443,,double,,现金及存放中央银行款项(万元) [注：金 融类科目]
+90,get_financial_data,RETURN,FN444,,double,,贵金属(万元) [注：金融类科目]
+90,get_financial_data,RETURN,FN445,,double,,以公允价值计量且其变动计入当期损益 的金融资产(万元) [注：金融类科目]
+90,get_financial_data,RETURN,FN446,,double,,代理业务资产(万元) [注：金融类科目]
+90,get_financial_data,RETURN,FN447,,double,,应收款项类投资(万元) [注：金融类科目]
+90,get_financial_data,RETURN,FN448,,double,,同业及其它金融机构存放款项(万元) [注：金融类科目]
+90,get_financial_data,RETURN,FN449,,double,,以公允价值计量且其变动计入当期损益 的金融负债(万元) [注：金融类科目]
+90,get_financial_data,RETURN,FN450,,double,,吸收存款(万元) [注：金融类科目]
+90,get_financial_data,RETURN,FN451,,double,,代理业务负债(万元) [注：金融类科目]
+90,get_financial_data,RETURN,FN452,,double,,其他负债(万元) [注：金融类科目]
+90,get_financial_data,RETURN,FN453,,double,,发放贷款及垫款(万元) [注：金融类科目]
+90,get_financial_data,RETURN,FN501,,double,,稀释每股收益(元)
+90,get_financial_data,RETURN,FN502,,double,,营业总收入(万元)
+90,get_financial_data,RETURN,FN503,,double,,汇兑收益(万元)
+90,get_financial_data,RETURN,FN504,,double,,其中:归属于母公司综合收益(万元)
+90,get_financial_data,RETURN,FN505,,double,,其中:归属于少数股东综合收益(万元)
+90,get_financial_data,RETURN,FN506,,double,,利息收入(万元)
+90,get_financial_data,RETURN,FN507,,double,,已赚保费(万元)
+90,get_financial_data,RETURN,FN508,,double,,手续费及佣金收入(万元)
+90,get_financial_data,RETURN,FN509,,double,,利息支出(万元)
+91,get_financial_data,RETURN,FN510,,double,,手续费及佣金支出(万元)
+91,get_financial_data,RETURN,FN511,,double,,退保金(万元)
+91,get_financial_data,RETURN,FN512,,double,,赔付支出净额(万元)
+91,get_financial_data,RETURN,FN513,,double,,提取保险合同准备金净额(万元)
+91,get_financial_data,RETURN,FN514,,double,,保单红利支出(万元)
+91,get_financial_data,RETURN,FN515,,double,,分保费用(万元)
+91,get_financial_data,RETURN,FN516,,double,,其中:非流动资产处置利得(万元)
+91,get_financial_data,RETURN,FN517,,double,,信用减值损失(万元)
+91,get_financial_data,RETURN,FN518,,double,,净敞口套期收益(万元)
+91,get_financial_data,RETURN,FN519,,double,,营业总成本(万元)
+91,get_financial_data,RETURN,FN520,,double,,信用减值损失(万元、2019格式)
+91,get_financial_data,RETURN,FN521,,double,,资产减值损失(万元、2019格式)
+91,get_financial_data,RETURN,FN522,,double,,其他业务收入(万元) [注：金融类科目]
+91,get_financial_data,RETURN,FN523,,double,,业务及管理费(万元) [注：金融类科目]
+91,get_financial_data,RETURN,FN524,,double,,其他业务成本(万元) [注：金融类科目]
+91,get_financial_data,RETURN,FN561,,double,,加:其他原因对现金的影响2(万元)(现金的 期末余额科目)
+91,get_financial_data,RETURN,FN562,,double,,客户存款和同业存放款项净增加额(万元)
+91,get_financial_data,RETURN,FN563,,double,,向中央银行借款净增加额(万元)
+91,get_financial_data,RETURN,FN564,,double,,向其他金融机构拆入资金净增加额(万元)
+91,get_financial_data,RETURN,FN565,,double,,收到原保险合同保费取得的现金(万元)
+91,get_financial_data,RETURN,FN566,,double,,收到再保险业务现金净额(万元)
+91,get_financial_data,RETURN,FN567,,double,,保户储金及投资款净增加额(万元)
+91,get_financial_data,RETURN,FN568,,double,,处置以公允价值计量且其变动计入当期 损益的金融资产净增加额(万元)
+91,get_financial_data,RETURN,FN569,,double,,收取利息、手续费及佣金的现金(万元)
+91,get_financial_data,RETURN,FN570,,double,,拆入资金净增加额(万元)
+91,get_financial_data,RETURN,FN571,,double,,回购业务资金净增加额(万元)
+92,get_financial_data,RETURN,FN572,,double,,客户贷款及垫款净增加额(万元)
+92,get_financial_data,RETURN,FN573,,double,,存放中央银行和同业款项净增加额(万元)
+92,get_financial_data,RETURN,FN574,,double,,支付原保险合同赔付款项的现金(万元)
+92,get_financial_data,RETURN,FN575,,double,,支付利息、手续费及佣金的现金(万元)
+92,get_financial_data,RETURN,FN576,,double,,支付保单红利的现金(万元)
+92,get_financial_data,RETURN,FN577,,double,,其中:子公司吸收少数股东投资收到的现 金(万元)
+92,get_financial_data,RETURN,FN578,,double,,其中:子公司支付给少数股东的股利、利 润(万元)
+92,get_financial_data,RETURN,FN579,,double,,投资性房地产的折旧及摊销(万元)
+92,get_financial_data,RETURN,FN580,,double,,信用减值损失(万元)
+92,get_financial_data,RETURN,FN581,,double,,使用权资产折旧（万元）
+92,get_financial_data,RETURN,FN582,,double,,收取利息和手续费净增加额(万元) [注： 金融类科目]
+92,get_financial_data,RETURN,FN583,,double,,支付手续费的现金(万元) [注：金融类科 目]
+92,get_financial_data,RETURN,FN584,,double,,发行债券支付的现金(万元) [注：金融类 科目]
+94,get_financial_data_by_date,PARAM,stock_list,Y,List[str],,证券代码列表
+94,get_financial_data_by_date,PARAM,field_list,Y,List[str],,字段筛选，不能为空（如 FN193 ）
+94,get_financial_data_by_date,PARAM,year,Y,int,,指定年份
+94,get_financial_data_by_date,PARAM,mmdd,Y,int,,指定月日
+96,get_gpjy_value,PARAM,stock_list,Y,List[str],,证券代码列表
+96,get_gpjy_value,PARAM,field_list,Y,List[str],,字段筛选，不能为空
+96,get_gpjy_value,PARAM,start_time,N,str,,起始时间
+96,get_gpjy_value,PARAM,end_time,N,str,,结束时间
+96,get_gpjy_value,RETURN,GP01,,double,,股东人数 股东户数(户)
+96,get_gpjy_value,RETURN,GP02,,double,,龙虎榜 买入总计(万元) 卖出总计(万元)[注：该指标展示 20230717日之后的数据]
+96,get_gpjy_value,RETURN,GP03,,double,,融资融券1 融资余额(万元) 融券余量(股)
+96,get_gpjy_value,RETURN,GP04,,double,,大宗交易 成交均价(元) 成交额(万元)
+96,get_gpjy_value,RETURN,GP05,,double,,增减持1 成交均价(元) 变动股数(股)
+96,get_gpjy_value,RETURN,GP06,,double,,陆股通持股量 持股数量(股)[注：该指标展示20170317日之后的 数据]
+96,get_gpjy_value,RETURN,GP07,,double,,陆股通市场成交净额 陆股通市场净买入(万元)[注：官方只公布 了每日的前十名数据]
+96,get_gpjy_value,RETURN,GP08,,double,,龙虎榜机构(卖方)数据 卖方机构个数 机构卖出金额(万元)
+96,get_gpjy_value,RETURN,GP09,,double,,龙虎榜机构(买方)数据 买方机构个数 机构买入金额(万元)
+97,get_gpjy_value,RETURN,GP10,,double,,近3月机构调研情况 近3月机构调研次数 近3月调研机构数量
+97,get_gpjy_value,RETURN,GP11,,double,,融资融券2 融资买入额(万元) 融资偿还额(万元)
+97,get_gpjy_value,RETURN,GP12,,double,,融资融券3 融券卖出量(股) 融券偿还量(股)
+97,get_gpjy_value,RETURN,GP13,,double,,融资融券4 融资净买入(万元) 融券净卖出(股)
+97,get_gpjy_value,RETURN,GP14,,double,,"涨停数据 涨停金额(即板上成交,万元) 开板次数[注：该指标展示 20180319日之后的数据]"
+97,get_gpjy_value,RETURN,GP15,,double,,"涨跌停 涨跌停状态 封单金额(万元)[注：涨停取2,曾涨停取1,跌停 取-2,曾跌停取-1;跌停和曾跌停时,封单金额取负值 该指标展示 20160926日之后的数据]"
+97,get_gpjy_value,RETURN,GP16,,double,,总市值 总市值(万元)
+97,get_gpjy_value,RETURN,GP17,,double,,龙虎榜营业部数据 买入金额(万元) 卖出金额(万元)
+97,get_gpjy_value,RETURN,GP18,,double,,龙虎榜沪深股通数据 买入金额(万元) 卖出金额(万元)
+97,get_gpjy_value,RETURN,GP19,,double,,每周股票质押数量 无限售股份质押数(万) 有限售股份质押数(万) [注：该指标展示20180316日之后的数据]
+97,get_gpjy_value,RETURN,GP20,,double,,每周股票质押比例 质押比例(%)[注：该指标展示20180316日之 后的数据]
+97,get_gpjy_value,RETURN,GP21,,double,,股息率 股息率(%)
+97,get_gpjy_value,RETURN,GP22,,double,,涨跌停 封成比 封流比[注：该指标展示20180319日之后的数据]
+97,get_gpjy_value,RETURN,GP23,,double,,拟增减持 拟增持数量(万股) 拟减持数量(万股)
+97,get_gpjy_value,RETURN,GP24,,double,,涨停 首次涨停时间 涨停最大封单额(万) [注：首次涨停时间展示 20160301之后的数据，涨停最大封单额展示20200730之后的数 据]
+97,get_gpjy_value,RETURN,GP25,,double,,盘前盘后成交量 开盘成交量(手) 盘后固定成交量(手) [注：盘后 固定成交量只包含科创板和创业板]
+97,get_gpjy_value,RETURN,GP26,,double,,拟增减持金额 拟增持金额(万元) 拟减持金额(万元)
+97,get_gpjy_value,RETURN,GP27,,double,,人气排名 市场人气排名 行业人气排名 [注：行业排名为通达信 二级研究行业排名]
+97,get_gpjy_value,RETURN,GP28,,double,,股票回购 回购均价(元) 回购数量(万股)
+97,get_gpjy_value,RETURN,GP29,,double,,证券信息 是否复牌日 是否更名日 [注：是否复牌日说明：0-不是 复牌日，n(n>0)-停牌n个交易日之后的复牌日；是否更名日说 明：0-未更名，1-常规更名，2-加ST，3-加*ST，4-摘帽，5-其 他]
+98,get_gpjy_value,RETURN,GP30,,double,,分红送转 派息金额(万元) 送转数量(股) [注：对应展示日期为除 权除息日]
+98,get_gpjy_value,RETURN,GP31,,double,,转融券 期初余量(股) 期末余量(股)
+98,get_gpjy_value,RETURN,GP32,,double,,转融券 融出数量(股) 融出市值(元)
+98,get_gpjy_value,RETURN,GP33,,double,,"跌停数据 跌停金额(万元) 开板次数 [注：该指标展示20180319日 之后的数据,暂无跌停金额数据]"
+98,get_gpjy_value,RETURN,GP34,,double,,跌停 首次跌停时间 跌停最大封单额(万) [注：首次跌停时间展示 20160301之后的数据，跌停最大封单额展示20200730之后的数 据]
+98,get_gpjy_value,RETURN,GP35,,double,,增减持2 增持数量(股) 减持数量(股)
+98,get_gpjy_value,RETURN,GP36,,double,,竞价涨停买 买入金额(万元) [注：该指标展示20241101日之后的 数据]
+98,get_gpjy_value,RETURN,GP37,,double,,龙虎榜2 上榜类型连续交易日(天) [注：该指标展示上榜类型中指 代的连续交易日类型]
+98,get_gpjy_value,RETURN,GP38,,double,,涨停相关1 近1年涨停次数 近1年溢价5%次数
+98,get_gpjy_value,RETURN,GP39,,double,,涨停相关2 近1年首板封板率(%) 近1年次日红盘率(%)
+98,get_gpjy_value,RETURN,GP40,,double,,涨停相关3 近1年连板率(%) 最后涨停时间
+98,get_gpjy_value,RETURN,GP41,,double,,股权登记日 配股股权登记日
+98,get_gpjy_value,RETURN,GP42,,double,,龙虎榜专业机构买卖净额 买方成交净额(万元) 卖方成交净额(万 元)
+98,get_gpjy_value,RETURN,GP43,,double,,配股实施 配股价格(元) 配股数量(万股)
+98,get_gpjy_value,RETURN,GP44,,double,,股票评分 综合评分
+98,get_gpjy_value,RETURN,GP45,,double,,评级系数 评级系数
+98,get_gpjy_value,RETURN,GP46,,double,,拟询价转让 拟转让股数(万股) 拟转让占总股本(%)
+100,get_gpjy_value_by_date,PARAM,stock_list,Y,List[str],,证券代码列表
+100,get_gpjy_value_by_date,PARAM,field_list,Y,List[str],,字段筛选，不能为空
+100,get_gpjy_value_by_date,PARAM,year,Y,int,,指定年份
+100,get_gpjy_value_by_date,PARAM,mmdd,Y,int,,指定月日
+102,get_bkjy_value,PARAM,stock_list,Y,List[str],,证券代码列表
+102,get_bkjy_value,PARAM,field_list,Y,List[str],,字段筛选，不能为空
+102,get_bkjy_value,PARAM,start_time,N,str,,起始时间
+102,get_bkjy_value,PARAM,end_time,N,str,,结束时间
+102,get_bkjy_value,RETURN,BK5,,double,,市盈率TTM 整体法 算术平均
+102,get_bkjy_value,RETURN,BK6,,double,,市净率MRQ 整体法 算术平均
+102,get_bkjy_value,RETURN,BK7,,double,,市销率TTM 整体法 算术平均
+102,get_bkjy_value,RETURN,BK8,,double,,市现率TTM 整体法 算术平均
+102,get_bkjy_value,RETURN,BK9,,double,,涨跌数 上涨家数 下跌家数
+102,get_bkjy_value,RETURN,BK10,,double,,板块总市值(亿元) 整体法 算术平均
+102,get_bkjy_value,RETURN,BK11,,double,,板块流通市值(亿元) 整体法 算术平均
+102,get_bkjy_value,RETURN,BK12,,double,,涨停数 涨停家数 曾涨停家数[注：该指标展示20160926日之后的 数据]
+102,get_bkjy_value,RETURN,BK13,,double,,跌停数 跌停家数 曾跌停家数[注：该指标展示20160926日之后的 数据]
+103,get_bkjy_value,RETURN,BK14,,double,,涨停数据 市场高度(不含ST股和未开板新股) 2板及以上涨停个数 (不含ST股和未开板新股)[注：该指标展示20180319日之后的数 据]
+103,get_bkjy_value,RETURN,BK15,,double,,融资融券 沪深京融资余额(万元) 沪深京融券余额(万元)
+103,get_bkjy_value,RETURN,BK16,,double,,陆股通资金流入 沪股通流入金额(亿元) 深股通流入金额(亿元) [注：该指标展示20170320日之后的数据]
+103,get_bkjy_value,RETURN,BK17,,double,,开盘成交数 开盘成交额(万元) 开盘成交量(万股)
+103,get_bkjy_value,RETURN,BK18,,double,,板块股息率(%) 算数平均 整体法
+103,get_bkjy_value,RETURN,BK19,,double,,板块自由流通市值(亿元) 整体法 算术平均
+104,get_bkjy_value_by_date,PARAM,stock_list,Y,List[str],,证券代码列表
+104,get_bkjy_value_by_date,PARAM,field_list,Y,List[str],,字段筛选，不能为空
+104,get_bkjy_value_by_date,PARAM,year,Y,int,,指定年份
+104,get_bkjy_value_by_date,PARAM,mmdd,Y,int,,指定月日
+106,get_scjy_value,PARAM,field_list,Y,List[str],,字段筛选，不能为空
+106,get_scjy_value,PARAM,start_time,N,str,,起始时间
+106,get_scjy_value,PARAM,end_time,N,str,,结束时间
+106,get_scjy_value,RETURN,SC01,,double,,融资融券 沪深京融资余额(万元) 沪深京融券余额(万元)
+106,get_scjy_value,RETURN,SC02,,double,,陆股通资金流入 沪股通流入金额(亿元) 深股通流入金额(亿元) [注：沪股通限制展示2000条数据，深股通展示自20161205以后 的数据]
+106,get_scjy_value,RETURN,SC03,,double,,沪深京涨停股个数 涨停股个数 曾涨停股个数 [注：该指标展示 20160926日之后的数据]
+106,get_scjy_value,RETURN,SC04,,double,,沪深京跌停股个数 跌停股个数 曾跌停股个数 [注：该指标展示 20160926日之后的数据]
+106,get_scjy_value,RETURN,SC05,,double,,上证50股指期货 净持仓(手)[注：该指标展示20171009日之后的 数据]
+106,get_scjy_value,RETURN,SC06,,double,,沪深300股指期货 净持仓(手) [注：该指标展示20171009日之后 的数据]
+106,get_scjy_value,RETURN,SC07,,double,,中证500股指期货 净持仓(手) [注：该指标展示20171009日之后 的数据]
+106,get_scjy_value,RETURN,SC08,,double,,ETF基金规模份额数据 ETF基金规模(亿份) ETF净申赎(亿份)
+107,get_scjy_value,RETURN,SC09,,double,,沪月新开A股账户 沪月新开A股账户(万户)
+107,get_scjy_value,RETURN,SC10,,double,,"增减持统计 增持额(万元) 减持额(万元)[注：部分公司公告滞后, 造成每天查看的数据可能会不一样]"
+107,get_scjy_value,RETURN,SC11,,double,,大宗交易 溢价的大宗交易额(万元) 折价的大宗交易额(万元)
+107,get_scjy_value,RETURN,SC12,,double,,限售解禁 限售解禁计划额(亿元) 限售解禁股份实际上市金额(亿 元)[注：该指标展示201802月之后的数据;部分股票的解禁日期延 后，造成不同日期提取的某天的计划额可能不同]
+107,get_scjy_value,RETURN,SC13,,double,,分红 市场总分红额(亿元)[注：除权派息日的A股市场总分红额]
+107,get_scjy_value,RETURN,SC14,,double,,募资 市场总募资额(亿元)[注：发行日期/除权日期的首发、配股 和增发的总募资额]
+107,get_scjy_value,RETURN,SC15,,double,,打板资金 封板成功资金(亿元) 封板失败资金(亿元) [注：该指标 展示20160926日之后的数据]
+107,get_scjy_value,RETURN,SC16,,double,,龙虎榜 买入总金额(亿元) 卖出总金额(亿元)
+107,get_scjy_value,RETURN,SC17,,double,,龙虎榜机构数据 买入金额(亿元) 卖出金额(亿元)
+107,get_scjy_value,RETURN,SC18,,double,,龙虎榜营业部数据 买入金额(亿元) 卖出金额(亿元)
+107,get_scjy_value,RETURN,SC19,,double,,龙虎榜沪深股通数据 买入金额(亿元) 卖出金额(亿元)
+107,get_scjy_value,RETURN,SC20,,double,,陆股通净买入 沪股通净买入额(亿元) 深股通净买入额(亿元)
+107,get_scjy_value,RETURN,SC21,,double,,每周无限售质押率 深市质押率(%) 沪市质押率(%)[注：该指标展 示20180128日之后的数据]
+107,get_scjy_value,RETURN,SC22,,double,,每周有限售质押率 深市质押率(%) 沪市质押率(%)[注：该指标展 示20180128日之后的数据]
+107,get_scjy_value,RETURN,SC23,,double,,连板家数 连板股个数(包含ST和未开板新股) 连板股个数(不含ST 股和未开板新股）[注：该指标展示20180319日之后的数据]
+107,get_scjy_value,RETURN,SC24,,double,,沪深京涨跌停股个数 涨停股个数(不含ST股和未开板新股) 跌停 股个数（不含ST股）[注：该指标展示20160926日之后的数据]
+107,get_scjy_value,RETURN,SC25,,double,,融资融券 沪深京融资买入额（万元）沪深京融券卖出量（万股）
+107,get_scjy_value,RETURN,SC26,,double,,每周市场质押比 每周市场质押比例（%）[注：该指标展示 20180316日之后的数据]
+107,get_scjy_value,RETURN,SC27,,double,,央行公开市场净投放 央行公开市场净投放 (亿元)
+107,get_scjy_value,RETURN,SC28,,double,,历史A股新高新低数 历史新高A股股票个数 历史新低A股股票个 数(上市满一年的股票)
+107,get_scjy_value,RETURN,SC29,,double,,120天A股新高新低数 120天新高A股股票个数 120天新低A股股 票个数(上市满一年的股票)
+108,get_scjy_value,RETURN,SC30,,double,,涨停数据 市场高度(不含ST股和未开板新股) 2板以上涨停个数(不 含ST股和未开板新股)[注：该指标展示20180319日之后的数据]
+108,get_scjy_value,RETURN,SC31,,double,,涨跌家数 涨家数（剔除停牌） 跌家数（剔除停牌）
+108,get_scjy_value,RETURN,SC32,,double,,20天A股新高新低数 20天新高A股股票个数 20天新低A股股票个 数(上市满一年的股票)
+108,get_scjy_value,RETURN,SC33,,double,,市场总封单金额 涨停封单金额（亿元）跌停封单金额（亿元） [注：该指标展示20160926日之后的数据]
+108,get_scjy_value,RETURN,SC34,,double,,涨跌股成交量 上涨股成交量(万手) 下跌股成交量(万手)
+108,get_scjy_value,RETURN,SC35,,double,,涨停数据 换手板家数 回封率(%) [注：两个指标都剔除了未开板 新股，换手板家数展示20190605日之后的数据，回封率展示 20180927日之后的数据]
+108,get_scjy_value,RETURN,SC36,,double,,曾涨跌停股个数 曾涨停股个数(剔除ST股和未开板新股) 曾跌停 股个数(剔除ST股) [注：该指标展示20160926日之后的数据]
+108,get_scjy_value,RETURN,SC37,,double,,转融券 融出市值(亿元) 期末余额(亿元)
+108,get_scjy_value,RETURN,SC38,,double,,ETF基金规模金额数据 ETF基金规模(亿元) ETF净申赎(亿元)
+108,get_scjy_value,RETURN,SC39,,double,,涨跌5%家数 涨幅大于等于5%家数 跌幅大于等于5%家数
+108,get_scjy_value,RETURN,SC40,,double,,陆股通成交 陆股通成交总额(亿元) 陆股通成交总笔(万笔)
+108,get_scjy_value,RETURN,SC41,,double,,中证1000股指期货 净持仓(手) [注：该指标展示20220722日之后 的数据]
+108,get_scjy_value,RETURN,SC42,,double,,沪深股通成交金额 沪股通成交总额(亿元) 深股通成交总额(亿元)
+110,get_scjy_value_by_date,PARAM,field_list,Y,List[str],,字段筛选，不能为空
+110,get_scjy_value_by_date,PARAM,year,Y,int,,指定年份
+110,get_scjy_value_by_date,PARAM,mmdd,Y,int,,指定月日
+112,get_gp_one_data,PARAM,stock_list,Y,List[str],,证券代码列表
+112,get_gp_one_data,PARAM,field_list,Y,List[str],,字段筛选，不能为空（如 GO47 表示是第47号个股数据最新业绩 预告 本期扣非净利润预计同比增 减幅上限%）这个值，GO为gp one的首字母大写
+112,get_gp_one_data,RETURN,GO1,,double,,发行价(元)
+112,get_gp_one_data,RETURN,GO2,,double,,总发行数量(万股)
+112,get_gp_one_data,RETURN,GO3,,double,,一致预期目标价(元)[注：一致预期值均为近半年内各家机构预 测数值的平均值]
+112,get_gp_one_data,RETURN,GO4,,double,,一致预期T年度
+112,get_gp_one_data,RETURN,GO5,,double,,一致预期T年每股收益
+112,get_gp_one_data,RETURN,GO6,,double,,一致预期T+1年每股收益
+112,get_gp_one_data,RETURN,GO7,,double,,一致预期T+2年每股收益
+112,get_gp_one_data,RETURN,GO8,,double,,一致预期T年净利润(万元)
+112,get_gp_one_data,RETURN,GO9,,double,,一致预期T+1年净利润(万元)
+112,get_gp_one_data,RETURN,GO10,,double,,一致预期T+2年净利润(万元)
+112,get_gp_one_data,RETURN,GO11,,double,,一致预期T年营业收入(万元)
+113,get_gp_one_data,RETURN,GO12,,double,,一致预期T+1年营业收入(万元)
+113,get_gp_one_data,RETURN,GO13,,double,,一致预期T+2年营业收入(万元)
+113,get_gp_one_data,RETURN,GO14,,double,,一致预期T年营业利润(万元)
+113,get_gp_one_data,RETURN,GO15,,double,,一致预期T+1年营业利润(万元)
+113,get_gp_one_data,RETURN,GO16,,double,,一致预期T+2年营业利润(万元)
+113,get_gp_one_data,RETURN,GO17,,double,,一致预期T年每股净资产(元)
+113,get_gp_one_data,RETURN,GO18,,double,,一致预期T+1年每股净资产(元)
+113,get_gp_one_data,RETURN,GO19,,double,,一致预期T+2年每股净资产(元)
+113,get_gp_one_data,RETURN,GO20,,double,,一致预期T年净资产收益率(%)
+113,get_gp_one_data,RETURN,GO21,,double,,一致预期T+1年净资产收益率(%)
+113,get_gp_one_data,RETURN,GO22,,double,,一致预期T+2年净资产收益率(%)
+113,get_gp_one_data,RETURN,GO23,,double,,一致预期T年PE
+113,get_gp_one_data,RETURN,GO24,,double,,一致预期T+1年PE
+113,get_gp_one_data,RETURN,GO25,,double,,一致预期T+2年PE
+113,get_gp_one_data,RETURN,GO26,,double,,最新解禁日(YYMMDD格式)
+113,get_gp_one_data,RETURN,GO27,,double,,最新解禁数量（万股）
+113,get_gp_one_data,RETURN,GO28,,double,,下一报告期的预约披露时间
+113,get_gp_one_data,RETURN,GO29,,double,,最新持股机构家数
+113,get_gp_one_data,RETURN,GO30,,double,,最新机构持股总量（万股）
+113,get_gp_one_data,RETURN,GO31,,double,,最新持股基金家数
+113,get_gp_one_data,RETURN,GO32,,double,,最新基金持股量（万股）
+113,get_gp_one_data,RETURN,GO33,,double,,最新总股本（万股）
+113,get_gp_one_data,RETURN,GO34,,double,,最新实际流通A股（万股）
+113,get_gp_one_data,RETURN,GO35,,double,,最新业绩预告 报告期(YYMMDD格式)
+113,get_gp_one_data,RETURN,GO36,,double,,最新业绩预告 本期归母净利润下限（万元）
+113,get_gp_one_data,RETURN,GO37,,double,,最新业绩预告 本期归母净利润上限（万元）
+113,get_gp_one_data,RETURN,GO38,,double,,最新业绩预告 本期归母净利润预计同比增减幅下限%
+114,get_gp_one_data,RETURN,GO39,,double,,最新业绩预告 本期归母净利润预计同比增减幅上限%
+114,get_gp_one_data,RETURN,GO40,,double,,最新业绩快报 报告期
+114,get_gp_one_data,RETURN,GO41,,double,,最新业绩快报 归母净利润（万元）
+114,get_gp_one_data,RETURN,GO42,,double,,分红募资 派现总额（万元）
+114,get_gp_one_data,RETURN,GO43,,double,,分红募资 募资总额（万元）
+114,get_gp_one_data,RETURN,GO44,,double,,最新业绩预告 本期扣非净利润下限(万元)
+114,get_gp_one_data,RETURN,GO45,,double,,最新业绩预告 本期扣非净利润上限(万元)
+114,get_gp_one_data,RETURN,GO46,,double,,最新业绩预告 本期扣非净利润预计同比增减幅下限%
+114,get_gp_one_data,RETURN,GO47,,double,,最新业绩预告 本期扣非净利润预计同比增减幅上限%
+116,get_stock_list,PARAM,market,Y,str,,指定代码
+116,get_stock_list,PARAM,list_type,Y,int,,返回数据类型
+118,get_sector_list,PARAM,list_type,Y,int,,返回数据类型
+119,get_stock_list_in_sector,PARAM,block_code,Y,str,,板块代码
+119,get_stock_list_in_sector,PARAM,block_type,N,str,,板块类型
+119,get_stock_list_in_sector,PARAM,list_type,Y,int,,返回数据类型
+123,send_user_block,PARAM,block_code,Y,str,,自定义板块简称
+123,send_user_block,PARAM,stock_list,Y,List[str],,添加的自选股
+123,send_user_block,PARAM,show,N,bool,,客户端是否切换至对应板块界面
+124,send_user_block,PARAM,block_code,Y,str,,自定义板块简称
+125,send_user_block,PARAM,block_code,Y,str,,自定义板块简称
+125,send_user_block,PARAM,block_name,Y,str,,自定义板块名称
+126,send_user_block,PARAM,block_code,Y,str,,自定义板块简称
+127,send_user_block,PARAM,block_code,Y,str,,自定义板块简称
+127,send_user_block,PARAM,block_name,Y,str,,重命名后的自定义板块名称
+129,get_trackzs_etf_info,PARAM,zs_code,Y,str,,指数代码
+129,get_trackzs_etf_info,RETURN,Code,,str,证券代码,
+129,get_trackzs_etf_info,RETURN,Name,,str,证券名称,
+129,get_trackzs_etf_info,RETURN,NowPrice,,str,现价,
+129,get_trackzs_etf_info,RETURN,PreClose,,str,昨收,
+129,get_trackzs_etf_info,RETURN,IOPV,,str,净值,
+129,get_trackzs_etf_info,RETURN,Zgb,,str,净额（万份）,
+129,get_trackzs_etf_info,RETURN,Sz,,str,规模（亿元）,
+131,get_kzz_info,PARAM,stock_code,Y,str,,可转债代码
+131,get_kzz_info,PARAM,field_list,N,List[str],,字段筛选，传空则返回全部
+131,get_kzz_info,RETURN,SetCode,,str,证券市场,
+131,get_kzz_info,RETURN,KZZCode,,str,可转债代码,
+131,get_kzz_info,RETURN,HSCode,,str,正股代码,
+131,get_kzz_info,RETURN,ZGPrice,,str,转股价格,
+131,get_kzz_info,RETURN,CurRate,,str,当期利率,
+131,get_kzz_info,RETURN,RestScope,,str,剩余规模(万),
+131,get_kzz_info,RETURN,PutBack,,str,回售触发价,
+131,get_kzz_info,RETURN,ForceRedeem,,str,强赎触发价,
+131,get_kzz_info,RETURN,ZGDate,,str,转股日,
+131,get_kzz_info,RETURN,EndPrice,,str,到期价,
+131,get_kzz_info,RETURN,EndDate,,str,到期日期,
+131,get_kzz_info,RETURN,ZGRate,,str,转股比率%,
+131,get_kzz_info,RETURN,RealValue,,str,纯债价值,
+132,get_kzz_info,RETURN,ExpireYield,,str,到期收益率%,
+132,get_kzz_info,RETURN,KZZScore,,str,可转债评级,
+132,get_kzz_info,RETURN,HSScore,,str,主体评级,
+132,get_kzz_info,RETURN,RedeemDate,,str,赎回登记日期,
+132,get_kzz_info,RETURN,RedeemPrice,,str,赎回价格,
+132,get_kzz_info,RETURN,PutDate,,str,回售申报起始日期,
+132,get_kzz_info,RETURN,PutPrice,,str,回售价格,
+132,get_kzz_info,RETURN,ZGCode,,str,转股代码,
+132,get_kzz_info,RETURN,AGPrice,,str,正股当前价格,
+132,get_kzz_info,RETURN,KZZPrice,,str,可转债当前价格,
+132,get_kzz_info,RETURN,KZZYj,,str,溢价率,
+132,get_kzz_info,RETURN,ZGValue,,str,转股价值,
+135,formula_format_data,PARAM,data_dict,Y,Dict,,get market data获取格式的K线Dict _ _
+137,formula_set_data,PARAM,stock_code,Y,str,,股票代码
+137,formula_set_data,PARAM,stock_period,Y,str,,K线周期
+137,formula_set_data,PARAM,stock_data,Y,List,,指定格式的K线数据
+137,formula_set_data,PARAM,count,Y,int,,选取的K线数量
+137,formula_set_data,PARAM,dividend_type,Y,int,,复权类型
+139,formula_set_data_info,PARAM,stock_code,Y,str,,股票代码
+139,formula_set_data_info,PARAM,stock_period,Y,str,,K线周期
+139,formula_set_data_info,PARAM,start_time,Y,str,,起始时间
+139,formula_set_data_info,PARAM,end_time,Y,str,,结束时间
+139,formula_set_data_info,PARAM,count,Y,int,,截取K线数量
+139,formula_set_data_info,PARAM,dividend_type,Y,int,,复权类型
+142,formula_zb,PARAM,formula_name,Y,str,,公式名称
+142,formula_zb,PARAM,formula_arg,Y,str,,公式参数
+142,formula_zb,PARAM,xsflag,Y,int,,数据精度
+144,formula_process_mul_zb,PARAM,formula_name,Y,str,,公式名称
+144,formula_process_mul_zb,PARAM,formula_arg,Y,str,,公式参数
+144,formula_process_mul_zb,PARAM,xsflag,Y,int,,数据精度
+144,formula_process_mul_zb,PARAM,retrun_count,Y,int,,设置每个返回值的返回数
+144,formula_process_mul_zb,PARAM,formula_arg,Y,bool,,设置是否返回日期
+144,formula_process_mul_zb,PARAM,stock_list,Y,List[str],,股票代码列表
+144,formula_process_mul_zb,PARAM,stock_period,Y,str,,K线周期
+145,formula_process_mul_zb,PARAM,start_time,Y,str,,起始时间
+145,formula_process_mul_zb,PARAM,end_time,Y,str,,结束时间
+145,formula_process_mul_zb,PARAM,count,Y,int,,截取K线数量
+145,formula_process_mul_zb,PARAM,dividend_type,Y,int,,复权类型
+147,formula_get_all,PARAM,formula_type,Y,int,,公式种类标识
+147,formula_get_all,RETURN,acCode,Y,str,,公式代码
+147,formula_get_all,RETURN,acName,Y,str,,公式名称
+147,formula_get_all,RETURN,isSys,Y,int,,是否为系统公式
+149,formula_get_info,PARAM,formula_type,Y,int,,公式种类标识
+149,formula_get_info,PARAM,formula_code,Y,int,,公式代码
+149,formula_get_info,RETURN,acCode,Y,str,,公式代码
+149,formula_get_info,RETURN,acName,Y,str,,公式名称
+149,formula_get_info,RETURN,isSys,Y,int,,是否为系统公式
+149,formula_get_info,RETURN,ParaNum,Y,int,,入参数量
+149,formula_get_info,RETURN,Para,Y,Set,,公式入参参数
+149,formula_get_info,RETURN,ParaName,Y,Set,,公式入参名称
+149,formula_get_info,RETURN,Min,Y,Set,,公式入参最小值
+149,formula_get_info,RETURN,Max,Y,Set,,公式入参最大值
+149,formula_get_info,RETURN,Default,Y,Set,,公式入参默认值
+149,formula_get_info,RETURN,LineNum,Y,int,,出参数量
+149,formula_get_info,RETURN,Line,Y,Set,,公式出参参数
+149,formula_get_info,RETURN,LineName,Y,Set,,公式出参名称
+152,stock_account,PARAM,account,Y,str,,资金账号
+152,stock_account,PARAM,account_type,Y,str,,账号类型
+153,query_stock_asset,PARAM,account_id,Y,int,,资金账号句柄
+153,query_stock_asset,RETURN,Currency,Y,str,,币种
+153,query_stock_asset,RETURN,Balance,Y,str,,余额
+153,query_stock_asset,RETURN,Cash,Y,str,,可用余额
+153,query_stock_asset,RETURN,Asset,Y,str,,资产
+153,query_stock_asset,RETURN,MarketValue,Y,str,,总市值
+153,query_stock_asset,RETURN,TotalFreeze,Y,str,,期货冻结资金
+153,query_stock_asset,RETURN,CloseProfit,Y,str,,期货平仓盈亏
+153,query_stock_asset,RETURN,CurrentEquity,Y,str,,期货动态权益
+153,query_stock_asset,RETURN,PreviousEquity,Y,str,,期货静态权益
+153,query_stock_asset,RETURN,ProfitLoss,Y,str,,期货持仓盈亏
+153,query_stock_asset,RETURN,TotalMargin,Y,str,,期货持仓保证金
+155,query_stock_orders,PARAM,account_id,Y,int,,资金账号句柄
+155,query_stock_orders,PARAM,stock_code,Y,str,,证券代码
+155,query_stock_orders,PARAM,cancelable_only,Y,str,,是否仅查询可撤委托（暂未生效）
+155,query_stock_orders,RETURN,Wtbh,Y,str,,委托编号
+155,query_stock_orders,RETURN,Code,Y,str,,股票代码
+155,query_stock_orders,RETURN,Time,Y,str,,时间，HHMMSS
+155,query_stock_orders,RETURN,BSFlag,Y,int,,"买卖标志,0买 1卖 -1撤单"
+155,query_stock_orders,RETURN,KPFlag,Y,int,,开平标志，0开仓1平仓2平今
+155,query_stock_orders,RETURN,WTFS,Y,str,,市价方式，根据沪深市场不一样
+155,query_stock_orders,RETURN,Status,Y,int,,委托状态
+156,query_stock_orders,RETURN,WtDate,Y,int,,"撤单标志，为1表示已撤,为2表示是夜盘单"
+156,query_stock_orders,RETURN,CjPric,Y,str,,成交价
+156,query_stock_orders,RETURN,CJVol,Y,str,,"成交数量 如果是撤,则为负值"
+156,query_stock_orders,RETURN,WtPrice,Y,str,,委托价
+156,query_stock_orders,RETURN,WtVol,Y,str,,"委托数量 如果是撤,则为负值"
+157,query_stock_positions,PARAM,account_id,Y,int,,资金账号句柄
+157,query_stock_positions,RETURN,Code,Y,str,,证券代码
+157,query_stock_positions,RETURN,Cbj,Y,str,,成本价
+157,query_stock_positions,RETURN,TotalVol,Y,str,,总持仓
+157,query_stock_positions,RETURN,CanUseVol,Y,str,,可用持仓
+157,query_stock_positions,RETURN,BuyPosition,Y,str,,多头持仓（期货或期权）
+157,query_stock_positions,RETURN,BuyAvgPrice,Y,str,,多头持仓均价（期货或期权）
+157,query_stock_positions,RETURN,BuyProfitLoss,Y,str,,多头持仓盈亏（期货或期权）
+157,query_stock_positions,RETURN,SellPosition,Y,str,,空头持仓（期货或期权）
+157,query_stock_positions,RETURN,SellAvgPrice,Y,str,,空头持仓均价（期货或期权）
+157,query_stock_positions,RETURN,SellProfitLoss,Y,str,,空头持仓盈亏（期货或期权）
+157,query_stock_positions,RETURN,TodayBuyPosition,Y,str,,当日买入持仓（期货或期权）
+157,query_stock_positions,RETURN,TodaySellPosition,Y,str,,当日卖出持仓（期货或期权）
+159,order_stock,PARAM,account_id,Y,int,,资金账号句柄
+159,order_stock,PARAM,stock_code,Y,str,,证券代码
+159,order_stock,PARAM,order_type,Y,int,,委托类型
+159,order_stock,PARAM,order_volume,Y,int,,委托数量
+159,order_stock,PARAM,price_type,Y,int,,报价类型
+159,order_stock,PARAM,price,Y,float,,委托价格
+159,order_stock,PARAM,notify,Y,int,,是否手动确认
+160,order_stock,RETURN,Value,Y,int,,成功标志，0失败，1待用户确认，2成功
+160,order_stock,RETURN,Wtbh,Y,str,,委托编号，只有成功时才会返回
+160,order_stock,RETURN,Msg,Y,str,,返回提示信息
+161,cancel_order_stock,PARAM,account_id,Y,int,,资金账号句柄
+161,cancel_order_stock,PARAM,stock_code,Y,str,,证券代码
+161,cancel_order_stock,PARAM,order_id,Y,int,,委托编号
+161,cancel_order_stock,RETURN,Value,Y,int,,成功标志，0失败，1成功
+161,cancel_order_stock,RETURN,Msg,Y,str,,返回提示信息
+170,常量枚举,RETURN,.SZ,,int,0,深圳交易所
+170,常量枚举,RETURN,.SH,,int,1,上海交易所
+170,常量枚举,RETURN,.BJ,,int,2,北京交易所
+170,常量枚举,RETURN,.NQ,,int,44,新三板
+170,常量枚举,RETURN,.SHO,,int,8,上海个股期权
+170,常量枚举,RETURN,.SZO,,int,9,深圳个股期权
+170,常量枚举,RETURN,.HK,,int,31,香港交易所
+170,常量枚举,RETURN,.US,,int,74,美国股票
+170,常量枚举,RETURN,.CSI,,int,62,中证指数
+170,常量枚举,RETURN,.CNI,,int,102,国证指数
+170,常量枚举,RETURN,.HG,,int,38,国内宏观指标
+170,常量枚举,RETURN,.CFF,,int,47,中金期货
+170,常量枚举,RETURN,.CZC,,int,28,郑州期货
+170,常量枚举,RETURN,.DCE,,int,29,大连期货
+170,常量枚举,RETURN,.SHF,,int,30,上海期货
+170,常量枚举,RETURN,.GFE,,int,66,广州期货
+170,常量枚举,RETURN,.INE,,int,30,上海能源
+170,常量枚举,RETURN,.HI,,int,27,港股指数
+170,常量枚举,RETURN,.OF,,int,33,开放式基金净值
+170,常量枚举,RETURN,.CFFO,,int,7,中金所期权
+170,常量枚举,RETURN,.CZCO,,int,4,郑州期货期权
+170,常量枚举,RETURN,.DCEO,,int,5,大连期货期权
+170,常量枚举,RETURN,.SHFO,,int,6,上海期货期权
+171,常量枚举,RETURN,.GFEO,,int,67,广州期货期权
+171,常量枚举,RETURN,.QHZ,,int,42,期货类指数
+171,常量枚举,RETURN,type,,str,none,不复权
+171,常量枚举,RETURN,type,,str,front,前复权
+171,常量枚举,RETURN,type,,str,back,后复权
+171,常量枚举,RETURN,period,,str,1m,1分钟
+171,常量枚举,RETURN,period,,str,5m,5分钟
+171,常量枚举,RETURN,period,,str,15m,15分钟
+171,常量枚举,RETURN,period,,str,30m,30分钟
+171,常量枚举,RETURN,period,,str,1h,60分钟（1小时）
+171,常量枚举,RETURN,period,,str,1d,1天
+171,常量枚举,RETURN,period,,str,1w,1周
+171,常量枚举,RETURN,period,,str,1mon,1月
+171,常量枚举,RETURN,period,,str,1q,1季
+171,常量枚举,RETURN,period,,str,1y,1年
+171,常量枚举,RETURN,period,,str,tick,分笔
+171,常量枚举,RETURN,STOCK_BUY,,int,0,买
+171,常量枚举,RETURN,STOCK_SELL,,int,1,卖
+171,常量枚举,RETURN,CREDIT_BUY,,int,0,担保品买入
+172,常量枚举,RETURN,CREDIT_SELL,,int,1,担保品卖出
+172,常量枚举,RETURN,CREDIT_FIN_BUY,,int,69,融资买入
+172,常量枚举,RETURN,CREDIT_SLO_SELL,,int,70,融券卖出
+172,常量枚举,RETURN,CREDIT_COV_BUY,,int,71,买券还券
+172,常量枚举,RETURN,CREDIT_STK_REPAY,,int,76,卖券还款
+172,常量枚举,RETURN,ETF_PURCHASE,,int,45,基金申购
+172,常量枚举,RETURN,ETF_REDEMPTION,,int,46,基金赎回
+172,常量枚举,RETURN,FUTURE_OPEN_LONG,,int,101,期货开多
+172,常量枚举,RETURN,FUTURE_OPEN_SHORT,,int,102,期货开空
+172,常量枚举,RETURN,FUTURE_CLOSE_LONG,,int,103,期货平多
+172,常量枚举,RETURN,FUTURE_CLOSE_SHORT,,int,104,期货平空
+172,常量枚举,RETURN,OPTION_OPEN_LONG,,int,201,期权开多
+172,常量枚举,RETURN,OPTION_OPEN_SHORT,,int,202,期权开空
+172,常量枚举,RETURN,OPTION_CLOSE_LONG,,int,203,期权平多
+172,常量枚举,RETURN,OPTION_CLOSE_SHORT,,int,204,期权平空
+172,常量枚举,RETURN,PRICE_MY,,int,0,自填价
+172,常量枚举,RETURN,PRICE_SJ,,int,1,市价
+172,常量枚举,RETURN,PRICE_ZTJ,,int,2,涨停价/笼子上限
+172,常量枚举,RETURN,PRICE_DTJ,,int,3,跌停价/笼子下限
+172,常量枚举,RETURN,WTSTATUS_NULL,,int,0,无效单
+172,常量枚举,RETURN,WTSTATUS_NOCJ,,int,1,未成交
+172,常量枚举,RETURN,WTSTATUS_PARTCJ,,int,2,部分成交
+173,常量枚举,RETURN,WTSTATUS_ALLCJ,,int,3,全部成交
+173,常量枚举,RETURN,WTSTATUS_BCBC,,int,4,部分成交部分撤单
+173,常量枚举,RETURN,WTSTATUS_ALLCD,,int,5,全部撤单

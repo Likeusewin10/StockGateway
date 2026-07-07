@@ -63,6 +63,27 @@ def _split_csv(s: str) -> List[str]:
     return [x.strip() for x in s.split(",") if x.strip()]
 
 
+def _safe_tdx_call(fn) -> Any:
+    try:
+        return tdx_result(tdx_exec(fn))
+    except HTTPException as e:
+        return {"ErrorId": "optional_failed", "detail": e.detail}
+    except Exception as e:
+        return {"ErrorId": "optional_failed", "detail": str(e)}
+
+
+def _extract_gpjy_field(gpjy: Any, code: str, field: str) -> Any:
+    if not isinstance(gpjy, dict):
+        return None
+    by_code = gpjy.get(code)
+    if isinstance(by_code, dict) and field in by_code:
+        return by_code[field]
+    by_field = gpjy.get(field)
+    if isinstance(by_field, dict):
+        return by_field.get(code)
+    return gpjy.get(field)
+
+
 def _audit(event: dict) -> None:
     """每笔交易请求/响应落本机 jsonl（gitignore）。绝不因审计失败影响下单流程。"""
     try:
@@ -100,6 +121,25 @@ def tdx_snapshot(code: str, fields: str = "", _=Depends(require_key), __=Depends
     with lock:
         return tdx_result(tdx_exec(lambda: tdx.get_market_snapshot(
             stock_code=code, field_list=_split_csv(fields))))
+
+
+@router.get("/more_info")
+def tdx_more_info(code: str, fields: str = "", gp_fields: str = "GP14,GP15,GP24",
+                  start: str = "", end: str = "",
+                  _=Depends(require_key), __=Depends(rate_limit)):
+    more_fields = _split_csv(fields)
+    gp_list = _split_csv(gp_fields)
+    with lock:
+        more = tdx_result(tdx_exec(lambda: tdx.get_more_info(
+            stock_code=code, field_list=more_fields)))
+        out = {"code": code, **more}
+        if gp_list:
+            gpjy = _safe_tdx_call(lambda: tdx.get_gpjy_value(
+                stock_list=[code], field_list=gp_list, start_time=start, end_time=end))
+            for field in gp_list:
+                out[field] = _extract_gpjy_field(gpjy, code, field)
+            out["gpjy_raw"] = gpjy
+        return out
 
 
 @router.get("/stock_info")

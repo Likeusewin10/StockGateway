@@ -15,7 +15,7 @@ from stocksdk import serialize
 
 def test_tdx_paths_in_openapi(app_client):
     paths = set(app_client.get("/openapi.json").json()["paths"].keys())
-    expected = {"/tdx/bars", "/tdx/snapshot", "/tdx/stock_info", "/tdx/financial",
+    expected = {"/tdx/bars", "/tdx/snapshot", "/tdx/more_info", "/tdx/stock_info", "/tdx/financial",
                 "/tdx/sector", "/tdx/stock_list", "/tdx/trading_dates",
                 "/tdx/health", "/tdx/asset", "/tdx/positions", "/tdx/orders",
                 "/tdx/order", "/tdx/cancel", "/tdx/methods", "/tdx/call/{method}"}
@@ -38,6 +38,19 @@ def test_tdx_snapshot_returns_dict(app_client):
     assert r.status_code == 200
     body = r.json()
     assert body["Now"] == "35.06" and body["ErrorId"] == "0"
+
+
+def test_tdx_more_info_returns_more_and_gpjy(app_client):
+    r = app_client.get("/tdx/more_info", params={"code": "600519.SH"})
+    assert r.status_code == 200
+    body = r.json()
+    assert body["code"] == "600519.SH"
+    assert body["EverZTCount"] == "2"
+    assert body["FCAmo"] == "12345.67"
+    assert body["GP14"] == 1.0
+    assert body["GP15"] == 2.0
+    assert body["GP24"] == 93000.0
+    assert body["gpjy_raw"]["GP14"]["600519.SH"] == 1.0
 
 
 def test_tdx_stock_info_returns_dict(app_client):
