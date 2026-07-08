@@ -157,7 +157,7 @@ curl -s -o /dev/null -w '%{http_code}\n' -X POST \
 
 ## 六、服务器端 Agent 工具（本地指挥服务器干活）
 
-除转发上游厂商 MCP 外，网关还自带 **11 个本机工具**（命名空间 `agent`），让远端 Agent 在服务器上异步启动
+除转发上游厂商 MCP 外，网关还自带 **14 个本机工具**（命名空间 `agent`），让远端 Agent 在服务器上异步启动
 一个 `claude` / `codex` 子进程干活，结果回传。核心三件套：
 
 | 工具 | 入参 | 返回 | 作用 |
@@ -166,8 +166,32 @@ curl -s -o /dev/null -w '%{http_code}\n' -X POST \
 | `agent_agent_status` | `task_id` | `{task_id, status[, error]}` | 轮询状态：running/done/failed/timeout/unknown |
 | `agent_agent_result` | `task_id` | `{status, output, error, returncode, ...}` | 取完整输出 |
 
-其余 8 个：`agent_sessions`（扫盘列历史会话，仿 `/resume`）、`agent_events`/`agent_send`/`agent_close`
-（流式事件与常驻 live 会话交互）、`agent_memory_set/get/list/delete`（服务器端跨任务记忆 KV）。
+其余：`agent_sessions`（扫盘列历史会话，仿 `/resume`）、`agent_events`/`agent_send`/`agent_close`
+（流式事件与常驻 live 会话交互）、`agent_memory_set/get/list/delete`（服务器端跨任务记忆 KV）、
+`fs_put`/`fs_get`/`fs_stat`（主机文件传输，见下）。
+
+### 文件传输（fs_put / fs_get / fs_stat）
+
+让大模型在网关之间搬文件：写/读的都是**工具执行所在主机**的磁盘 —— hub 上调 `agent_fs_put`
+写 hub 本机，调 `peer_pc2_fs_put` 写对等机 pc2（peer 路由与 `agent_run` 完全一致，零额外配置）。
+实现在 `mcp_gateway/fs_tools.py`，全程二进制安全（`wb`/`rb`，无编码/换行转换）。
+
+| 工具 | 入参 | 返回 | 作用 |
+|---|---|---|---|
+| `fs_put` | `path`, `data_b64`[, `mode`=write/append, `mkdirs`=true, `expected_size`=-1] | `{ok, path, bytes_written, size, sha256}` | base64 → 磁盘二进制写；sha256 仅 write 模式（整文件哈希），append 为 null |
+| `fs_get` | `path`[, `offset`=0, `max_bytes`=0] | `{ok, path, size, offset, bytes_read, eof, sha256, data_b64}` | 磁盘 → base64 读；sha256 为**本块**哈希 |
+| `fs_stat` | `path` | `{ok, path, size, sha256}` | 整文件流式哈希，分块传输后终验 |
+
+- **路径**：须绝对路径；Windows 下 `C:\Users\...` 与 MSYS `/c/Users/...` 均接受（自动归一）。
+- **单次上限**：put 解码后 / get 返回各 8MB（`FS_PUT_MAX_BYTES` / `FS_GET_MAX_BYTES` 可 env 覆盖）。
+- **大文件分块协议**：上传 = 首块 `mode:"write"` + 后续块 `mode:"append"`（append 不整文件重哈希，
+  避免 O(n²)）；下载 = 循环 `fs_get(offset=…)` 直到 `eof:true`；传完调一次 `fs_stat`，与本地
+  sha256 比对 = 字节级保证。
+- **重试幂等**：append 时传 `expected_size`（=追加前应有的文件大小）；网络超时重试若该块已落盘，
+  服务端按 size 不匹配拒绝并回报当前 size，防同一块被重复追加。
+- **失败**：一律 `{ok:false, error}`（非法 base64 / 相对路径 / 权限 / 文件不存在），不抛协议错误。
+- **安全**：与 `agent_run` 同信任模型（后者本就可在服务器执行任意命令），不设路径白名单，
+  靠 X-API-Key 兜底；写操作记 info 日志（路径+字节数，不记内容）。
 
 ### 异步轮询流程
 

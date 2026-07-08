@@ -136,6 +136,12 @@ AGENT_MAX_LIVE_SESSIONS = int(os.environ.get("AGENT_MAX_LIVE_SESSIONS", "8"))
 AGENT_SESSIONS_LIST_LIMIT = 30     # agent_sessions 默认/最多回多少条会话
 AGENT_SESSION_TITLE_MAXLEN = 80    # 派生标题截断长度,防外泄过长用户原文
 
+# ---- 文件传输工具（fs_put/fs_get/fs_stat，见 fs_tools.py）----
+# 单次 put 解码后字节上限 / 单次 get 返回字节上限。base64 膨胀 4/3，8MB 二进制
+# 对应 ~10.7MB MCP 消息体；更大文件走分块（put mode=append / get offset）。
+FS_PUT_MAX_BYTES = int(os.environ.get("FS_PUT_MAX_BYTES", str(8 * 1024 * 1024)))
+FS_GET_MAX_BYTES = int(os.environ.get("FS_GET_MAX_BYTES", str(8 * 1024 * 1024)))
+
 
 def get_claude_projects_dir() -> Path:
     """claude 会话存储根；CLAUDE_PROJECTS_DIR 留空则用 ~/.claude/projects。

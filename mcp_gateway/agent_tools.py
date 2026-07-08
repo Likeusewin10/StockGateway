@@ -1,4 +1,5 @@
-"""服务器端 Agent 的 MCP 工具：agent_run / agent_status / agent_result / agent_sessions。
+"""服务器端 Agent 的 MCP 工具：agent_run / agent_status / agent_result / agent_sessions，
+外加主机文件传输三件套 fs_put / fs_get / fs_stat（网关间搬文件，实现在 fs_tools.py）。
 
 挂到 8765 网关的 `agent` 命名空间（最终工具名 agent_agent_run 等）。鉴权/限流由网关
 ApiKeyAuthMiddleware 统一覆盖，本模块不另做第二层鉴权。
@@ -17,6 +18,7 @@ from fastmcp import FastMCP
 from mcp_gateway.agent_runner import runner
 from mcp_gateway.agent_sessions import list_sessions
 from mcp_gateway.config import AGENT_SESSIONS_LIST_LIMIT, get_agent_project_dir
+from mcp_gateway.fs_tools import fs_get_impl, fs_put_impl, fs_stat_impl
 from mcp_gateway.host_memory import mem_delete, mem_get, mem_list, mem_set, recall_for_prompt
 
 agent = FastMCP(name="agent")
@@ -137,3 +139,49 @@ def agent_memory_delete(host_id: str, slug: str) -> Dict[str, Any]:
 def agent_memory_list(host_id: str) -> Dict[str, Any]:
     """列出指定 host 所有已存储的 slug 及元数据。返回 {ok, host_id, slugs, facts, count}。"""
     return mem_list(host_id)
+
+
+@agent.tool
+def fs_put(path: str, data_b64: str, mode: str = "write",
+           mkdirs: bool = True, expected_size: int = -1) -> Dict[str, Any]:
+    """把 base64 字节二进制写到「本工具执行所在主机」的磁盘（网关间文件传输·上传腿）。
+
+    - path: 目标绝对路径；同时接受 Windows `C:\\Users\\...` 与 MSYS `/c/Users/...` 写法。
+    - data_b64: 文件原始字节的标准 base64。
+    - mode: write=覆盖截断（默认）/ append=追加（大文件分块上传）。
+    - mkdirs: 父目录不存在则递归创建（默认 true）。
+    - expected_size: 仅 append 生效（>=0 时）：写前校验当前文件大小须等于该值，
+      不等则拒绝并回报当前 size —— 网络超时重试时防同一块被重复追加。
+
+    二进制安全（'wb'/'ab' 写，无编码/换行转换）。单次解码后上限 8MB，超限报错提示分块。
+    返回 {ok, path, bytes_written, size, sha256}；sha256 仅 write 模式为写后整文件哈希，
+    append 模式为 null —— 分块传完后调 fs_stat 一次终验整文件 sha256。
+    失败返回 {ok: false, error}。
+    """
+    return fs_put_impl(path, data_b64, mode=mode, mkdirs=mkdirs,
+                       expected_size=expected_size)
+
+
+@agent.tool
+def fs_get(path: str, offset: int = 0, max_bytes: int = 0) -> Dict[str, Any]:
+    """从「本工具执行所在主机」磁盘二进制读字节，返回 base64（网关间文件传输·下载腿）。
+
+    - path: 绝对路径（接受 Windows / MSYS 两种写法）。
+    - offset: 起读偏移，大文件分块下载用（默认 0）。
+    - max_bytes: 单次返回字节上限；缺省/0 用服务端上限 8MB。
+
+    返回 {ok, path, size, offset, bytes_read, eof, sha256, data_b64}；
+    size 为整文件大小，sha256 为**本块数据**的哈希，eof=false 时用 offset 续读，
+    整文件校验用 fs_stat。失败返回 {ok: false, error}。
+    """
+    return fs_get_impl(path, offset=offset, max_bytes=max_bytes)
+
+
+@agent.tool
+def fs_stat(path: str) -> Dict[str, Any]:
+    """取主机上某文件的 {ok, path, size, sha256}（流式哈希，任意大小）。
+
+    用途：分块传输（fs_put mode=append / fs_get offset）完成后，调用方拿它与
+    本地 sha256 比对，做字节级完整性终验。失败返回 {ok: false, error}。
+    """
+    return fs_stat_impl(path)
