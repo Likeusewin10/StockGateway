@@ -1,8 +1,11 @@
-"""一次性运维脚本：把文件传输工具（fs_put/fs_get/fs_stat）推送到全部对等机。
+"""[已废弃 / 历史留存] 一次性运维脚本：把 fs_tools 经 LLM 抄写推送到对等机。
 
-原理：不走 git（中心 remote 未定），经 hub 网关的 peer_<name>_agent_run 把
-「文件完整内容 + 落地指令」作为 prompt 丢给对等机上的 Claude 执行，
-轮询 peer_<name>_agent_status 至终态后取 result。
+⚠ 2026-07 多机架构重构后本脚本已被取代，勿再用于日常：对等机改跑「哑服务」
+`peer_service.py`，业务逻辑全在 hub，加/改工具无需再往对等机推代码。需要更新哑服务
+本体时用 `scripts/push_peer_service.py`（经 svc_update 确定性推送）。本文件仅作历史留存。
+
+（原说明）经 hub 网关的 peer_<name>_agent_run 把「文件完整内容 + 落地指令」作为 prompt
+丢给对等机上的 Claude 执行，轮询 peer_<name>_agent_status 至终态后取 result。
 
 分三步（restart 拆开是因为对等机 Agent 是网关子进程，任务里直接杀网关会
 丢掉自己的任务表，apply 结果就取不回来了）：
@@ -198,11 +201,13 @@ async def cmd_apply(peers: list[str]) -> None:
 
 
 async def cmd_restart(peers: list[str]) -> None:
+    # fire-and-forget：重启会杀掉 agent 自己所在的网关，任务表随之清空，
+    # 无法轮询到终态。只提交、确认已受理（返回 task_id / RESTART_SCHEDULED），不等待。
     async with _client() as client:
-        results = await asyncio.gather(
-            *(run_peer_task(client, p, RESTART_PROMPT) for p in peers))
-    for res in results:
-        summarize(res)
+        for p in peers:
+            res = await run_peer_task(client, p, RESTART_PROMPT, wait=False)
+            print(f"[{p}] restart submitted: {res.get('status')} "
+                  f"task_id={res.get('task_id', '')}", flush=True)
 
 
 async def cmd_pull(peers: list[str]) -> None:

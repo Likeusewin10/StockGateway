@@ -211,6 +211,39 @@ def _extract_codex_session_id(stdout: str) -> Optional[str]:
     return None
 
 
+def build_agent_argv(engine: str, prompt: str,
+                     session_id: Optional[str] = None
+                     ) -> tuple[Optional[List[str]], Optional[str], Optional[str]]:
+    """为「对等机执行」构造命令 argv，argv[0] **保留裸引擎名**（如 "claude"）。
+
+    与 _build_command 的区别：不做 shutil.which 解析 —— 可执行路径是对等机的本机事实，
+    由对等机小服务在 /exec 里解析（Windows .CMD shim 等 OS 相关坑收在那侧）。hub 只负责
+    按模板拼参数、按 claude 语义预生成会话 UUID。
+
+    返回 (argv, resolved_session_id, error)：
+    - 校验失败（engine 不支持 / prompt 空 / session_id 非法 UUID）→ (None, None, 原因)。
+    - claude 首轮预生成 session UUID 并经 --session-id 注入；resolved_session_id 回给调用方，
+      供其作为本轮会话 id 返回客户端（续轮把它传回即续接历史）。
+    - codex 首轮 id 由 codex 生成，此处为 None（终态从输出解析，phase 1 暂不接续）。
+    """
+    engine = (engine or "").strip().lower()
+    if engine not in AGENT_ENGINES:
+        return None, None, "engine 不支持：{}（仅 {}）".format(engine, "/".join(AGENT_ENGINES))
+    if not (prompt or "").strip():
+        return None, None, "prompt 不能为空"
+    session_id = (session_id or "").strip() or None
+    is_resume = session_id is not None
+    if is_resume and not _is_valid_uuid(session_id):
+        return None, None, "session_id 非法（须为 UUID）"
+    resolved_sid = session_id
+    if not is_resume and engine == "claude":
+        resolved_sid = str(uuid.uuid4())
+    template = AGENT_ENGINES[engine]["resume" if is_resume else "fresh"]
+    argv = [part.replace("{prompt}", prompt).replace("{session_id}", resolved_sid or "")
+            for part in template]
+    return argv, resolved_sid, None
+
+
 class AgentRunner:
     """异步 Agent 任务管理器：submit 起进程、status/result 查询、超时 kill、任务上限。"""
 

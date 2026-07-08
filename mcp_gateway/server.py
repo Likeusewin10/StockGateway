@@ -20,7 +20,7 @@ from mcp_gateway.config import (
     get_gateway_mode,
     load_dotenv,
 )
-from mcp_gateway.peers import load_peers
+from mcp_gateway.peers import load_peer_mcps
 from mcp_gateway.providers import PROVIDERS
 from mcp_gateway.upstream import iter_upstreams
 
@@ -65,13 +65,12 @@ def build_gateway() -> FastMCP:
     # 本机自有工具：服务器端 Agent（agent_run/agent_status/agent_result/agent_sessions），命名空间 agent。
     gateway.mount(agent_tools, namespace="agent")
     logger.info("已挂载本机工具 -> 前缀 agent（agent_run/agent_status/agent_result/agent_sessions）")
-    # 对等机 agent 网关（多机协同）：MCP_PEERS 定义，缺 key 的 peer 被跳过（warning）。
-    # 对等机跑 agent-only 模式（工具裸名），挂载后即 peer_<机器名>_agent_run 等。
-    for provider in load_peers():
-        for server, client in iter_upstreams(provider):
-            proxy = create_proxy(client)
-            gateway.mount(proxy, namespace=provider.prefix(server))
-            logger.info("已挂载对等机 %s -> 前缀 %s", server.name, provider.prefix(server))
+    # 对等机（多机协同）：MCP_PEERS 定义，缺 key 的 peer 被跳过（warning）。
+    # 对等机现跑纯 HTTP 哑执行服务（peer_service.py），hub 侧注册原生工具经 HTTP 调它，
+    # 挂载后即 peer_<机器名>_agent_run/_status/_result/fs_*/svc_* 等。
+    for name, peer_mcp in load_peer_mcps():
+        gateway.mount(peer_mcp, namespace=f"peer_{name}")
+        logger.info("已挂载对等机 %s -> 前缀 peer_%s", name, name)
     logger.info("网关挂载完成：%d 个上游 server", mounted)
     if mounted == 0:
         logger.warning("没有任何上游被挂载：请检查各厂商凭据环境变量（如 IFIND_MCP_JWT）")

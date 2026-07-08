@@ -1,304 +1,207 @@
-# 对等机 Agent MCP 部署手册（丢给对等机上的 Claude Code 直接执行）
+# 对等机部署手册（丢给对等机上的 Claude Code 直接执行）
 
-> **执行者注意（给对等机上的 Claude Code）**：本文档是一份可自动执行的部署任务书。
-> 你在一台**对等机**（peer，非 hub 主机）上，目标是把本机部署成 **agent-only MCP 网关节点**：
-> 对外只暴露 `agent_run / agent_status / agent_result / agent_sessions / agent_memory_*` 等
-> 本机 Agent 工具，经 frp 隧道让 hub 主机聚合调用。**逐步执行、每步自验、失败即停并报告**。
-> 涉及凭据的值（API Key、FRP token、GitHub 访问）**只进 `.env` / frpc secret 文件，绝不写进任何入库文件、日志或聊天记录以外的地方**。
+> **架构（2026-07 重构）**：对等机只跑一个**永不需要维护的 HTTP 哑执行小服务**
+> `peer_service.py`（纯标准库、单文件、~400 行）。所有会演进的业务逻辑（命令模板、
+> 会话、文件分块编排、将来的新工具）**全在 hub 侧**，对等机零感知。对等机侧从此只有：
+> **系统 Python + claude CLI + `peer_service.py` + 两三行 `.env` + frp 隧道**。不需要 venv、
+> 不需要 fastmcp、不需要克隆整个仓库、不需要跟 hub 的功能迭代同步代码。
 >
-> **系统分支**：本手册同时覆盖 **Windows** 与 **macOS** 对等机。先跑一句探测（`uname` 有输出即
-> macOS/类 Unix，报错即 Windows），然后**只走本机系统的分支**；未标注系统的步骤两边通用。
-> 差异总表：
+> **执行者注意（给对等机上的 Claude Code）**：本文档是可自动执行的部署任务书。你在一台
+> **对等机**上，目标是把本机部署成哑执行节点：对外暴露 `/health /exec /task /file /admin/*`
+> HTTP 原语，经 frp 隧道让 hub 聚合调用（hub 侧注册为 `peer_<机器名>_agent_run` 等工具）。
+> **逐步执行、每步自验、失败即停并报告**。凭据（API Key、FRP token）**只进 `.env` /
+> frpc secret 文件，绝不写进任何入库文件或日志**。
 >
-> | 事项 | Windows | macOS |
-> |---|---|---|
-> | venv 内可执行 | `.venv-mcp\Scripts\python.exe` | `.venv-mcp/bin/python` |
-> | 常驻 + 自愈 | 计划任务（`register_*.ps1`，看门狗 bat） | `launchd`（`KeepAlive=true` 自带自愈，无需看门狗脚本） |
-> | frpc 二进制 | `frp_*_windows_amd64.zip` → `frp\frpc.exe` | `frp_*_darwin_arm64.tar.gz`（Intel 机用 `darwin_amd64`）→ `frp/frpc` |
-> | frp token 注入 | `frpc.secret.bat`（`set FRP_TOKEN=…`） | `frpc.secret.sh`（`export FRP_TOKEN=…`），两者均已 gitignore |
-> | 安装目录 | `D:\dev\Project\StockSDK`（无 D 盘用 C 盘） | `~/dev/Project/StockSDK` |
->
-> ⚠ macOS 上仓库自带的 `*.bat` / `*.ps1` 一律不用；launchd plist 按第 4/5 步模板现场生成
-> （生成的 plist 放 `~/Library/LaunchAgents/`，不入库）。
+> **系统分支**：同时覆盖 **Windows** 与 **macOS**。先跑 `uname`（有输出即 macOS/类 Unix，
+> 报错即 Windows），只走本机系统分支；未标注系统的步骤两边通用。
 
 ---
 
-## 0. 部署前用户必须提供的参数（执行者先向用户确认齐全再动手）
+## 0. 部署前用户必须提供的参数
 
-| 参数 | 说明 | 本次取值（用户填/口头告知） |
+| 参数 | 说明 | 取值 |
 |---|---|---|
-| `PEER_NAME` | 本机在集群里的名字，小写字母数字下划线且字母开头（如 `pc2`、`mac1`） | ______ |
-| `REMOTE_PORT` | frps 上分配给本机的**内部转发端口**（公网不直连它，见下）。**约定：pc2=18766，pc3=18767，mac1=18768**（18000/18765 已被 hub 占用，勿撞车） | ______ |
-| `PEER_DOMAIN` | 本机的公网入口域名，规则固定 `mcp-<PEER_NAME>.jiantx.net`（如 `mcp-pc2.jiantx.net`）。由香港节点 Caddy 终结 HTTPS（见 5b 步，hub 侧/用户操作） | 按规则派生 |
-| `FRP_TOKEN` | 香港 frps 节点（47.76.104.225）的认证 token，向用户要（在 hub 机的 `frpc.secret.bat` 里） | 用户口头/安全渠道提供 |
-| 仓库访问 | GitHub 私有仓库 `https://github.com/Likeusewin10/StockGateway.git` 的访问方式（Git Credential Manager 弹窗登录 / PAT / SSH key） | 用户操作或提供 |
-| 安装目录 | Windows 推荐 `D:\dev\Project\StockSDK`（无 D 盘则 C 盘）；macOS 推荐 `~/dev/Project/StockSDK` | ______ |
+| `PEER_NAME` | 本机集群名，小写字母数字下划线且字母开头（如 `pc2`、`mac1`） | ______ |
+| `REMOTE_PORT` | frps 上分配给本机的内部转发端口。**约定：pc2=18766，pc3=18767，mac1=18768**（18000/18765 已被 hub 占用） | ______ |
+| `PEER_DOMAIN` | 公网入口域名，规则固定 `mcp-<PEER_NAME>.jiantx.net`（由香港 Caddy 终结 HTTPS） | 按规则派生 |
+| `FRP_TOKEN` | 香港 frps 节点（47.76.104.225）认证 token（在 hub 机 `frpc.secret.bat` 里） | 用户安全渠道提供 |
+| `peer_service.py` | 从 hub 机取一份（`git`/`scp`/复制均可，只需这一个文件）；或克隆仓库只用该文件 | 用户提供或 hub 拷贝 |
+| 安装目录 | Windows 推荐 `D:\dev\Project\StockSDK`（无 D 盘用 C 盘）；macOS `~/dev/Project/StockSDK` | ______ |
 
-> 🔴 **公网链路口径（与 hub 相同的域名架构，别用裸 IP:端口）**：香港节点 nftables 把 frps 的
-> 明文转发口（18000/18765/187xx）**只对 loopback 放行**，公网访问一律 drop——所以
-> `http://47.76.104.225:<REMOTE_PORT>` 从公网**连不通，也不该连**。真实链路是：
-> `对等机 frpc →(TLS)→ 香港 frps 127.0.0.1:<REMOTE_PORT> ← Caddy（https://mcp-<peer>.jiantx.net 终结 TLS,Let's Encrypt）← hub/客户端`。
+> 🔴 **公网链路口径（别用裸 IP:端口）**：香港节点 nftables 把 frps 明文转发口只对
+> loopback 放行，公网 drop。真实链路：
+> `对等机 frpc →(TLS)→ 香港 frps 127.0.0.1:<REMOTE_PORT> ← Caddy（https://mcp-<peer>.jiantx.net）← hub`。
 
 ## 1. 前置环境检查（缺什么装什么）
 
 **Windows：**
-
 ```powershell
-git --version          # 无则: winget install Git.Git
-python --version       # 需 3.11.x 64位。无则: winget install Python.Python.3.11
+python --version       # 需 3.11+ 64位(哑服务纯标准库,任何 3.9+ 亦可)。无则: winget install Python.Python.3.11
 claude --version       # Claude Code CLI。无则: irm https://claude.ai/install.ps1 | iex
 ```
-
 **macOS：**
-
 ```bash
-git --version           # 无则先装 Xcode CLT: xcode-select --install
-python3.11 --version    # 无则: brew install python@3.11（无 brew 先装 Homebrew）
+python3 --version       # 3.9+ 即可。无则: brew install python
 claude --version        # 无则: curl -fsSL https://claude.ai/install.sh | bash
 ```
+- 两系统通用——**claude CLI 必须已登录**：`claude -p --dangerously-skip-permissions -- "只回复 pong"`
+  能回 pong 即可。未登录则**停下来让用户**跑 `claude` 完成 `/login`（交互式，不能代办）。
+- （可选）`codex --version`：装了则两引擎可用，没装不影响。
+- ⚠ **不需要 venv、不需要 pip install、不需要 fastmcp** —— 哑服务只用标准库。
 
-- 两系统通用——**claude CLI 必须已登录**：登录态无法静默检查，直接跑一发验证：
-  `claude -p --dangerously-skip-permissions -- "只回复 pong"` 能回 pong 即可。
-  未登录则**停下来让用户**在终端跑 `claude` 完成 `/login`（交互式，执行者不能代办）。
-- （可选）`codex --version`：装了则两引擎可用，没装不影响（任务会返回 failed，不崩）。
+## 2. 放置 `peer_service.py` + 写 `.env`
 
-## 2. 克隆仓库 + 建 venv
-
-**Windows：**
-
-```powershell
-mkdir D:\dev\Project -Force; cd D:\dev\Project
-git clone https://github.com/Likeusewin10/StockGateway.git StockSDK   # GCM 会弹窗让用户登录 GitHub
-cd StockSDK
-python -m venv .venv-mcp
-.venv-mcp\Scripts\pip install -r requirements-mcp.txt
-```
-
-**macOS：**
-
-```bash
-mkdir -p ~/dev/Project && cd ~/dev/Project
-git clone https://github.com/Likeusewin10/StockGateway.git StockSDK
-cd StockSDK
-python3.11 -m venv .venv-mcp
-.venv-mcp/bin/pip install -r requirements-mcp.txt
-```
-
-自验（macOS 把 `\` 路径换成 `/bin/`，下同）：
-`.venv-mcp\Scripts\python -m pytest tests\test_mcp_gateway_peers.py tests\test_mcp_gateway_providers.py -q` 全绿。
-
-## 3. 写 `.env`（对等机形态的关键配置，两系统内容相同）
-
+把从 hub 取来的 `peer_service.py` 放进安装目录（如 `D:\dev\Project\StockSDK\peer_service.py`）。
 生成本机专属强随机 API Key（**每台机器独立一把，不复用 hub 的**）：
-
 ```
-# Windows: .venv-mcp\Scripts\python  /  macOS: .venv-mcp/bin/python
-<venv-python> -c "import secrets; print(secrets.token_urlsafe(32))"
+python -c "import secrets; print(secrets.token_urlsafe(32))"
 ```
-
-在仓库根新建 `.env`（已 gitignore），内容只需三行：
-
+在同目录新建 `.env`（已 gitignore），内容：
 ```ini
-# 本机网关鉴权 key（上面生成的随机串；hub 会用它连进来）
-API_KEY=<刚生成的随机串>
-# 对等机形态：只暴露 agent 工具，不挂任何股票厂商上游
-MCP_GATEWAY_MODE=agent-only
-MCP_GATEWAY_PORT=8765
+# 本机哑服务鉴权 key（上面生成的随机串；hub 会用它连进来）
+PEER_API_KEY=<刚生成的随机串>
+# 监听端口(默认 8765,顶替旧网关位置,frp/域名零改动复用)
+PEER_SERVICE_PORT=8765
+# exec 子进程工作目录(默认本文件所在目录;想锁到别处可显式设)
+# PEER_WORK_DIR=D:\dev\Project\StockSDK
 ```
 
-> 不需要 iFinD/Tushare 等任何厂商凭据——agent-only 模式根本不挂它们。
+## 3. 常驻小服务并启动
 
-## 4. 常驻网关并启动
-
-**Windows（计划任务 + 看门狗 bat）：**
-
+**Windows（看门狗 bat + 计划任务）：**
+取 hub 仓库里的 `start_peer_service.bat` 放同目录（内容见仓库；就是 `python peer_service.py`
+的重启循环）。注册开机自启计划任务指向它，例如：
 ```powershell
-powershell -ExecutionPolicy Bypass -File register_mcp_gateway_task.ps1
-schtasks /Run /TN MCPGatewayBoot
+schtasks /Create /TN PeerServiceBoot /TR "%CD%\start_peer_service.bat" /SC ONLOGON /RL HIGHEST /F
+schtasks /Run /TN PeerServiceBoot
 ```
 
 **macOS（launchd，KeepAlive 自带崩溃自愈 + 登录自启）：**
-把下面 plist 写到 `~/Library/LaunchAgents/com.stocksdk.mcpgateway.plist`
-（`<REPO>` 全部替换为仓库绝对路径，如 `/Users/<用户名>/dev/Project/StockSDK`）：
-
+写 `~/Library/LaunchAgents/com.stocksdk.peerservice.plist`（`<REPO>` 换成绝对路径，
+`<PY>` 换成 `python3` 的绝对路径 `which python3`）：
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
   "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-  <key>Label</key><string>com.stocksdk.mcpgateway</string>
+  <key>Label</key><string>com.stocksdk.peerservice</string>
   <key>WorkingDirectory</key><string><REPO></string>
   <key>ProgramArguments</key>
   <array>
-    <string><REPO>/.venv-mcp/bin/uvicorn</string>
-    <string>mcp_gateway.server:http_app</string>
-    <string>--host</string><string>0.0.0.0</string>
-    <string>--port</string><string>8765</string>
+    <string><PY></string>
+    <string><REPO>/peer_service.py</string>
   </array>
   <key>RunAtLoad</key><true/>
   <key>KeepAlive</key><true/>
-  <key>StandardOutPath</key><string><REPO>/mcp_gateway.log</string>
-  <key>StandardErrorPath</key><string><REPO>/mcp_gateway.log</string>
+  <key>StandardOutPath</key><string><REPO>/peer_service.log</string>
+  <key>StandardErrorPath</key><string><REPO>/peer_service.log</string>
 </dict>
 </plist>
 ```
-
 ```bash
-launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.stocksdk.mcpgateway.plist
-launchctl print gui/$(id -u)/com.stocksdk.mcpgateway | grep state   # 应为 running
-# 停止/卸载（排错用）: launchctl bootout gui/$(id -u)/com.stocksdk.mcpgateway
+launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.stocksdk.peerservice.plist
+launchctl print gui/$(id -u)/com.stocksdk.peerservice | grep state   # 应为 running
 ```
 
-本机自验（两系统同）——列出的工具应为裸名 `agent_run`、`agent_status` 等，**没有** `agent_agent_` 双前缀、没有任何 `ifind_/tushare_` 工具：
-
-```
-# Windows: $env:CHECK_API_KEY="<本机 API_KEY>"  /  macOS: export CHECK_API_KEY="<本机 API_KEY>"
-<venv-python> scripts/check_mcp_gateway.py
+本机自验（两系统同）——`/health` 返回 `service: peer_service` 且列出引擎可用性：
+```bash
+curl -s -H "X-API-Key: <本机 PEER_API_KEY>" http://127.0.0.1:8765/health
 ```
 
-## 5. 部署 frp 隧道（公网可达）
+## 4. 部署 frp 隧道（公网可达，与旧版完全一致，零改动复用）
 
-1. **拿 frpc 二进制**（https://github.com/fatedier/frp/releases 最新稳定版）：
-   - Windows：`frp_*_windows_amd64.zip`，解压出 `frpc.exe` 放到仓库根 `frp\frpc.exe`。GitHub 不通就从 hub 机拷同一个。
-   - macOS：Apple Silicon 用 `frp_*_darwin_arm64.tar.gz`（Intel 用 `darwin_amd64`），解压出 `frpc` 放 `frp/frpc` 并 `chmod +x frp/frpc`。首次运行若被 Gatekeeper 拦（"无法验证开发者"），执行 `xattr -d com.apple.quarantine frp/frpc` 放行。
-2. **配置**（所有产物均已 gitignore）：
+1. **拿 frpc 二进制**（https://github.com/fatedier/frp/releases）：
+   - Windows：`frp_*_windows_amd64.zip` → `frp\frpc.exe`。GitHub 不通就从 hub 机拷。
+   - macOS：`frp_*_darwin_arm64.tar.gz`（Intel 用 `darwin_amd64`）→ `frp/frpc`，`chmod +x`；
+     被 Gatekeeper 拦则 `xattr -d com.apple.quarantine frp/frpc`。
+2. **配置**（均 gitignore）：
    ```bash
    cp frpc_peer.toml.example frpc_peer.toml
-   # 编辑 frpc_peer.toml：<PEER_NAME> 换成本机 peer 名、<REMOTE_PORT> 换成分配端口
-   # 例（mac1）: name = "mcp-mac1" / remotePort = 18768
+   # 编辑：<PEER_NAME> 换本机 peer 名、<REMOTE_PORT> 换分配端口(如 mac1: name="mcp-mac1"/remotePort=18768)
+   # 🔴 本地转发目标是 127.0.0.1:8765(哑服务端口),与旧网关同口,frpc 配置无需改
    ```
-   token 文件按系统写（内容一行，`<真实token>` 换成用户提供值）：
+   token 文件：
    - Windows：`Set-Content frpc.secret.bat "set FRP_TOKEN=<真实token>" -Encoding ascii`
    - macOS：`echo 'export FRP_TOKEN=<真实token>' > frpc.secret.sh && chmod 600 frpc.secret.sh`
 
-   🔴 proxy `name` 在 frps 全局唯一（hub 已占 `api`/`mcp`），必须带机器名后缀，否则 frps 拒绝注册、frpc 反复重连。
+   🔴 proxy `name` 在 frps 全局唯一（hub 已占 `api`/`mcp`），必须带机器名后缀。
 3. **常驻启动**：
+   - **Windows**：`powershell -ExecutionPolicy Bypass -File register_frpc_peer_task.ps1` → `schtasks /Run /TN FrpcTunnel`
+   - **macOS**：写 `~/Library/LaunchAgents/com.stocksdk.frpc.plist`（经 `/bin/sh -c` 先 source token 再起 frpc，模板见旧版；`<REPO>` 替换绝对路径）后 `launchctl bootstrap gui/$(id -u) <plist>`。
+4. **隧道自验**：`frpc_peer.log` 出现 `start proxy success` 即注册成功。公网还不通是正常的
+   （明文口被香港 nftables 封），要等 5 步 Caddy 配好域名后走 HTTPS 验证。
 
-   **Windows：**
-   ```powershell
-   powershell -ExecutionPolicy Bypass -File register_frpc_peer_task.ps1
-   schtasks /Run /TN FrpcTunnel
-   ```
+## 5. 香港节点接入域名（hub 侧/用户操作，不在对等机上做）
 
-   **macOS**：写 `~/Library/LaunchAgents/com.stocksdk.frpc.plist`（`<REPO>` 同前替换；
-   launchd 不执行 shell 展开，故经 `/bin/sh -c` 先 source token 再起 frpc）：
+与旧版**完全一致**（Caddy 只是把 HTTP 反代到 `127.0.0.1:<REMOTE_PORT>`，不关心后端是 MCP
+还是纯 HTTP）。转告用户或由 hub 机 Claude 执行（SSH 私钥在 hub `.ssh-frp/hk_frps`）：
 
-   ```xml
-   <?xml version="1.0" encoding="UTF-8"?>
-   <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
-     "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-   <plist version="1.0">
-   <dict>
-     <key>Label</key><string>com.stocksdk.frpc</string>
-     <key>WorkingDirectory</key><string><REPO></string>
-     <key>ProgramArguments</key>
-     <array>
-       <string>/bin/sh</string>
-       <string>-c</string>
-       <string>. <REPO>/frpc.secret.sh && exec <REPO>/frp/frpc -c <REPO>/frpc_peer.toml</string>
-     </array>
-     <key>RunAtLoad</key><true/>
-     <key>KeepAlive</key><true/>
-     <key>StandardOutPath</key><string><REPO>/frpc_watchdog.log</string>
-     <key>StandardErrorPath</key><string><REPO>/frpc_watchdog.log</string>
-   </dict>
-   </plist>
-   ```
-
-   ```bash
-   launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.stocksdk.frpc.plist
-   ```
-4. **隧道自验**（此时只验 frpc→frps 段）：看 `frpc_peer.log` 出现 `start proxy success`
-   即隧道注册成功。**公网还不通是正常的**——明文口被香港 nftables 封死，要等 5b 步
-   Caddy 配好域名后走 HTTPS 验证。
-
-## 5b. 香港节点接入域名（hub 侧/用户操作，不在对等机上做）
-
-对等机自己做不了这步（需要香港服务器 SSH 权限），执行者把下面内容**原样转告用户**（或由 hub 机上的 Claude 执行；SSH 私钥在 hub 机 `.ssh-frp/hk_frps`）：
-
-1. **DNS**：给 `jiantx.net` 加一条 A 记录 `mcp-<PEER_NAME>` → `47.76.104.225`
-   （DNS 服务商控制台操作；若在 Cloudflare，**代理必须关**——灰云 DNS only，见 frp 迁移踩坑）。
-2. **Caddy**：在香港节点 `/etc/caddy/Caddyfile` 追加一个 site block（照抄现有
-   `mcp.jiantx.net` 的写法，仅换域名和上游端口）：
+1. **DNS**：`jiantx.net` 加 A 记录 `mcp-<PEER_NAME>` → `47.76.104.225`（Cloudflare 必须灰云 DNS only）。
+2. **Caddy**：`/etc/caddy/Caddyfile` 追加 site block（照抄 `mcp.jiantx.net`，换域名和端口）：
    ```caddyfile
    mcp-<PEER_NAME>.jiantx.net {
        reverse_proxy 127.0.0.1:<REMOTE_PORT> {
            flush_interval -1
-           # 🔴 必须：新版 fastmcp 自带 DNS-rebinding 防护(Host 白名单只认 localhost)，
-           # 不改写 Host 会被 MCP 传输层拒成 421 Misdirected Request。
-           # 边缘由 Caddy 可信终结 TLS，改写安全。
-           header_up Host localhost
        }
    }
    ```
-   然后 `sudo systemctl restart caddy`（这台 caddy.service 未配 ExecReload，`reload` 会报
-   `Job type reload is not applicable`，直接 restart）。Caddy 会经 TLS-ALPN-01 自动申请
-   Let's Encrypt 证书（无需开 80 口），自动续期。
-3. **nftables**：把 `<REMOTE_PORT>` 加进 `inet frpguard` 的 drop 集合（与 18000/18765
-   同款规则：loopback 放行、公网 drop），并同步 `/etc/nftables.conf` 持久化。
-4. **公网自验**（对等机或任何机器上，受信证书无需 `-k`）：
+   > 注：哑服务是自写的 http.server，**没有** fastmcp 的 DNS-rebinding 防护，故**不再需要**
+   > `header_up Host localhost`（留着也无害）。然后 `sudo systemctl restart caddy`。
+3. **nftables**：把 `<REMOTE_PORT>` 加进 `inet frpguard` 的 drop 集合（loopback 放行、公网 drop），持久化 `/etc/nftables.conf`。
+4. **公网自验**（任意机器，受信证书无需 `-k`）：
+   ```bash
+   curl -s -H "X-API-Key: <对等机 PEER_API_KEY>" https://mcp-<PEER_NAME>.jiantx.net/health
    ```
-   <venv-python> scripts/check_mcp_gateway.py https://mcp-<PEER_NAME>.jiantx.net/mcp
-   ```
-   （CHECK_API_KEY 用对等机的 API_KEY；输出应与第 4 步本机自验一致，裸名 agent_run 等。）
 
 ## 6. 部署完成后回报给用户（hub 接入需要）
 
-向用户输出如下三行（API Key 让用户通过安全渠道带到 hub 机，别贴进公共聊天）：
-
 ```
 PEER_NAME  = <peer 名>
-PEER_URL   = https://mcp-<PEER_NAME>.jiantx.net/mcp
-API_KEY    = （已生成，见本机 .env；请安全传递到 hub）
+PEER_URL   = https://mcp-<PEER_NAME>.jiantx.net
+API_KEY    = （已生成,见本机 .env；请安全传递到 hub,别贴公共聊天）
 ```
+提醒：若第 5 步（DNS+Caddy+nftables）没做，先完成再接 hub。
 
-并提醒用户：若 5b 步（DNS + Caddy + nftables）还没做，先完成 5b 再接 hub。
+## 7. hub 侧接入（在 hub 主机上做）
 
-## 7. hub 侧接入（在 hub 主机上做，不在对等机）
-
-hub 机 `.env` 追加（多个 peer 逗号相接，Mac peer 与 Windows peer 写法完全一样）：
-
+hub 机 `.env` 追加（URL 可带可不带 `/mcp` 尾巴，hub 会自动剥掉）：
 ```ini
-MCP_PEERS=pc2=https://mcp-pc2.jiantx.net/mcp,mac1=https://mcp-mac1.jiantx.net/mcp
+MCP_PEERS=pc2=https://mcp-pc2.jiantx.net,mac1=https://mcp-mac1.jiantx.net
 PEER_PC2_API_KEY=<pc2 的 API_KEY>
 PEER_MAC1_API_KEY=<mac1 的 API_KEY>
 ```
+重启 hub 网关（杀 8765 uvicorn，看门狗 5s 拉起）。验证：`mcp_gateway.log` 出现
+`已挂载对等机 mac1 -> 前缀 peer_mac1`；工具清单里出现 `peer_mac1_agent_run` 等 8 个工具。
+端到端：hub 的 Claude 调 `peer_mac1_agent_run(engine="claude", prompt="报告本机计算机名")`，
+确认返回对等机的机器名。
 
-重启 hub 网关（杀掉 8765 的 uvicorn，看门狗 5s 自动拉起）：
+## 8. 日后维护（关键收益）
 
-```powershell
-Get-CimInstance Win32_Process -Filter "Name='uvicorn.exe'" |
-  Where-Object { $_.CommandLine -match 'mcp_gateway' } |
-  ForEach-Object { Stop-Process -Id $_.ProcessId -Force }
-```
+- **改 hub 侧的工具逻辑（命令模板 / 新工具 / fs 编排）**：只在 hub 改代码 + 重启 hub 网关，
+  **对等机什么都不用动**。这是本架构的核心收益。
+- **改哑服务本体 `peer_service.py`（极少）**：hub 上跑
+  `.venv-mcp\Scripts\python scripts\push_peer_service.py`（可 `--peer <name>` 指定单台）——
+  经 `peer_<name>_svc_update` 把新源码推过去，对等机 py_compile 自检通过后原子替换 + 延迟
+  重启，看门狗/launchd 拉起新版本。确定性、不经 git、不经 LLM。
 
-验证：`mcp_gateway.log` 出现 `已挂载对等机 mac1 -> 前缀 peer_mac1`；hub 上跑
-`scripts\check_mcp_gateway.py`（CHECK_API_KEY 用 **hub 的** key），工具清单里出现
-`peer_mac1_agent_run` 等。最后端到端：hub 的 Claude 调
-`peer_mac1_agent_run(engine="claude", prompt="报告本机计算机名和 git log -1")`，
-确认返回的是**对等机**的机器名。
-
-## 8. 排错速查
+## 9. 排错速查
 
 | 症状 | 原因/处置 |
 |---|---|
-| `check_mcp_gateway.py` 报 401 | CHECK_API_KEY 与该网关 `.env` 的 API_KEY 不一致 |
-| 本机通、公网不通 | 按链路分段查：① `frpc_peer.log` 无 `start proxy success` → frpc 未注册（token 错 / proxy name 重复 / 端口占用）；② 隧道通但域名不通 → 5b 步没做全（DNS 未生效 / Caddy 没 reload / 证书还在申请）；③ 别试图裸连 `http://47.76.104.225:187xx`——nftables 封明文，公网本来就不通 |
-| 域名解析到了但 TLS 报错 | Cloudflare 代理没关（必须灰云 DNS only），或 Caddy 证书申请中（等 1-2 分钟看 `journalctl -u caddy`） |
-| 域名通但报 **421 Misdirected Request**（Server: uvicorn） | Caddy site block 少了 `header_up Host localhost`——新版 fastmcp 的 DNS-rebinding 防护只认 localhost Host（5b 步模板已含，别删） |
-| hub 日志无 `已挂载对等机` | hub `.env` 的 MCP_PEERS 格式错（`name=url` 逗号分隔）或缺 `PEER_<NAME大写>_API_KEY`（缺 key 会 warning 跳过） |
-| `peer_*_agent_run` 调用 failed: engine not found | 对等机 claude CLI 未装/未登录（第 1 步没做完） |
-| agent 任务 session_id 在别的机器续接失败 | 预期行为：会话历史存各机本地，session_id 只在创建它的那台机器有效 |
-| hub tools/list 变慢 | 某 peer 宕机（connect 超时 5s 兜底）；关机的 peer 建议暂时从 MCP_PEERS 摘除 |
-| **mac** launchd 服务不在 running | `launchctl print gui/$(id -u)/com.stocksdk.mcpgateway` 看 last exit code；日志在仓库根 `mcp_gateway.log` / `frpc_watchdog.log` |
-| **mac** frpc "无法验证开发者" | `xattr -d com.apple.quarantine frp/frpc` 后重试 |
-| **mac** 改了 .env/plist 不生效 | launchd 不会自动重载：`launchctl kickstart -k gui/$(id -u)/com.stocksdk.mcpgateway`（frpc 同理，换 Label） |
-| **mac** claude 走 launchd 起的任务报找不到命令 | launchd PATH 极简；`agent_runner` 用 `shutil.which` 解析绝对路径，若仍失败，在 plist 加 `EnvironmentVariables` 补 PATH（含 claude 安装目录，如 `~/.local/bin`） |
+| `/health` 401 | X-API-Key 与该机 `.env` 的 PEER_API_KEY 不一致 |
+| 本机通、公网不通 | ① `frpc_peer.log` 无 `start proxy success` → frpc 未注册（token 错/proxy name 重复/端口占用）；② 隧道通但域名不通 → 第 5 步没做全（DNS/Caddy/证书）；③ 别裸连 `http://47.76.104.225:187xx`（nftables 封明文） |
+| 域名 TLS 报错 | Cloudflare 代理没关（灰云 DNS only），或 Caddy 证书申请中（等 1-2 分钟看 `journalctl -u caddy`） |
+| hub 日志无 `已挂载对等机` | hub `.env` 的 MCP_PEERS 格式错或缺 `PEER_<NAME大写>_API_KEY`（缺 key warning 跳过） |
+| `peer_*_agent_run` failed: 命令未安装 | 对等机 claude CLI 未装/未登录（第 1 步没做完） |
+| hub tools/list 变慢 | 某 peer 宕机（PeerClient connect 超时 5s 兜底）；关机的 peer 建议暂时从 MCP_PEERS 摘除 |
+| `svc_update` 报语法自检失败未替换 | 推来的 peer_service.py 有语法错——哑服务拒绝替换（保护自己不被写坏），修好再推 |
+| **mac** launchd 服务不 running | `launchctl print gui/$(id -u)/com.stocksdk.peerservice` 看 last exit code；日志 `peer_service.log` |
 
-## 9. 安全红线（执行者与用户都要守）
+## 10. 安全红线
 
-- 每台机器**独立** API Key；泄露只需换那一台的 `.env` 并同步 hub 的对应 `PEER_*_API_KEY`。
-- `agent_run` = 拿到 key 即可在该机仓库目录内无确认执行任意命令（`--dangerously-skip-permissions`），与 hub 现状同级风险 ×N 台。key 只发可信机器。
-- `.env`、`frpc.secret.bat` / `frpc.secret.sh`、`frpc_peer.toml` 均已 gitignore；**任何 commit/push 前确认 diff 无凭据**。macOS 的 launchd plist 放 `~/Library/LaunchAgents/`（仓库外），天然不入库。
-- 不要把 hub 自己的地址写进 hub 的 MCP_PEERS（会环形自代理）。
+- 每台机器**独立** API Key；泄露只需换那台 `.env` 并同步 hub 的对应 `PEER_*_API_KEY`。
+- `/exec` = 拿到 key 即可在该机 `PEER_WORK_DIR` 内无确认执行任意命令（与 hub 现状同级风险 ×N 台）。
+  key 只发可信机器。可选 `PEER_EXEC_ALLOW=claude,codex` 收窄 argv[0] 白名单。
+- `.env`、`frpc.secret.*`、`frpc_peer.toml`、`peer_service.log` 均 gitignore；commit/push 前确认 diff 无凭据。
+- 不要把 hub 自己的地址写进 hub 的 MCP_PEERS（环形自代理）。
